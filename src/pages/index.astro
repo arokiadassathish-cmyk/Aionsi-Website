@@ -19,10 +19,17 @@ import SiliconHero from '../components/hero/SiliconHero.astro';
       <Container>
         <TechnicalLabel>AionSi Engineering Lifecycle</TechnicalLabel>
         <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
-          <h2 class="max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">From IP to Silicon.</h2>
-          <p class="max-w-2xl text-lg leading-8 text-slate-600">Engineering expertise across the semiconductor development lifecycle.</p>
+          <div>
+            <h2 class="max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">From IP to Silicon.</h2>
+            <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">Engineering expertise across the semiconductor development lifecycle.</p>
+          </div>
+          <p class="max-w-xl text-sm font-medium uppercase tracking-[.12em] text-slate-400 lg:justify-self-end">Explore each stage to see where AionSi engineering contributes.</p>
         </div>
-        <div class="mt-12"><EngineeringTrace /></div>
+        <div class="mt-10"><EngineeringTrace /></div>
+        <div class="mt-10 flex flex-col gap-4 border-t border-slate-200 pt-7 sm:flex-row sm:items-center sm:justify-between">
+          <p class="text-base text-slate-600">Need engineering capacity at any stage of the silicon lifecycle?</p>
+          <Button href="/contact" variant="technical">Talk to Our Engineering Team</Button>
+        </div>
       </Container>
     </Section>
 
