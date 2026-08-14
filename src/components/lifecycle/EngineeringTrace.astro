@@ -1,0 +1,4 @@
+---
+const stages = ['IP', 'SUBSYSTEM', 'SoC', 'VERIFICATION', 'PHYSICAL DESIGN', 'DFT', 'SILICON'];
+---
+<div class="w-full overflow-x-auto" aria-label="AionSi engineering lifecycle"><ol class="flex min-w-[820px] items-center gap-0">{stages.map((stage, index) => <li class="flex items-center"><span class={`whitespace-nowrap border px-4 py-3 text-xs font-semibold tracking-[0.12em] ${index === 0 ? 'border-[var(--aionsi-orange)] text-[var(--aionsi-orange)]' : 'border-slate-200 text-[var(--aionsi-blue)]'}`}>{stage}</span>{index < stages.length - 1 && <span class="h-px w-8 bg-[var(--aionsi-blue)]" aria-hidden="true"></span>}</li>)}</ol></div>

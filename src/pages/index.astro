@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/global/Header.astro';
+import Footer from '../components/global/Footer.astro';
+import Container from '../components/global/Container.astro';
+import Section from '../components/global/Section.astro';
+import TechnicalLabel from '../components/global/TechnicalLabel.astro';
+import Button from '../components/global/Button.astro';
+import EngineeringCard from '../components/capabilities/EngineeringCard.astro';
+import EngineeringTrace from '../components/lifecycle/EngineeringTrace.astro';
+---
+<BaseLayout title="AionSi | Semiconductor Engineering from IP to Silicon">
+  <Header />
+  <main>
+    <section class="relative flex min-h-screen items-center overflow-hidden bg-[var(--aionsi-deep-navy)] text-white">
+      <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(22,119,255,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(22,119,255,.35) 1px,transparent 1px);background-size:56px 56px;"></div>
+      <Container class="relative grid items-center gap-12 py-32 lg:grid-cols-[1.05fr_.95fr] lg:py-40">
+        <div>
+          <TechnicalLabel>Semiconductor Engineering</TechnicalLabel>
+          <h1 class="max-w-4xl text-5xl font-semibold leading-[.98] tracking-[-.045em] sm:text-6xl lg:text-8xl">Engineering the Future of <span class="text-[var(--aionsi-electric-blue)]">Silicon.</span></h1>
+          <p class="mt-7 max-w-2xl text-lg leading-8 text-white/70">Semiconductor engineering from IP to Silicon.</p>
+          <div class="mt-9 flex flex-wrap gap-4"><Button href="/contact">Talk to Our Engineering Team</Button><Button href="/capabilities" variant="secondary">Explore Capabilities</Button></div>
+        </div>
+        <div class="relative aspect-square rounded-3xl border border-white/10 bg-white/[.025] p-8" aria-label="Semiconductor engineering visual placeholder">
+          <div class="absolute inset-12 border border-[var(--aionsi-blue)]/40"></div>
+          <div class="absolute inset-24 grid grid-cols-4 gap-2 opacity-80">{Array.from({length:16}).map((_,i)=><div class="border border-[var(--aionsi-electric-blue)]/35" key={i}></div>)}</div>
+          <div class="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 border border-[var(--aionsi-orange)]/80"></div>
+          <div class="absolute bottom-6 left-6 text-xs tracking-[.18em] text-white/45">SILICON / ENGINEERING SYSTEM</div>
+        </div>
+      </Container>
+    </section>
+
+    <Section>
+      <Container>
+        <TechnicalLabel>AionSi Engineering Lifecycle</TechnicalLabel>
+        <h2 class="max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">From IP to Silicon.</h2>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-600">Engineering expertise across the semiconductor development lifecycle.</p>
+        <div class="mt-12"><EngineeringTrace /></div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <TechnicalLabel>Engineering Capabilities</TechnicalLabel>
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <EngineeringCard number="01" title="RTL Design" description="RTL engineering across block, subsystem and SoC development." technologies="Verilog · SystemVerilog · SoC" href="/capabilities/rtl-design" />
+          <EngineeringCard number="02" title="Design Verification" description="Verification expertise across block, subsystem and SoC levels." technologies="SystemVerilog · UVM · Coverage · Assertions" href="/capabilities/design-verification" />
+          <EngineeringCard number="03" title="Physical Design" description="Physical implementation expertise across complex silicon programs." technologies="Floorplanning · Placement · CTS · Routing" href="/capabilities/physical-design" />
+          <EngineeringCard number="04" title="DFT" description="Design-for-test engineering integrated into the silicon lifecycle." technologies="Test Architecture · Scan · ATPG" href="/capabilities/dft" />
+          <EngineeringCard number="05" title="Protocol Verification" description="Protocol-focused verification for complex semiconductor interfaces." technologies="PCIe · USB · DDR · AMBA" href="/capabilities/protocol-verification" />
+          <EngineeringCard number="06" title="SoC & IP Engineering" description="Engineering support from IP integration through SoC development." technologies="IP · Subsystem · SoC Integration" href="/capabilities/soc-ip" />
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-navy)] text-white">
+      <Container class="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div><TechnicalLabel>Talent at AionSi</TechnicalLabel><h2 class="text-4xl font-semibold tracking-tight md:text-5xl">Build what's next. With us.</h2><p class="mt-5 max-w-xl text-lg leading-8 text-white/70">Build your semiconductor career alongside an engineering organization focused on complex silicon challenges.</p></div>
+        <div class="grid gap-4 sm:grid-cols-2"><a href="/careers/early-careers" class="border border-white/15 p-6 transition hover:border-[var(--aionsi-orange)]"><div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">EARLY CAREERS</div><h3 class="mt-4 text-xl font-semibold">Start Your Silicon Journey</h3></a><a href="/careers/experienced-engineers" class="border border-white/15 p-6 transition hover:border-[var(--aionsi-orange)]"><div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">EXPERIENCED ENGINEERS</div><h3 class="mt-4 text-xl font-semibold">Bring Your Engineering Depth</h3></a></div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>

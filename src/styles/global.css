@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--aionsi-surface); color: var(--aionsi-text); font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+::selection { background: var(--aionsi-orange); color: var(--aionsi-white); }
+a { color: inherit; text-decoration: none; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid var(--aionsi-orange); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }

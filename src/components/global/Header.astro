@@ -1,0 +1,16 @@
+---
+import Container from './Container.astro';
+---
+<header class="absolute inset-x-0 top-0 z-50 text-white" data-site-header>
+  <Container class="flex h-20 items-center justify-between gap-8">
+    <a href="/" class="font-semibold tracking-tight" aria-label="AionSi home">AionSi</a>
+    <nav class="hidden items-center gap-7 text-sm lg:flex" aria-label="Primary navigation">
+      <a href="/capabilities">Capabilities</a>
+      <a href="/technology">Technology</a>
+      <a href="/industries">Industries</a>
+      <a href="/solutions">Solutions</a>
+      <a href="/careers">Careers</a>
+    </nav>
+    <a href="/contact" class="hidden rounded-full bg-[var(--aionsi-orange)] px-5 py-3 text-sm font-semibold md:inline-flex">Talk to Engineering →</a>
+  </Container>
+</header>

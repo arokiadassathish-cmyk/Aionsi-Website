@@ -1,0 +1,11 @@
+---
+interface Props { href: string; variant?: 'primary' | 'secondary' | 'technical'; }
+const { href, variant = 'primary' } = Astro.props;
+const base = 'group inline-flex items-center gap-3 transition-all duration-300';
+const styles = {
+  primary: 'rounded-full bg-[var(--aionsi-orange)] px-6 py-3.5 text-sm font-semibold text-white hover:-translate-y-0.5 hover:brightness-105',
+  secondary: 'rounded-full border border-[var(--aionsi-navy)] px-6 py-3.5 text-sm font-semibold hover:bg-[var(--aionsi-navy)] hover:text-white',
+  technical: 'text-sm font-semibold text-[var(--aionsi-navy)]'
+};
+---
+<a href={href} class={`${base} ${styles[variant]}`}><slot /> <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">→</span></a>

@@ -1,0 +1,25 @@
+:root {
+  --aionsi-navy: #07143D;
+  --aionsi-deep-navy: #020B27;
+  --aionsi-blue: #1258D6;
+  --aionsi-electric-blue: #1677FF;
+  --aionsi-orange: #F4511E;
+  --aionsi-white: #FFFFFF;
+  --aionsi-surface: #FFFFFF;
+  --aionsi-surface-alt: #F4F7FA;
+  --aionsi-text: #172033;
+  --aionsi-text-secondary: #475467;
+  --aionsi-text-muted: #667085;
+  --aionsi-border: #D9E1EC;
+  --container-max: 1440px;
+  --section-space-desktop: 120px;
+  --section-space-tablet: 88px;
+  --section-space-mobile: 64px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --motion-fast: 180ms;
+  --motion-standard: 350ms;
+  --motion-slow: 700ms;
+  --ease-aionsi: cubic-bezier(0.22, 1, 0.36, 1);
+}
