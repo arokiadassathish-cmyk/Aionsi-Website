@@ -5,20 +5,11 @@ interface Props {
 }
 const { class: className = '', light = false } = Astro.props;
 ---
-<a href="/" class={`inline-flex items-center ${className}`} aria-label="AionSi home">
-  <span class="font-sans text-[2rem] font-semibold leading-none tracking-[-0.07em] sm:text-[2.2rem]" style={`color:${light ? '#ffffff' : 'var(--aionsi-blue)'}`}>
-    A<span class="relative inline-block pl-[0.02em] pr-[0.01em]">i</span>onSi
+<a href="/" class={`group inline-flex flex-col ${className}`} aria-label="AionSi home">
+  <span class="relative inline-flex items-start font-sans text-[2rem] font-semibold leading-none tracking-[-0.07em] sm:text-[2.2rem]" style={`color:${light ? '#ffffff' : 'var(--aionsi-blue)'}`}>
+    <span>A</span>
+    <span class="relative mx-[0.03em] inline-block">i<span class="absolute left-1/2 top-[0.12em] h-[0.34em] w-[0.34em] -translate-x-1/2 rounded-full border border-white/70 bg-[var(--aionsi-orange)] shadow-[0_0_0_1px_rgba(244,81,30,.15)]" aria-hidden="true"></span></span>
+    <span>onSi</span>
   </span>
-  <span class="sr-only">Driven by Commitment</span>
+  <span class="mt-1 text-[0.68rem] font-semibold leading-none tracking-[0.01em]" style={`color:${light ? 'var(--aionsi-orange)' : 'var(--aionsi-orange)'}`}>Driven by Commitment</span>
 </a>
-<style>
-  a span:first-child::after {
-    content: '';
-    display: block;
-    width: 1.1rem;
-    height: 0.16rem;
-    margin-top: 0.22rem;
-    background: var(--aionsi-orange);
-    opacity: .95;
-  }
-</style>
