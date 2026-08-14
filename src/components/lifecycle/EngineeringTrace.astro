@@ -1,4 +1,120 @@
 ---
-const stages = ['IP', 'SUBSYSTEM', 'SoC', 'VERIFICATION', 'PHYSICAL DESIGN', 'DFT', 'SILICON'];
----
-<div class="w-full overflow-x-auto" aria-label="AionSi engineering lifecycle"><ol class="flex min-w-[820px] items-center gap-0">{stages.map((stage, index) => <li class="flex items-center"><span class={`whitespace-nowrap border px-4 py-3 text-xs font-semibold tracking-[0.12em] ${index === 0 ? 'border-[var(--aionsi-orange)] text-[var(--aionsi-orange)]' : 'border-slate-200 text-[var(--aionsi-blue)]'}`}>{stage}</span>{index < stages.length - 1 && <span class="h-px w-8 bg-[var(--aionsi-blue)]" aria-hidden="true"></span>}</li>)}</ol></div>
+import { useEffect, useState } from 'react';
+
+const stages = [
+  {
+    name: 'IP',
+    kicker: '01 / IP ENGINEERING',
+    focus: 'Reusable semiconductor building blocks engineered for integration and scale.',
+    capabilities: ['IP definition', 'RTL development', 'Interface architecture', 'Design quality'],
+    outcome: 'Integration-ready IP',
+  },
+  {
+    name: 'SUBSYSTEM',
+    kicker: '02 / SUBSYSTEM ENGINEERING',
+    focus: 'Connect IP, interfaces and control logic into a coherent subsystem architecture.',
+    capabilities: ['IP integration', 'Subsystem architecture', 'Interface connectivity', 'Functional planning'],
+    outcome: 'Validated subsystem architecture',
+  },
+  {
+    name: 'SoC',
+    kicker: '03 / SoC ENGINEERING',
+    focus: 'Integrate complex IP and subsystems into a scalable SoC architecture.',
+    capabilities: ['SoC integration', 'Interconnect architecture', 'Memory integration', 'System coordination'],
+    outcome: 'SoC integration-ready design',
+  },
+  {
+    name: 'VERIFICATION',
+    kicker: '04 / DESIGN VERIFICATION',
+    focus: 'Verify block, subsystem and SoC behaviour with disciplined verification methodology.',
+    capabilities: ['SystemVerilog', 'UVM', 'Coverage', 'Assertions and regression'],
+    outcome: 'Verified design confidence',
+  },
+  {
+    name: 'PHYSICAL DESIGN',
+    kicker: '05 / PHYSICAL DESIGN',
+    focus: 'Translate the logical design into an implementation ready for physical signoff.',
+    capabilities: ['Floorplanning', 'Placement', 'CTS', 'Routing and signoff'],
+    outcome: 'Implementation-ready silicon design',
+  },
+  {
+    name: 'DFT',
+    kicker: '06 / DFT ENGINEERING',
+    focus: 'Build testability into the silicon lifecycle for manufacturing readiness.',
+    capabilities: ['Test architecture', 'Scan', 'ATPG', 'DFT verification'],
+    outcome: 'Manufacturing-test readiness',
+  },
+  {
+    name: 'SILICON',
+    kicker: '07 / SILICON',
+    focus: 'Bring the engineering lifecycle together around signoff, silicon and system outcomes.',
+    capabilities: ['Signoff readiness', 'Silicon bring-up support', 'Quality focus', 'System outcomes'],
+    outcome: 'Silicon-ready engineering outcome',
+  },
+];
+
+export default function EngineeringTrace() {
+  const [active, setActive] = useState(0);
+  const stage = stages[active];
+
+  useEffect(() => {
+    const onKey = (event) => {
+      if (event.key === 'ArrowRight') setActive((value) => Math.min(value + 1, stages.length - 1));
+      if (event.key === 'ArrowLeft') setActive((value) => Math.max(value - 1, 0));
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  return (
+    <div className="w-full">
+      <div className="overflow-x-auto pb-2" aria-label="AionSi engineering lifecycle selector">
+        <div className="flex min-w-[900px] items-center">
+          {stages.map((item, index) => {
+            const selected = index === active;
+            return (
+              <div key={item.name} className="flex flex-1 items-center">
+                <button
+                  type="button"
+                  onClick={() => setActive(index)}
+                  aria-current={selected ? 'step' : undefined}
+                  aria-label={`View ${item.name} engineering stage`}
+                  className={`group w-full border px-4 py-4 text-left transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--aionsi-orange)] ${selected ? 'border-[var(--aionsi-orange)] bg-[var(--aionsi-orange)]/[.04] text-[var(--aionsi-orange)]' : 'border-slate-200 bg-white text-[var(--aionsi-blue)] hover:border-[var(--aionsi-blue)]'}`}
+                >
+                  <div className="text-[10px] font-semibold tracking-[.18em]">{String(index + 1).padStart(2, '0')}</div>
+                  <div className="mt-2 whitespace-nowrap text-xs font-semibold tracking-[.12em] sm:text-sm">{item.name}</div>
+                </button>
+                {index < stages.length - 1 && <span className={`h-px w-6 shrink-0 transition-colors ${selected ? 'bg-[var(--aionsi-orange)]' : 'bg-[var(--aionsi-blue)]'}`} aria-hidden="true" />}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="mt-8 grid gap-6 lg:grid-cols-[.9fr_1.1fr]">
+        <article className="border border-slate-200 bg-white p-7 md:p-9">
+          <div className="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">{stage.kicker}</div>
+          <h3 className="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">{stage.name}</h3>
+          <p className="mt-4 text-base leading-7 text-slate-600 md:text-lg">{stage.focus}</p>
+          <div className="mt-8">
+            <div className="text-[10px] font-semibold tracking-[.18em] text-slate-400">ENGINEERING OUTCOME</div>
+            <div className="mt-2 text-lg font-semibold text-[var(--aionsi-navy)]">{stage.outcome}</div>
+          </div>
+        </article>
+
+        <article className="border border-[var(--aionsi-navy)] bg-[var(--aionsi-navy)] p-7 text-white md:p-9">
+          <div className="text-[10px] font-semibold tracking-[.18em] text-white/50">AIONSI ENGINEERING FOCUS</div>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {stage.capabilities.map((capability) => (
+              <div key={capability} className="border border-white/10 bg-white/[.03] px-4 py-4 text-sm font-medium text-white/80">{capability}</div>
+            ))}
+          </div>
+          <div className="mt-8 flex items-center justify-between gap-4 border-t border-white/10 pt-5 text-xs text-white/55">
+            <span>Stage {String(active + 1).padStart(2, '0')} of {String(stages.length).padStart(2, '0')}</span>
+            <span>← / → to navigate</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  );
+}
