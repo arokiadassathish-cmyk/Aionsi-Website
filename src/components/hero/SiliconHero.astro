@@ -4,70 +4,74 @@ import TechnicalLabel from '../global/TechnicalLabel.astro';
 import Button from '../global/Button.astro';
 ---
 <section class="relative isolate overflow-hidden bg-[var(--aionsi-deep-navy)] text-white">
-  <div class="absolute inset-0 opacity-20 lg:opacity-25" aria-hidden="true">
-    <div class="h-full w-full" style="background-image:linear-gradient(rgba(22,119,255,.20) 1px,transparent 1px),linear-gradient(90deg,rgba(22,119,255,.20) 1px,transparent 1px);background-size:56px 56px;"></div>
+  <div class="absolute inset-0 opacity-15 lg:opacity-20" aria-hidden="true">
+    <div class="h-full w-full" style="background-image:linear-gradient(rgba(22,119,255,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(22,119,255,.18) 1px,transparent 1px);background-size:56px 56px;"></div>
   </div>
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_72%_46%,rgba(22,119,255,.20),transparent_34%)]" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_74%_44%,rgba(22,119,255,.18),transparent_32%)]" aria-hidden="true"></div>
 
-  <Container class="relative grid min-h-[760px] items-center gap-10 pb-16 pt-28 sm:gap-14 sm:pb-20 sm:pt-32 lg:min-h-[calc(100svh-1px)] lg:grid-cols-[.98fr_1.02fr] lg:gap-12 lg:pb-24 lg:pt-32">
+  <Container class="relative grid min-h-[760px] items-center gap-10 pb-16 pt-28 sm:gap-14 sm:pb-20 sm:pt-32 lg:min-h-[calc(100svh-1px)] lg:grid-cols-[.92fr_1.08fr] lg:gap-12 lg:pb-20 lg:pt-28">
     <div class="max-w-3xl">
       <TechnicalLabel>Semiconductor Engineering</TechnicalLabel>
-      <h1 class="max-w-4xl text-[3.05rem] font-semibold leading-[.93] tracking-[-0.06em] sm:text-[4.6rem] lg:text-[6.6rem]">Engineering the Future of <span class="text-[var(--aionsi-electric-blue)]">Silicon.</span></h1>
+      <h1 class="max-w-4xl text-[3.05rem] font-semibold leading-[.93] tracking-[-0.06em] sm:text-[4.6rem] lg:text-[6.35rem]">Engineering the Future of <span class="text-[var(--aionsi-electric-blue)]">Silicon.</span></h1>
       <p class="mt-7 max-w-xl text-base leading-7 text-white/70 sm:text-xl sm:leading-8">Semiconductor engineering from IP to Silicon across RTL Design, Design Verification, Physical Design, DFT, Protocol Verification and SoC &amp; IP Engineering.</p>
-      <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <Button href="/contact">Talk to Our Engineering Team</Button>
         <Button href="/capabilities" variant="secondary">Explore Capabilities</Button>
       </div>
-      <div class="mt-8 flex flex-wrap gap-x-4 gap-y-2 text-[9px] font-semibold tracking-[.18em] text-white/40 sm:mt-10 sm:gap-x-5 sm:text-xs">
+      <div class="mt-8 flex flex-wrap gap-x-4 gap-y-2 text-[9px] font-semibold tracking-[.18em] text-white/40 sm:mt-9 sm:gap-x-5 sm:text-xs">
         <span>IP</span><span>SUBSYSTEM</span><span>SoC</span><span>VERIFICATION</span><span>PHYSICAL</span><span>DFT</span><span>SILICON</span>
       </div>
     </div>
 
-    <div class="relative mx-auto w-full max-w-[640px] lg:justify-self-end" aria-label="AionSi silicon engineering visualization">
-      <div class="relative aspect-square">
-        <div class="absolute inset-[6%] rotate-[5deg] border border-[var(--aionsi-electric-blue)]/40 bg-white/[.018] shadow-[0_0_120px_rgba(22,119,255,.10)]"></div>
-        <div class="absolute inset-[13%] -rotate-[3deg] border border-[var(--aionsi-blue)]/55 bg-[linear-gradient(135deg,rgba(22,119,255,.05),rgba(255,255,255,.01))]"></div>
+    <div class="relative mx-auto w-full max-w-[640px] lg:justify-self-end" aria-label="AionSi semiconductor engineering hero visual">
+      <div class="relative aspect-[4/3] overflow-hidden border border-white/10 bg-black/20 shadow-[0_0_100px_rgba(22,119,255,.12)] sm:aspect-[16/11] lg:aspect-[4/3]">
+        <img src="/images/hero/aionsi-semiconductor-hero.jpg" alt="Macro photograph of a semiconductor chip on a circuit board" class="absolute inset-0 h-full w-full object-cover object-center" loading="eager" fetchpriority="high" />
+        <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,11,39,.78)_0%,rgba(2,11,39,.38)_38%,rgba(2,11,39,.12)_72%,rgba(2,11,39,.42)_100%)]"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,11,39,.34)_0%,rgba(2,11,39,.02)_42%,rgba(2,11,39,.6)_100%)]"></div>
+        <div class="absolute inset-0 bg-[rgba(7,20,61,.28)] mix-blend-multiply"></div>
 
-        <div class="absolute inset-[20%] overflow-hidden border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.01))] shadow-[inset_0_0_40px_rgba(0,0,0,.35)]">
-          <div class="absolute inset-0" aria-hidden="true" style="background-image:linear-gradient(90deg,rgba(22,119,255,.12) 1px,transparent 1px),linear-gradient(rgba(22,119,255,.12) 1px,transparent 1px);background-size:30px 30px;"></div>
+        <svg class="absolute inset-0 h-full w-full" viewBox="0 0 1000 750" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="aion-blue-line" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#1677FF" stop-opacity="0" />
+              <stop offset="50%" stop-color="#1677FF" stop-opacity=".85" />
+              <stop offset="100%" stop-color="#1677FF" stop-opacity="0" />
+            </linearGradient>
+            <linearGradient id="aion-orange-line" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#F4511E" stop-opacity="0" />
+              <stop offset="50%" stop-color="#F4511E" stop-opacity=".95" />
+              <stop offset="100%" stop-color="#F4511E" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <path d="M60 165 H300 V285 H470" fill="none" stroke="url(#aion-blue-line)" stroke-width="2" />
+          <path d="M940 190 H710 V315 H530" fill="none" stroke="url(#aion-blue-line)" stroke-width="2" />
+          <path d="M110 610 H355 V455 H490" fill="none" stroke="url(#aion-blue-line)" stroke-width="2" />
+          <path d="M905 585 H690 V455 H535" fill="none" stroke="url(#aion-orange-line)" stroke-width="3" />
+          <circle cx="470" cy="285" r="5" fill="#1677FF" />
+          <circle cx="530" cy="315" r="5" fill="#1677FF" />
+          <circle cx="490" cy="455" r="5" fill="#1677FF" />
+          <circle cx="535" cy="455" r="6" fill="#F4511E" />
+        </svg>
 
-          <div class="absolute left-[7%] top-[8%] h-[24%] w-[30%] border border-[var(--aionsi-electric-blue)]/65 bg-[var(--aionsi-electric-blue)]/[.035] p-2.5 sm:p-4">
-            <div class="text-[8px] font-semibold tracking-[.15em] text-white/65 sm:text-[9px]">CPU / CORE</div>
-            <div class="mt-2 grid grid-cols-3 gap-1 opacity-75 sm:mt-3">{Array.from({length:9}).map((_,i)=><span class="h-1.5 border border-[var(--aionsi-electric-blue)]/35 sm:h-2" key={i}></span>)}</div>
-          </div>
-
-          <div class="absolute right-[7%] top-[8%] h-[24%] w-[30%] border border-[var(--aionsi-electric-blue)]/55 bg-white/[.025] p-2.5 sm:p-4">
-            <div class="text-[8px] font-semibold tracking-[.15em] text-white/65 sm:text-[9px]">MEMORY</div>
-            <div class="mt-2 space-y-1 opacity-70 sm:mt-3">{Array.from({length:4}).map((_,i)=><span class="block h-1.5 border border-[var(--aionsi-blue)]/35 sm:h-2" key={i}></span>)}</div>
-          </div>
-
-          <div class="absolute bottom-[8%] left-[7%] h-[24%] w-[30%] border border-[var(--aionsi-electric-blue)]/55 bg-white/[.02] p-2.5 sm:p-4">
-            <div class="text-[8px] font-semibold tracking-[.15em] text-white/65 sm:text-[9px]">INTERCONNECT</div>
-            <div class="mt-2 flex gap-1.5 opacity-70 sm:mt-3 sm:gap-2">{Array.from({length:5}).map((_,i)=><span class="h-8 w-1 border border-[var(--aionsi-blue)]/35 sm:h-10" key={i}></span>)}</div>
-          </div>
-
-          <div class="absolute bottom-[8%] right-[7%] h-[24%] w-[30%] border border-[var(--aionsi-electric-blue)]/55 bg-white/[.02] p-2.5 sm:p-4">
-            <div class="text-[8px] font-semibold tracking-[.15em] text-white/65 sm:text-[9px]">PCIe / I-O</div>
-            <div class="mt-2 grid grid-cols-4 gap-1 opacity-70 sm:mt-3">{Array.from({length:12}).map((_,i)=><span class="h-1.5 border border-[var(--aionsi-blue)]/35 sm:h-2" key={i}></span>)}</div>
-          </div>
-
-          <div class="absolute left-1/2 top-1/2 h-[32%] w-[32%] -translate-x-1/2 -translate-y-1/2 border border-[var(--aionsi-orange)]/85 bg-[radial-gradient(circle,rgba(244,81,30,.07),transparent_65%)] shadow-[0_0_70px_rgba(244,81,30,.10)]">
-            <div class="absolute inset-0 flex items-center justify-center text-center">
-              <div><div class="text-[9px] font-semibold tracking-[.18em] text-[var(--aionsi-orange)] sm:text-[10px]">AIONSI</div><div class="mt-1 text-xl font-semibold tracking-tight sm:mt-2 sm:text-3xl">SoC</div></div>
-            </div>
-          </div>
-
-          <div class="absolute left-[19%] top-[42%] h-px w-[62%] bg-gradient-to-r from-transparent via-[var(--aionsi-electric-blue)]/80 to-transparent"></div>
-          <div class="absolute left-[42%] top-[19%] h-[62%] w-px bg-gradient-to-b from-transparent via-[var(--aionsi-electric-blue)]/60 to-transparent"></div>
+        <div class="absolute left-5 top-5 border border-white/15 bg-[var(--aionsi-deep-navy)]/70 px-3 py-2 backdrop-blur-sm sm:left-6 sm:top-6">
+          <div class="text-[9px] font-semibold tracking-[.18em] text-white/60">SOC-01</div>
+          <div class="mt-1 text-[9px] tracking-[.14em] text-[var(--aionsi-electric-blue)]">RTL · DV · PD · DFT</div>
         </div>
 
-        <div class="absolute bottom-[6%] left-[8%] flex items-center gap-2.5 text-[8px] tracking-[.15em] text-white/40 sm:text-[10px] sm:tracking-[.16em]">
-          <span class="h-2 w-2 rounded-full bg-[var(--aionsi-orange)] shadow-[0_0_10px_rgba(244,81,30,.55)]"></span>
-          <span>ARCHITECTURE · VERIFY · IMPLEMENT</span>
+        <div class="absolute right-5 top-5 max-w-[42%] text-right sm:right-6 sm:top-6">
+          <div class="text-[9px] font-semibold tracking-[.18em] text-white/60">SILICON ENGINEERING</div>
+          <div class="mt-1 text-[9px] tracking-[.14em] text-white/45">PPA · COVERAGE · SIGNOFF</div>
         </div>
 
-        <div class="absolute right-[4%] top-[5%] hidden text-right text-[8px] tracking-[.16em] text-white/30 sm:block sm:text-[9px]">
-          <div>SOC-01</div><div class="mt-1">RTL · DV · PD · DFT</div><div class="mt-1">PPA · COVERAGE · SIGNOFF</div>
+        <div class="absolute bottom-5 left-5 sm:bottom-6 sm:left-6">
+          <div class="flex items-center gap-2 text-[9px] font-semibold tracking-[.16em] text-white/75">
+            <span class="h-2 w-2 rounded-full bg-[var(--aionsi-orange)] shadow-[0_0_10px_rgba(244,81,30,.65)]"></span>
+            ARCHITECTURE → VERIFY → IMPLEMENT
+          </div>
+        </div>
+
+        <div class="absolute bottom-5 right-5 text-right sm:bottom-6 sm:right-6">
+          <div class="text-[8px] tracking-[.15em] text-white/45">PCIe · DDR · SoC · DFT</div>
         </div>
       </div>
     </div>
