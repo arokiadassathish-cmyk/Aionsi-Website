@@ -1,16 +1,17 @@
 ---
 import Container from './Container.astro';
+import AionSiLogo from './AionSiLogo.astro';
 ---
-<header class="absolute inset-x-0 top-0 z-50 text-white" data-site-header>
+<header class="absolute inset-x-0 top-0 z-50" data-site-header>
   <Container class="flex h-20 items-center justify-between gap-8">
-    <a href="/" class="font-semibold tracking-tight" aria-label="AionSi home">AionSi</a>
-    <nav class="hidden items-center gap-7 text-sm lg:flex" aria-label="Primary navigation">
-      <a href="/capabilities">Capabilities</a>
-      <a href="/technology">Technology</a>
-      <a href="/industries">Industries</a>
-      <a href="/solutions">Solutions</a>
-      <a href="/careers">Careers</a>
+    <AionSiLogo light />
+    <nav class="hidden items-center gap-7 text-sm text-white/85 lg:flex" aria-label="Primary navigation">
+      <a class="transition-colors hover:text-white" href="/capabilities">Capabilities</a>
+      <a class="transition-colors hover:text-white" href="/technology">Technology</a>
+      <a class="transition-colors hover:text-white" href="/industries">Industries</a>
+      <a class="transition-colors hover:text-white" href="/solutions">Solutions</a>
+      <a class="transition-colors hover:text-white" href="/careers">Careers</a>
     </nav>
-    <a href="/contact" class="hidden rounded-full bg-[var(--aionsi-orange)] px-5 py-3 text-sm font-semibold md:inline-flex">Talk to Engineering →</a>
+    <a href="/contact" class="hidden rounded-full bg-[var(--aionsi-orange)] px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105 md:inline-flex">Talk to Engineering →</a>
   </Container>
 </header>
