@@ -4,21 +4,21 @@ import TechnicalLabel from '../global/TechnicalLabel.astro';
 import Button from '../global/Button.astro';
 ---
 <section class="relative isolate overflow-hidden bg-[var(--aionsi-deep-navy)] text-white">
-  <div class="absolute inset-0 opacity-30" aria-hidden="true">
-    <div class="h-full w-full" style="background-image:linear-gradient(rgba(22,119,255,.22) 1px,transparent 1px),linear-gradient(90deg,rgba(22,119,255,.22) 1px,transparent 1px);background-size:56px 56px;"></div>
+  <div class="absolute inset-0 opacity-20 lg:opacity-25" aria-hidden="true">
+    <div class="h-full w-full" style="background-image:linear-gradient(rgba(22,119,255,.20) 1px,transparent 1px),linear-gradient(90deg,rgba(22,119,255,.20) 1px,transparent 1px);background-size:56px 56px;"></div>
   </div>
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_72%_46%,rgba(22,119,255,.20),transparent_34%)]" aria-hidden="true"></div>
 
-  <Container class="relative grid min-h-[760px] items-center gap-12 pb-20 pt-32 lg:min-h-[calc(100svh-1px)] lg:grid-cols-[.98fr_1.02fr] lg:pb-24 lg:pt-32">
+  <Container class="relative grid min-h-[760px] items-center gap-10 pb-16 pt-28 sm:gap-14 sm:pb-20 sm:pt-32 lg:min-h-[calc(100svh-1px)] lg:grid-cols-[.98fr_1.02fr] lg:gap-12 lg:pb-24 lg:pt-32">
     <div class="max-w-3xl">
       <TechnicalLabel>Semiconductor Engineering</TechnicalLabel>
-      <h1 class="max-w-4xl text-[3.25rem] font-semibold leading-[.92] tracking-[-.06em] sm:text-[4.6rem] lg:text-[6.7rem]">Engineering the Future of <span class="text-[var(--aionsi-electric-blue)]">Silicon.</span></h1>
+      <h1 class="max-w-4xl text-[3.05rem] font-semibold leading-[.93] tracking-[-0.06em] sm:text-[4.6rem] lg:text-[6.6rem]">Engineering the Future of <span class="text-[var(--aionsi-electric-blue)]">Silicon.</span></h1>
       <p class="mt-7 max-w-xl text-base leading-7 text-white/70 sm:text-xl sm:leading-8">Semiconductor engineering from IP to Silicon across RTL Design, Design Verification, Physical Design, DFT, Protocol Verification and SoC &amp; IP Engineering.</p>
       <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <Button href="/contact">Talk to Our Engineering Team</Button>
         <Button href="/capabilities" variant="secondary">Explore Capabilities</Button>
       </div>
-      <div class="mt-10 flex flex-wrap gap-x-5 gap-y-2 text-[10px] font-semibold tracking-[.18em] text-white/45 sm:text-xs">
+      <div class="mt-8 flex flex-wrap gap-x-4 gap-y-2 text-[9px] font-semibold tracking-[.18em] text-white/40 sm:mt-10 sm:gap-x-5 sm:text-xs">
         <span>IP</span><span>SUBSYSTEM</span><span>SoC</span><span>VERIFICATION</span><span>PHYSICAL</span><span>DFT</span><span>SILICON</span>
       </div>
     </div>
@@ -29,41 +29,45 @@ import Button from '../global/Button.astro';
         <div class="absolute inset-[13%] -rotate-[3deg] border border-[var(--aionsi-blue)]/55 bg-[linear-gradient(135deg,rgba(22,119,255,.05),rgba(255,255,255,.01))]"></div>
 
         <div class="absolute inset-[20%] overflow-hidden border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.01))] shadow-[inset_0_0_40px_rgba(0,0,0,.35)]">
-          <div class="absolute inset-0" aria-hidden="true" style="background-image:linear-gradient(90deg,rgba(22,119,255,.14) 1px,transparent 1px),linear-gradient(rgba(22,119,255,.14) 1px,transparent 1px);background-size:34px 34px;"></div>
+          <div class="absolute inset-0" aria-hidden="true" style="background-image:linear-gradient(90deg,rgba(22,119,255,.12) 1px,transparent 1px),linear-gradient(rgba(22,119,255,.12) 1px,transparent 1px);background-size:30px 30px;"></div>
 
-          <div class="absolute left-[8%] top-[9%] h-[25%] w-[29%] border border-[var(--aionsi-electric-blue)]/70 bg-[var(--aionsi-electric-blue)]/[.04] p-3 sm:p-4">
-            <div class="text-[9px] font-semibold tracking-[.16em] text-white/70">CPU / CORE</div>
-            <div class="mt-3 grid grid-cols-3 gap-1 opacity-80">{Array.from({length:9}).map((_,i)=><span class="h-2 border border-[var(--aionsi-electric-blue)]/35" key={i}></span>)}</div>
+          <div class="absolute left-[7%] top-[8%] h-[24%] w-[30%] border border-[var(--aionsi-electric-blue)]/65 bg-[var(--aionsi-electric-blue)]/[.035] p-2.5 sm:p-4">
+            <div class="text-[8px] font-semibold tracking-[.15em] text-white/65 sm:text-[9px]">CPU / CORE</div>
+            <div class="mt-2 grid grid-cols-3 gap-1 opacity-75 sm:mt-3">{Array.from({length:9}).map((_,i)=><span class="h-1.5 border border-[var(--aionsi-electric-blue)]/35 sm:h-2" key={i}></span>)}</div>
           </div>
 
-          <div class="absolute right-[8%] top-[9%] h-[25%] w-[29%] border border-[var(--aionsi-electric-blue)]/55 bg-white/[.025] p-3 sm:p-4">
-            <div class="text-[9px] font-semibold tracking-[.16em] text-white/70">MEMORY</div>
-            <div class="mt-3 space-y-1 opacity-75">{Array.from({length:4}).map((_,i)=><span class="block h-2 border border-[var(--aionsi-blue)]/35" key={i}></span>)}</div>
+          <div class="absolute right-[7%] top-[8%] h-[24%] w-[30%] border border-[var(--aionsi-electric-blue)]/55 bg-white/[.025] p-2.5 sm:p-4">
+            <div class="text-[8px] font-semibold tracking-[.15em] text-white/65 sm:text-[9px]">MEMORY</div>
+            <div class="mt-2 space-y-1 opacity-70 sm:mt-3">{Array.from({length:4}).map((_,i)=><span class="block h-1.5 border border-[var(--aionsi-blue)]/35 sm:h-2" key={i}></span>)}</div>
           </div>
 
-          <div class="absolute bottom-[8%] left-[8%] h-[25%] w-[29%] border border-[var(--aionsi-electric-blue)]/55 bg-white/[.02] p-3 sm:p-4">
-            <div class="text-[9px] font-semibold tracking-[.16em] text-white/70">INTERCONNECT</div>
-            <div class="mt-3 flex gap-2 opacity-75">{Array.from({length:5}).map((_,i)=><span class="h-10 w-1 border border-[var(--aionsi-blue)]/35" key={i}></span>)}</div>
+          <div class="absolute bottom-[8%] left-[7%] h-[24%] w-[30%] border border-[var(--aionsi-electric-blue)]/55 bg-white/[.02] p-2.5 sm:p-4">
+            <div class="text-[8px] font-semibold tracking-[.15em] text-white/65 sm:text-[9px]">INTERCONNECT</div>
+            <div class="mt-2 flex gap-1.5 opacity-70 sm:mt-3 sm:gap-2">{Array.from({length:5}).map((_,i)=><span class="h-8 w-1 border border-[var(--aionsi-blue)]/35 sm:h-10" key={i}></span>)}</div>
           </div>
 
-          <div class="absolute bottom-[8%] right-[8%] h-[25%] w-[29%] border border-[var(--aionsi-electric-blue)]/55 bg-white/[.02] p-3 sm:p-4">
-            <div class="text-[9px] font-semibold tracking-[.16em] text-white/70">PCIe / I-O</div>
-            <div class="mt-3 grid grid-cols-4 gap-1 opacity-75">{Array.from({length:12}).map((_,i)=><span class="h-2 border border-[var(--aionsi-blue)]/35" key={i}></span>)}</div>
+          <div class="absolute bottom-[8%] right-[7%] h-[24%] w-[30%] border border-[var(--aionsi-electric-blue)]/55 bg-white/[.02] p-2.5 sm:p-4">
+            <div class="text-[8px] font-semibold tracking-[.15em] text-white/65 sm:text-[9px]">PCIe / I-O</div>
+            <div class="mt-2 grid grid-cols-4 gap-1 opacity-70 sm:mt-3">{Array.from({length:12}).map((_,i)=><span class="h-1.5 border border-[var(--aionsi-blue)]/35 sm:h-2" key={i}></span>)}</div>
           </div>
 
-          <div class="absolute left-1/2 top-1/2 h-[34%] w-[34%] -translate-x-1/2 -translate-y-1/2 border border-[var(--aionsi-orange)]/80 bg-[radial-gradient(circle,rgba(244,81,30,.07),transparent_65%)] shadow-[0_0_70px_rgba(244,81,30,.10)]">
+          <div class="absolute left-1/2 top-1/2 h-[32%] w-[32%] -translate-x-1/2 -translate-y-1/2 border border-[var(--aionsi-orange)]/85 bg-[radial-gradient(circle,rgba(244,81,30,.07),transparent_65%)] shadow-[0_0_70px_rgba(244,81,30,.10)]">
             <div class="absolute inset-0 flex items-center justify-center text-center">
-              <div><div class="text-[10px] font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">AIONSI</div><div class="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">SoC</div></div>
+              <div><div class="text-[9px] font-semibold tracking-[.18em] text-[var(--aionsi-orange)] sm:text-[10px]">AIONSI</div><div class="mt-1 text-xl font-semibold tracking-tight sm:mt-2 sm:text-3xl">SoC</div></div>
             </div>
           </div>
 
-          <div class="absolute left-[20%] top-[42%] h-px w-[60%] bg-gradient-to-r from-transparent via-[var(--aionsi-electric-blue)]/80 to-transparent"></div>
-          <div class="absolute left-[42%] top-[20%] h-[60%] w-px bg-gradient-to-b from-transparent via-[var(--aionsi-electric-blue)]/60 to-transparent"></div>
+          <div class="absolute left-[19%] top-[42%] h-px w-[62%] bg-gradient-to-r from-transparent via-[var(--aionsi-electric-blue)]/80 to-transparent"></div>
+          <div class="absolute left-[42%] top-[19%] h-[62%] w-px bg-gradient-to-b from-transparent via-[var(--aionsi-electric-blue)]/60 to-transparent"></div>
         </div>
 
-        <div class="absolute bottom-[7%] left-[8%] flex items-center gap-3 text-[9px] tracking-[.16em] text-white/45 sm:text-[10px]">
+        <div class="absolute bottom-[6%] left-[8%] flex items-center gap-2.5 text-[8px] tracking-[.15em] text-white/40 sm:text-[10px] sm:tracking-[.16em]">
           <span class="h-2 w-2 rounded-full bg-[var(--aionsi-orange)] shadow-[0_0_10px_rgba(244,81,30,.55)]"></span>
-          ARCHITECTURE · VERIFY · IMPLEMENT
+          <span>ARCHITECTURE · VERIFY · IMPLEMENT</span>
+        </div>
+
+        <div class="absolute right-[4%] top-[5%] hidden text-right text-[8px] tracking-[.16em] text-white/30 sm:block sm:text-[9px]">
+          <div>SOC-01</div><div class="mt-1">RTL · DV · PD · DFT</div><div class="mt-1">PPA · COVERAGE · SIGNOFF</div>
         </div>
       </div>
     </div>
