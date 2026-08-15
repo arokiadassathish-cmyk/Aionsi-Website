@@ -8,17 +8,13 @@ import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
 import { capabilities } from '../../data/capabilities';
 
-type EvidenceItem = NonNullable<(typeof capabilities)[number]['evidence']>[number] & {
-  capability: (typeof capabilities)[number];
-  slug: string;
-};
-
 export function getStaticPaths() {
-  const paths: Array<{ params: { slug: string }; props: { evidence: Omit<EvidenceItem, 'slug'> } }> = [];
+  const paths = [];
 
   for (const capability of capabilities) {
     for (const item of capability.evidence ?? []) {
       if (!item.href) continue;
+
       const parts = item.href.split('/').filter(Boolean);
       const slug = parts[parts.length - 1];
       if (!slug) continue;
