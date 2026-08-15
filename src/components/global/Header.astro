@@ -4,21 +4,21 @@ import AionSiLogo from './AionSiLogo.astro';
 ---
 <header class="absolute inset-x-0 top-0 z-50" data-site-header>
   <Container class="flex h-20 items-center justify-between gap-6 lg:h-24">
-    <AionSiLogo light />
+    <AionSiLogo />
 
-    <nav class="hidden items-center gap-7 text-sm text-white/85 lg:flex" aria-label="Primary navigation">
-      <a class="transition-colors hover:text-white" href="/capabilities">Capabilities</a>
-      <a class="transition-colors hover:text-white" href="/technology">Technology</a>
-      <a class="transition-colors hover:text-white" href="/industries">Industries</a>
-      <a class="transition-colors hover:text-white" href="/solutions">Solutions</a>
-      <a class="transition-colors hover:text-white" href="/careers">Careers</a>
+    <nav class="hidden items-center gap-7 text-sm text-[var(--aionsi-navy)]/80 lg:flex" aria-label="Primary navigation">
+      <a class="transition-colors hover:text-[var(--aionsi-navy)]" href="/capabilities">Capabilities</a>
+      <a class="transition-colors hover:text-[var(--aionsi-navy)]" href="/technology">Technology</a>
+      <a class="transition-colors hover:text-[var(--aionsi-navy)]" href="/industries">Industries</a>
+      <a class="transition-colors hover:text-[var(--aionsi-navy)]" href="/solutions">Solutions</a>
+      <a class="transition-colors hover:text-[var(--aionsi-navy)]" href="/careers">Careers</a>
     </nav>
 
     <div class="flex items-center gap-3">
       <a href="/contact" class="hidden rounded-full bg-[var(--aionsi-orange)] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105 md:inline-flex">
         Talk to Our Engineering Team <span aria-hidden="true">→</span>
       </a>
-      <button type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white lg:hidden" aria-label="Open navigation" aria-expanded="false" data-mobile-menu-button>
+      <button type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--aionsi-navy)]/20 text-[var(--aionsi-navy)] lg:hidden" aria-label="Open navigation" aria-expanded="false" data-mobile-menu-button>
         <span class="sr-only">Open navigation</span>
         <span class="flex w-5 flex-col gap-1.5" aria-hidden="true">
           <span class="h-px w-full bg-current"></span><span class="h-px w-full bg-current"></span><span class="h-px w-full bg-current"></span>
