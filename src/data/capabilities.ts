@@ -1,3 +1,10 @@
+export interface CapabilityEvidence {
+  title: string;
+  type: 'whitepaper' | 'architecture' | 'case-study' | 'methodology';
+  description: string;
+  href?: string;
+}
+
 export interface Capability {
   slug: string;
   number: string;
@@ -6,6 +13,7 @@ export interface Capability {
   technologies?: string[];
   outcome?: string;
   evidenceStatus: 'ready-to-populate' | 'pending';
+  evidence?: CapabilityEvidence[];
 }
 
 export const capabilities: Capability[] = [
@@ -26,6 +34,48 @@ export const capabilities: Capability[] = [
     technologies: ['SystemVerilog', 'UVM', 'Coverage', 'Assertions'],
     outcome: 'Coverage-driven verification confidence',
     evidenceStatus: 'ready-to-populate',
+    evidence: [
+      {
+        title: 'Reusable UVM Verification Architecture',
+        type: 'whitepaper',
+        description: 'Configurable SystemVerilog-UVM verification methodology covering reusable agents, drivers, monitors, scoreboards, coverage and assertions.',
+      },
+      {
+        title: 'PCIe 5.0 Data Link Layer Verification',
+        type: 'whitepaper',
+        description: 'Verification methodology covering ACK/NAK handling, replay buffers, credit-based flow control, error injection, SVA and functional coverage.',
+      },
+      {
+        title: 'HBM4e Memory Subsystem Verification',
+        type: 'whitepaper',
+        description: 'Subsystem verification covering controller, PHY, training logic, third-party model integration, functional coverage and regression automation.',
+      },
+      {
+        title: 'Processor-Based Verification Using ARM Cortex-M7',
+        type: 'whitepaper',
+        description: 'Software-driven verification covering memory access, register validation, interrupts and subsystem initialization.',
+      },
+      {
+        title: 'Formal Verification Planning with Cadence JasperGold',
+        type: 'whitepaper',
+        description: 'Structural verification planning for crossbar, multiplexer, clock, reset and overflow logic to complement simulation-based verification.',
+      },
+      {
+        title: '5G Radio-on-Chip Functional Verification',
+        type: 'case-study',
+        description: 'Subsystem verification methodology combining reusable UVM infrastructure, MATLAB correlation, processor-driven verification, datapath scoreboards and formal planning.',
+      },
+      {
+        title: 'End-to-End IoT SoC Verification',
+        type: 'case-study',
+        description: 'IP-to-SoC verification scope including reusable environments, third-party IP integration, RTL verification, GLS and final verification sign-off.',
+      },
+      {
+        title: 'UFS 4.0 Low-Power Verification',
+        type: 'whitepaper',
+        description: 'Low-power verification covering PMU behavior, power-state transitions, clock gating, reset sequencing and UVM-based coverage closure.',
+      },
+    ],
   },
   {
     slug: 'physical-design',
@@ -42,6 +92,13 @@ export const capabilities: Capability[] = [
     technologies: ['Test Architecture', 'Scan', 'ATPG'],
     outcome: 'Manufacturing-test readiness',
     evidenceStatus: 'ready-to-populate',
+    evidence: [
+      {
+        title: 'DFT Sign-off Methodology for Mixed-Signal IP',
+        type: 'whitepaper',
+        description: 'Scan chain debugging, ATPG pattern generation, fault coverage, Gate-Level Simulation, IEEE 1149.x boundary scan, CTL generation and DFT sign-off methodology.',
+      },
+    ],
   },
   {
     slug: 'protocol-verification',
