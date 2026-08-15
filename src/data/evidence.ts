@@ -21,7 +21,7 @@ export const evidenceDetails: Record<string, EvidenceDetail> = {
     type: 'whitepaper',
     capability: 'Design Verification',
     revision: '1.0',
-    classification: 'Customer Technical Discussion Document',
+    classification: 'Technical Reference Architecture',
     positioning: 'Reusable SystemVerilog/UVM verification architecture for scalable block, subsystem and SoC verification.',
     context: [
       'The methodology is centered on reusable verification environments that support stimulus generation, DUT interaction, monitoring, checking, coverage and analysis.',
@@ -54,8 +54,8 @@ export const evidenceDetails: Record<string, EvidenceDetail> = {
       'Assertions/checkers',
     ],
     evidenceNotes: [
-      'Source material supports reusable UVM architecture, component responsibilities and verification methodology.',
-      'The website presents an engineering summary; the approved whitepaper remains the detailed technical artifact.',
+      'The reference material supports the reusable UVM architecture, component responsibilities and verification methodology presented here.',
+      'This page provides an engineering summary; the detailed whitepaper provides deeper technical context and methodology.',
     ],
     sourceLabel: 'AionSi Engineering White Paper — Reusable UVM Verification Architecture',
   },
