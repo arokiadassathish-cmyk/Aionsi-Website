@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+import { capabilities } from '../../data/capabilities';
+
+const evidenceItems = capabilities.flatMap((capability) =>
+  (capability.evidence ?? []).map((item) => ({ ...item, capability }))
+);
+
+export function getStaticPaths() {
+  return evidenceItems.map(({ title, capability, ...item }) => ({
+    params: { slug: item.href?.split('/').filter(Boolean).pop() },
+    props: { evidence: { title, capability, ...item } },
+  }));
+}
+
+const { evidence } = Astro.props;
+const pageTitle = `${evidence.title} | AionSi`;
+const pageDescription = `${evidence.title}. Technical evidence from AionSi ${evidence.capability.title.toLowerCase()} engineering.`;
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-18 md:py-22 lg:py-24">
+      <Container>
+        <div class="max-w-5xl">
+          <div class="flex flex-wrap items-center gap-4 text-xs font-semibold tracking-[.2em] text-[var(--aionsi-blue)]">
+            <span>{evidence.capability.number}</span>
+            <span class="h-px w-10 bg-[var(--aionsi-blue)]/40"></span>
+            <span>ENGINEERING EVIDENCE</span>
+            <span class="border border-slate-200 bg-white px-3 py-2 tracking-[.14em] text-slate-500">{evidence.type}</span>
+          </div>
+          <h1 class="mt-7 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-6xl">{evidence.title}</h1>
+          <p class="mt-5 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">{evidence.description}</p>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-16 md:py-20 lg:py-24">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+          <div>
+            <TechnicalLabel>Technical Evidence</TechnicalLabel>
+            <h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Engineering context, architecture and methodology.</h2>
+          </div>
+          <div class="space-y-5 text-lg leading-8 text-slate-600">
+            <p>This evidence item documents AionSi engineering work within the {evidence.capability.title.toLowerCase()} capability.</p>
+            <p>The page is intentionally structured as a technical evidence record so architecture diagrams, methodology details, engineering scope and approved source documents can be added without changing the site-wide visual system.</p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-16 md:py-20 lg:py-24">
+      <Container>
+        <div class="grid gap-6 md:grid-cols-3">
+          <div class="border border-slate-200 bg-white p-7">
+            <TechnicalLabel>Capability</TechnicalLabel>
+            <p class="mt-4 text-lg font-semibold text-[var(--aionsi-navy)]">{evidence.capability.title}</p>
+          </div>
+          <div class="border border-slate-200 bg-white p-7">
+            <TechnicalLabel>Evidence Type</TechnicalLabel>
+            <p class="mt-4 text-lg font-semibold uppercase text-[var(--aionsi-navy)]">{evidence.type}</p>
+          </div>
+          <div class="border border-slate-200 bg-white p-7">
+            <TechnicalLabel>Engineering Source</TechnicalLabel>
+            <p class="mt-4 text-lg font-semibold text-[var(--aionsi-navy)]">Approved AionSi technical material</p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-16 md:py-20 lg:py-24">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center border border-slate-200 p-8 md:p-10">
+          <div>
+            <TechnicalLabel>Source Material</TechnicalLabel>
+            <h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-3xl">Approved technical document</h2>
+            <p class="mt-3 max-w-2xl text-slate-600">The full whitepaper, architecture document or approved technical source can be linked here when its final publication path is available.</p>
+          </div>
+          <Button href="/contact">Request Engineering Evidence</Button>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-16 md:py-20 lg:py-22 text-white">
+      <Container class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div>
+          <TechnicalLabel>Engineering Engagement</TechnicalLabel>
+          <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Need deeper technical context?</h2>
+          <p class="mt-4 max-w-2xl text-lg leading-8 text-white/70">Bring the engineering problem, program stage or verification requirement. We can connect it to the appropriate AionSi team.</p>
+        </div>
+        <Button href="/contact">Talk to Our Engineering Team</Button>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
