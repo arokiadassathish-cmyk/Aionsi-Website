@@ -8,14 +8,25 @@ import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
 import { capabilities } from '../../data/capabilities';
 
-export function getStaticPaths() {
-  const evidenceItems = capabilities.flatMap((capability) =>
-    (capability.evidence ?? []).map((item) => ({ ...item, capability }))
-  );
+type EvidenceItem = NonNullable<(typeof capabilities)[number]['evidence']>[number] & {
+  capability: (typeof capabilities)[number];
+  slug: string;
+};
 
-  return evidenceItems.map(({ title, capability, ...item }) => ({
-    params: { slug: item.href?.split('/').filter(Boolean).pop() },
-    props: { evidence: { title, capability, ...item } },
+const evidenceItems: EvidenceItem[] = capabilities.flatMap((capability) =>
+  (capability.evidence ?? [])
+    .filter((item) => item.href)
+    .map((item) => ({
+      ...item,
+      capability,
+      slug: item.href!.split('/').filter(Boolean).pop()!,
+    }))
+);
+
+export function getStaticPaths() {
+  return evidenceItems.map(({ capability, slug, ...evidence }) => ({
+    params: { slug },
+    props: { evidence: { ...evidence, capability } },
   }));
 }
 
