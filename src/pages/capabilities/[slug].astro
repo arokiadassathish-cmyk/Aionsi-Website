@@ -22,7 +22,7 @@ const pageDescription = `${capability.description} Explore AionSi engineering sc
 <BaseLayout title={pageTitle} description={pageDescription}>
   <Header />
   <main>
-    <Section class="bg-[var(--aionsi-surface-alt)]">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-20 md:py-24 lg:py-26">
       <Container>
         <div class="max-w-5xl">
           <div class="flex items-center gap-4 text-xs font-semibold tracking-[.2em] text-[var(--aionsi-blue)]">
@@ -41,7 +41,7 @@ const pageDescription = `${capability.description} Explore AionSi engineering sc
       </Container>
     </Section>
 
-    <Section>
+    <Section class="py-14 md:py-18 lg:py-20">
       <Container>
         <div class="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:items-start">
           <div>
@@ -51,16 +51,16 @@ const pageDescription = `${capability.description} Explore AionSi engineering sc
           <div class="border-l border-slate-200 pl-6 text-lg leading-8 text-slate-600 md:pl-8">
             <p>{capability.description}</p>
             {capability.slug === 'design-verification' ? (
-              <p class="mt-5">AionSi applies disciplined verification across block, subsystem and SoC levels, combining reusable SystemVerilog/UVM infrastructure with coverage, assertions, protocol checking, processor-driven scenarios, formal planning and regression/debug workflows.</p>
+              <p class="mt-4">AionSi applies disciplined verification across block, subsystem and SoC levels, combining reusable SystemVerilog/UVM infrastructure with coverage, assertions, protocol checking, processor-driven scenarios, formal planning and regression/debug workflows.</p>
             ) : (
-              <p class="mt-5">Detailed engineering scope, methodologies and program evidence are presented from AionSi's approved technical source material.</p>
+              <p class="mt-4">Detailed engineering scope, methodologies and program evidence are presented from AionSi's approved technical source material.</p>
             )}
           </div>
         </div>
       </Container>
     </Section>
 
-    <Section class="bg-[var(--aionsi-surface-alt)]">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18 lg:py-20">
       <Container>
         <div class="grid gap-6 md:grid-cols-2">
           <div class="border border-slate-200 bg-white p-7 md:p-8">
@@ -85,7 +85,15 @@ const pageDescription = `${capability.description} Explore AionSi engineering sc
           <div class="border border-slate-200 bg-white p-7 md:p-8">
             <TechnicalLabel>Engineering Outcome</TechnicalLabel>
             {capability.slug === 'design-verification' ? (
-              <p class="mt-5 text-xl font-semibold leading-8 text-[var(--aionsi-navy)]">Coverage-driven verification confidence</p>
+              <div class="mt-5 space-y-3">
+                {['Reusable verification infrastructure', 'Functional + code coverage', 'Assertions & protocol checking', 'Regression / debug workflows', 'Coverage-driven closure'].map((item, index, items) => (
+                  <div class="flex items-center gap-3 text-sm font-medium text-[var(--aionsi-navy)]">
+                    <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[var(--aionsi-blue)]/30 text-[10px] font-semibold text-[var(--aionsi-blue)]">{String(index + 1).padStart(2, '0')}</span>
+                    <span>{item}</span>
+                    {index < items.length - 1 && <span class="ml-auto h-px w-8 bg-slate-200" aria-hidden="true"></span>}
+                  </div>
+                ))}
+              </div>
             ) : capability.outcome ? (
               <p class="mt-5 text-xl font-semibold leading-8 text-[var(--aionsi-navy)]">{capability.outcome}</p>
             ) : (
@@ -97,26 +105,37 @@ const pageDescription = `${capability.description} Explore AionSi engineering sc
     </Section>
 
     {capability.slug === 'design-verification' && capability.evidence?.length ? (
-      <Section>
+      <Section class="py-16 md:py-20 lg:py-24">
         <Container>
-          <div class="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:items-start">
-            <div>
+          <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+            <div class="lg:sticky lg:top-28">
               <TechnicalLabel>Engineering Evidence</TechnicalLabel>
               <h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Evidence before claims.</h2>
               <p class="mt-4 max-w-md text-slate-600">Technical evidence drawn from approved AionSi engineering source material.</p>
             </div>
             <div class="grid gap-4 md:grid-cols-2">
-              {capability.evidence.map((item, index) => (
-                <article class="group border border-slate-200 bg-white p-6 transition duration-300 hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)] hover:shadow-[0_14px_40px_rgba(2,11,39,.06)]">
-                  <div class="flex items-start justify-between gap-4">
-                    <span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">0{index + 1}</span>
-                    <span class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">{item.type}</span>
-                  </div>
-                  <h3 class="mt-6 text-lg font-semibold leading-7 text-[var(--aionsi-navy)]">{item.title}</h3>
-                  <p class="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
-                  <div class="mt-6 text-sm font-semibold text-[var(--aionsi-navy)]">Technical evidence <span class="ml-1 text-[var(--aionsi-blue)]">→</span></div>
-                </article>
-              ))}
+              {capability.evidence.map((item, index) => {
+                const CardContent = () => (
+                  <>
+                    <div class="flex items-start justify-between gap-4">
+                      <span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{String(index + 1).padStart(2, '0')}</span>
+                      <span class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">{item.type}</span>
+                    </div>
+                    <h3 class="mt-6 text-lg font-semibold leading-7 text-[var(--aionsi-navy)]">{item.title}</h3>
+                    <p class="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
+                    <div class="mt-6 text-sm font-semibold text-[var(--aionsi-navy)]">Technical evidence <span class="ml-1 text-[var(--aionsi-blue)]">→</span></div>
+                  </>
+                );
+                return item.href ? (
+                  <a href={item.href} class="group border border-slate-200 bg-white p-6 transition duration-300 hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)] hover:shadow-[0_14px_40px_rgba(2,11,39,.06)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--aionsi-blue)] focus-visible:ring-offset-2">
+                    <CardContent />
+                  </a>
+                ) : (
+                  <article class="group border border-slate-200 bg-white p-6 transition duration-300 hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)] hover:shadow-[0_14px_40px_rgba(2,11,39,.06)]">
+                    <CardContent />
+                  </article>
+                );
+              })}
             </div>
           </div>
         </Container>
@@ -140,8 +159,8 @@ const pageDescription = `${capability.description} Explore AionSi engineering sc
       </Section>
     )}
 
-    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
-      <Container class="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
+    <Section class="bg-[var(--aionsi-deep-navy)] py-16 md:py-20 lg:py-22 text-white">
+      <Container class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
         <div>
           <TechnicalLabel>Engineering Engagement</TechnicalLabel>
           <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Need engineering capacity in {capability.title}?</h2>
