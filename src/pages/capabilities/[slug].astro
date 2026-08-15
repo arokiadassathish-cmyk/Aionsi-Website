@@ -6,7 +6,7 @@ import Container from '../../components/global/Container.astro';
 import Section from '../../components/global/Section.astro';
 import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
-import { capabilities, getCapability } from '../../data/capabilities';
+import { capabilities } from '../../data/capabilities';
 
 export function getStaticPaths() {
   return capabilities.map((capability) => ({
