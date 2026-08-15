@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+import { capabilities, getCapability } from '../../data/capabilities';
+
+export function getStaticPaths() {
+  return capabilities.map((capability) => ({
+    params: { slug: capability.slug },
+    props: { capability },
+  }));
+}
+
+const { capability } = Astro.props;
+const pageTitle = `${capability.title} | AionSi`;
+const pageDescription = `${capability.description} Explore AionSi engineering scope, methodology, evidence and engineering outcomes.`;
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <div class="max-w-4xl">
+          <div class="flex items-center gap-4 text-xs font-semibold tracking-[.2em] text-[var(--aionsi-blue)]">
+            <span>{capability.number}</span>
+            <span class="h-px w-10 bg-[var(--aionsi-blue)]/40"></span>
+            <span>ENGINEERING CAPABILITY</span>
+          </div>
+          <h1 class="mt-8 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">{capability.title}</h1>
+          <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">{capability.description}</p>
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
+          <div>
+            <TechnicalLabel>Engineering Scope</TechnicalLabel>
+            <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Where this capability contributes.</h2>
+          </div>
+          <div class="border-l border-slate-200 pl-6 text-lg leading-8 text-slate-600 md:pl-8">
+            <p>{capability.description}</p>
+            <p class="mt-5">Detailed engineering scope, methodologies and program evidence will be developed from AionSi's approved technical source material.</p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="border border-slate-200 bg-white p-7 md:p-8">
+            <TechnicalLabel>Technology / Methodology</TechnicalLabel>
+            {capability.technologies?.length ? (
+              <div class="mt-5 flex flex-wrap gap-2">
+                {capability.technologies.map((technology) => (
+                  <span class="border border-slate-200 px-3 py-2 text-sm text-slate-600">{technology}</span>
+                ))}
+              </div>
+            ) : (
+              <p class="mt-5 text-slate-500">Technical methodology will be added when the approved Physical Design source material is available.</p>
+            )}
+          </div>
+
+          <div class="border border-slate-200 bg-white p-7 md:p-8">
+            <TechnicalLabel>Engineering Outcome</TechnicalLabel>
+            {capability.outcome ? (
+              <p class="mt-5 text-xl font-semibold leading-8 text-[var(--aionsi-navy)]">{capability.outcome}</p>
+            ) : (
+              <p class="mt-5 text-slate-500">Engineering outcome will be defined from the approved technical evidence.</p>
+            )}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
+          <div>
+            <TechnicalLabel>Engineering Evidence</TechnicalLabel>
+            <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Evidence before claims.</h2>
+          </div>
+          <div class="border border-slate-200 p-7 md:p-9">
+            <p class="text-lg leading-8 text-slate-600">This section is intentionally structured as the evidence layer for the capability. Approved whitepapers, technical case studies, architectures, methodologies and other engineering proof points will be added here.</p>
+            {capability.evidenceStatus === 'pending' && (
+              <p class="mt-6 border-l-2 border-[var(--aionsi-orange)] pl-4 text-sm font-semibold text-[var(--aionsi-navy)]">Physical Design evidence is pending from the engineering team.</p>
+            )}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div>
+          <TechnicalLabel>Engineering Engagement</TechnicalLabel>
+          <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Need engineering capacity in {capability.title}?</h2>
+          <p class="mt-4 max-w-2xl text-lg leading-8 text-white/70">Bring the engineering problem, program stage or capacity requirement. We can connect it to the appropriate AionSi team.</p>
+        </div>
+        <Button href="/contact">Talk to Our Engineering Team</Button>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
