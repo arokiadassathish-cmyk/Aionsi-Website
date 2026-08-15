@@ -79,9 +79,9 @@ const isUvmArchitecture = evidence.slug === 'reusable-uvm-verification-architect
       </Container>
     </Section>
 
-    <Section class="py-14 md:py-18 lg:py-20">
+    <Section class="py-12 md:py-16 lg:py-18">
       <Container>
-        <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+        <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
           <div>
             <TechnicalLabel>Engineering Context</TechnicalLabel>
             <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Built for reusable verification at scale.</h2>
@@ -96,7 +96,7 @@ const isUvmArchitecture = evidence.slug === 'reusable-uvm-verification-architect
     {isUvmArchitecture && (
       <Section class="bg-[var(--aionsi-deep-navy)] py-16 md:py-20 lg:py-24 text-white">
         <Container>
-          <div class="grid gap-10 lg:grid-cols-[.52fr_1.48fr] lg:items-center">
+          <div class="grid gap-10 lg:grid-cols-[.46fr_1.54fr] lg:items-center">
             <div class="max-w-xl">
               <TechnicalLabel>Technical Architecture</TechnicalLabel>
               <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Reusable UVM verification architecture.</h2>
@@ -111,7 +111,7 @@ const isUvmArchitecture = evidence.slug === 'reusable-uvm-verification-architect
             </div>
             <figure class="overflow-hidden border border-white/15 bg-white p-2 shadow-2xl shadow-black/10">
               <div class="flex min-h-72 items-center justify-center bg-slate-50 md:min-h-96">
-                <img src={architectureImage} alt="Reusable UVM verification architecture showing UVM test, virtual sequencer, reusable agents, DUT, scoreboard, predictor, coverage collector, SVA assertions and reporting analysis" class="block h-auto max-h-[720px] w-full object-contain" loading="lazy" decoding="async" />
+                <img src={architectureImage} alt="Reusable UVM verification architecture showing UVM test, virtual sequencer, reusable agents, DUT, scoreboard, predictor, coverage collector, SVA assertions and reporting analysis" class="block h-auto max-h-[820px] w-full object-contain" loading="lazy" decoding="async" />
               </div>
               <figcaption class="flex items-center justify-between gap-4 px-2 pb-1 pt-3 text-xs leading-5 text-slate-500">
                 <span>Approved architecture reference</span>
@@ -123,25 +123,25 @@ const isUvmArchitecture = evidence.slug === 'reusable-uvm-verification-architect
       </Section>
     )}
 
-    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18 lg:py-20">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-16 lg:py-18">
       <Container>
-        <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+        <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
           <div>
             <TechnicalLabel>Architecture Summary</TechnicalLabel>
             <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">What the architecture enables.</h2>
             <p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">The architecture connects reusable verification infrastructure to execution, checking and verification-closure workflows.</p>
           </div>
           <div class="grid gap-3 sm:grid-cols-2">
-            <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Reusable environments</h3><p class="mt-2 text-sm leading-6 text-slate-600">Verification infrastructure can be adapted across interfaces, blocks and SoC-level programs.</p></div>
-            <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Protocol-aware execution</h3><p class="mt-2 text-sm leading-6 text-slate-600">Agents, drivers and monitors support controlled stimulus and protocol observation around the DUT.</p></div>
-            <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Scalable checking</h3><p class="mt-2 text-sm leading-6 text-slate-600">Scoreboards, assertions and coverage collectors support systematic checking and closure activities.</p></div>
-            <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Regression-ready analysis</h3><p class="mt-2 text-sm leading-6 text-slate-600">Verification results can feed debug, logging, reporting and regression analysis workflows.</p></div>
+            <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Reusable environments</h3><p class="mt-2 text-sm leading-6 text-slate-600">Verification infrastructure can be adapted across interfaces, blocks and SoC-level programs while preserving common verification patterns.</p></div>
+            <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Protocol-aware execution</h3><p class="mt-2 text-sm leading-6 text-slate-600">Agents, drivers and monitors support controlled stimulus generation and protocol-aware observation around the DUT.</p></div>
+            <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Scalable checking</h3><p class="mt-2 text-sm leading-6 text-slate-600">Scoreboards, assertions and coverage collectors support systematic checking and verification-closure activities.</p></div>
+            <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Regression-ready analysis</h3><p class="mt-2 text-sm leading-6 text-slate-600">Verification results can feed debug, logging, reporting and regression-analysis workflows.</p></div>
           </div>
         </div>
       </Container>
     </Section>
 
-    <Section class="py-14 md:py-18 lg:py-20">
+    <Section class="py-12 md:py-16 lg:py-18">
       <Container>
         <div class="grid gap-8 lg:grid-cols-2">
           <div class="border border-slate-200 bg-white p-7 md:p-8">
@@ -165,9 +165,9 @@ const isUvmArchitecture = evidence.slug === 'reusable-uvm-verification-architect
     </Section>
 
     {isUvmArchitecture && (
-      <Section class="py-14 md:py-18 lg:py-20">
+      <Section class="py-12 md:py-16 lg:py-18">
         <Container>
-          <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+          <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
             <div>
               <TechnicalLabel>Where AionSi contributes</TechnicalLabel>
               <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Verification execution where engineering capacity matters.</h2>
@@ -177,19 +177,19 @@ const isUvmArchitecture = evidence.slug === 'reusable-uvm-verification-architect
               <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">UVM environment development</h3><p class="mt-2 text-sm leading-6 text-slate-600">Environment, agent and infrastructure development around defined verification requirements.</p></div>
               <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Protocol verification</h3><p class="mt-2 text-sm leading-6 text-slate-600">Drivers, monitors, checkers and coverage aligned to interface-level verification needs.</p></div>
               <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Verification closure</h3><p class="mt-2 text-sm leading-6 text-slate-600">Coverage, assertions, scoreboard analysis and debug support for closure activities.</p></div>
-              <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Engineering capacity</h3><p class="mt-2 text-sm leading-6 text-slate-600">Dedicated engineering capacity that can operate as part of an established verification organization.</p></div>
+              <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Dedicated engineering workstream</h3><p class="mt-2 text-sm leading-6 text-slate-600">AionSi engineers can operate as an integrated extension of an established verification organization.</p></div>
             </div>
           </div>
         </Container>
       </Section>
     )}
 
-    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18 lg:py-20">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-16 lg:py-18">
       <Container>
-        <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+        <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
           <div>
-            <TechnicalLabel>Evidence before claims</TechnicalLabel>
-            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">What the approved source material supports.</h2>
+            <TechnicalLabel>Engineering Basis</TechnicalLabel>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Engineering basis for the architecture.</h2>
           </div>
           <div class="grid gap-4 md:grid-cols-2">
             {detail.evidenceNotes.map((note) => (
@@ -200,13 +200,13 @@ const isUvmArchitecture = evidence.slug === 'reusable-uvm-verification-architect
       </Container>
     </Section>
 
-    <Section class="py-14 md:py-18 lg:py-20">
+    <Section class="py-12 md:py-16 lg:py-18">
       <Container>
         <div class="grid gap-8 border border-slate-200 p-7 md:p-9 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <TechnicalLabel>Source Material</TechnicalLabel>
             <h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-3xl">{detail.sourceLabel}</h2>
-            <p class="mt-3 max-w-2xl text-slate-600">The website presents the engineering summary. The approved whitepaper remains the detailed technical artifact.</p>
+            <p class="mt-3 max-w-2xl text-slate-600">Get the detailed AionSi reference architecture and verification methodology.</p>
           </div>
           <Button href="/contact">Request the Whitepaper</Button>
         </div>
@@ -218,7 +218,7 @@ const isUvmArchitecture = evidence.slug === 'reusable-uvm-verification-architect
         <div>
           <TechnicalLabel>Engineering Engagement</TechnicalLabel>
           <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Need deeper technical context?</h2>
-          <p class="mt-4 max-w-2xl text-lg leading-8 text-white/70">Bring the engineering problem, program stage or verification requirement. We can connect it to the appropriate AionSi team.</p>
+          <p class="mt-4 max-w-2xl text-lg leading-8 text-white/70">Bring an interface, block, subsystem or SoC verification requirement. We can connect it to the appropriate AionSi engineering team.</p>
         </div>
         <Button href="/contact">Talk to Our Engineering Team</Button>
       </Container>
