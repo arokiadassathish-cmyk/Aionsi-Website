@@ -45,7 +45,7 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
 <BaseLayout title={pageTitle} description={pageDescription}>
   <Header />
   <main>
-    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-14 lg:py-16">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-11 md:py-12 lg:py-14">
       <Container>
         <div class="grid gap-7 lg:grid-cols-[1.02fr_.98fr] lg:items-center">
           <div class="max-w-4xl">
@@ -55,7 +55,7 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
               <span>ENGINEERING EVIDENCE</span>
               <span class="border border-slate-200 bg-white px-3 py-2 uppercase tracking-[.14em] text-slate-500">{evidence.type}</span>
             </div>
-            <h1 class="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-6xl">{evidence.title}</h1>
+            <h1 id="top" class="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-6xl">{evidence.title}</h1>
             <p class="mt-5 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">{detail.positioning}</p>
             <div class="mt-6 flex flex-wrap gap-3">
               <span class="border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700">Revision {detail.revision}</span>
@@ -78,23 +78,24 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
       </Container>
     </Section>
 
-    <Section class="py-9 md:py-11 lg:py-12">
+    <Section class="py-8 md:py-10 lg:py-11">
       <Container>
         <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
           <div>
             <TechnicalLabel>Engineering Context</TechnicalLabel>
             <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Why reusable verification matters.</h2>
           </div>
-          <div class="grid gap-4 md:grid-cols-2">
-            <div class="border-l-2 border-[var(--aionsi-orange)] pl-5 text-lg leading-8 text-slate-600"><p>{detail.context[0]}</p></div>
-            <div class="border-l-2 border-[var(--aionsi-blue)]/30 pl-5 text-lg leading-8 text-slate-600"><p>{detail.context[1]}</p></div>
+          <div>
+            <p class="max-w-5xl text-lg leading-8 text-slate-600">{detail.context[0]}</p>
+            <p class="mt-4 max-w-5xl text-lg leading-8 text-slate-600">{detail.context[1]}</p>
+            <p class="mt-4 max-w-5xl text-base leading-7 text-slate-500">Reusable verification infrastructure connects the execution environment, checking strategy and verification-closure workflow into a repeatable engineering pattern.</p>
           </div>
         </div>
       </Container>
     </Section>
 
     {isUvmArchitecture && (
-      <Section class="bg-[var(--aionsi-deep-navy)] py-12 md:py-14 lg:py-16 text-white">
+      <Section class="bg-[var(--aionsi-deep-navy)] py-11 md:py-12 lg:py-14 text-white">
         <Container>
           <div class="grid gap-7 lg:grid-cols-[.4fr_1.6fr] lg:items-center">
             <div class="max-w-xl">
@@ -123,7 +124,7 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
       </Section>
     )}
 
-    <Section class="bg-[var(--aionsi-surface-alt)] py-9 md:py-11 lg:py-12">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-8 md:py-10 lg:py-11">
       <Container>
         <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
           <div>
@@ -135,13 +136,13 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
             <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Accelerate environment development</h3><p class="mt-2 text-sm leading-6 text-slate-600">Reusable infrastructure reduces repeated environment development across interfaces, blocks and SoC-level programs.</p></div>
             <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Increase verification reuse</h3><p class="mt-2 text-sm leading-6 text-slate-600">Common agents, sequences, monitors and checkers can be extended across verification programs while preserving consistent patterns.</p></div>
             <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Improve verification closure</h3><p class="mt-2 text-sm leading-6 text-slate-600">Coverage, assertions, scoreboards and regression analysis support structured closure activities.</p></div>
-            <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Scale engineering capacity</h3><p class="mt-2 text-sm leading-6 text-slate-600">AionSi engineers can extend an established verification organization as an integrated engineering workstream, aligned to defined scope, milestones and verification objectives.</p></div>
+            <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Integrate engineering capacity</h3><p class="mt-2 text-sm leading-6 text-slate-600">AionSi engineers can extend an established verification organization as an integrated engineering workstream, aligned to defined scope, milestones and verification objectives.</p></div>
           </div>
         </div>
       </Container>
     </Section>
 
-    <Section class="py-9 md:py-11 lg:py-12">
+    <Section class="py-8 md:py-10 lg:py-11">
       <Container>
         <div class="grid gap-7 lg:grid-cols-2">
           <div class="border border-slate-200 bg-white p-7 shadow-sm md:p-8">
@@ -155,7 +156,12 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
               ))}
             </div>
             <div class="mt-6 grid gap-3 sm:grid-cols-2">
-              {detail.methodology.map((item) => <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-4 text-sm font-medium leading-6 text-[var(--aionsi-navy)]">{item}</div>)}
+              {detail.methodology.map((item) => {
+                const [label, ...rest] = item.split(' — ');
+                const description = rest.join(' — ');
+                const content = label === 'Close' ? 'analyze failures, resolve gaps and drive verification closure' : description;
+                return <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-4 text-sm font-medium leading-6 text-[var(--aionsi-navy)]"><strong>{label}</strong>{content ? ` — ${content}` : ''}</div>;
+              })}
             </div>
           </div>
           <div class="border border-slate-200 bg-white p-7 shadow-sm md:p-8">
@@ -169,7 +175,7 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
     </Section>
 
     {isUvmArchitecture && (
-      <Section class="py-9 md:py-11 lg:py-12">
+      <Section class="py-8 md:py-10 lg:py-11">
         <Container>
           <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
             <div>
@@ -189,7 +195,7 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
     )}
 
     {isUvmArchitecture && (
-      <Section class="bg-[var(--aionsi-surface-alt)] py-9 md:py-11 lg:py-12">
+      <Section class="bg-[var(--aionsi-surface-alt)] py-8 md:py-10 lg:py-11">
         <Container>
           <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
             <div>
@@ -199,7 +205,7 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
             </div>
             <div class="grid gap-3 sm:grid-cols-2">
               <div class="border border-slate-200 bg-white p-6"><span class="text-2xl font-semibold text-[var(--aionsi-blue)]">135+</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">DV engineers</h3><p class="mt-2 text-sm leading-6 text-slate-600">SystemVerilog/UVM verification capability across AXI, CHI, PCIe Gen5/6, DDR, UFS and USB.</p></div>
-              <div class="border border-slate-200 bg-white p-6"><span class="text-2xl font-semibold text-[var(--aionsi-blue)]">6</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Tier-1 engagements</h3><p class="mt-2 text-sm leading-6 text-slate-600">Selected engineering engagements span verification, physical design and DFT.</p></div>
+              <div class="border border-slate-200 bg-white p-6"><span class="text-2xl font-semibold text-[var(--aionsi-blue)]">6+</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Tier-1 program engagements</h3><p class="mt-2 text-sm leading-6 text-slate-600">Selected engineering programs span verification, physical design and DFT.</p></div>
               <div class="border border-slate-200 bg-white p-6"><span class="text-2xl font-semibold text-[var(--aionsi-blue)]">ODC</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Dedicated engineering delivery</h3><p class="mt-2 text-sm leading-6 text-slate-600">Dedicated engineering teams provide continuity, depth and scalable delivery for longer-term programs.</p></div>
               <div class="border border-slate-200 bg-white p-6"><span class="text-2xl font-semibold text-[var(--aionsi-blue)]">4</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Customer engagement paths</h3><p class="mt-2 text-sm leading-6 text-slate-600">Customers can enter through specialist augmentation, managed workstreams, project delivery or dedicated engineering ODCs.</p></div>
             </div>
@@ -209,7 +215,7 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
     )}
 
     {isUvmArchitecture && (
-      <Section class="py-9 md:py-11 lg:py-12">
+      <Section class="py-8 md:py-10 lg:py-11">
         <Container>
           <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
             <div>
@@ -229,7 +235,7 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
     )}
 
     {isUvmArchitecture && (
-      <Section class="py-9 md:py-11 lg:py-12">
+      <Section class="py-8 md:py-10 lg:py-11">
         <Container>
           <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
             <div>
@@ -238,9 +244,9 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
               <p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">Selected program examples provide context for the breadth of verification environments, subsystem work and protocol-oriented engineering experience.</p>
             </div>
             <div class="grid gap-3 sm:grid-cols-2">
-              <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">01</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">IoT SoC Verification</h3><p class="mt-2 text-sm leading-6 text-slate-600">Tier-1 Bengaluru engagement covering ARM Cortex-A7, GNSS, PCIe, modem and security.</p></div>
-              <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">02</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">HBM Subsystem Verification</h3><p class="mt-2 text-sm leading-6 text-slate-600">Tier-1 Bengaluru engagement covering memory controller, PHY and JEDEC protocols.</p></div>
-              <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">03</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">5G DSP / MOD Path IP Verification</h3><p class="mt-2 text-sm leading-6 text-slate-600">Tier-1 Stockholm engagement covering 5G DSP, decimation filters and interpolation filters.</p></div>
+              <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">01</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">IoT SoC Verification</h3><p class="mt-2 text-sm leading-6 text-slate-600">Confidential Tier-1 semiconductor program covering ARM Cortex-A7, GNSS, PCIe, modem and security verification.</p></div>
+              <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">02</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">HBM Subsystem Verification</h3><p class="mt-2 text-sm leading-6 text-slate-600">Confidential Tier-1 semiconductor program covering memory controller, PHY and JEDEC protocols.</p></div>
+              <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">03</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">5G DSP / MOD Path IP Verification</h3><p class="mt-2 text-sm leading-6 text-slate-600">Confidential Tier-1 semiconductor program covering 5G DSP, decimation filters and interpolation filters.</p></div>
               <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">04</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">Verification Technology Stack</h3><p class="mt-2 text-sm leading-6 text-slate-600">Verification workflows spanning industry-standard EDA environments, SystemVerilog/UVM methodologies and AI-assisted verification practices.</p></div>
             </div>
           </div>
@@ -248,12 +254,12 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
       </Section>
     )}
 
-    <Section class="bg-[var(--aionsi-surface-alt)] py-9 md:py-11 lg:py-12">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-8 md:py-10 lg:py-11">
       <Container>
         <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
           <div>
             <TechnicalLabel>Engineering Basis</TechnicalLabel>
-            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Engineering basis for the architecture.</h2>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Built from an engineering reference architecture.</h2>
           </div>
           <div class="grid gap-4 md:grid-cols-2">
             {detail.evidenceNotes.map((note) => <div class="border border-slate-200 bg-white p-6 text-lg leading-8 text-slate-600">{note}</div>)}
@@ -278,7 +284,7 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
     </Section>
   </main>
 
-  <Section id="verification-workstream" class="bg-[var(--aionsi-deep-navy)] py-12 text-white md:py-14 lg:py-16">
+  <Section id="verification-workstream" class="bg-[var(--aionsi-deep-navy)] py-11 text-white md:py-12 lg:py-14">
     <Container>
       <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
         <div class="max-w-3xl">
