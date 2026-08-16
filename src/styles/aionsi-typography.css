@@ -1,0 +1,4 @@
+/* AionSi V2.5 desktop typography refinement */
+body { font-size: 16px; line-height: 1.65; text-rendering: optimizeLegibility; }
+p { line-height: 1.7; }
+@media (min-width: 1024px) { p { line-height: 1.72; } }
