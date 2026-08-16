@@ -118,6 +118,14 @@ export const capabilities: Capability[] = [
     technologies: ['PCIe', 'USB', 'DDR', 'AMBA'],
     outcome: 'Interface-level verification confidence',
     evidenceStatus: 'ready-to-populate',
+    evidence: [
+      {
+        title: 'Scalable Protocol Verification Methodology',
+        type: 'whitepaper',
+        description: 'AionSi methodology for interface-level verification using reusable protocol agents, stimulus, monitors, assertions, scoreboards, coverage and regression workflows across block, subsystem and SoC programs.',
+        href: '/capabilities/protocol-verification',
+      },
+    ],
   },
   {
     slug: 'soc-ip',
