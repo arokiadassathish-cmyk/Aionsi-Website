@@ -22,10 +22,11 @@ export const evidenceDetails: Record<string, EvidenceDetail> = {
     capability: 'Design Verification',
     revision: '1.0',
     classification: 'Technical Reference Architecture',
-    positioning: 'Reusable SystemVerilog/UVM verification architecture for scalable block, subsystem and SoC verification.',
+    positioning:
+      'Reusable SystemVerilog/UVM verification architecture designed to accelerate block, subsystem and SoC verification while improving reuse, coverage and verification closure.',
     context: [
-      'The methodology is centered on reusable verification environments that support stimulus generation, DUT interaction, monitoring, checking, coverage and analysis.',
-      'The architecture is intended to scale across interface, subsystem and SoC verification programs while preserving reuse and verification consistency.',
+      'Verification programs become more complex as interfaces, blocks and SoCs scale. Reusable verification infrastructure helps reduce repeated environment development and maintain consistent execution patterns.',
+      'The architecture is intended to scale across interface, subsystem and SoC verification programs while connecting stimulus, checking, coverage and analysis into a structured verification-closure workflow.',
     ],
     architecture: [
       'Test and sequence layer',
@@ -37,12 +38,13 @@ export const evidenceDetails: Record<string, EvidenceDetail> = {
       'DUT interaction and regression analysis',
     ],
     methodology: [
-      'SystemVerilog/UVM-based reusable verification environment development',
-      'Stimulus generation and controlled DUT interaction',
-      'Monitoring, checking and scoreboard-based result analysis',
-      'Functional and code coverage strategy',
-      'Assertion-based verification using SVA',
-      'Regression, debug, logging and reporting workflows',
+      'Plan — define verification objectives, interfaces and closure criteria',
+      'Develop — build reusable SystemVerilog/UVM environments and agents',
+      'Stimulate — generate controlled sequences and DUT interactions',
+      'Monitor — observe protocol activity and collect transaction data',
+      'Check — apply scoreboards, predictors, assertions and protocol checks',
+      'Measure — evaluate functional/code coverage and regression results',
+      'Close — analyze failures, debug issues and drive verification closure',
     ],
     components: [
       'Drivers',
