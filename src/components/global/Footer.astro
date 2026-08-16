@@ -1,4 +1,43 @@
 ---
 import Container from './Container.astro';
 ---
-<footer class="bg-[var(--aionsi-deep-navy)] py-16 text-white"><Container><div class="grid gap-10 md:grid-cols-3"><div><div class="text-xl font-semibold">AionSi</div><p class="mt-4 max-w-sm text-sm leading-6 text-white/65">Semiconductor engineering from IP to Silicon.</p></div><div><div class="text-sm font-semibold">Engineering</div><div class="mt-4 grid gap-2 text-sm text-white/65"><a href="/capabilities">Capabilities</a><a href="/technology">Technology</a><a href="/case-studies">Case Studies</a></div></div><div><div class="text-sm font-semibold">Careers</div><div class="mt-4 grid gap-2 text-sm text-white/65"><a href="/careers">Careers at AionSi</a><a href="/careers/early-careers">Early Careers</a><a href="/careers/experienced-engineers">Experienced Engineers</a></div></div></div><div class="mt-12 border-t border-white/10 pt-6 text-xs text-white/45">© {new Date().getFullYear()} AionSi. All rights reserved.</div></Container></footer>
+<footer class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-16">
+  <Container>
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <div class="text-xl font-semibold">AionSi</div>
+        <p class="mt-4 max-w-sm text-sm leading-6 text-white/65">Semiconductor engineering from IP to Silicon.</p>
+      </div>
+      <div>
+        <div class="text-sm font-semibold">Engineering</div>
+        <div class="mt-4 grid gap-2 text-sm text-white/65">
+          <a href="/capabilities">Capabilities</a>
+          <a href="/capabilities/design-verification">Design Verification</a>
+          <a href="/capabilities/physical-design">Physical Design</a>
+          <a href="/capabilities/dft">DFT</a>
+          <a href="/capabilities/soc-ip">IP / SoC</a>
+        </div>
+      </div>
+      <div>
+        <div class="text-sm font-semibold">Resources</div>
+        <div class="mt-4 grid gap-2 text-sm text-white/65">
+          <a href="/technology">Technology</a>
+          <a href="/case-studies">Case Studies</a>
+          <a href="/evidence/reusable-uvm-verification-architecture">Technical Architecture</a>
+          <a href="/contact">Contact Engineering</a>
+        </div>
+      </div>
+      <div>
+        <div class="text-sm font-semibold">Careers</div>
+        <div class="mt-4 grid gap-2 text-sm text-white/65">
+          <a href="/careers">Careers at AionSi</a>
+          <a href="/careers/early-careers">Early Careers</a>
+          <a href="/careers/experienced-engineers">Experienced Engineers</a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-12 border-t border-white/10 pt-6 text-xs text-white/45">
+      © {new Date().getFullYear()} AionSi. All rights reserved.
+    </div>
+  </Container>
+</footer>
