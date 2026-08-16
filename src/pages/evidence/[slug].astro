@@ -210,7 +210,47 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
               <div class="border border-slate-200 bg-white p-6"><span class="text-2xl font-semibold text-[var(--aionsi-blue)]">135+</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">DV engineers</h3><p class="mt-2 text-sm leading-6 text-slate-600">SystemVerilog/UVM verification capability across AXI, CHI, PCIe Gen5/6, DDR, UFS and USB.</p></div>
               <div class="border border-slate-200 bg-white p-6"><span class="text-2xl font-semibold text-[var(--aionsi-blue)]">6</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Tier-1 engagements</h3><p class="mt-2 text-sm leading-6 text-slate-600">The deck identifies six ASIC customer engagements spanning verification, physical design and DFT.</p></div>
               <div class="border border-slate-200 bg-white p-6"><span class="text-2xl font-semibold text-[var(--aionsi-blue)]">ODC</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Dedicated delivery model</h3><p class="mt-2 text-sm leading-6 text-slate-600">The corporate profile explicitly describes Offshore Development Centers built for continuity, depth and scale.</p></div>
-              <div class="border border-slate-200 bg-white p-6"><span class="text-2xl font-semibold text-[var(--aionsi-blue)]">4</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Engagement models</h3><p class="mt-2 text-sm leading-6 text-slate-600">Turnkey, ODC, milestone-based and T&amp;M/staff augmentation models are presented in the corporate deck.</p></div>
+              <div class="border border-slate-200 bg-white p-6"><span class="text-2xl font-semibold text-[var(--aionsi-blue)]">4</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Ways to engage</h3><p class="mt-2 text-sm leading-6 text-slate-600">AionSi can engage through a progression from targeted engineering capacity to managed workstreams, project delivery and dedicated ODCs.</p></div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+    )}
+
+    {isUvmArchitecture && (
+      <Section class="py-10 md:py-12 lg:py-14">
+        <Container>
+          <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+            <div>
+              <TechnicalLabel>How customers can engage</TechnicalLabel>
+              <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Choose the engagement path that fits the engineering need.</h2>
+              <p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">Start with the level of engineering ownership you need today, then scale the relationship as the program expands.</p>
+            </div>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">01</span><h3 class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">Specialist Engineering Augmentation</h3><p class="mt-2 text-sm leading-6 text-slate-600">Add targeted AionSi verification capability to an existing customer team for a defined technical need or capacity gap.</p></article>
+              <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">02</span><h3 class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">Managed Engineering Workstream</h3><p class="mt-2 text-sm leading-6 text-slate-600">AionSi owns a defined engineering scope, deliverables and milestones while operating within the customer's verification program.</p></article>
+              <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">03</span><h3 class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">Project / Turnkey Delivery</h3><p class="mt-2 text-sm leading-6 text-slate-600">Engage AionSi for a clearly bounded verification project with agreed scope, technical deliverables and acceptance criteria.</p></article>
+              <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">04</span><h3 class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">Dedicated Engineering ODC</h3><p class="mt-2 text-sm leading-6 text-slate-600">Build sustained engineering capacity around a customer's roadmap with dedicated teams, governance and scalable delivery.</p></article>
+            </div>
+          </div>
+        </Container>
+      </Section>
+    )}
+
+    {isUvmArchitecture && (
+      <Section class="bg-[var(--aionsi-surface-alt)] py-10 md:py-12 lg:py-14">
+        <Container>
+          <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+            <div>
+              <TechnicalLabel>Engagement progression</TechnicalLabel>
+              <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Start focused. Scale with confidence.</h2>
+              <p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">The engagement path can evolve as technical scope, delivery ownership and engineering capacity increase.</p>
+            </div>
+            <div class="grid gap-3 sm:grid-cols-4">
+              <div class="border border-slate-200 bg-white p-5"><span class="text-xs font-semibold text-[var(--aionsi-blue)]">01</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Capacity</h3><p class="mt-2 text-sm leading-6 text-slate-600">Targeted specialists</p></div>
+              <div class="border border-slate-200 bg-white p-5"><span class="text-xs font-semibold text-[var(--aionsi-blue)]">02</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Workstream</h3><p class="mt-2 text-sm leading-6 text-slate-600">Defined engineering ownership</p></div>
+              <div class="border border-slate-200 bg-white p-5"><span class="text-xs font-semibold text-[var(--aionsi-blue)]">03</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Project</h3><p class="mt-2 text-sm leading-6 text-slate-600">Bounded delivery</p></div>
+              <div class="border border-slate-200 bg-white p-5"><span class="text-xs font-semibold text-[var(--aionsi-blue)]">04</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">ODC</h3><p class="mt-2 text-sm leading-6 text-slate-600">Sustained strategic capacity</p></div>
             </div>
           </div>
         </Container>
