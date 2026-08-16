@@ -41,7 +41,8 @@ const { evidence, detail } = Astro.props;
 const pageTitle = `${evidence.title} | AionSi`;
 const pageDescription = detail.positioning;
 const architectureImage = '/images/evidence/reusable-uvm-verification-architecture.png';
-const isUvmArchitecture = evidence.slug === 'reusable-uvm-verification-architecture' || evidence.href === '/evidence/reusable-uvm-verification-architecture';
+const isUvmArchitecture =
+  evidence.href === '/evidence/reusable-uvm-verification-architecture';
 ---
 <BaseLayout title={pageTitle} description={pageDescription}>
   <Header />
