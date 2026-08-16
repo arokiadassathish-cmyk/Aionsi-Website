@@ -44,7 +44,7 @@ export const evidenceDetails: Record<string, EvidenceDetail> = {
       'Monitor — observe protocol activity and collect transaction data',
       'Check — apply scoreboards, predictors, assertions and protocol checks',
       'Measure — evaluate functional/code coverage and regression results',
-      'Close — analyze failures, debug issues and drive verification closure',
+      'Close — analyze failures, resolve gaps and drive verification closure',
     ],
     components: [
       'Drivers',
