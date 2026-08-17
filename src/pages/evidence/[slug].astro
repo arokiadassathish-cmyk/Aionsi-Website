@@ -32,18 +32,10 @@ const evidenceSlug = evidence.href?.split('/').filter(Boolean).pop() ?? '';
 
 const imageByEvidence: Record<string, string> = {
   'reusable-uvm-verification-architecture': '/images/evidence/reusable-uvm-verification-architecture.png',
-  'axi-reusable-verification-ip': '/images/evidence/axi-reusable-verification-ip.png',
-  'pcie-protocol-verification': '/images/evidence/pcie-5-data-link-layer-verification.png',
-  'ufs-4-low-power-verification': '/images/evidence/ufs-4-low-power-verification.png',
-  '5g-radio-on-chip-functional-verification': '/images/evidence/5g-radio-on-chip-functional-verification.png',
-  'processor-based-verification-arm-cortex-m7': '/images/evidence/processor-based-verification-arm-cortex-m7.png',
-  'formal-verification-cadence-jaspergold': '/images/evidence/formal-verification-cadence-jaspergold.png',
-  'hbm4e-memory-subsystem-verification': '/images/evidence/hbm4e-memory-subsystem-verification.png',
-  'usb4-protocol-verification': '/images/evidence/usb4-protocol-verification.png',
-  'ddr5-lpddr6-protocol-verification': '/images/evidence/ddr5-lpddr6-protocol-verification.png',
 };
 
 const architectureImage = imageByEvidence[evidenceSlug];
+const hasArchitectureImage = Boolean(architectureImage);
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -97,10 +89,10 @@ const architectureImage = imageByEvidence[evidenceSlug];
       </Container>
     </Section>
 
-    {architectureImage && (
+    {hasArchitectureImage ? (
       <Section class="bg-[var(--aionsi-deep-navy)] py-11 md:py-12 lg:py-14 text-white">
         <Container>
-          <div class="grid gap-7 lg:grid-cols-[.4fr_1.6fr] lg:items-center">
+          <div class="grid gap-7 lg:grid-cols-[.36fr_1.64fr] lg:items-center">
             <div class="max-w-xl">
               <TechnicalLabel>Technical Architecture</TechnicalLabel>
               <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Engineering reference architecture.</h2>
@@ -111,14 +103,29 @@ const architectureImage = imageByEvidence[evidenceSlug];
               <p class="mt-5 text-xs leading-6 text-white/45">Approved engineering reference. This visual does not, by itself, establish a customer engagement or completed project claim.</p>
             </div>
             <figure class="overflow-hidden border border-white/15 bg-white p-2 shadow-2xl shadow-black/10">
-              <div class="flex min-h-64 items-center justify-center bg-slate-50 md:min-h-80">
-                <img src={architectureImage} alt={`${evidence.title} technical architecture`} class="block h-auto max-h-[820px] w-full object-contain" loading="lazy" decoding="async" />
+              <div class="flex items-center justify-center bg-white p-2 md:p-3">
+                <a href={architectureImage} target="_blank" rel="noreferrer" aria-label={`Open full-size architecture for ${evidence.title}`} class="block w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--aionsi-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-white">
+                  <img src={architectureImage} alt={`${evidence.title} technical architecture`} class="block h-auto max-h-[900px] w-full object-contain" loading="eager" decoding="async" />
+                </a>
               </div>
-              <figcaption class="flex items-center justify-between gap-4 px-2 pb-1 pt-3 text-xs leading-5 text-slate-500">
+              <figcaption class="flex flex-col gap-2 px-2 pb-1 pt-3 text-xs leading-5 text-slate-500 sm:flex-row sm:items-center sm:justify-between">
                 <span>Approved engineering reference</span>
                 <a href={architectureImage} target="_blank" rel="noreferrer" class="font-semibold text-[var(--aionsi-blue)] hover:underline">Open full-size →</a>
               </figcaption>
             </figure>
+          </div>
+        </Container>
+      </Section>
+    ) : (
+      <Section class="bg-[var(--aionsi-deep-navy)] py-10 md:py-12 lg:py-14 text-white">
+        <Container>
+          <div class="grid gap-7 lg:grid-cols-[.36fr_1.64fr] lg:items-start">
+            <div class="max-w-xl">
+              <TechnicalLabel>Technical Architecture</TechnicalLabel>
+              <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Architecture evidence is being mapped.</h2>
+              <p class="mt-4 text-lg leading-8 text-white/70">This evidence record is approved for the page, but its final architecture asset is intentionally withheld until the corresponding source visual is available and mapped.</p>
+            </div>
+            <div class="border border-white/10 bg-white/5 p-8 text-sm leading-7 text-white/70">No placeholder image is used. This prevents an absent asset from appearing as technical evidence.</div>
           </div>
         </Container>
       </Section>
@@ -198,7 +205,7 @@ const architectureImage = imageByEvidence[evidenceSlug];
             <h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-3xl">Apply this capability to a defined verification program.</h2>
             <p class="mt-3 max-w-3xl text-base leading-7 text-slate-600">AionSi can support specialist engineering capacity, managed verification workstreams, scoped projects and dedicated engineering ODCs.</p>
           </div>
-          <a href="/contact" class="inline-flex shrink-0 items-center justify-center rounded-full bg-[var(--aionsi-orange)] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105">Discuss Your Engineering Requirement →</a>
+          <a href="/contact" class="inline-flex shrink-0 items-center justify-center rounded-full bg-[var(--aionsi-orange)] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105">Discuss Your Verification Program →</a>
         </div>
       </Container>
     </Section>
