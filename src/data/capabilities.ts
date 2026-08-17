@@ -118,6 +118,32 @@ export const capabilities: Capability[] = [
     technologies: ['PCIe', 'USB', 'DDR', 'AMBA'],
     outcome: 'Interface-level verification confidence',
     evidenceStatus: 'ready-to-populate',
+    evidence: [
+      {
+        title: 'Reusable UVM Verification Architecture',
+        type: 'whitepaper',
+        description: 'Reusable SystemVerilog/UVM architecture connecting protocol-aware stimulus, reusable agents, monitoring, scoreboarding, prediction, coverage, assertions and regression analysis.',
+        href: '/evidence/reusable-uvm-verification-architecture',
+      },
+      {
+        title: 'PCIe 5.0 Data Link Layer Verification',
+        type: 'whitepaper',
+        description: 'PCIe data-link verification covering ACK/NAK handling, replay behavior, credit-based flow control, protocol monitoring, error injection and coverage.',
+        href: '/evidence/pcie-5-data-link-layer-verification',
+      },
+      {
+        title: 'UFS 4.0 Low-Power Verification',
+        type: 'whitepaper',
+        description: 'UFS verification covering PMU behavior, power-state transitions, clock/reset control, wake-up behavior, assertions and coverage closure.',
+        href: '/evidence/ufs-4-low-power-verification',
+      },
+      {
+        title: 'HBM4e Memory Subsystem Verification',
+        type: 'whitepaper',
+        description: 'Memory-subsystem verification covering interface behavior, training and calibration-oriented checking, functional coverage and regression analysis.',
+        href: '/evidence/hbm4e-memory-subsystem-verification',
+      },
+    ],
   },
   {
     slug: 'soc-ip',
