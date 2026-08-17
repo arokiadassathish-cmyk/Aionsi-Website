@@ -18,6 +18,7 @@ export function getStaticPaths() {
 const { capability } = Astro.props;
 const pageTitle = `${capability.title} | AionSi`;
 const pageDescription = `${capability.description} Explore AionSi engineering scope, methodology, evidence and engineering outcomes.`;
+const isPhysicalDesign = capability.slug === 'physical-design';
 ---
 <BaseLayout title={pageTitle} description={pageDescription}>
   <Header />
@@ -52,6 +53,8 @@ const pageDescription = `${capability.description} Explore AionSi engineering sc
             <p>{capability.description}</p>
             {capability.slug === 'design-verification' ? (
               <p class="mt-4">AionSi applies disciplined verification across block, subsystem and SoC levels, combining reusable SystemVerilog/UVM infrastructure with coverage, assertions, protocol checking, processor-driven scenarios, formal planning and regression/debug workflows.</p>
+            ) : isPhysicalDesign ? (
+              <p class="mt-4">Representative engineering experience covers floorplanning, placement, clock-tree synthesis, routing, congestion optimization, timing closure, physical verification and sign-off across advanced-node ASIC and SoC programs.</p>
             ) : (
               <p class="mt-4">Detailed engineering scope, methodologies and program evidence are presented from AionSi's approved technical source material.</p>
             )}
@@ -71,6 +74,21 @@ const pageDescription = `${capability.description} Explore AionSi engineering sc
                   <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm font-medium text-slate-600">{item}</div>
                 ))}
               </div>
+            ) : isPhysicalDesign ? (
+              <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                {[
+                  'Synopsys Fusion Compiler',
+                  'Synopsys ICC2',
+                  'Cadence Innovus',
+                  'Synopsys PrimeTime',
+                  'Calibre / ICV',
+                  'Floorplanning · Placement · CTS · Routing',
+                  'Timing / Congestion Closure',
+                  'Physical Verification / Sign-Off',
+                ].map((item) => (
+                  <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm font-medium text-slate-600">{item}</div>
+                ))}
+              </div>
             ) : capability.technologies?.length ? (
               <div class="mt-5 flex flex-wrap gap-2">
                 {capability.technologies.map((technology) => (
@@ -78,7 +96,7 @@ const pageDescription = `${capability.description} Explore AionSi engineering sc
                 ))}
               </div>
             ) : (
-              <p class="mt-5 text-slate-500">Technical methodology will be added when the approved Physical Design source material is available.</p>
+              <p class="mt-5 text-slate-500">Technical methodology will be added when the approved source material is available.</p>
             )}
           </div>
 
@@ -94,6 +112,15 @@ const pageDescription = `${capability.description} Explore AionSi engineering sc
                   </div>
                 ))}
               </div>
+            ) : isPhysicalDesign ? (
+              <div class="mt-5 space-y-3 text-slate-600">
+                <p class="text-xl font-semibold leading-8 text-[var(--aionsi-navy)]">Signoff-ready physical implementation</p>
+                <ul class="space-y-2 text-sm leading-6">
+                  <li>• Advanced-node implementation experience from netlist through sign-off</li>
+                  <li>• Timing, congestion and physical-verification closure</li>
+                  <li>• Representative programs spanning 3nm–28nm</li>
+                </ul>
+              </div>
             ) : capability.outcome ? (
               <p class="mt-5 text-xl font-semibold leading-8 text-[var(--aionsi-navy)]">{capability.outcome}</p>
             ) : (
@@ -104,7 +131,7 @@ const pageDescription = `${capability.description} Explore AionSi engineering sc
       </Container>
     </Section>
 
-    {capability.slug === 'design-verification' && capability.evidence?.length ? (
+    {capability.evidence?.length ? (
       <Section class="py-16 md:py-20 lg:py-24">
         <Container>
           <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
@@ -152,10 +179,36 @@ const pageDescription = `${capability.description} Explore AionSi engineering sc
             <div class="border border-slate-200 p-7 md:p-9">
               <p class="text-lg leading-8 text-slate-600">Approved whitepapers, technical case studies, architectures, methodologies and other engineering proof points will be added here as the evidence library is completed.</p>
               {capability.evidenceStatus === 'pending' && (
-                <p class="mt-6 border-l-2 border-[var(--aionsi-orange)] pl-4 text-sm font-semibold text-[var(--aionsi-navy)]">Physical Design evidence is pending from the engineering team.</p>
+                <p class="mt-6 border-l-2 border-[var(--aionsi-orange)] pl-4 text-sm font-semibold text-[var(--aionsi-navy)]">Evidence is pending from the engineering team.</p>
               )}
             </div>
           </div>
+        </Container>
+      </Section>
+    )}
+
+    {isPhysicalDesign && (
+      <Section class="bg-white py-14 md:py-18 lg:py-20">
+        <Container>
+          <TechnicalLabel>Representative Engineering Experience</TechnicalLabel>
+          <div class="mt-4 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <article class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6">
+              <div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">Advanced Node</div>
+              <h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">3nm High-Complexity Block</h3>
+              <p class="mt-3 text-sm leading-6 text-slate-600">Representative experience: 352 macros, ~8M cells, 2.4 GHz, 17 metal layers and 3 power domains; floorplan through sign-off.</p>
+            </article>
+            <article class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6">
+              <div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">Power-Domain Complexity</div>
+              <h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">3nm Multi-Power-Domain Block</h3>
+              <p class="mt-3 text-sm leading-6 text-slate-600">Representative experience: 189 macros, ~4.3M cells, 2.8 GHz, 15 metal layers and 7 power domains across implementation and sign-off.</p>
+            </article>
+            <article class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6">
+              <div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">Closure Engineering</div>
+              <h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Congestion & Timing Closure</h3>
+              <p class="mt-3 text-sm leading-6 text-slate-600">Representative experience using blockages, cell padding, density screens, path groups, repeater bounds and manual ECOs to address physical closure issues.</p>
+            </article>
+          </div>
+          <p class="mt-6 text-xs leading-5 text-slate-500">Representative engineering experience is based on approved source material and is presented without customer attribution unless separately authorized for public disclosure.</p>
         </Container>
       </Section>
     )}
