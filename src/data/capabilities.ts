@@ -89,10 +89,24 @@ export const capabilities: Capability[] = [
     slug: 'physical-design',
     number: '03',
     title: 'Physical Design',
-    description: 'Physical implementation expertise across complex silicon programs.',
-    technologies: ['Floorplanning', 'Placement', 'CTS', 'Routing'],
+    description: 'Physical implementation, timing closure and physical verification across complex silicon programs from netlist through sign-off.',
+    technologies: ['Floorplanning', 'Placement', 'CTS', 'Routing', 'PrimeTime STA', 'Calibre / ICV'],
     outcome: 'Signoff-ready implementation',
-    evidenceStatus: 'pending',
+    evidenceStatus: 'ready-to-populate',
+    evidence: [
+      {
+        title: 'Representative Engineering Experience — Physical Design',
+        type: 'case-study',
+        description: 'Representative advanced-node Physical Design experience spanning floorplanning, placement, CTS, routing, timing closure, congestion optimization, physical verification and sign-off across 3nm–28nm programs.',
+        href: '/evidence/physical-design-representative-engineering-experience',
+      },
+      {
+        title: 'Advanced-Node Physical Design: Timing, Congestion & Sign-Off Closure',
+        type: 'whitepaper',
+        description: 'Engineering whitepaper covering advanced-node physical implementation challenges, timing closure, congestion management, multi-power-domain implementation and physical sign-off practices.',
+        href: '/evidence/advanced-node-physical-design-timing-congestion-signoff',
+      },
+    ],
   },
   {
     slug: 'dft',
