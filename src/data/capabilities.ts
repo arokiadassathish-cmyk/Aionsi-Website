@@ -81,7 +81,7 @@ export const capabilities: Capability[] = [
       { title: 'Reusable AXI Verification IP Environment', type: 'architecture', description: 'Reusable AMBA/AXI master and slave agent architecture supporting sequencers, drivers, monitors, scoreboarding and functional coverage.', href: '/evidence/axi-reusable-verification-ip' },
       { title: 'SoC Verification of Smart Watch', type: 'case-study', description: 'Public AionSi verification case study demonstrating constrained-random verification, scoreboards, assertions, connectivity checks, end-to-end data checks, coverage closure and tape-out execution.', href: '/case-studies' },
       { title: 'Subsystem Verification with MATLAB Integration', type: 'case-study', description: 'Public AionSi verification case study relevant to subsystem-level execution and reference-model correlation.', href: '/case-studies' },
-      { title: 'PCIe Gen6 Endpoint RTL Architecture', type: 'architecture', description: 'Confidential engineering architecture reference covering Transaction Layer, Data Link Layer, Physical Layer, Flit architecture, PAM4, FEC/CRC, replay, flow control, LTSSM and lane management. Not presented as a public verification case study.', href: '/evidence/pcie-protocol-verification' },
+      { title: 'PCIe Gen6 Endpoint RTL Architecture', type: 'architecture', description: 'Confidential engineering architecture reference covering Transaction Layer, Data Link Layer, Physical Layer, Flit architecture, PAM4, FEC/CRC, replay, flow control, LTSSM and lane management. Not presented as a public verification case study.', href: '/evidence/pcie-gen6-endpoint-rtl-architecture' },
     ],
   },
   {
