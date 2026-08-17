@@ -85,6 +85,16 @@ export const evidenceDetails: Record<string, EvidenceDetail> = {
     evidenceNotes: ['This architecture is based on the supplied AionSi AXI verification environment diagram and is used as a reusable AMBA/AXI reference rather than a named customer case study.'],
     sourceLabel: 'AionSi AXI Verification IP Architecture Reference',
   },
+  'pcie-gen6-endpoint-rtl-architecture': {
+    slug: 'pcie-gen6-endpoint-rtl-architecture', title: 'PCIe Gen6 Endpoint RTL Architecture', type: 'whitepaper', capability: 'Protocol Verification', revision: '1.0', classification: 'Confidential Engineering Architecture Reference',
+    positioning: 'Internal AionSi endpoint architecture reference covering PCIe Gen6 Transaction, Data Link and Physical Layer responsibilities and integration interfaces.',
+    context: ['The supplied confidential engineering specification documents a PCIe Gen6 endpoint architecture, including AXI-Lite integration, Transaction Layer, Data Link Layer, Physical Layer and end-to-end TX/RX flow.','The architecture also addresses Gen6-specific concepts including Flit operation, PAM4, FEC/CRC, replay, flow control, LTSSM, equalization and lane management.'],
+    architecture: ['AXI-Lite control interface','Transaction Layer','Data Link Layer','Physical Layer','LTSSM and link management','Lane / PHY management','End-to-end TX/RX flow'],
+    methodology: ['Architecture planning','Layer responsibility definition','Interface specification','Transaction and flow analysis','Error and recovery architecture','Clock, reset and integration planning','Engineering review'],
+    components: ['AXI-Lite interface','Transaction Layer logic','Data Link Layer logic','Replay / flow-control logic','PHY / lane management','LTSSM','Error reporting'],
+    evidenceNotes: ['The supplied source is marked confidential/internal and is therefore not presented as a public downloadable document or customer case study.','This reference supports architecture depth only; it must not be represented as evidence of a completed PCIe Gen6 verification project without separate approved verification evidence.'],
+    sourceLabel: 'AionSi PCIe Gen6 Endpoint RTL Architecture Specification — Confidential Internal Reference',
+  },
 };
 
 export const getEvidenceDetail = (slug: string) => evidenceDetails[slug];
