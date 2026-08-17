@@ -41,29 +41,29 @@ const hasArchitectureImage = Boolean(architectureImage);
 <BaseLayout title={pageTitle} description={pageDescription}>
   <Header />
   <main>
-    <Section class="bg-[var(--aionsi-surface-alt)] py-11 md:py-12 lg:py-14">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-16 lg:py-20">
       <Container>
-        <div class="grid gap-7 lg:grid-cols-[1.02fr_.98fr] lg:items-center">
+        <div class="grid gap-10 lg:grid-cols-[1fr_.8fr] lg:items-center">
           <div class="max-w-4xl">
-            <div class="flex flex-wrap items-center gap-4 text-xs font-semibold tracking-[.2em] text-[var(--aionsi-blue)]">
+            <div class="flex flex-wrap items-center gap-3 text-[11px] font-semibold tracking-[.18em] text-[var(--aionsi-blue)] md:text-xs">
               <span>{evidence.capability.number}</span>
-              <span class="h-px w-10 bg-[var(--aionsi-blue)]/40"></span>
+              <span class="h-px w-8 bg-[var(--aionsi-blue)]/40 md:w-10"></span>
               <span>ENGINEERING EVIDENCE</span>
-              <span class="border border-slate-200 bg-white px-3 py-2 uppercase tracking-[.14em] text-slate-500">{evidence.type}</span>
+              <span class="border border-slate-200 bg-white px-3 py-1.5 uppercase tracking-[.12em] text-slate-500">{evidence.type}</span>
             </div>
-            <h1 id="top" class="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-6xl">{evidence.title}</h1>
-            <p class="mt-5 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">{detail.positioning}</p>
+            <h1 id="top" class="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] sm:text-5xl md:text-6xl">{evidence.title}</h1>
+            <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600 sm:text-xl md:text-2xl md:leading-9">{detail.positioning}</p>
             <div class="mt-6 flex flex-wrap gap-3">
               <span class="border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700">Revision {detail.revision}</span>
               <span class="border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700">{detail.classification}</span>
             </div>
           </div>
 
-          <aside class="hidden border border-slate-200 bg-white p-6 shadow-sm lg:block">
+          <aside class="hidden rounded-xl border border-slate-200 bg-white p-6 shadow-sm lg:block">
             <TechnicalLabel>Verification architecture</TechnicalLabel>
             <div class="mt-4 space-y-1">
               {detail.architecture.map((item, index) => (
-                <div class="flex items-center gap-3 border-b border-slate-100 py-2.5 last:border-b-0">
+                <div class="flex items-start gap-3 border-b border-slate-100 py-3 last:border-b-0">
                   <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-blue-200 text-xs font-semibold text-[var(--aionsi-blue)]">{String(index + 1).padStart(2, '0')}</span>
                   <span class="text-sm font-medium leading-6 text-[var(--aionsi-navy)]">{item}</span>
                 </div>
@@ -74,42 +74,45 @@ const hasArchitectureImage = Boolean(architectureImage);
       </Container>
     </Section>
 
-    <Section class="py-8 md:py-10 lg:py-11">
+    <Section class="py-10 md:py-12 lg:py-14">
       <Container>
-        <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+        <div class="grid gap-8 lg:grid-cols-[.68fr_1.32fr] lg:items-start">
           <div>
             <TechnicalLabel>Engineering Context</TechnicalLabel>
             <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Why this engineering evidence matters.</h2>
           </div>
-          <div>
-            {detail.context.map((paragraph, index) => <p class={index === 0 ? 'max-w-5xl text-lg leading-8 text-slate-600' : 'mt-4 max-w-5xl text-lg leading-8 text-slate-600'}>{paragraph}</p>)}
-            <p class="mt-4 max-w-5xl text-base leading-7 text-slate-500">The evidence summary is derived from approved AionSi source material. Capability, architecture and case-study claims are intentionally kept separate.</p>
+          <div class="grid gap-4 md:grid-cols-2">
+            {detail.context.map((paragraph, index) => (
+              <div class="border border-slate-200 bg-white p-6">
+                <p class="text-base leading-7 text-slate-600 md:text-[17px]">{paragraph}</p>
+              </div>
+            ))}
           </div>
         </div>
       </Container>
     </Section>
 
     {hasArchitectureImage ? (
-      <Section class="bg-[var(--aionsi-deep-navy)] py-11 md:py-12 lg:py-14 text-white">
+      <Section class="bg-[var(--aionsi-deep-navy)] py-12 text-white md:py-14 lg:py-18">
         <Container>
-          <div class="grid gap-7 lg:grid-cols-[.36fr_1.64fr] lg:items-center">
+          <div class="grid gap-9 lg:grid-cols-[.3fr_1.7fr] lg:items-start">
             <div class="max-w-xl">
               <TechnicalLabel>Technical Architecture</TechnicalLabel>
               <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Engineering reference architecture.</h2>
-              <p class="mt-4 text-lg leading-8 text-white/70">The selected architecture visual is presented as technical evidence for the specific capability or verification methodology represented by this page.</p>
-              <div class="mt-5 grid gap-2 text-sm text-white/70 sm:grid-cols-2">
-                {detail.components.slice(0, 4).map((item) => <div class="border border-white/10 bg-white/5 px-4 py-3">{item}</div>)}
+              <p class="mt-4 text-base leading-7 text-white/70 md:text-lg md:leading-8">The selected architecture visual is presented as technical reference evidence for the capability represented by this page.</p>
+              <div class="mt-5 grid gap-2 text-sm text-white/75 sm:grid-cols-2 lg:grid-cols-1">
+                {detail.components.slice(0, 6).map((item) => <div class="border border-white/10 bg-white/5 px-4 py-3">{item}</div>)}
               </div>
-              <p class="mt-5 text-xs leading-6 text-white/45">Approved engineering reference. This visual does not, by itself, establish a customer engagement or completed project claim.</p>
+              <p class="mt-5 text-xs leading-6 text-white/50">Approved engineering reference. This visual does not, by itself, establish a customer engagement or completed project claim.</p>
             </div>
-            <figure class="overflow-hidden border border-white/15 bg-white p-2 shadow-2xl shadow-black/10">
-              <div class="flex items-center justify-center bg-white p-2 md:p-3">
+            <figure class="overflow-hidden rounded-xl border border-white/15 bg-white p-2 shadow-2xl shadow-black/20">
+              <div class="flex items-center justify-center bg-white p-2 md:p-4">
                 <a href={architectureImage} target="_blank" rel="noreferrer" aria-label={`Open full-size architecture for ${evidence.title}`} class="block w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--aionsi-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-white">
-                  <img src={architectureImage} alt={`${evidence.title} technical architecture`} class="block h-auto max-h-[900px] w-full object-contain" loading="eager" decoding="async" />
+                  <img src={architectureImage} alt={`${evidence.title} technical architecture`} class="block h-auto w-full object-contain" loading="eager" decoding="async" />
                 </a>
               </div>
               <figcaption class="flex flex-col gap-2 px-2 pb-1 pt-3 text-xs leading-5 text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-                <span>Approved engineering reference</span>
+                <span>Reference verification architecture</span>
                 <a href={architectureImage} target="_blank" rel="noreferrer" class="font-semibold text-[var(--aionsi-blue)] hover:underline">Open full-size →</a>
               </figcaption>
             </figure>
@@ -117,47 +120,47 @@ const hasArchitectureImage = Boolean(architectureImage);
         </Container>
       </Section>
     ) : (
-      <Section class="bg-[var(--aionsi-deep-navy)] py-10 md:py-12 lg:py-14 text-white">
+      <Section class="bg-[var(--aionsi-deep-navy)] py-11 md:py-13 lg:py-15 text-white">
         <Container>
-          <div class="grid gap-7 lg:grid-cols-[.36fr_1.64fr] lg:items-start">
+          <div class="grid gap-8 lg:grid-cols-[.35fr_1.65fr] lg:items-start">
             <div class="max-w-xl">
               <TechnicalLabel>Technical Architecture</TechnicalLabel>
               <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Architecture evidence is being mapped.</h2>
-              <p class="mt-4 text-lg leading-8 text-white/70">This evidence record is approved for the page, but its final architecture asset is intentionally withheld until the corresponding source visual is available and mapped.</p>
+              <p class="mt-4 text-base leading-7 text-white/70 md:text-lg md:leading-8">This evidence record is approved for the page, but its final architecture asset is intentionally withheld until the corresponding source visual is available and mapped.</p>
             </div>
-            <div class="border border-white/10 bg-white/5 p-8 text-sm leading-7 text-white/70">No placeholder image is used. This prevents an absent asset from appearing as technical evidence.</div>
+            <div class="border border-white/10 bg-white/5 p-8 text-sm leading-7 text-white/70 md:text-base">No placeholder image is used. This prevents an absent asset from appearing as technical evidence.</div>
           </div>
         </Container>
       </Section>
     )}
 
-    <Section class="bg-[var(--aionsi-surface-alt)] py-8 md:py-10 lg:py-11">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-10 md:py-12 lg:py-14">
       <Container>
-        <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+        <div class="grid gap-8 lg:grid-cols-[.68fr_1.32fr] lg:items-start">
           <div>
             <TechnicalLabel>Architecture Summary</TechnicalLabel>
             <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">What the architecture enables.</h2>
-            <p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">The architecture connects engineering responsibilities to execution, checking and verification-closure workflows.</p>
+            <p class="mt-4 max-w-xl text-base leading-7 text-slate-600 md:text-lg md:leading-8">The architecture connects engineering responsibilities to execution, checking and verification-closure workflows.</p>
           </div>
-          <div class="grid gap-3 sm:grid-cols-2">
-            <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Accelerate environment development</h3><p class="mt-2 text-sm leading-6 text-slate-600">Reusable infrastructure reduces repeated environment development across interfaces, blocks and SoC-level programs.</p></div>
-            <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Increase verification reuse</h3><p class="mt-2 text-sm leading-6 text-slate-600">Common agents, sequences, monitors and checkers can be extended across verification programs while preserving consistent patterns.</p></div>
-            <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Improve verification closure</h3><p class="mt-2 text-sm leading-6 text-slate-600">Coverage, assertions, scoreboards and regression analysis support structured closure activities.</p></div>
-            <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Integrate engineering capacity</h3><p class="mt-2 text-sm leading-6 text-slate-600">AionSi engineers can extend an established verification organization as an integrated engineering workstream, aligned to defined scope, milestones and verification objectives.</p></div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="border border-slate-200 bg-white p-6"><h3 class="text-base font-semibold text-[var(--aionsi-navy)] md:text-lg">Accelerate environment development</h3><p class="mt-2 text-sm leading-6 text-slate-600 md:text-[15px]">Reusable infrastructure reduces repeated environment development across interfaces, blocks and SoC-level programs.</p></div>
+            <div class="border border-slate-200 bg-white p-6"><h3 class="text-base font-semibold text-[var(--aionsi-navy)] md:text-lg">Increase verification reuse</h3><p class="mt-2 text-sm leading-6 text-slate-600 md:text-[15px]">Common agents, sequences, monitors and checkers can be extended across verification programs while preserving consistent patterns.</p></div>
+            <div class="border border-slate-200 bg-white p-6"><h3 class="text-base font-semibold text-[var(--aionsi-navy)] md:text-lg">Improve verification closure</h3><p class="mt-2 text-sm leading-6 text-slate-600 md:text-[15px]">Coverage, assertions, scoreboards and regression analysis support structured closure activities.</p></div>
+            <div class="border border-slate-200 bg-white p-6"><h3 class="text-base font-semibold text-[var(--aionsi-navy)] md:text-lg">Integrate verification engineering capacity</h3><p class="mt-2 text-sm leading-6 text-slate-600 md:text-[15px]">AionSi engineers can extend an established verification organization as an integrated engineering workstream, aligned to defined scope, milestones and verification objectives.</p></div>
           </div>
         </div>
       </Container>
     </Section>
 
-    <Section class="py-8 md:py-10 lg:py-11">
+    <Section class="py-10 md:py-12 lg:py-14">
       <Container>
-        <div class="grid gap-7 lg:grid-cols-2">
+        <div class="grid gap-8 lg:grid-cols-2">
           <div class="border border-slate-200 bg-white p-7 shadow-sm md:p-8">
             <TechnicalLabel>Verification Methodology</TechnicalLabel>
-            <div class="mt-6 flex flex-wrap items-center gap-2 text-xs font-semibold tracking-[.05em] text-[var(--aionsi-navy)]">
+            <div class="mt-6 flex flex-wrap items-center gap-2 text-xs font-semibold tracking-[.05em] text-[var(--aionsi-navy)] md:text-sm">
               {['Plan', 'Develop', 'Stimulate', 'Monitor', 'Check', 'Measure', 'Close'].map((stage, index) => (
                 <div class="flex items-center gap-2">
-                  <div class="border border-blue-200 bg-[var(--aionsi-surface-alt)] px-3 py-2">{String(index + 1).padStart(2, '0')} {stage}</div>
+                  <div class="border border-blue-200 bg-[var(--aionsi-surface-alt)] px-3 py-2.5">{String(index + 1).padStart(2, '0')} {stage}</div>
                   {index < 6 && <span class="text-slate-300">→</span>}
                 </div>
               ))}
@@ -166,14 +169,14 @@ const hasArchitectureImage = Boolean(architectureImage);
               {detail.methodology.map((item) => {
                 const [label, ...rest] = item.split(' — ');
                 const description = rest.join(' — ');
-                return <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-4 text-sm font-medium leading-6 text-[var(--aionsi-navy)]"><strong>{label}</strong>{description ? ` — ${description}` : ''}</div>;
+                return <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-4 text-sm leading-6 text-[var(--aionsi-navy)] md:text-[15px]"><strong>{label}</strong>{description ? ` — ${description}` : ''}</div>;
               })}
             </div>
           </div>
           <div class="border border-slate-200 bg-white p-7 shadow-sm md:p-8">
             <TechnicalLabel>Reusable Verification Assets</TechnicalLabel>
             <div class="mt-6 grid gap-3 sm:grid-cols-2">
-              {detail.components.map((item) => <div class="border border-slate-200 p-5 text-sm font-medium text-[var(--aionsi-navy)]">{item}</div>)}
+              {detail.components.map((item) => <div class="border border-slate-200 p-5 text-sm font-medium text-[var(--aionsi-navy)] md:text-[15px]">{item}</div>)}
             </div>
           </div>
         </div>
@@ -181,15 +184,16 @@ const hasArchitectureImage = Boolean(architectureImage);
     </Section>
 
     {detail.evidenceNotes.length > 0 && (
-      <Section class="bg-[var(--aionsi-surface-alt)] py-8 md:py-10 lg:py-11">
+      <Section class="bg-[var(--aionsi-surface-alt)] py-10 md:py-12 lg:py-14">
         <Container>
-          <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+          <div class="grid gap-8 lg:grid-cols-[.68fr_1.32fr] lg:items-start">
             <div>
-              <TechnicalLabel>Evidence Discipline</TechnicalLabel>
+              <TechnicalLabel>Engineering Evidence</TechnicalLabel>
               <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Evidence before claims.</h2>
             </div>
             <div class="border border-slate-200 bg-white p-7 md:p-8">
-              {detail.evidenceNotes.map((note, index) => <p class={index === 0 ? 'text-base leading-7 text-slate-600' : 'mt-4 text-base leading-7 text-slate-600'}>{note}</p>)}
+              <p class="text-base leading-7 text-slate-600 md:text-lg md:leading-8">Our protocol verification methodology is supported by reusable verification architectures, engineering references and technology-specific verification material. Customer-specific program details are shared under appropriate confidentiality.</p>
+              {detail.evidenceNotes.map((note) => <p class="mt-4 text-sm leading-7 text-slate-600 md:text-base">{note}</p>)}
               <p class="mt-5 text-xs leading-6 text-slate-500">Source: {detail.sourceLabel}</p>
             </div>
           </div>
@@ -197,15 +201,31 @@ const hasArchitectureImage = Boolean(architectureImage);
       </Section>
     )}
 
-    <Section class="py-9 md:py-11 lg:py-12">
+    <Section class="py-10 md:py-12 lg:py-14">
       <Container>
-        <div class="flex flex-col gap-5 border border-slate-200 bg-white p-7 md:flex-row md:items-center md:justify-between md:p-8">
-          <div>
-            <TechnicalLabel>Engineering Engagement</TechnicalLabel>
-            <h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-3xl">Apply this capability to a defined verification program.</h2>
-            <p class="mt-3 max-w-3xl text-base leading-7 text-slate-600">AionSi can support specialist engineering capacity, managed verification workstreams, scoped projects and dedicated engineering ODCs.</p>
+        <div>
+          <TechnicalLabel>Engagement Models</TechnicalLabel>
+          <h2 class="mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Engage at the level your verification program requires.</h2>
+          <p class="mt-4 max-w-3xl text-base leading-7 text-slate-600 md:text-lg md:leading-8">AionSi can support specialist engineering capacity, managed verification workstreams, scoped projects and dedicated engineering ODCs.</p>
+          <div class="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">01</span><h3 class="mt-3 text-base font-semibold text-[var(--aionsi-navy)] md:text-lg">Specialist Engineering</h3><p class="mt-2 text-sm leading-6 text-slate-600">Extend an existing verification team with protocol-focused engineers.</p></div>
+            <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">02</span><h3 class="mt-3 text-base font-semibold text-[var(--aionsi-navy)] md:text-lg">Managed Workstream</h3><p class="mt-2 text-sm leading-6 text-slate-600">Assign a defined verification scope, milestones and closure objectives to AionSi.</p></div>
+            <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">03</span><h3 class="mt-3 text-base font-semibold text-[var(--aionsi-navy)] md:text-lg">Project / Turnkey</h3><p class="mt-2 text-sm leading-6 text-slate-600">Engage AionSi for an agreed verification package with defined deliverables.</p></div>
+            <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">04</span><h3 class="mt-3 text-base font-semibold text-[var(--aionsi-navy)] md:text-lg">Dedicated Engineering ODC</h3><p class="mt-2 text-sm leading-6 text-slate-600">Build a dedicated verification team aligned to the customer roadmap, methodology and program cadence.</p></div>
           </div>
-          <a href="/contact" class="inline-flex shrink-0 items-center justify-center rounded-full bg-[var(--aionsi-orange)] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105">Discuss Your Verification Program →</a>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-11 md:py-13 lg:py-15 text-white">
+      <Container>
+        <div class="flex flex-col gap-7 md:flex-row md:items-center md:justify-between">
+          <div class="max-w-3xl">
+            <TechnicalLabel>Engineering Engagement</TechnicalLabel>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Have a verification program to accelerate?</h2>
+            <p class="mt-4 text-base leading-7 text-white/70 md:text-lg md:leading-8">Share your protocol, subsystem or SoC verification requirement with the AionSi engineering team. We can map the scope to the appropriate engineering model.</p>
+          </div>
+          <a href="/contact" class="inline-flex shrink-0 items-center justify-center rounded-full bg-[var(--aionsi-orange)] px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105">Discuss Your Verification Program →</a>
         </div>
       </Container>
     </Section>
