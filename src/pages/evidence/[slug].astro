@@ -14,22 +14,11 @@ export function getStaticPaths() {
   for (const capability of capabilities) {
     for (const item of capability.evidence ?? []) {
       if (!item.href) continue;
-
       const parts = item.href.split('/').filter(Boolean);
       const slug = parts[parts.length - 1];
       const detail = slug ? getEvidenceDetail(slug) : undefined;
       if (!slug || !detail) continue;
-
-      paths.push({
-        params: { slug },
-        props: {
-          evidence: {
-            ...item,
-            capability,
-          },
-          detail,
-        },
-      });
+      paths.push({ params: { slug }, props: { evidence: { ...item, capability }, detail } });
     }
   }
 
@@ -39,9 +28,24 @@ export function getStaticPaths() {
 const { evidence, detail } = Astro.props;
 const pageTitle = `${evidence.title} | AionSi`;
 const pageDescription = detail.positioning;
-const architectureImage = '/images/evidence/reusable-uvm-verification-architecture.png';
-const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification-architecture';
+const evidenceSlug = evidence.href?.split('/').filter(Boolean).pop() ?? '';
+
+const imageByEvidence: Record<string, string> = {
+  'reusable-uvm-verification-architecture': '/images/evidence/reusable-uvm-verification-architecture.png',
+  'axi-reusable-verification-ip': '/images/evidence/axi-reusable-verification-ip.png',
+  'pcie-protocol-verification': '/images/evidence/pcie-5-data-link-layer-verification.png',
+  'ufs-4-low-power-verification': '/images/evidence/ufs-4-low-power-verification.png',
+  '5g-radio-on-chip-functional-verification': '/images/evidence/5g-radio-on-chip-functional-verification.png',
+  'processor-based-verification-arm-cortex-m7': '/images/evidence/processor-based-verification-arm-cortex-m7.png',
+  'formal-verification-cadence-jaspergold': '/images/evidence/formal-verification-cadence-jaspergold.png',
+  'hbm4e-memory-subsystem-verification': '/images/evidence/hbm4e-memory-subsystem-verification.png',
+  'usb4-protocol-verification': '/images/evidence/usb4-protocol-verification.png',
+  'ddr5-lpddr6-protocol-verification': '/images/evidence/ddr5-lpddr6-protocol-verification.png',
+};
+
+const architectureImage = imageByEvidence[evidenceSlug];
 ---
+
 <BaseLayout title={pageTitle} description={pageDescription}>
   <Header />
   <main>
@@ -83,39 +87,35 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
         <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
           <div>
             <TechnicalLabel>Engineering Context</TechnicalLabel>
-            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Why reusable verification matters.</h2>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Why this engineering evidence matters.</h2>
           </div>
           <div>
-            <p class="max-w-5xl text-lg leading-8 text-slate-600">{detail.context[0]}</p>
-            <p class="mt-4 max-w-5xl text-lg leading-8 text-slate-600">{detail.context[1]}</p>
-            <p class="mt-4 max-w-5xl text-base leading-7 text-slate-500">Reusable verification infrastructure connects the execution environment, checking strategy and verification-closure workflow into a repeatable engineering pattern.</p>
+            {detail.context.map((paragraph, index) => <p class={index === 0 ? 'max-w-5xl text-lg leading-8 text-slate-600' : 'mt-4 max-w-5xl text-lg leading-8 text-slate-600'}>{paragraph}</p>)}
+            <p class="mt-4 max-w-5xl text-base leading-7 text-slate-500">The evidence summary is derived from approved AionSi source material. Capability, architecture and case-study claims are intentionally kept separate.</p>
           </div>
         </div>
       </Container>
     </Section>
 
-    {isUvmArchitecture && (
+    {architectureImage && (
       <Section class="bg-[var(--aionsi-deep-navy)] py-11 md:py-12 lg:py-14 text-white">
         <Container>
           <div class="grid gap-7 lg:grid-cols-[.4fr_1.6fr] lg:items-center">
             <div class="max-w-xl">
               <TechnicalLabel>Technical Architecture</TechnicalLabel>
-              <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Reference UVM architecture.</h2>
-              <p class="mt-4 text-lg leading-8 text-white/70">A technical reference showing reusable test, environment, agent, DUT, checking, coverage, assertion and analysis relationships.</p>
+              <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Engineering reference architecture.</h2>
+              <p class="mt-4 text-lg leading-8 text-white/70">The selected architecture visual is presented as technical evidence for the specific capability or verification methodology represented by this page.</p>
               <div class="mt-5 grid gap-2 text-sm text-white/70 sm:grid-cols-2">
-                <div class="border border-white/10 bg-white/5 px-4 py-3">Stimulus → DUT interaction</div>
-                <div class="border border-white/10 bg-white/5 px-4 py-3">Agents → monitors → checking</div>
-                <div class="border border-white/10 bg-white/5 px-4 py-3">Coverage + assertions</div>
-                <div class="border border-white/10 bg-white/5 px-4 py-3">Regression + analysis</div>
+                {detail.components.slice(0, 4).map((item) => <div class="border border-white/10 bg-white/5 px-4 py-3">{item}</div>)}
               </div>
-              <p class="mt-5 text-xs leading-6 text-white/45">Reference architecture derived from approved AionSi engineering material.</p>
+              <p class="mt-5 text-xs leading-6 text-white/45">Approved engineering reference. This visual does not, by itself, establish a customer engagement or completed project claim.</p>
             </div>
             <figure class="overflow-hidden border border-white/15 bg-white p-2 shadow-2xl shadow-black/10">
               <div class="flex min-h-64 items-center justify-center bg-slate-50 md:min-h-80">
-                <img src={architectureImage} alt="Reusable UVM verification architecture showing UVM test, virtual sequencer, reusable agents, DUT, scoreboard, predictor, coverage collector, SVA assertions and reporting analysis" class="block h-auto max-h-[820px] w-full object-contain" loading="lazy" decoding="async" />
+                <img src={architectureImage} alt={`${evidence.title} technical architecture`} class="block h-auto max-h-[820px] w-full object-contain" loading="lazy" decoding="async" />
               </div>
               <figcaption class="flex items-center justify-between gap-4 px-2 pb-1 pt-3 text-xs leading-5 text-slate-500">
-                <span>Approved architecture reference</span>
+                <span>Approved engineering reference</span>
                 <a href={architectureImage} target="_blank" rel="noreferrer" class="font-semibold text-[var(--aionsi-blue)] hover:underline">Open full-size →</a>
               </figcaption>
             </figure>
@@ -130,7 +130,7 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
           <div>
             <TechnicalLabel>Architecture Summary</TechnicalLabel>
             <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">What the architecture enables.</h2>
-            <p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">The architecture connects reusable verification infrastructure to execution, checking and verification-closure workflows.</p>
+            <p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">The architecture connects engineering responsibilities to execution, checking and verification-closure workflows.</p>
           </div>
           <div class="grid gap-3 sm:grid-cols-2">
             <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">Accelerate environment development</h3><p class="mt-2 text-sm leading-6 text-slate-600">Reusable infrastructure reduces repeated environment development across interfaces, blocks and SoC-level programs.</p></div>
@@ -159,8 +159,7 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
               {detail.methodology.map((item) => {
                 const [label, ...rest] = item.split(' — ');
                 const description = rest.join(' — ');
-                const content = label === 'Close' ? 'analyze failures, resolve gaps and drive verification closure' : description;
-                return <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-4 text-sm font-medium leading-6 text-[var(--aionsi-navy)]"><strong>{label}</strong>{content ? ` — ${content}` : ''}</div>;
+                return <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-4 text-sm font-medium leading-6 text-[var(--aionsi-navy)]"><strong>{label}</strong>{description ? ` — ${description}` : ''}</div>;
               })}
             </div>
           </div>
@@ -174,128 +173,35 @@ const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification
       </Container>
     </Section>
 
-    {isUvmArchitecture && (
-      <Section class="py-8 md:py-10 lg:py-11">
-        <Container>
-          <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
-            <div>
-              <TechnicalLabel>Where AionSi contributes</TechnicalLabel>
-              <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Verification execution where engineering capacity matters.</h2>
-              <p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">AionSi can contribute within an existing verification program or as a dedicated engineering workstream.</p>
-            </div>
-            <div class="grid gap-3 sm:grid-cols-2">
-              <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">01</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">Environment development</h3><p class="mt-2 text-sm leading-6 text-slate-600">Build or extend UVM environments, agents, drivers, monitors and infrastructure around defined verification requirements.</p></div>
-              <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">02</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">Protocol verification</h3><p class="mt-2 text-sm leading-6 text-slate-600">Execute interface-level verification using drivers, monitors, checkers and coverage aligned to defined protocol requirements.</p></div>
-              <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">03</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">Verification closure</h3><p class="mt-2 text-sm leading-6 text-slate-600">Support coverage, assertions, scoreboard analysis, debug and regression closure activities.</p></div>
-              <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">04</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">Managed verification workstream</h3><p class="mt-2 text-sm leading-6 text-slate-600">Align an AionSi engineering team around defined scope, technical deliverables, milestones and customer verification workflows.</p></div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-    )}
-
-    {isUvmArchitecture && (
+    {detail.evidenceNotes.length > 0 && (
       <Section class="bg-[var(--aionsi-surface-alt)] py-8 md:py-10 lg:py-11">
         <Container>
           <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
             <div>
-              <TechnicalLabel>Engineering Scale</TechnicalLabel>
-              <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Engineering capacity designed to integrate.</h2>
-              <p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">AionSi supports scalable engineering delivery through verification capacity, dedicated delivery teams and structured engagement models.</p>
+              <TechnicalLabel>Evidence Discipline</TechnicalLabel>
+              <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Evidence before claims.</h2>
             </div>
-            <div class="grid gap-3 sm:grid-cols-2">
-              <div class="border border-slate-200 bg-white p-6"><span class="text-2xl font-semibold text-[var(--aionsi-blue)]">135+</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">DV engineers</h3><p class="mt-2 text-sm leading-6 text-slate-600">SystemVerilog/UVM verification capability across AXI, CHI, PCIe Gen5/6, DDR, UFS and USB.</p></div>
-              <div class="border border-slate-200 bg-white p-6"><span class="text-2xl font-semibold text-[var(--aionsi-blue)]">6+</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Tier-1 program engagements</h3><p class="mt-2 text-sm leading-6 text-slate-600">Selected engineering programs span verification, physical design and DFT.</p></div>
-              <div class="border border-slate-200 bg-white p-6"><span class="text-2xl font-semibold text-[var(--aionsi-blue)]">ODC</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Dedicated engineering delivery</h3><p class="mt-2 text-sm leading-6 text-slate-600">Dedicated engineering teams provide continuity, depth and scalable delivery for longer-term programs.</p></div>
-              <div class="border border-slate-200 bg-white p-6"><span class="text-2xl font-semibold text-[var(--aionsi-blue)]">4</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Customer engagement paths</h3><p class="mt-2 text-sm leading-6 text-slate-600">Customers can enter through specialist augmentation, managed workstreams, project delivery or dedicated engineering ODCs.</p></div>
+            <div class="border border-slate-200 bg-white p-7 md:p-8">
+              {detail.evidenceNotes.map((note, index) => <p class={index === 0 ? 'text-base leading-7 text-slate-600' : 'mt-4 text-base leading-7 text-slate-600'}>{note}</p>)}
+              <p class="mt-5 text-xs leading-6 text-slate-500">Source: {detail.sourceLabel}</p>
             </div>
           </div>
         </Container>
       </Section>
     )}
 
-    {isUvmArchitecture && (
-      <Section class="py-8 md:py-10 lg:py-11">
-        <Container>
-          <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
-            <div>
-              <TechnicalLabel>Engagement model</TechnicalLabel>
-              <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Start with the engineering need. Scale with the program.</h2>
-              <p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">AionSi can support an immediate skills gap, own a defined verification workstream, deliver a scoped project or build a dedicated long-term engineering capability.</p>
-            </div>
-            <div class="grid gap-3 sm:grid-cols-2">
-              <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">01</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">Specialist engineering augmentation</h3><p class="mt-2 text-sm leading-6 text-slate-600">Add targeted engineering capacity or specialist expertise for an active program where immediate execution support is required.</p></div>
-              <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">02</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">Managed engineering workstream</h3><p class="mt-2 text-sm leading-6 text-slate-600">Align a coordinated AionSi team to defined scope, milestones, technical deliverables and customer verification workflows.</p></div>
-              <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">03</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">Project / turnkey delivery</h3><p class="mt-2 text-sm leading-6 text-slate-600">Execute a clearly bounded engineering package against agreed requirements, interfaces, acceptance criteria and delivery milestones.</p></div>
-              <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">04</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">Dedicated engineering ODC</h3><p class="mt-2 text-sm leading-6 text-slate-600">Establish a dedicated AionSi engineering organization for continuity, knowledge retention, governance and scalable long-term delivery.</p></div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-    )}
-
-    {isUvmArchitecture && (
-      <Section class="py-8 md:py-10 lg:py-11">
-        <Container>
-          <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
-            <div>
-              <TechnicalLabel>Selected Engineering Evidence</TechnicalLabel>
-              <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Selected engineering evidence.</h2>
-              <p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">Selected program examples provide context for the breadth of verification environments, subsystem work and protocol-oriented engineering experience.</p>
-            </div>
-            <div class="grid gap-3 sm:grid-cols-2">
-              <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">01</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">IoT SoC Verification</h3><p class="mt-2 text-sm leading-6 text-slate-600">Confidential Tier-1 semiconductor program covering ARM Cortex-A7, GNSS, PCIe, modem and security verification.</p></div>
-              <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">02</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">HBM Subsystem Verification</h3><p class="mt-2 text-sm leading-6 text-slate-600">Confidential Tier-1 semiconductor program covering memory controller, PHY and JEDEC protocols.</p></div>
-              <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">03</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">5G DSP / MOD Path IP Verification</h3><p class="mt-2 text-sm leading-6 text-slate-600">Confidential Tier-1 semiconductor program covering 5G DSP, decimation filters and interpolation filters.</p></div>
-              <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">04</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">Verification Technology Stack</h3><p class="mt-2 text-sm leading-6 text-slate-600">Verification workflows spanning industry-standard EDA environments, SystemVerilog/UVM methodologies and AI-assisted verification practices.</p></div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-    )}
-
-    <Section class="bg-[var(--aionsi-surface-alt)] py-8 md:py-10 lg:py-11">
+    <Section class="py-9 md:py-11 lg:py-12">
       <Container>
-        <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+        <div class="flex flex-col gap-5 border border-slate-200 bg-white p-7 md:flex-row md:items-center md:justify-between md:p-8">
           <div>
-            <TechnicalLabel>Engineering Basis</TechnicalLabel>
-            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Built from an engineering reference architecture.</h2>
+            <TechnicalLabel>Engineering Engagement</TechnicalLabel>
+            <h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-3xl">Apply this capability to a defined verification program.</h2>
+            <p class="mt-3 max-w-3xl text-base leading-7 text-slate-600">AionSi can support specialist engineering capacity, managed verification workstreams, scoped projects and dedicated engineering ODCs.</p>
           </div>
-          <div class="grid gap-4 md:grid-cols-2">
-            {detail.evidenceNotes.map((note) => <div class="border border-slate-200 bg-white p-6 text-lg leading-8 text-slate-600">{note}</div>)}
-          </div>
-        </div>
-      </Container>
-    </Section>
-
-    <Section class="py-8 md:py-10 lg:py-11">
-      <Container>
-        <div class="border border-slate-200 bg-white p-7 shadow-sm md:p-8">
-          <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <TechnicalLabel>Technical Reference</TechnicalLabel>
-              <h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-3xl">{detail.sourceLabel}</h2>
-              <p class="mt-2 text-base leading-7 text-slate-600">Get the detailed AionSi reference architecture and verification methodology.</p>
-            </div>
-            <a href="#verification-workstream" class="inline-flex shrink-0 items-center justify-center rounded-full bg-[var(--aionsi-orange)] px-6 py-3 text-sm font-semibold text-slate-950 transition hover:brightness-95">Request the Whitepaper →</a>
-          </div>
+          <a href="/contact" class="inline-flex shrink-0 items-center justify-center rounded-full bg-[var(--aionsi-orange)] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105">Discuss Your Engineering Requirement →</a>
         </div>
       </Container>
     </Section>
   </main>
-
-  <Section id="verification-workstream" class="bg-[var(--aionsi-deep-navy)] py-11 text-white md:py-12 lg:py-14">
-    <Container>
-      <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-        <div class="max-w-3xl">
-          <TechnicalLabel>Engineering Engagement</TechnicalLabel>
-          <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Have a verification workstream to accelerate?</h2>
-          <p class="mt-4 text-lg leading-8 text-white/70">Bring an interface, block, subsystem or SoC verification requirement. We can connect it to the appropriate AionSi engineering team around defined scope, milestones and deliverables.</p>
-        </div>
-        <a href="#top" class="inline-flex shrink-0 items-center justify-center rounded-full bg-[var(--aionsi-orange)] px-7 py-3 text-sm font-semibold text-slate-950 transition hover:brightness-95">Discuss Your Verification Program →</a>
-      </div>
-    </Container>
-  </Section>
-
   <Footer />
 </BaseLayout>
