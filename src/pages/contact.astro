@@ -5,7 +5,6 @@ import Footer from '../components/global/Footer.astro';
 import Container from '../components/global/Container.astro';
 import Section from '../components/global/Section.astro';
 import TechnicalLabel from '../components/global/TechnicalLabel.astro';
-import Button from '../components/global/Button.astro';
 ---
 
 <BaseLayout
@@ -65,7 +64,7 @@ import Button from '../components/global/Button.astro';
                 <textarea name="requirement" required rows="6" placeholder="Example: PCIe / UVM verification, current verification stage, bottleneck, required team capacity and timeline." class="resize-y border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3 outline-none transition focus:border-[var(--aionsi-blue)]"></textarea>
               </label>
               <div class="flex flex-wrap items-center gap-4 pt-1">
-                <Button href="mailto:contact@aionsi.com">Email Our Engineering Team</Button>
+                <button type="submit" class="inline-flex items-center justify-center rounded-full bg-[var(--aionsi-orange)] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105">Send Engineering Requirement <span class="ml-2" aria-hidden="true">→</span></button>
                 <span class="text-xs leading-5 text-slate-500">Your email client will open with the requirement details.</span>
               </div>
             </form>
