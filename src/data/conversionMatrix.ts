@@ -22,7 +22,7 @@ export const protocolConversionScenarios: ConversionScenario[] = [
     workstream: 'Add protocol specialists to an existing customer-owned verification team.',
     engagement: 'Specialist Engineering',
     expansion: 'Specialist capacity → managed protocol workstream → broader verification team.',
-    cta: 'Discuss protocol engineering capacity',
+    cta: 'Discuss Your Verification Requirement',
   },
   {
     id: 'closure',
@@ -34,7 +34,7 @@ export const protocolConversionScenarios: ConversionScenario[] = [
     workstream: 'Own a defined verification scope from stimulus and checking through coverage and closure objectives.',
     engagement: 'Managed Workstream',
     expansion: 'Managed closure workstream → adjacent protocol/subsystem scope → multiple workstreams.',
-    cta: 'Discuss verification closure',
+    cta: 'Discuss Your Verification Requirement',
   },
   {
     id: 'new-protocol',
@@ -46,7 +46,7 @@ export const protocolConversionScenarios: ConversionScenario[] = [
     workstream: 'Define protocol scope, build/extend the environment, develop scenarios and checks, then drive coverage and regression.',
     engagement: 'Project / Turnkey',
     expansion: 'Protocol project → managed verification support → recurring protocol/program scope.',
-    cta: 'Discuss a protocol verification project',
+    cta: 'Discuss Your Verification Requirement',
   },
   {
     id: 'reuse',
@@ -58,7 +58,7 @@ export const protocolConversionScenarios: ConversionScenario[] = [
     workstream: 'Create, modernize or extend reusable verification infrastructure and apply it across defined interfaces or programs.',
     engagement: 'Managed Workstream / Project',
     expansion: 'Infrastructure workstream → additional interfaces → multi-program reuse.',
-    cta: 'Discuss reusable verification infrastructure',
+    cta: 'Discuss Your Verification Requirement',
   },
   {
     id: 'expertise',
@@ -70,7 +70,7 @@ export const protocolConversionScenarios: ConversionScenario[] = [
     workstream: 'Embed targeted protocol specialists into an existing verification organization.',
     engagement: 'Specialist Engineering',
     expansion: 'Specialist expertise → defined workstream → broader protocol verification team.',
-    cta: 'Discuss specialist protocol support',
+    cta: 'Discuss Your Verification Requirement',
   },
   {
     id: 'scale',
@@ -82,6 +82,6 @@ export const protocolConversionScenarios: ConversionScenario[] = [
     workstream: 'Build and operate a dedicated verification engineering team across multiple related workstreams.',
     engagement: 'Dedicated Engineering ODC',
     expansion: 'ODC pilot → core team → multiple programs → broader engineering organization.',
-    cta: 'Discuss a dedicated verification ODC',
+    cta: 'Discuss Your Verification Requirement',
   },
 ];
