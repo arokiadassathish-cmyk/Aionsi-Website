@@ -54,8 +54,8 @@ export const capabilities: Capability[] = [
     outcome: 'Signoff-ready implementation',
     evidenceStatus: 'ready-to-populate',
     evidence: [
-      { title: 'Representative Engineering Experience — Physical Design', type: 'case-study', description: 'Representative advanced-node Physical Design experience spanning floorplanning, placement, CTS, routing, timing closure, congestion optimization, physical verification and sign-off across 3nm–28nm programs.', href: '/evidence/physical-design-representative-engineering-experience' },
-      { title: 'Advanced-Node Physical Design: Timing, Congestion & Sign-Off Closure', type: 'whitepaper', description: 'Engineering whitepaper covering advanced-node physical implementation challenges, timing closure, congestion management, multi-power-domain implementation and physical sign-off practices.', href: '/evidence/advanced-node-physical-design-timing-congestion-signoff' },
+      { title: 'Representative Engineering Experience — Physical Design', type: 'case-study', description: 'Representative advanced-node Physical Design experience spanning floorplanning, placement, CTS, routing, timing closure, congestion optimization, physical verification and sign-off across 3nm–28nm programs.' },
+      { title: 'Advanced-Node Physical Design: Timing, Congestion & Sign-Off Closure', type: 'whitepaper', description: 'Engineering whitepaper covering advanced-node physical implementation challenges, timing closure, congestion management, multi-power-domain implementation and physical sign-off practices.' },
     ],
   },
   {
