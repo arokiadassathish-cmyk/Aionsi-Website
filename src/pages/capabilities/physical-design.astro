@@ -11,21 +11,21 @@ import { physicalDesignScope } from '../../data/physicalDesign';
 <BaseLayout title="Physical Design | AionSi" description={physicalDesignScope.hero.description}>
   <Header />
   <main>
-    <Section class="bg-[var(--aionsi-surface-alt)] py-16 md:py-20 lg:py-24">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18 lg:py-22">
       <Container>
-        <div class="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+        <div class="grid gap-10 lg:grid-cols-[.95fr_1.05fr] lg:items-center">
           <div class="max-w-3xl">
             <TechnicalLabel>{physicalDesignScope.hero.eyebrow}</TechnicalLabel>
             <h1 class="mt-6 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">{physicalDesignScope.hero.title}</h1>
             <p class="mt-6 text-xl leading-9 text-slate-600 md:text-2xl">{physicalDesignScope.hero.description}</p>
-            <div class="mt-8 flex flex-wrap gap-2">
+            <div class="mt-7 flex flex-wrap gap-2">
               {physicalDesignScope.technologies.map((item) => <span class="border border-slate-200 bg-white px-3 py-2 text-xs font-semibold tracking-[.04em] text-slate-600">{item}</span>)}
             </div>
-            <Button href="/contact" class="mt-8">Discuss Your Physical Design Requirement</Button>
+            <Button href="/contact">Discuss Your Physical Design Requirement</Button>
           </div>
-          <div class="border border-slate-200 bg-white p-5 shadow-sm md:p-7">
+          <div class="border border-slate-200 border-t-4 border-t-[var(--aionsi-orange)] bg-white p-5 shadow-sm md:p-7">
             <div class="flex items-center justify-between gap-4">
-              <TechnicalLabel>PHYSICAL IMPLEMENTATION FLOW</TechnicalLabel>
+              <TechnicalLabel>PHYSICAL DESIGN ENGINEERING FLOW</TechnicalLabel>
               <span class="text-xs font-semibold tracking-[.16em] text-slate-400">NETLIST → SIGN-OFF</span>
             </div>
             <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -37,6 +37,7 @@ import { physicalDesignScope } from '../../data/physicalDesign';
                 </div>
               ))}
             </div>
+            <div class="mt-4 border-t border-slate-200 pt-4 text-xs font-semibold uppercase tracking-[.14em] text-slate-400">Implementation feedback continuously informs timing, congestion and sign-off closure.</div>
           </div>
         </div>
       </Container>
@@ -44,30 +45,32 @@ import { physicalDesignScope } from '../../data/physicalDesign';
 
     <Section class="py-14 md:py-18 lg:py-20">
       <Container>
-        <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+        <div class="grid gap-10 lg:grid-cols-[.58fr_1.42fr] lg:items-start">
           <div>
             <TechnicalLabel>Engineering Scope</TechnicalLabel>
-            <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Where Physical Design contributes.</h2>
+            <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Physical Design across the implementation lifecycle.</h2>
           </div>
-          <p class="border-l border-slate-200 pl-6 text-lg leading-8 text-slate-600 md:pl-8">AionSi supports the physical implementation path from hierarchical floorplanning through timing, congestion, routing, physical verification and sign-off, with downstream feedback continuously considered during closure.</p>
-        </div>
-        <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {physicalDesignScope.contributions.map((item) => (
-            <article class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6">
-              <div class="h-1 w-10 bg-[var(--aionsi-orange)]"></div>
-              <h3 class="mt-5 text-xl font-semibold text-[var(--aionsi-navy)]">{item.title}</h3>
-              <p class="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
-            </article>
-          ))}
+          <div>
+            <p class="border-l border-slate-200 pl-6 text-lg leading-8 text-slate-600 md:pl-8">AionSi supports the implementation path from hierarchical floorplanning through timing, congestion, routing, physical verification and sign-off, with downstream feedback continuously considered during closure.</p>
+            <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {physicalDesignScope.contributions.map((item) => (
+                <article class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6">
+                  <div class="h-1 w-10 bg-[var(--aionsi-orange)]"></div>
+                  <h3 class="mt-5 text-xl font-semibold text-[var(--aionsi-navy)]">{item.title}</h3>
+                  <p class="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </Container>
     </Section>
 
     <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18 lg:py-20">
       <Container>
-        <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+        <div class="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
           <div>
-            <TechnicalLabel>Closure Model</TechnicalLabel>
+            <TechnicalLabel>Closure Engineering</TechnicalLabel>
             <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Implementation decisions are driven by closure.</h2>
             <p class="mt-4 text-lg leading-8 text-slate-600">The objective is not simply to place and route. Physical implementation is iterated against timing, congestion, power, physical-rule and sign-off feedback.</p>
           </div>
@@ -85,7 +88,45 @@ import { physicalDesignScope } from '../../data/physicalDesign';
 
     <Section class="py-14 md:py-18 lg:py-20">
       <Container>
-        <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+        <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+          <div>
+            <TechnicalLabel>Technology Stack</TechnicalLabel>
+            <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Implementation tooling aligned to the engineering task.</h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600">The focus is on engineering outcomes while using the customer-aligned implementation and sign-off environment.</p>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {physicalDesignScope.technologies.map((item) => (
+              <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] px-5 py-4 text-sm font-semibold text-[var(--aionsi-navy)]">{item}</div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+          <div>
+            <TechnicalLabel>Engineering Engagement</TechnicalLabel>
+            <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Scale the Physical Design capability to the program need.</h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600">Engagement can begin with a specialist bottleneck, expand into a managed workstream, or operate as a dedicated engineering ODC aligned to the customer roadmap.</p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-3">
+            {physicalDesignScope.engagementModels.map((item, index) => (
+              <article class="border border-slate-200 bg-white p-6">
+                <span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">0{index + 1}</span>
+                <h3 class="mt-4 text-lg font-semibold text-[var(--aionsi-navy)]">{item.title}</h3>
+                <p class="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
           <div>
             <TechnicalLabel>Engineering Evidence</TechnicalLabel>
             <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Evidence before claims.</h2>
@@ -108,7 +149,7 @@ import { physicalDesignScope } from '../../data/physicalDesign';
       </Container>
     </Section>
 
-    <Section class="bg-[var(--aionsi-deep-navy)] py-16 md:py-20 lg:py-22 text-white">
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 md:py-16 lg:py-18 text-white">
       <Container class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
         <div>
           <TechnicalLabel>Engineering Engagement</TechnicalLabel>

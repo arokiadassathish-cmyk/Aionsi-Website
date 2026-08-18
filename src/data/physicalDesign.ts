@@ -15,24 +15,24 @@ export const physicalDesignScope = {
   ],
   contributions: [
     {
-      title: 'Floorplanning & Power Intent',
-      description: 'Hierarchical floorplanning, macro planning, power-domain strategy and physical constraints for implementation-ready blocks.',
+      title: 'Floorplanning',
+      description: 'Hierarchy, macro planning, power-domain strategy and physical constraints for implementation-ready blocks.',
     },
     {
-      title: 'Placement & Optimization',
-      description: 'Placement refinement, congestion control, cell-density management and implementation optimization against timing and area objectives.',
+      title: 'Placement',
+      description: 'Density, congestion control and implementation optimization against timing and area objectives.',
     },
     {
       title: 'Clock-Tree Synthesis',
       description: 'Clock implementation and balancing with attention to skew, latency, transition and downstream timing closure.',
     },
     {
-      title: 'Routing & Signal Integrity',
+      title: 'Routing',
       description: 'Detailed routing and closure support for complex interconnect, congestion, transition, capacitance and physical-rule constraints.',
     },
     {
-      title: 'Timing & PPA Closure',
-      description: 'Static timing analysis, path-group driven optimization and implementation feedback for timing, power and area closure.',
+      title: 'Timing Closure',
+      description: 'Static timing analysis, path-group driven optimization and implementation feedback for setup/hold closure and ECO recovery.',
     },
     {
       title: 'Physical Verification & Sign-Off',
@@ -48,10 +48,24 @@ export const physicalDesignScope = {
     ['06', 'Sign-Off', 'Physical verification and release readiness'],
   ],
   outcomes: [
-    'Implementation-ready physical database',
-    'Timing and congestion closure',
+    'Timing closure',
+    'Congestion recovery',
     'Physical verification readiness',
     'Sign-off focused engineering handoff',
+  ],
+  engagementModels: [
+    {
+      title: 'Specialist Engineering',
+      description: 'Targeted Physical Design capacity for a defined implementation or closure problem.',
+    },
+    {
+      title: 'Managed Workstream',
+      description: 'Defined implementation scope with milestones, ownership and closure objectives.',
+    },
+    {
+      title: 'Dedicated Engineering ODC',
+      description: 'A dedicated team aligned to the customer roadmap and scalable Physical Design demand.',
+    },
   ],
   evidence: [
     {
