@@ -129,7 +129,7 @@ export const capabilities: Capability[] = [
     number: '05',
     title: 'Protocol Verification',
     description: 'Protocol-focused verification for complex semiconductor interfaces.',
-    technologies: ['PCIe', 'USB', 'DDR', 'AMBA'],
+    technologies: ['PCIe', 'USB', 'DDR', 'HBM', 'AMBA/AXI'],
     outcome: 'Interface-level verification confidence',
     evidenceStatus: 'ready-to-populate',
   },
