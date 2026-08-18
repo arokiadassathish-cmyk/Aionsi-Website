@@ -107,6 +107,7 @@ const buildPhysicalDesignDetail = (item: {
 }): EvidenceDetail => ({
   ...item,
   capability: 'Physical Design',
+  revision: '1.0',
 });
 
 export const evidenceDetails: Record<string, EvidenceDetail> = {
