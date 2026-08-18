@@ -1,0 +1,42 @@
+/* Stage 4B desktop refinement — scoped to RTL capability page */
+.rtl-page .rtl-hero-flow {
+  min-height: 100%;
+}
+
+.rtl-page .rtl-scope-grid article,
+.rtl-page .rtl-workflow-grid article,
+.rtl-page .rtl-evidence-grid article {
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.rtl-page .rtl-scope-grid article:hover,
+.rtl-page .rtl-workflow-grid article:hover,
+.rtl-page .rtl-evidence-grid article:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 95, 235, 0.22);
+  box-shadow: 0 14px 32px rgba(2, 11, 39, 0.06);
+}
+
+.rtl-page .rtl-bottom-cta {
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+}
+
+@media (min-width: 1024px) {
+  .rtl-page .rtl-workflow-grid,
+  .rtl-page .rtl-scope-grid,
+  .rtl-page .rtl-evidence-grid {
+    align-items: stretch;
+  }
+
+  .rtl-page .rtl-evidence-grid > article {
+    min-height: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .rtl-page .rtl-bottom-cta {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+}
