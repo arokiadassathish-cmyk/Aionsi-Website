@@ -1,4 +1,4 @@
-/* Stage 4C final desktop QA — scoped to RTL capability page */
+/* Stage 4C — final RTL desktop density and conversion refinement. */
 .rtl-page .rtl-hero-flow {
   min-height: 100%;
 }
@@ -17,12 +17,12 @@
   box-shadow: 0 14px 32px rgba(2, 11, 39, 0.06);
 }
 
+/* Tighten the RTL-specific sections without changing the shared site system. */
 .rtl-page .rtl-bottom-cta {
-  padding-top: 4.5rem;
-  padding-bottom: 4.5rem;
+  padding-top: 3.75rem;
+  padding-bottom: 3.75rem;
 }
 
-/* Final QA: tighten the large desktop gaps introduced by generic section spacing. */
 @media (min-width: 1024px) {
   .rtl-page .rtl-workflow-grid,
   .rtl-page .rtl-scope-grid,
@@ -30,19 +30,20 @@
     align-items: stretch;
   }
 
-  .rtl-page .rtl-evidence-grid > article {
+  .rtl-page .rtl-evidence-grid > article,
+  .rtl-page .rtl-evidence-grid > a {
     min-height: 100%;
   }
 
   .rtl-page .rtl-bottom-cta {
-    margin-top: -1.5rem;
+    margin-top: -1rem;
   }
 }
 
 @media (max-width: 767px) {
   .rtl-page .rtl-bottom-cta {
-    padding-top: 3.5rem;
-    padding-bottom: 3.5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     margin-top: 0;
   }
 }
