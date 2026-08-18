@@ -30,12 +30,21 @@ const makeDetail = (input: EvidenceInput): EvidenceDetail => ({
   sourceLabel: `AionSi Engineering Evidence — ${input.title}`,
 });
 
+const makePhysicalDetail = (input: EvidenceInput): EvidenceDetail => ({
+  ...input,
+  capability: 'Physical Design',
+  revision: '1.0',
+  classification: input.classification ?? 'Physical Design Engineering Evidence',
+  evidenceNotes: [
+    'This page summarizes publicly available AionSi case-study material and presents it as engineering evidence.',
+    'The source case study remains the authoritative reference for project-specific specifications and claims.',
+  ],
+  sourceLabel: `AionSi Physical Design Evidence — ${input.title}`,
+});
+
 export const evidenceDetails: Record<string, EvidenceDetail> = {
   'reusable-uvm-verification-architecture': makeDetail({
-    slug: 'reusable-uvm-verification-architecture',
-    title: 'Reusable UVM Verification Architecture',
-    type: 'whitepaper',
-    classification: 'Technical Reference Architecture',
+    slug: 'reusable-uvm-verification-architecture', title: 'Reusable UVM Verification Architecture', type: 'whitepaper', classification: 'Technical Reference Architecture',
     positioning: 'Reusable SystemVerilog/UVM verification architecture for block, subsystem and SoC verification, connecting stimulus, checking, coverage and regression analysis.',
     context: ['Reusable verification infrastructure helps reduce repeated environment development and maintain consistent verification patterns across programs.', 'The architecture connects reusable agents and stimulus with checking, coverage, assertions and regression analysis for structured verification closure.'],
     architecture: ['Test and sequence layer', 'Environment and reusable agents', 'Sequencer and driver stimulus flow', 'Monitor and protocol observation', 'Scoreboard and checking infrastructure', 'Functional/code coverage and assertions', 'DUT interaction and regression analysis'],
@@ -97,6 +106,22 @@ export const evidenceDetails: Record<string, EvidenceDetail> = {
     architecture: ['UFS stimulus', 'Power-management unit', 'Power-state transitions', 'Clock gating', 'Reset sequencing', 'Assertions/checking', 'Coverage and regression'],
     methodology: ['Plan — define low-power states and transition scenarios', 'Stimulate — exercise power-management sequences', 'Check — validate PMU and interface behavior', 'Transition — verify clock gating and state changes', 'Reset — validate reset sequencing and recovery', 'Measure — collect functional/code coverage', 'Close — debug regressions and converge on coverage goals'],
     components: ['UVM environment', 'PMU stimulus', 'Power-state monitors', 'Clock/reset checks', 'Assertions', 'Coverage', 'Regression/debug'],
+  }),
+  'physical-design-representative-engineering-experience': makePhysicalDetail({
+    slug: 'physical-design-representative-engineering-experience', title: 'Representative Engineering Experience — Physical Design', type: 'case-study', classification: 'Public Physical Design Case Study',
+    positioning: 'Representative AionSi Physical Design evidence covering a multi-hierarchical SoC implementation with complex power, clocking, IO, routing and packaging constraints.',
+    context: ['The public case study describes implementation of a highly complex multi-hierarchical SoC on TSMC 40G technology with a large die, 20M+ instances, more than 500 million transistors, multiple power islands and intricate clocking architecture.', 'The implementation required coordinated floorplanning, power optimization, clock-tree engineering, advanced IO/routing constraints, reliability features and flip-chip packaging support.'],
+    architecture: ['Multi-hierarchical SoC', '28 independent power islands', 'Three core supply voltages', '100+ clock trees', 'Advanced IO / bump architecture', 'ESD and reliability structures', 'Flip-chip package integration'],
+    methodology: ['Plan — establish hierarchy, power, macro, IO and packaging constraints', 'Floorplan — align die, macros, power islands and IO requirements', 'Implement — optimize placement, clocking and routing across domains', 'Close — address timing, skew, insertion delay and physical constraints', 'Integrate — align pad-ring, redistribution and bump requirements', 'Verify — validate physical and reliability requirements', 'Sign off — consolidate implementation evidence for downstream silicon readiness'],
+    components: ['20M+ instances', '500M+ transistors', '20MB+ SRAM', '11 metal layers', '28 power islands', '100+ clock trees', '150µm bump pitch'],
+  }),
+  'advanced-node-physical-design-timing-congestion-signoff': makePhysicalDetail({
+    slug: 'advanced-node-physical-design-timing-congestion-signoff', title: 'Advanced-Node Physical Design: Timing, Congestion & Sign-Off Closure', type: 'whitepaper', classification: 'Physical Design Methodology Reference',
+    positioning: 'Engineering methodology reference for advanced-node physical implementation, timing closure, congestion management, multi-power-domain implementation and physical sign-off practices.',
+    context: ['Advanced-node physical implementation requires concurrent optimization of timing, congestion, power and physical-rule constraints rather than sequential closure.', 'A disciplined flow connects floorplanning and placement decisions to CTS, routing, multi-corner timing analysis, ECOs and physical verification.'],
+    architecture: ['Netlist and constraints', 'Hierarchy and floorplan', 'Placement optimization', 'Clock-tree synthesis', 'Global/detail routing', 'MCMM timing closure', 'DRC/LVS and sign-off'],
+    methodology: ['Plan — review constraints, hierarchy, power domains and sign-off objectives', 'Floorplan — establish macros, IO, utilization and physical boundaries', 'Place — optimize timing, congestion and power', 'CTS — build and refine clock distribution', 'Route — manage congestion, SI and routing constraints', 'Close — iterate MCMM timing, ECO and physical verification issues', 'Sign off — consolidate timing and physical verification evidence'],
+    components: ['Floorplanning', 'Placement', 'CTS', 'Routing', 'MCMM STA', 'ECO closure', 'DRC/LVS/antenna'],
   }),
 };
 
