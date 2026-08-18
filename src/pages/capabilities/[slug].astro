@@ -19,6 +19,7 @@ const { capability } = Astro.props;
 const pageTitle = `${capability.title} | AionSi`;
 const pageDescription = `${capability.description} Explore AionSi engineering scope, methodology, evidence and engineering outcomes.`;
 const isPhysicalDesign = capability.slug === 'physical-design';
+const isProtocolVerification = capability.slug === 'protocol-verification';
 ---
 <BaseLayout title={pageTitle} description={pageDescription}>
   <Header />
@@ -55,6 +56,8 @@ const isPhysicalDesign = capability.slug === 'physical-design';
               <p class="mt-4">AionSi applies disciplined verification across block, subsystem and SoC levels, combining reusable SystemVerilog/UVM infrastructure with coverage, assertions, protocol checking, processor-driven scenarios, formal planning and regression/debug workflows.</p>
             ) : isPhysicalDesign ? (
               <p class="mt-4">Representative engineering experience covers floorplanning, placement, clock-tree synthesis, routing, congestion optimization, timing closure, physical verification and sign-off across advanced-node ASIC and SoC programs.</p>
+            ) : isProtocolVerification ? (
+              <p class="mt-4">AionSi can support protocol verification across interface specification, reusable UVM environment development, stimulus and scenarios, checking and assertions, coverage and regression, and debug/closure workflows.</p>
             ) : (
               <p class="mt-4">Detailed engineering scope, methodologies and program evidence are presented from AionSi's approved technical source material.</p>
             )}
@@ -89,6 +92,12 @@ const isPhysicalDesign = capability.slug === 'physical-design';
                   <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm font-medium text-slate-600">{item}</div>
                 ))}
               </div>
+            ) : isProtocolVerification ? (
+              <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                {['SystemVerilog / UVM', 'PCIe · USB · DDR · HBM · AMBA/AXI', 'Reusable agents and environments', 'Sequencers · drivers · BFMs', 'Scoreboards · predictors · assertions', 'Coverage · regression · debug / closure'].map((item) => (
+                  <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm font-medium text-slate-600">{item}</div>
+                ))}
+              </div>
             ) : capability.technologies?.length ? (
               <div class="mt-5 flex flex-wrap gap-2">
                 {capability.technologies.map((technology) => (
@@ -120,6 +129,15 @@ const isPhysicalDesign = capability.slug === 'physical-design';
                   <li>• Timing, congestion and physical-verification closure</li>
                   <li>• Representative programs spanning 3nm–28nm</li>
                 </ul>
+              </div>
+            ) : isProtocolVerification ? (
+              <div class="mt-5 space-y-3">
+                {['De-risk complex interfaces', 'Accelerate verification closure', 'Reusable verification across programs', 'Specialist, workstream, project or ODC engagement'].map((item, index) => (
+                  <div class="flex items-start gap-3 text-sm font-medium text-[var(--aionsi-navy)]">
+                    <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[var(--aionsi-blue)]/30 text-[10px] font-semibold text-[var(--aionsi-blue)]">{String(index + 1).padStart(2, '0')}</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
             ) : capability.outcome ? (
               <p class="mt-5 text-xl font-semibold leading-8 text-[var(--aionsi-navy)]">{capability.outcome}</p>
@@ -217,10 +235,10 @@ const isPhysicalDesign = capability.slug === 'physical-design';
       <Container class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
         <div>
           <TechnicalLabel>Engineering Engagement</TechnicalLabel>
-          <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Need engineering capacity in {capability.title}?</h2>
-          <p class="mt-4 max-w-2xl text-lg leading-8 text-white/70">Bring the engineering problem, program stage or capacity requirement. We can connect it to the appropriate AionSi team.</p>
+          <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Bring the engineering problem.</h2>
+          <p class="mt-4 max-w-2xl text-lg leading-8 text-white/70">Share the interface, verification stage, current bottleneck or required engineering capacity. We can map the requirement to the appropriate AionSi engineering model.</p>
         </div>
-        <Button href="/contact">Talk to Our Engineering Team</Button>
+        <Button href="/contact">Discuss Your Verification Requirement</Button>
       </Container>
     </Section>
   </main>
