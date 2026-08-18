@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+import { physicalDesignScope } from '../../data/physicalDesign';
+---
+<BaseLayout title="Physical Design | AionSi" description={physicalDesignScope.hero.description}>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-16 md:py-20 lg:py-24">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+          <div class="max-w-3xl">
+            <TechnicalLabel>{physicalDesignScope.hero.eyebrow}</TechnicalLabel>
+            <h1 class="mt-6 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">{physicalDesignScope.hero.title}</h1>
+            <p class="mt-6 text-xl leading-9 text-slate-600 md:text-2xl">{physicalDesignScope.hero.description}</p>
+            <div class="mt-8 flex flex-wrap gap-2">
+              {physicalDesignScope.technologies.map((item) => <span class="border border-slate-200 bg-white px-3 py-2 text-xs font-semibold tracking-[.04em] text-slate-600">{item}</span>)}
+            </div>
+            <Button href="/contact" class="mt-8">Discuss Your Physical Design Requirement</Button>
+          </div>
+          <div class="border border-slate-200 bg-white p-5 shadow-sm md:p-7">
+            <div class="flex items-center justify-between gap-4">
+              <TechnicalLabel>PHYSICAL IMPLEMENTATION FLOW</TechnicalLabel>
+              <span class="text-xs font-semibold tracking-[.16em] text-slate-400">NETLIST → SIGN-OFF</span>
+            </div>
+            <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {physicalDesignScope.flow.map(([number, title, desc]) => (
+                <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-4">
+                  <div class="text-xs font-semibold tracking-[.15em] text-[var(--aionsi-blue)]">{number}</div>
+                  <div class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">{title}</div>
+                  <div class="mt-2 text-sm leading-6 text-slate-600">{desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+          <div>
+            <TechnicalLabel>Engineering Scope</TechnicalLabel>
+            <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Where Physical Design contributes.</h2>
+          </div>
+          <p class="border-l border-slate-200 pl-6 text-lg leading-8 text-slate-600 md:pl-8">AionSi supports the physical implementation path from hierarchical floorplanning through timing, congestion, routing, physical verification and sign-off, with downstream feedback continuously considered during closure.</p>
+        </div>
+        <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {physicalDesignScope.contributions.map((item) => (
+            <article class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6">
+              <div class="h-1 w-10 bg-[var(--aionsi-orange)]"></div>
+              <h3 class="mt-5 text-xl font-semibold text-[var(--aionsi-navy)]">{item.title}</h3>
+              <p class="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+          <div>
+            <TechnicalLabel>Closure Model</TechnicalLabel>
+            <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Implementation decisions are driven by closure.</h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600">The objective is not simply to place and route. Physical implementation is iterated against timing, congestion, power, physical-rule and sign-off feedback.</p>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {physicalDesignScope.outcomes.map((item, index) => (
+              <div class="border border-slate-200 bg-white p-6">
+                <span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">0{index + 1}</span>
+                <h3 class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">{item}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+          <div>
+            <TechnicalLabel>Engineering Evidence</TechnicalLabel>
+            <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Evidence before claims.</h2>
+            <p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">Representative evidence is presented from approved AionSi engineering source material. Public customer attribution and unsupported performance claims are not implied.</p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            {physicalDesignScope.evidence.map((item, index) => (
+              <a href={item.href} class="border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)] hover:shadow-[0_14px_40px_rgba(2,11,39,.06)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--aionsi-blue)] focus-visible:ring-offset-2">
+                <div class="flex items-start justify-between gap-4">
+                  <span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">0{index + 1}</span>
+                  <span class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">{item.type}</span>
+                </div>
+                <h3 class="mt-6 text-lg font-semibold leading-7 text-[var(--aionsi-navy)]">{item.title}</h3>
+                <p class="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
+                <div class="mt-6 text-sm font-semibold text-[var(--aionsi-navy)]">Technical evidence <span class="ml-1 text-[var(--aionsi-blue)]">→</span></div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-16 md:py-20 lg:py-22 text-white">
+      <Container class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div>
+          <TechnicalLabel>Engineering Engagement</TechnicalLabel>
+          <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Have a Physical Design bottleneck?</h2>
+          <p class="mt-4 max-w-2xl text-lg leading-8 text-white/70">Bring the implementation stage, timing or congestion constraint, physical verification issue or capacity requirement. We can map it to the appropriate AionSi engineering model.</p>
+        </div>
+        <Button href="/contact">Discuss Your Engineering Requirement</Button>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
