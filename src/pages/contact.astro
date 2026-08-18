@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/global/Header.astro';
+import Footer from '../components/global/Footer.astro';
+import Container from '../components/global/Container.astro';
+import Section from '../components/global/Section.astro';
+import TechnicalLabel from '../components/global/TechnicalLabel.astro';
+import { engineeringDiscoveryOptions, engineeringDiscoveryRouting } from '../data/engineering-discovery';
+---
+<BaseLayout title="Engineering Discovery | AionSi" description="Start an engineering discovery conversation with AionSi for semiconductor engineering, verification, physical implementation, DFT and SoC requirements.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-16 md:py-20 lg:py-24">
+      <Container>
+        <div class="grid gap-12 lg:grid-cols-[.75fr_1.25fr] lg:items-start">
+          <div>
+            <TechnicalLabel>Contact — Engineering Discovery</TechnicalLabel>
+            <h1 class="mt-5 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Bring the engineering problem.</h1>
+            <p class="mt-6 max-w-2xl text-xl leading-9 text-slate-600 md:text-2xl">Tell us where the program is constrained. We will map the requirement to the appropriate AionSi engineering capability and engagement model.</p>
+            <div class="mt-10 border-l-2 border-[var(--aionsi-orange)] pl-5 text-sm leading-7 text-slate-600">
+              <p class="font-semibold text-[var(--aionsi-navy)]">Qualification path</p>
+              <p class="mt-2">{engineeringDiscoveryRouting.join(' → ')}</p>
+            </div>
+          </div>
+
+          <form id="engineering-discovery-form" class="border border-slate-200 bg-white p-7 shadow-[0_16px_50px_rgba(2,11,39,.05)] md:p-9">
+            <div class="mb-7 h-1 w-11 bg-[var(--aionsi-orange)]"></div>
+            <div class="grid gap-6 md:grid-cols-2">
+              <label class="block"><span class="text-sm font-semibold text-[var(--aionsi-navy)]">First name</span><input name="firstName" required class="mt-2 w-full border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm outline-none focus:border-[var(--aionsi-blue)]" /></label>
+              <label class="block"><span class="text-sm font-semibold text-[var(--aionsi-navy)]">Last name</span><input name="lastName" required class="mt-2 w-full border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm outline-none focus:border-[var(--aionsi-blue)]" /></label>
+              <label class="block"><span class="text-sm font-semibold text-[var(--aionsi-navy)]">Business email</span><input type="email" name="businessEmail" required class="mt-2 w-full border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm outline-none focus:border-[var(--aionsi-blue)]" /></label>
+              <label class="block"><span class="text-sm font-semibold text-[var(--aionsi-navy)]">Company</span><input name="company" required class="mt-2 w-full border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm outline-none focus:border-[var(--aionsi-blue)]" /></label>
+              <label class="block"><span class="text-sm font-semibold text-[var(--aionsi-navy)]">Program / project type</span><select name="programType" class="mt-2 w-full border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm outline-none focus:border-[var(--aionsi-blue)]"><option value="">Select program type</option>{engineeringDiscoveryOptions.programType.map((item: string) => <option value={item}>{item}</option>)}</select></label>
+              <label class="block"><span class="text-sm font-semibold text-[var(--aionsi-navy)]">Protocol / interface</span><input name="protocolInterface" placeholder="e.g. PCIe, USB, DDR, HBM, AMBA" class="mt-2 w-full border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm outline-none focus:border-[var(--aionsi-blue)]" /></label>
+              <label class="block"><span class="text-sm font-semibold text-[var(--aionsi-navy)]">Engineering stage</span><select name="verificationStage" class="mt-2 w-full border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm outline-none focus:border-[var(--aionsi-blue)]"><option value="">Select stage</option>{engineeringDiscoveryOptions.verificationStage.map((item: string) => <option value={item}>{item}</option>)}</select></label>
+              <label class="block"><span class="text-sm font-semibold text-[var(--aionsi-navy)]">Primary bottleneck</span><select name="primaryBottleneck" class="mt-2 w-full border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm outline-none focus:border-[var(--aionsi-blue)]"><option value="">Select bottleneck</option>{engineeringDiscoveryOptions.primaryBottleneck.map((item: string) => <option value={item}>{item}</option>)}</select></label>
+              <label class="block"><span class="text-sm font-semibold text-[var(--aionsi-navy)]">Engagement model</span><select name="engagementModel" class="mt-2 w-full border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm outline-none focus:border-[var(--aionsi-blue)]"><option value="">Select model</option>{engineeringDiscoveryOptions.engagementModel.map((item: string) => <option value={item}>{item}</option>)}</select></label>
+              <label class="block"><span class="text-sm font-semibold text-[var(--aionsi-navy)]">NDA / technical review status</span><select name="ndaStatus" class="mt-2 w-full border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm outline-none focus:border-[var(--aionsi-blue)]"><option value="">Select status</option>{engineeringDiscoveryOptions.ndaStatus.map((item: string) => <option value={item}>{item}</option>)}</select></label>
+              <label class="block"><span class="text-sm font-semibold text-[var(--aionsi-navy)]">Expected timeline</span><select name="expectedTimeline" class="mt-2 w-full border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm outline-none focus:border-[var(--aionsi-blue)]"><option value="">Select timeline</option>{engineeringDiscoveryOptions.expectedTimeline.map((item: string) => <option value={item}>{item}</option>)}</select></label>
+              <label class="block"><span class="text-sm font-semibold text-[var(--aionsi-navy)]">Required engineering capacity</span><select name="engineeringCapacity" class="mt-2 w-full border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm outline-none focus:border-[var(--aionsi-blue)]"><option value="">Select capacity</option>{engineeringDiscoveryOptions.engineeringCapacity.map((item: string) => <option value={item}>{item}</option>)}</select></label>
+              <label class="block md:col-span-2"><span class="text-sm font-semibold text-[var(--aionsi-navy)]">Engineering requirement</span><textarea name="engineeringRequirement" required rows="6" placeholder="Example: verification closure, RTL development, physical-design capacity, DFT, protocol implementation, SoC integration, required team capacity and timeline." class="mt-2 w-full border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-4 text-sm leading-6 outline-none focus:border-[var(--aionsi-blue)]"></textarea></label>
+            </div>
+            <div class="mt-7 flex flex-wrap items-center gap-5">
+              <button type="submit" class="group inline-flex items-center gap-3 rounded-full bg-[var(--aionsi-orange)] px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:brightness-105">Discuss Your Engineering Requirement <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">→</span></button>
+              <p class="text-xs leading-5 text-slate-500">Your email client will open with the requirement details.</p>
+            </div>
+            <p id="form-status" class="mt-4 hidden text-sm font-semibold text-[var(--aionsi-navy)]" role="status"></p>
+          </form>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-5 md:grid-cols-3">
+          {['Specialist engineering capacity', 'Defined workstream with milestones and closure', 'Dedicated engineering team aligned to the customer roadmap'].map((item: string) => (
+            <div class="border border-slate-200 bg-white p-7"><div class="mb-5 h-1 w-10 bg-[var(--aionsi-orange)]"></div><p class="text-base leading-7 text-slate-600">{item}</p></div>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <script is:inline>
+      const form = document.getElementById('engineering-discovery-form');
+      const status = document.getElementById('form-status');
+      form?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const data = new FormData(form);
+        const value = (name) => String(data.get(name) || '').trim();
+        const subject = `AionSi Engineering Requirement — ${value('company') || 'New enquiry'}`;
+        const body = [
+          `First name: ${value('firstName')}`,
+          `Last name: ${value('lastName')}`,
+          `Business email: ${value('businessEmail')}`,
+          `Company: ${value('company')}`,
+          `Program / project type: ${value('programType')}`,
+          `Protocol / interface: ${value('protocolInterface')}`,
+          `Engineering stage: ${value('verificationStage')}`,
+          `Primary bottleneck: ${value('primaryBottleneck')}`,
+          `Engagement model: ${value('engagementModel')}`,
+          `NDA / technical review status: ${value('ndaStatus')}`,
+          `Expected timeline: ${value('expectedTimeline')}`,
+          `Required engineering capacity: ${value('engineeringCapacity')}`,
+          '',
+          'Engineering requirement:',
+          value('engineeringRequirement'),
+        ].join('\n');
+        window.location.href = `mailto:contact@aionsi.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        if (status) {
+          status.textContent = 'Opening your email client with the engineering requirement details.';
+          status.classList.remove('hidden');
+        }
+      });
+    </script>
+  </main>
+  <Footer />
+</BaseLayout>
