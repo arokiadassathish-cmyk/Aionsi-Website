@@ -20,9 +20,22 @@ const { capability } = Astro.props;
 const scenarios = capabilityScenarios[capability.slug as keyof typeof capabilityScenarios] ?? [];
 const pageTitle = `${capability.title} | AionSi`;
 const pageDescription = `${capability.description} Explore AionSi engineering scope, methodology, evidence and engineering outcomes.`;
-const isProtocol = capability.slug === 'protocol-verification';
 const isPhysicalDesign = capability.slug === 'physical-design';
 const isDesignVerification = capability.slug === 'design-verification';
+const flow = isPhysicalDesign
+  ? ['Netlist','Floorplan','Placement / CTS','Routing','Timing / PV closure','Sign-off']
+  : isDesignVerification
+    ? ['Specification','Test planning','UVM environment','Stimulus / checking','Coverage / regression','Closure']
+    : capability.slug === 'protocol-verification'
+      ? ['Interface specification','UVM environment','Stimulus & scenarios','Checking & assertions','Coverage & regression','Debug & closure']
+      : ['Requirement','Engineering implementation','Verification / analysis','Closure','Handoff / sign-off'];
+const outcomeItems = isPhysicalDesign
+  ? ['Implementation closure','Timing and congestion recovery','Physical verification readiness','Sign-off-focused handoff']
+  : isDesignVerification
+    ? ['Reusable verification infrastructure','Coverage-driven closure','Regression and debug execution','Scalable engineering capacity']
+    : capability.slug === 'protocol-verification'
+      ? ['De-risk complex interfaces','Accelerate verification closure','Reusable verification across programs','Scale from specialist support to dedicated engineering ODC']
+      : [capability.outcome ?? 'Engineering outcome defined from approved evidence.','Structured execution and handoff','Scalable engineering capacity'];
 ---
 <BaseLayout title={pageTitle} description={pageDescription}>
   <Header />
@@ -33,7 +46,7 @@ const isDesignVerification = capability.slug === 'design-verification';
           <div>
             <div class="flex items-center gap-4 text-xs font-semibold tracking-[.2em] text-[var(--aionsi-blue)]"><span>{capability.number}</span><span class="h-px w-10 bg-[var(--aionsi-blue)]/40"></span><span>ENGINEERING CAPABILITY</span></div>
             <h1 class="mt-6 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">{capability.title}</h1>
-            <p class="mt-4 max-w-4xl text-xl font-semibold text-[var(--aionsi-blue)] md:text-2xl">{isProtocol ? 'De-risk complex interfaces. Accelerate verification closure.' : capability.outcome ?? 'Engineering execution from requirement through closure.'}</p>
+            <p class="mt-4 max-w-4xl text-xl font-semibold text-[var(--aionsi-blue)] md:text-2xl">{capability.outcome ?? 'Engineering execution from requirement through closure.'}</p>
             <p class="mt-5 max-w-4xl text-xl leading-9 text-slate-600 md:text-2xl">{capability.description}</p>
             <div class="mt-7 flex flex-wrap gap-2">{capability.technologies?.map((technology) => <span class="border border-slate-200 bg-white px-3 py-2 text-xs font-semibold tracking-[.04em] text-slate-600">{technology}</span>)}</div>
             <Button href="/contact">Discuss Your Engineering Requirement</Button>
@@ -41,9 +54,7 @@ const isDesignVerification = capability.slug === 'design-verification';
           <div class="border border-slate-200 bg-white p-6 shadow-sm md:p-7">
             <TechnicalLabel>Engineering Flow</TechnicalLabel>
             <div class="mt-5 grid gap-3 sm:grid-cols-2">
-              {isProtocol
-                ? ['Interface specification','UVM environment','Stimulus & scenarios','Checking & assertions','Coverage & regression','Debug & closure'].map((item, index) => <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] px-4 py-4 text-sm font-semibold text-[var(--aionsi-navy)]"><span class="mr-3 text-[10px] font-semibold tracking-[.14em] text-[var(--aionsi-blue)]">{String(index + 1).padStart(2,'0')}</span>{item}</div>)
-                : ['Requirement','Engineering implementation','Verification / analysis','Closure','Handoff / sign-off'].map((item, index) => <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] px-4 py-4 text-sm font-semibold text-[var(--aionsi-navy)]"><span class="mr-3 text-[10px] font-semibold tracking-[.14em] text-[var(--aionsi-blue)]">{String(index + 1).padStart(2,'0')}</span>{item}</div>)}
+              {flow.map((item, index) => <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] px-4 py-4 text-sm font-semibold text-[var(--aionsi-navy)]"><span class="mr-3 text-[10px] font-semibold tracking-[.14em] text-[var(--aionsi-blue)]">{String(index + 1).padStart(2,'0')}</span>{item}</div>)}
             </div>
           </div>
         </div>
@@ -54,7 +65,27 @@ const isDesignVerification = capability.slug === 'design-verification';
       <Container>
         <div class="grid gap-7 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
           <div><TechnicalLabel>Customer Situations</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Start with the engineering problem.</h2><p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">Choose the situation closest to your program to see the engineering impact, AionSi contribution and appropriate engagement path.</p></div>
-          <div class="grid gap-3">{scenarios.map((scenario, index) => <details class="group border border-slate-200 bg-white p-5 shadow-sm"><summary class="cursor-pointer list-none [&::-webkit-details-marker]:hidden"><div class="grid gap-4 lg:grid-cols-[auto_1fr_auto] lg:items-start"><div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--aionsi-blue)]/30 text-xs font-semibold text-[var(--aionsi-blue)]">{String(index + 1).padStart(2,'0')}</div><div><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">Customer situation</div><h3 class="mt-1 text-base font-semibold leading-6 text-[var(--aionsi-navy)] md:text-lg">{scenario.situation}</h3></div><div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[.12em] text-[var(--aionsi-blue)]"><span>{scenario.engagement}</span><span class="transition-transform group-open:rotate-180">↓</span></div></div></summary><div class="mt-6 border-t border-slate-100 pt-6"><div class="grid gap-4 md:grid-cols-3"><div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] p-4"><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">Engineering impact</div><p class="mt-2 text-sm leading-6 text-slate-600">{scenario.impact}</p></div><div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] p-4"><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">AionSi contribution</div><p class="mt-2 text-sm leading-6 text-slate-600">{scenario.contribution}</p></div><div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] p-4"><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">Engagement model</div><p class="mt-2 text-sm leading-6 text-slate-600">{scenario.engagement}</p></div></div><a href="/contact" class="mt-5 inline-flex items-center text-sm font-semibold text-[var(--aionsi-blue)] hover:underline">Discuss Your Engineering Requirement →</a></div></details>)}</div>
+          <div class="grid gap-3">
+            {scenarios.map((scenario, index) => (
+              <details class="group border border-slate-200 bg-white p-5 shadow-sm">
+                <summary class="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                  <div class="grid gap-4 lg:grid-cols-[auto_1fr_auto] lg:items-start">
+                    <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--aionsi-blue)]/30 text-xs font-semibold text-[var(--aionsi-blue)]">{String(index + 1).padStart(2,'0')}</div>
+                    <div><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">Customer situation</div><h3 class="mt-1 text-base font-semibold leading-6 text-[var(--aionsi-navy)] md:text-lg">{scenario.situation}</h3></div>
+                    <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[.12em] text-[var(--aionsi-blue)]"><span>{scenario.engagement}</span><span class="transition-transform group-open:rotate-180">↓</span></div>
+                  </div>
+                </summary>
+                <div class="mt-6 border-t border-slate-100 pt-6">
+                  <div class="grid gap-4 md:grid-cols-3">
+                    <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] p-4"><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">Engineering impact</div><p class="mt-2 text-sm leading-6 text-slate-600">{scenario.impact}</p></div>
+                    <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] p-4"><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">AionSi contribution</div><p class="mt-2 text-sm leading-6 text-slate-600">{scenario.contribution}</p></div>
+                    <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] p-4"><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">Engagement model</div><p class="mt-2 text-sm leading-6 text-slate-600">{scenario.engagement}</p></div>
+                  </div>
+                  <a href="/contact" class="mt-5 inline-flex items-center text-sm font-semibold text-[var(--aionsi-blue)] hover:underline">Discuss Your Engineering Requirement →</a>
+                </div>
+              </details>
+            ))}
+          </div>
         </div>
       </Container>
     </Section>
@@ -63,12 +94,12 @@ const isDesignVerification = capability.slug === 'design-verification';
       <Container>
         <div class="grid gap-6 md:grid-cols-2">
           <div class="border border-slate-200 bg-white p-7 md:p-8"><TechnicalLabel>Technology / Methodology</TechnicalLabel><div class="mt-5 flex flex-wrap gap-2">{capability.technologies?.map((technology) => <span class="border border-slate-200 px-3 py-2 text-sm text-slate-600">{technology}</span>)}</div></div>
-          <div class="border border-slate-200 bg-white p-7 md:p-8"><TechnicalLabel>Engineering Outcome</TechnicalLabel><div class="mt-5 space-y-3">{(isProtocol ? ['De-risk complex interfaces','Accelerate verification closure','Reusable verification across programs','Scale from specialist support to dedicated engineering ODC'] : isPhysicalDesign ? ['Implementation closure','Timing and congestion recovery','Physical verification readiness','Sign-off-focused handoff'] : isDesignVerification ? ['Reusable verification infrastructure','Coverage-driven closure','Regression and debug execution','Scalable engineering capacity'] : [capability.outcome ?? 'Engineering outcome defined from approved evidence.', 'Structured execution and handoff', 'Scalable engineering capacity']).map((item, index) => <div class="flex items-start gap-3 text-sm font-medium text-[var(--aionsi-navy)]"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[var(--aionsi-blue)]/30 text-[10px] font-semibold text-[var(--aionsi-blue)]">{String(index + 1).padStart(2,'0')}</span><span>{item}</span></div>)}</div></div>
+          <div class="border border-slate-200 bg-white p-7 md:p-8"><TechnicalLabel>Engineering Outcome</TechnicalLabel><div class="mt-5 space-y-3">{outcomeItems.map((item, index) => <div class="flex items-start gap-3 text-sm font-medium text-[var(--aionsi-navy)]"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[var(--aionsi-blue)]/30 text-[10px] font-semibold text-[var(--aionsi-blue)]">{String(index + 1).padStart(2,'0')}</span><span>{item}</span></div>)}</div></div>
         </div>
       </Container>
     </Section>
 
-    {capability.evidence?.length ? <Section class="py-14 md:py-16 lg:py-20"><Container><div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start"><div class="lg:sticky lg:top-28"><TechnicalLabel>Engineering Evidence</TechnicalLabel><h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Evidence before claims.</h2><p class="mt-4 max-w-md text-slate-600">Explore approved technical material supporting the engineering capability represented on this page.</p></div><div class="grid gap-4 md:grid-cols-2">{capability.evidence.map((item, index) => item.href ? <a href={item.href} class="group border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)] hover:shadow-[0_14px_40px_rgba(2,11,39,.06)]"><div class="flex items-start justify-between gap-4"><span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><span class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">{item.type}</span></div><h3 class="mt-5 text-lg font-semibold leading-7 text-[var(--aionsi-navy)]">{item.title}</h3><p class="mt-3 text-sm leading-6 text-slate-600">{item.description}</p><div class="mt-5 text-sm font-semibold text-[var(--aionsi-navy)]">Technical evidence →</div></a> : <article class="border border-slate-200 bg-white p-6"><h3 class="text-lg font-semibold text-[var(--aionsi-navy)]">{item.title}</h3><p class="mt-3 text-sm leading-6 text-slate-600">{item.description}</p></article>)}</div></div></Container></Section> : null}
+    {capability.evidence?.length ? <Section class="py-14 md:py-16 lg:py-20"><Container><div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start"><div class="lg:sticky lg:top-28"><TechnicalLabel>Engineering Evidence</TechnicalLabel><h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Evidence before claims.</h2><p class="mt-4 max-w-md text-slate-600">Explore approved technical material supporting the engineering capability represented on this page.</p></div><div class="grid gap-4 md:grid-cols-2">{capability.evidence.map((item, index) => item.href ? <a href={item.href} class="group border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)] hover:shadow-[0_14px_40px_rgba(2,11,39,.06)]"><div class="flex items-start justify-between gap-4"><span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><span class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">{item.type}</span></div><h3 class="mt-5 text-lg font-semibold leading-7 text-[var(--aionsi-navy)]">{item.title}</h3><p class="mt-3 text-sm leading-6 text-slate-600">{item.description}</p><div class="mt-5 text-sm font-semibold text-[var(--aionsi-navy)]">Technical evidence →</div></a> : <article class="border border-slate-200 bg-white p-6"><h3 class="text-lg font-semibold text-[var(--aionsi-navy)]">{item.title}</h3><p class="mt-3 text-sm leading-6 text-slate-600">{item.description}</p></article>)}</div></div></Container></Section> : <Section class="py-14"><Container><div class="border border-slate-200 bg-white p-7 md:p-9"><TechnicalLabel>Engineering Evidence</TechnicalLabel><p class="mt-4 text-lg leading-8 text-slate-600">Approved technical evidence will be added here as the evidence library is completed.</p></div></Container></Section>}
 
     <Section class="py-12 md:py-14 lg:py-16">
       <Container>
