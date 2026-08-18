@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+---
+<BaseLayout title="Contact AionSi | Semiconductor Engineering" description="Bring your semiconductor engineering requirement to AionSi across RTL, verification, physical design, DFT, protocol verification and SoC/IP engineering.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18 lg:py-22">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.82fr_1.18fr] lg:items-start">
+          <div class="max-w-2xl">
+            <TechnicalLabel>ENGINEERING ENGAGEMENT</TechnicalLabel>
+            <h1 class="mt-6 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Bring the engineering problem.</h1>
+            <p class="mt-6 text-xl leading-9 text-slate-600 md:text-2xl">Tell us where the program is constrained. We will map the requirement to the appropriate AionSi engineering capability and engagement model.</p>
+            <div class="mt-10 border-l border-[var(--aionsi-orange)] pl-6">
+              <h2 class="text-lg font-semibold text-[var(--aionsi-navy)]">Qualification path</h2>
+              <p class="mt-4 text-base leading-8 text-slate-600">Customer requirement → Technical qualification → Opportunity → Engineering discovery → NDA / technical review → Pilot / workstream / project → ODC expansion</p>
+            </div>
+          </div>
+
+          <div class="border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+            <div class="h-1 w-12 bg-[var(--aionsi-orange)]"></div>
+            <h2 class="mt-6 text-2xl font-semibold text-[var(--aionsi-navy)]">Start an engineering discussion</h2>
+            <p class="mt-3 text-sm leading-6 text-slate-600">Share enough context for our engineering team to understand the scope. No proprietary design data is required at this stage.</p>
+
+            <form class="mt-8 grid gap-5 md:grid-cols-2" action="mailto:engineering@aionsi.com" method="post" enctype="text/plain">
+              <label class="grid gap-2 text-sm font-semibold text-[var(--aionsi-navy)]">
+                First name
+                <input required name="first_name" type="text" autocomplete="given-name" class="border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3.5 font-normal text-slate-700 outline-none focus:border-[var(--aionsi-blue)]" />
+              </label>
+              <label class="grid gap-2 text-sm font-semibold text-[var(--aionsi-navy)]">
+                Last name
+                <input required name="last_name" type="text" autocomplete="family-name" class="border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3.5 font-normal text-slate-700 outline-none focus:border-[var(--aionsi-blue)]" />
+              </label>
+              <label class="grid gap-2 text-sm font-semibold text-[var(--aionsi-navy)] md:col-span-2">
+                Job title / role
+                <input name="job_title" type="text" autocomplete="organization-title" class="border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3.5 font-normal text-slate-700 outline-none focus:border-[var(--aionsi-blue)]" />
+              </label>
+              <label class="grid gap-2 text-sm font-semibold text-[var(--aionsi-navy)] md:col-span-2">
+                Business email
+                <input required name="email" type="email" autocomplete="email" class="border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3.5 font-normal text-slate-700 outline-none focus:border-[var(--aionsi-blue)]" />
+              </label>
+              <label class="grid gap-2 text-sm font-semibold text-[var(--aionsi-navy)] md:col-span-2">
+                Company
+                <input required name="company" type="text" autocomplete="organization" class="border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3.5 font-normal text-slate-700 outline-none focus:border-[var(--aionsi-blue)]" />
+              </label>
+              <label class="grid gap-2 text-sm font-semibold text-[var(--aionsi-navy)]">
+                Engineering capability
+                <select required name="capability" class="border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3.5 font-normal text-slate-700 outline-none focus:border-[var(--aionsi-blue)]">
+                  <option value="">Select capability</option>
+                  <option>RTL / IP Design</option>
+                  <option>Design Verification</option>
+                  <option>Physical Design</option>
+                  <option>DFT</option>
+                  <option>Protocol Verification</option>
+                  <option>SoC / IP</option>
+                </select>
+              </label>
+              <label class="grid gap-2 text-sm font-semibold text-[var(--aionsi-navy)]">
+                Program / project type
+                <select required name="program_type" class="border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3.5 font-normal text-slate-700 outline-none focus:border-[var(--aionsi-blue)]">
+                  <option value="">Select project type</option>
+                  <option>IP development</option>
+                  <option>Subsystem</option>
+                  <option>SoC / ASIC</option>
+                  <option>Verification program</option>
+                  <option>Physical implementation</option>
+                  <option>DFT / test</option>
+                  <option>Silicon bring-up</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label class="grid gap-2 text-sm font-semibold text-[var(--aionsi-navy)]">
+                Engineering stage
+                <select name="stage" class="border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3.5 font-normal text-slate-700 outline-none focus:border-[var(--aionsi-blue)]">
+                  <option value="">Select stage</option>
+                  <option>Architecture / planning</option>
+                  <option>RTL / environment development</option>
+                  <option>Stimulus / scenarios</option>
+                  <option>Checking / assertions</option>
+                  <option>Coverage / regression</option>
+                  <option>Debug / closure</option>
+                  <option>Physical implementation / sign-off</option>
+                  <option>DFT / test sign-off</option>
+                  <option>Silicon bring-up</option>
+                </select>
+              </label>
+              <label class="grid gap-2 text-sm font-semibold text-[var(--aionsi-navy)]">
+                Required engineering capacity
+                <select name="capacity" class="border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3.5 font-normal text-slate-700 outline-none focus:border-[var(--aionsi-blue)]">
+                  <option value="">Select capacity</option>
+                  <option>1–2 engineers</option>
+                  <option>3–5 engineers</option>
+                  <option>6–10 engineers</option>
+                  <option>10+ engineers</option>
+                  <option>To be determined</option>
+                </select>
+              </label>
+              <label class="grid gap-2 text-sm font-semibold text-[var(--aionsi-navy)] md:col-span-2">
+                Engineering requirement
+                <textarea required name="requirement" rows="6" placeholder="Example: current verification stage, bottleneck, interface or design scope, required team capacity and timeline." class="resize-y border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3.5 font-normal leading-6 text-slate-700 outline-none focus:border-[var(--aionsi-blue)]"></textarea>
+              </label>
+              <div class="md:col-span-2 flex flex-wrap items-center gap-4 pt-2">
+                <button type="submit" class="inline-flex items-center gap-3 rounded-full bg-[var(--aionsi-orange)] px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105">Discuss Your Engineering Requirement <span aria-hidden="true">→</span></button>
+                <a href="mailto:engineering@aionsi.com" class="text-sm font-semibold text-slate-600 hover:text-[var(--aionsi-navy)] hover:underline">engineering@aionsi.com</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
