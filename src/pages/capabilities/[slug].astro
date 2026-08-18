@@ -19,25 +19,109 @@ const { capability } = Astro.props;
 const pageTitle = `${capability.title} | AionSi`;
 const pageDescription = `${capability.description} Explore AionSi engineering scope, methodology, evidence and engineering outcomes.`;
 const isPhysicalDesign = capability.slug === 'physical-design';
+const isRtlDesign = capability.slug === 'rtl-design';
+const isDesignVerification = capability.slug === 'design-verification';
+const isProtocolVerification = capability.slug === 'protocol-verification';
+
+const rtlScope = [
+  ['RTL / IP development', 'Block-level RTL implementation and refinement for reusable IP and customer-defined functions.'],
+  ['Subsystem development', 'Control, datapath and interface RTL integrated across defined subsystem boundaries.'],
+  ['SoC integration', 'Integration-ready RTL aligned to interface requirements and downstream verification needs.'],
+  ['Interface implementation', 'Protocol-aware RTL implementation for defined on-chip and external interfaces.'],
+  ['PPA-aware RTL', 'Design decisions made with downstream timing, power and area objectives in view.'],
+  ['Design closure support', 'RTL refinement driven by verification, synthesis, integration and implementation feedback.'],
+];
+
+const rtlWorkflow = [
+  ['01', 'Specification', 'Requirements, interface behavior and design intent'],
+  ['02', 'Microarchitecture', 'Control, datapath, state and interface definition'],
+  ['03', 'RTL development', 'Verilog / SystemVerilog implementation'],
+  ['04', 'RTL quality', 'Lint, CDC-aware review and structural checks'],
+  ['05', 'Verification handoff', 'Simulation, assertions and integration readiness'],
+  ['06', 'Synthesis / PPA', 'Timing, power and area feedback into RTL refinement'],
+];
+
+const rtlEvidence = [
+  {
+    title: 'Representative RTL Engineering Experience',
+    type: 'case-study' as const,
+    description: 'Representative block, subsystem and SoC RTL engineering scope, methodology and downstream integration considerations from approved engineering source material.',
+  },
+  {
+    title: 'RTL Design Methodology',
+    type: 'methodology' as const,
+    description: 'Engineering methodology covering specification interpretation, microarchitecture, RTL implementation, structural quality and implementation-aware refinement.',
+  },
+  {
+    title: 'AionSi Engineering Lifecycle',
+    type: 'architecture' as const,
+    description: 'Lifecycle view connecting IP and RTL development to verification, physical implementation and silicon delivery.',
+    href: '/capabilities',
+  },
+];
+
+const protocolTechnologies = ['PCIe', 'USB', 'DDR', 'HBM', 'AMBA/AXI'];
 ---
 <BaseLayout title={pageTitle} description={pageDescription}>
   <Header />
   <main>
-    <Section class="bg-[var(--aionsi-surface-alt)] py-20 md:py-24 lg:py-26">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-16 md:py-20 lg:py-24">
       <Container>
-        <div class="max-w-5xl">
-          <div class="flex items-center gap-4 text-xs font-semibold tracking-[.2em] text-[var(--aionsi-blue)]">
-            <span>{capability.number}</span>
-            <span class="h-px w-10 bg-[var(--aionsi-blue)]/40"></span>
-            <span>ENGINEERING CAPABILITY</span>
+        <div class={`${isRtlDesign ? 'grid gap-10 lg:grid-cols-[1.02fr_.98fr] lg:items-center' : ''}`}>
+          <div class="max-w-5xl">
+            <div class="flex items-center gap-4 text-xs font-semibold tracking-[.2em] text-[var(--aionsi-blue)]">
+              <span>{capability.number}</span>
+              <span class="h-px w-10 bg-[var(--aionsi-blue)]/40"></span>
+              <span>ENGINEERING CAPABILITY</span>
+            </div>
+            <h1 class="mt-6 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">{capability.title}</h1>
+            {isRtlDesign ? (
+              <p class="mt-5 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">RTL engineering across block, subsystem and SoC development — from specification and microarchitecture through implementation-ready RTL.</p>
+            ) : (
+              <p class="mt-5 max-w-4xl text-xl leading-9 text-slate-600 md:text-2xl">{capability.description}</p>
+            )}
+            <div class="mt-8 flex flex-wrap gap-2">
+              {capability.technologies?.map((technology) => (
+                <span class="border border-slate-200 bg-white px-3 py-2 text-xs font-semibold tracking-[.04em] text-slate-600">{technology}</span>
+              ))}
+            </div>
+            <div class="mt-9">
+              <Button href="/contact">Discuss Your Engineering Requirement</Button>
+            </div>
           </div>
-          <h1 class="mt-6 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">{capability.title}</h1>
-          <p class="mt-5 max-w-4xl text-xl leading-9 text-slate-600 md:text-2xl">{capability.description}</p>
-          <div class="mt-8 flex flex-wrap gap-2">
-            {capability.technologies?.map((technology) => (
-              <span class="border border-slate-200 bg-white px-3 py-2 text-xs font-semibold tracking-[.04em] text-slate-600">{technology}</span>
-            ))}
-          </div>
+
+          {isRtlDesign && (
+            <div class="relative overflow-hidden border border-slate-200 bg-white p-6 shadow-[0_20px_60px_rgba(2,11,39,.06)] md:p-8" aria-label="RTL engineering flow illustration">
+              <div class="absolute inset-x-0 top-0 h-1 bg-[var(--aionsi-orange)]"></div>
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">RTL ENGINEERING FLOW</span>
+                <span class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">IP → SoC</span>
+              </div>
+              <div class="mt-7 grid gap-4 sm:grid-cols-3">
+                {[
+                  ['01', 'IP RTL', 'Reusable blocks'],
+                  ['02', 'Subsystem RTL', 'Control + datapath'],
+                  ['03', 'SoC RTL', 'Integration-ready'],
+                ].map(([index, title, detail]) => (
+                  <div class="relative border border-slate-200 bg-[var(--aionsi-surface-alt)] p-4">
+                    <div class="text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{index}</div>
+                    <div class="mt-3 text-base font-semibold text-[var(--aionsi-navy)]">{title}</div>
+                    <div class="mt-2 text-xs leading-5 text-slate-500">{detail}</div>
+                  </div>
+                ))}
+              </div>
+              <div class="my-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[.12em] text-slate-400">
+                <span class="h-px flex-1 bg-slate-200"></span>
+                <span>design intent → implementation feedback</span>
+                <span class="h-px flex-1 bg-slate-200"></span>
+              </div>
+              <div class="grid gap-3 sm:grid-cols-4">
+                {['Specification', 'Microarchitecture', 'Verification handoff', 'Synthesis / PPA'].map((item) => (
+                  <div class="border border-slate-100 px-3 py-3 text-center text-xs font-medium text-slate-600">{item}</div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </Container>
     </Section>
@@ -51,24 +135,63 @@ const isPhysicalDesign = capability.slug === 'physical-design';
           </div>
           <div class="border-l border-slate-200 pl-6 text-lg leading-8 text-slate-600 md:pl-8">
             <p>{capability.description}</p>
-            {capability.slug === 'design-verification' ? (
+            {isDesignVerification ? (
               <p class="mt-4">AionSi applies disciplined verification across block, subsystem and SoC levels, combining reusable SystemVerilog/UVM infrastructure with coverage, assertions, protocol checking, processor-driven scenarios, formal planning and regression/debug workflows.</p>
             ) : isPhysicalDesign ? (
               <p class="mt-4">Representative engineering experience covers floorplanning, placement, clock-tree synthesis, routing, congestion optimization, timing closure, physical verification and sign-off across advanced-node ASIC and SoC programs.</p>
+            ) : isRtlDesign ? (
+              <p class="mt-4">RTL scope can span reusable IP, subsystem construction and SoC integration, with attention to design intent, interface behavior, verification handoff and downstream implementation feedback.</p>
+            ) : isProtocolVerification ? (
+              <p class="mt-4">Protocol verification scope can extend from interface specification and reusable UVM environment development through stimulus, checking, coverage, regression, debug and closure.</p>
             ) : (
               <p class="mt-4">Detailed engineering scope, methodologies and program evidence are presented from AionSi's approved technical source material.</p>
             )}
           </div>
         </div>
+
+        {isRtlDesign && (
+          <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {rtlScope.map(([title, description]) => (
+              <article class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6">
+                <div class="h-1 w-9 bg-[var(--aionsi-orange)]"></div>
+                <h3 class="mt-5 text-lg font-semibold text-[var(--aionsi-navy)]">{title}</h3>
+                <p class="mt-3 text-sm leading-6 text-slate-600">{description}</p>
+              </article>
+            ))}
+          </div>
+        )}
       </Container>
     </Section>
 
-    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18 lg:py-20">
+    {isRtlDesign && (
+      <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18 lg:py-20">
+        <Container>
+          <div class="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+            <div>
+              <TechnicalLabel>Engineering Workflow</TechnicalLabel>
+              <h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">From specification to implementation-ready RTL.</h2>
+              <p class="mt-4 max-w-md text-slate-600">A structured handoff between design intent, RTL quality, verification and downstream implementation.</p>
+            </div>
+            <div class="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+              {rtlWorkflow.map(([index, title, detail]) => (
+                <article class="border border-slate-200 bg-white p-5">
+                  <div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{index}</div>
+                  <h3 class="mt-4 text-lg font-semibold text-[var(--aionsi-navy)]">{title}</h3>
+                  <p class="mt-2 text-sm leading-6 text-slate-600">{detail}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </Section>
+    )}
+
+    <Section class={isRtlDesign ? 'py-14 md:py-18 lg:py-20' : 'bg-[var(--aionsi-surface-alt)] py-14 md:py-18 lg:py-20'}>
       <Container>
         <div class="grid gap-6 md:grid-cols-2">
           <div class="border border-slate-200 bg-white p-7 md:p-8">
             <TechnicalLabel>Technology / Methodology</TechnicalLabel>
-            {capability.slug === 'design-verification' ? (
+            {isDesignVerification ? (
               <div class="mt-5 grid gap-3 sm:grid-cols-2">
                 {['SystemVerilog / UVM', 'Functional & code coverage', 'SVA / assertions', 'Scoreboards & protocol checking', 'Processor-driven verification', 'Formal verification planning'].map((item) => (
                   <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm font-medium text-slate-600">{item}</div>
@@ -89,6 +212,18 @@ const isPhysicalDesign = capability.slug === 'physical-design';
                   <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm font-medium text-slate-600">{item}</div>
                 ))}
               </div>
+            ) : isRtlDesign ? (
+              <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                {['Verilog', 'SystemVerilog', 'Reusable RTL blocks', 'Interface-aware implementation', 'Verification handoff', 'Synthesis / PPA feedback'].map((item) => (
+                  <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm font-medium text-slate-600">{item}</div>
+                ))}
+              </div>
+            ) : isProtocolVerification ? (
+              <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                {protocolTechnologies.map((item) => (
+                  <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] px-4 py-3 text-sm font-medium text-slate-600">{item}</div>
+                ))}
+              </div>
             ) : capability.technologies?.length ? (
               <div class="mt-5 flex flex-wrap gap-2">
                 {capability.technologies.map((technology) => (
@@ -102,7 +237,7 @@ const isPhysicalDesign = capability.slug === 'physical-design';
 
           <div class="border border-slate-200 bg-white p-7 md:p-8">
             <TechnicalLabel>Engineering Outcome</TechnicalLabel>
-            {capability.slug === 'design-verification' ? (
+            {isDesignVerification ? (
               <div class="mt-5 space-y-3">
                 {['Reusable verification infrastructure', 'Functional + code coverage', 'Assertions & protocol checking', 'Regression / debug workflows', 'Coverage-driven closure'].map((item, index, items) => (
                   <div class="flex items-center gap-3 text-sm font-medium text-[var(--aionsi-navy)]">
@@ -121,6 +256,18 @@ const isPhysicalDesign = capability.slug === 'physical-design';
                   <li>• Representative programs spanning 3nm–28nm</li>
                 </ul>
               </div>
+            ) : isRtlDesign ? (
+              <div class="mt-5 space-y-4">
+                <p class="text-xl font-semibold leading-8 text-[var(--aionsi-navy)]">Integration-ready RTL</p>
+                <div class="grid gap-3 sm:grid-cols-3">
+                  {['Design intent', 'Verification handoff', 'Implementation feedback'].map((item, index) => (
+                    <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] px-4 py-4 text-sm font-medium text-slate-600">
+                      <div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">0{index + 1}</div>
+                      <div class="mt-2">{item}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             ) : capability.outcome ? (
               <p class="mt-5 text-xl font-semibold leading-8 text-[var(--aionsi-navy)]">{capability.outcome}</p>
             ) : (
@@ -131,17 +278,17 @@ const isPhysicalDesign = capability.slug === 'physical-design';
       </Container>
     </Section>
 
-    {capability.evidence?.length ? (
+    {(capability.evidence?.length || isRtlDesign) ? (
       <Section class="py-16 md:py-20 lg:py-24">
         <Container>
           <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
             <div class="lg:sticky lg:top-28">
               <TechnicalLabel>Engineering Evidence</TechnicalLabel>
               <h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Evidence before claims.</h2>
-              <p class="mt-4 max-w-md text-slate-600">Technical evidence drawn from approved AionSi engineering source material.</p>
+              <p class="mt-4 max-w-md text-slate-600">Technical evidence drawn from approved AionSi engineering source material. Publicly attributed customer claims are not implied.</p>
             </div>
             <div class="grid gap-4 md:grid-cols-2">
-              {capability.evidence.map((item, index) => (
+              {(isRtlDesign ? rtlEvidence : capability.evidence || []).map((item, index) => (
                 item.href ? (
                   <a href={item.href} class="group border border-slate-200 bg-white p-6 transition duration-300 hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)] hover:shadow-[0_14px_40px_rgba(2,11,39,.06)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--aionsi-blue)] focus-visible:ring-offset-2">
                     <div class="flex items-start justify-between gap-4">
@@ -217,10 +364,10 @@ const isPhysicalDesign = capability.slug === 'physical-design';
       <Container class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
         <div>
           <TechnicalLabel>Engineering Engagement</TechnicalLabel>
-          <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Need engineering capacity in {capability.title}?</h2>
-          <p class="mt-4 max-w-2xl text-lg leading-8 text-white/70">Bring the engineering problem, program stage or capacity requirement. We can connect it to the appropriate AionSi team.</p>
+          <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">Bring the {capability.title} engineering problem.</h2>
+          <p class="mt-4 max-w-2xl text-lg leading-8 text-white/70">Share the engineering stage, bottleneck or required capacity. We can map it to the appropriate AionSi engineering model.</p>
         </div>
-        <Button href="/contact">Talk to Our Engineering Team</Button>
+        <Button href="/contact">Discuss Your Engineering Requirement</Button>
       </Container>
     </Section>
   </main>
