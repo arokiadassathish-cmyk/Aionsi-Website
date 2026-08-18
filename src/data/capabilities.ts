@@ -35,54 +35,14 @@ export const capabilities: Capability[] = [
     outcome: 'Coverage-driven verification confidence',
     evidenceStatus: 'ready-to-populate',
     evidence: [
-      {
-        title: 'Reusable UVM Verification Architecture',
-        type: 'whitepaper',
-        description: 'Configurable SystemVerilog-UVM verification methodology covering reusable agents, drivers, monitors, scoreboards, coverage and assertions.',
-        href: '/evidence/reusable-uvm-verification-architecture',
-      },
-      {
-        title: 'PCIe 5.0 Data Link Layer Verification',
-        type: 'whitepaper',
-        description: 'Verification methodology covering ACK/NAK handling, replay buffers, credit-based flow control, error injection, SVA and functional coverage.',
-        href: '/evidence/pcie-5-data-link-layer-verification',
-      },
-      {
-        title: 'HBM4e Memory Subsystem Verification',
-        type: 'whitepaper',
-        description: 'Subsystem verification covering controller, PHY, training logic, third-party model integration, functional coverage and regression automation.',
-        href: '/evidence/hbm4e-memory-subsystem-verification',
-      },
-      {
-        title: 'Processor-Based Verification Using ARM Cortex-M7',
-        type: 'whitepaper',
-        description: 'Software-driven verification covering memory access, register validation, interrupts and subsystem initialization.',
-        href: '/evidence/processor-based-verification-arm-cortex-m7',
-      },
-      {
-        title: 'Formal Verification Planning with Cadence JasperGold',
-        type: 'whitepaper',
-        description: 'Structural verification planning for crossbar, multiplexer, clock, reset and overflow logic to complement simulation-based verification.',
-        href: '/evidence/formal-verification-cadence-jaspergold',
-      },
-      {
-        title: '5G Radio-on-Chip Functional Verification',
-        type: 'case-study',
-        description: 'Subsystem verification methodology combining reusable UVM infrastructure, MATLAB correlation, processor-driven verification, datapath scoreboards and formal planning.',
-        href: '/evidence/5g-radio-on-chip-functional-verification',
-      },
-      {
-        title: 'End-to-End IoT SoC Verification',
-        type: 'case-study',
-        description: 'IP-to-SoC verification scope including reusable environments, third-party IP integration, RTL verification, GLS and final verification sign-off.',
-        href: '/evidence/end-to-end-iot-soc-verification',
-      },
-      {
-        title: 'UFS 4.0 Low-Power Verification',
-        type: 'whitepaper',
-        description: 'Low-power verification covering PMU behavior, power-state transitions, clock gating, reset sequencing and UVM-based coverage closure.',
-        href: '/evidence/ufs-4-low-power-verification',
-      },
+      { title: 'Reusable UVM Verification Architecture', type: 'whitepaper', description: 'Configurable SystemVerilog-UVM verification methodology covering reusable agents, drivers, monitors, scoreboards, coverage and assertions.', href: '/evidence/reusable-uvm-verification-architecture' },
+      { title: 'PCIe 5.0 Data Link Layer Verification', type: 'whitepaper', description: 'Verification methodology covering ACK/NAK handling, replay buffers, credit-based flow control, error injection, SVA and functional coverage.', href: '/evidence/pcie-5-data-link-layer-verification' },
+      { title: 'HBM4e Memory Subsystem Verification', type: 'whitepaper', description: 'Subsystem verification covering controller, PHY, training logic, third-party model integration, functional coverage and regression automation.', href: '/evidence/hbm4e-memory-subsystem-verification' },
+      { title: 'Processor-Based Verification Using ARM Cortex-M7', type: 'whitepaper', description: 'Software-driven verification covering memory access, register validation, interrupts and subsystem initialization.', href: '/evidence/processor-based-verification-arm-cortex-m7' },
+      { title: 'Formal Verification Planning with Cadence JasperGold', type: 'whitepaper', description: 'Structural verification planning for crossbar, multiplexer, clock, reset and overflow logic to complement simulation-based verification.', href: '/evidence/formal-verification-cadence-jaspergold' },
+      { title: '5G Radio-on-Chip Functional Verification', type: 'case-study', description: 'Subsystem verification methodology combining reusable UVM infrastructure, MATLAB correlation, processor-driven verification, datapath scoreboards and formal planning.', href: '/evidence/5g-radio-on-chip-functional-verification' },
+      { title: 'End-to-End IoT SoC Verification', type: 'case-study', description: 'IP-to-SoC verification scope including reusable environments, third-party IP integration, RTL verification, GLS and final verification sign-off.', href: '/evidence/end-to-end-iot-soc-verification' },
+      { title: 'UFS 4.0 Low-Power Verification', type: 'whitepaper', description: 'Low-power verification covering PMU behavior, power-state transitions, clock gating, reset sequencing and UVM-based coverage closure.', href: '/evidence/ufs-4-low-power-verification' },
     ],
   },
   {
@@ -106,6 +66,18 @@ export const capabilities: Capability[] = [
         description: 'Engineering whitepaper covering advanced-node physical implementation challenges, timing closure, congestion management, multi-power-domain implementation and physical sign-off practices.',
         href: '/evidence/advanced-node-physical-design-timing-congestion-signoff',
       },
+      {
+        title: 'Advanced SoC Physical Design Case Study',
+        type: 'case-study',
+        description: 'Public AionSi case study covering multi-hierarchical SoC implementation, power islands, clock-tree engineering, physical constraints and flip-chip integration.',
+        href: 'https://aionsi.com/case-study/advanced-soc-physical-design-case-study-2',
+      },
+      {
+        title: 'Analog Layout & Physical Verification Case Study',
+        type: 'case-study',
+        description: 'Public AionSi case study covering turnkey analog layout, extraction-flow migration, DRC/LVS/DFM verification and constrained-area implementation.',
+        href: 'https://aionsi.com/case-study/layout-and-design-case-study-1-',
+      },
     ],
   },
   {
@@ -116,13 +88,7 @@ export const capabilities: Capability[] = [
     technologies: ['Test Architecture', 'Scan', 'ATPG'],
     outcome: 'Manufacturing-test readiness',
     evidenceStatus: 'ready-to-populate',
-    evidence: [
-      {
-        title: 'DFT Sign-off Methodology for Mixed-Signal IP',
-        type: 'whitepaper',
-        description: 'Scan chain debugging, ATPG pattern generation, fault coverage, Gate-Level Simulation, IEEE 1149.x boundary scan, CTL generation and DFT sign-off methodology.',
-      },
-    ],
+    evidence: [{ title: 'DFT Sign-off Methodology for Mixed-Signal IP', type: 'whitepaper', description: 'Scan chain debugging, ATPG pattern generation, fault coverage, Gate-Level Simulation, IEEE 1149.x boundary scan, CTL generation and DFT sign-off methodology.' }],
   },
   {
     slug: 'protocol-verification',
