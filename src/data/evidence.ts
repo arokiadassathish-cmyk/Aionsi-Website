@@ -14,53 +14,86 @@ export interface EvidenceDetail {
   sourceLabel: string;
 }
 
-export const evidenceDetails: Record<string, EvidenceDetail> = {
-  'reusable-uvm-verification-architecture': {
+const approvedEvidence = [
+  {
     slug: 'reusable-uvm-verification-architecture',
     title: 'Reusable UVM Verification Architecture',
-    type: 'whitepaper',
-    capability: 'Design Verification',
-    revision: '1.0',
-    classification: 'Technical Reference Architecture',
-    positioning:
-      'Reusable SystemVerilog/UVM verification architecture designed to accelerate block, subsystem and SoC verification while improving reuse, coverage and verification closure.',
-    context: [
-      'Verification programs become more complex as interfaces, blocks and SoCs scale. Reusable verification infrastructure helps reduce repeated environment development and maintain consistent execution patterns.',
-      'The architecture is intended to scale across interface, subsystem and SoC verification programs while connecting stimulus, checking, coverage and analysis into a structured verification-closure workflow.',
-    ],
-    architecture: [
-      'Test and sequence layer',
-      'Environment and reusable agents',
-      'Sequencer and driver stimulus flow',
-      'Monitor and protocol observation',
-      'Scoreboard and checking infrastructure',
-      'Functional/code coverage and assertions',
-      'DUT interaction and regression analysis',
-    ],
-    methodology: [
-      'Plan — define verification objectives, interfaces and closure criteria',
-      'Develop — build reusable SystemVerilog/UVM environments and agents',
-      'Stimulate — generate controlled sequences and DUT interactions',
-      'Monitor — observe protocol activity and collect transaction data',
-      'Check — apply scoreboards, predictors, assertions and protocol checks',
-      'Measure — evaluate functional/code coverage and regression results',
-      'Close — analyze failures, debug issues and drive verification closure',
-    ],
-    components: [
-      'Drivers',
-      'Monitors',
-      'Sequencers',
-      'Scoreboards',
-      'Reusable agents',
-      'Coverage collectors',
-      'Assertions/checkers',
-    ],
-    evidenceNotes: [
-      'The reference material supports the reusable UVM architecture, component responsibilities and verification methodology presented here.',
-      'This page provides an engineering summary; the detailed whitepaper provides deeper technical context and methodology.',
-    ],
-    sourceLabel: 'AionSi Engineering White Paper — Reusable UVM Verification Architecture',
+    type: 'whitepaper' as const,
+    description: 'Configurable SystemVerilog-UVM verification methodology covering reusable agents, drivers, monitors, scoreboards, coverage and assertions.',
   },
-};
+  {
+    slug: 'pcie-5-data-link-layer-verification',
+    title: 'PCIe 5.0 Data Link Layer Verification',
+    type: 'whitepaper' as const,
+    description: 'Verification methodology covering ACK/NAK handling, replay buffers, credit-based flow control, error injection, SVA and functional coverage.',
+  },
+  {
+    slug: 'hbm4e-memory-subsystem-verification',
+    title: 'HBM4e Memory Subsystem Verification',
+    type: 'whitepaper' as const,
+    description: 'Subsystem verification covering controller, PHY, training logic, third-party model integration, functional coverage and regression automation.',
+  },
+  {
+    slug: 'processor-based-verification-arm-cortex-m7',
+    title: 'Processor-Based Verification Using ARM Cortex-M7',
+    type: 'whitepaper' as const,
+    description: 'Software-driven verification covering memory access, register validation, interrupts and subsystem initialization.',
+  },
+  {
+    slug: 'formal-verification-cadence-jaspergold',
+    title: 'Formal Verification Planning with Cadence JasperGold',
+    type: 'whitepaper' as const,
+    description: 'Structural verification planning for crossbar, multiplexer, clock, reset and overflow logic to complement simulation-based verification.',
+  },
+  {
+    slug: '5g-radio-on-chip-functional-verification',
+    title: '5G Radio-on-Chip Functional Verification',
+    type: 'case-study' as const,
+    description: 'Subsystem verification methodology combining reusable UVM infrastructure, MATLAB correlation, processor-driven verification, datapath scoreboards and formal planning.',
+  },
+  {
+    slug: 'end-to-end-iot-soc-verification',
+    title: 'End-to-End IoT SoC Verification',
+    type: 'case-study' as const,
+    description: 'IP-to-SoC verification scope including reusable environments, third-party IP integration, RTL verification, GLS and final verification sign-off.',
+  },
+  {
+    slug: 'ufs-4-low-power-verification',
+    title: 'UFS 4.0 Low-Power Verification',
+    type: 'whitepaper' as const,
+    description: 'Low-power verification covering PMU behavior, power-state transitions, clock gating, reset sequencing and UVM-based coverage closure.',
+  },
+];
+
+const buildEvidenceDetail = (item: typeof approvedEvidence[number]): EvidenceDetail => ({
+  slug: item.slug,
+  title: item.title,
+  type: item.type,
+  capability: 'Design Verification',
+  revision: '1.0',
+  classification: item.type === 'case-study' ? 'Engineering Case Study' : 'Technical Engineering Reference',
+  positioning: item.description,
+  context: [
+    'This evidence page presents the approved AionSi engineering scope associated with the capability library entry.',
+    'The page is intentionally limited to the evidence description available in the approved source material; customer attribution and unsupported performance claims are not implied.',
+  ],
+  architecture: ['Verification planning', 'Verification environment', 'Stimulus and checking', 'Coverage and analysis', 'Regression and debug', 'Closure / sign-off readiness'],
+  methodology: [
+    'Verification planning aligned to defined requirements and objectives',
+    'Reusable simulation and/or verification infrastructure where applicable',
+    'Stimulus, checking and assertion-based validation as defined by the evidence scope',
+    'Coverage, regression and debug activities supporting verification closure',
+  ],
+  components: ['Verification environment', 'Stimulus', 'Checkers / assertions', 'Coverage', 'Regression', 'Debug / analysis'],
+  evidenceNotes: [
+    'Content on this page is derived from the approved capability evidence description.',
+    'Detailed project-specific implementation data should only be added after the corresponding engineering source material is approved for publication.',
+  ],
+  sourceLabel: `AionSi Engineering Evidence — ${item.title}`,
+});
+
+export const evidenceDetails: Record<string, EvidenceDetail> = Object.fromEntries(
+  approvedEvidence.map((item) => [item.slug, buildEvidenceDetail(item)]),
+);
 
 export const getEvidenceDetail = (slug: string) => evidenceDetails[slug];
