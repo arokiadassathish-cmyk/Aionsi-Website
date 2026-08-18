@@ -129,9 +129,29 @@ export const capabilities: Capability[] = [
     number: '05',
     title: 'Protocol Verification',
     description: 'Protocol-focused verification for complex semiconductor interfaces.',
-    technologies: ['PCIe', 'USB', 'DDR', 'AMBA'],
+    technologies: ['PCIe', 'USB', 'DDR', 'HBM', 'AMBA'],
     outcome: 'Interface-level verification confidence',
     evidenceStatus: 'ready-to-populate',
+    evidence: [
+      {
+        title: 'Reusable UVM Verification Architecture',
+        type: 'whitepaper',
+        description: 'Reusable SystemVerilog/UVM architecture connecting protocol-aware stimulus, reusable agents, monitoring, scoreboarding, prediction, coverage, assertions and regression analysis.',
+        href: '/evidence/reusable-uvm-verification-architecture',
+      },
+      {
+        title: 'PCIe 5.0 Data Link Layer Verification',
+        type: 'whitepaper',
+        description: 'PCIe data-link verification covering ACK/NAK handling, replay behavior, credit-based flow control, protocol monitoring, error injection and coverage.',
+        href: '/evidence/pcie-5-data-link-layer-verification',
+      },
+      {
+        title: 'HBM4e Memory Subsystem Verification',
+        type: 'whitepaper',
+        description: 'HBM memory-subsystem verification covering controller, PHY, training behavior, checking, coverage and regression workflows.',
+        href: '/evidence/hbm4e-memory-subsystem-verification',
+      },
+    ],
   },
   {
     slug: 'soc-ip',
