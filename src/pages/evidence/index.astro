@@ -66,6 +66,7 @@ const externalSources: Record<string, string> = {
               {group.slugs.map((slug) => {
                 const item = evidenceDetails[slug];
                 if (!item) return null;
+                const publicSource = externalSources[item.slug];
                 return (
                   <article class="border border-slate-200 bg-white p-6 shadow-sm">
                     <div class="flex items-center justify-between gap-3">
@@ -79,7 +80,9 @@ const externalSources: Record<string, string> = {
                     </div>
                     <div class="mt-6 flex flex-wrap items-center gap-4">
                       <a href={`/evidence/${item.slug}`} class="text-sm font-semibold text-[var(--aionsi-blue)] hover:underline">View engineering evidence →</a>
-                      {externalSources[item.slug] && <a href={externalSources[item.slug]} target="_blank" rel="noreferrer" class="text-sm font-semibold text-slate-500 hover:text-[var(--aionsi-navy)] hover:underline">View public source →</a>}
+                      {publicSource && (
+                        <a href={publicSource} target="_blank" rel="noreferrer" class="text-sm font-semibold text-slate-500 hover:text-[var(--aionsi-navy)] hover:underline">View public source →</a>
+                      )}
                     </div>
                   </article>
                 );
