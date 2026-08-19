@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+import { technologyEvidence } from '../../data/technologyEvidence';
+---
+<BaseLayout title="Technology | AionSi Semiconductor Engineering" description="Evidence-backed semiconductor technology engineering across PCIe Gen6, USB 3.x/USB4, DDR4/DDR5, HBM2e/HBM3, AMBA CHI/AXI and RISC-V.">
+  <Header theme="light" />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <TechnicalLabel>Technology Depth</TechnicalLabel>
+        <div class="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
+          <div>
+            <h1 class="max-w-3xl text-5xl font-semibold tracking-tight md:text-7xl">Technology depth for complex silicon.</h1>
+            <p class="mt-6 max-w-2xl text-xl leading-9 text-slate-600">A focused set of technology domains backed by supplied AionSi technical capability evidence across connectivity, memory, interconnect and processor IP.</p>
+          </div>
+          <div class="border border-slate-200 bg-white p-8">
+            <div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">EVIDENCE STANDARD</div>
+            <p class="mt-4 text-base leading-7 text-slate-600">Only source-backed technology domains are presented in this matrix. Lower-confidence or unsupported claims are intentionally excluded from the technology evidence layer.</p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <TechnicalLabel>Technology Evidence Matrix</TechnicalLabel>
+            <h2 class="text-4xl font-semibold tracking-tight md:text-5xl">Six strong technology domains.</h2>
+          </div>
+          <p class="max-w-xl text-sm leading-6 text-slate-500">Each card is intentionally tied to a supplied technical capability document and an existing evidence reference path.</p>
+        </div>
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {technologyEvidence.map((item) => (
+            <a href={item.detailHref} class="group flex h-full flex-col border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)] hover:shadow-sm">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{item.number}</span>
+                <span class="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold tracking-[.12em] text-emerald-700">EVIDENCE READY</span>
+              </div>
+              <h3 class="mt-8 text-2xl font-semibold tracking-tight">{item.title}</h3>
+              <p class="mt-4 text-base leading-7 text-slate-600">{item.summary}</p>
+              <div class="mt-7 border-t border-slate-100 pt-5">
+                <div class="text-xs font-semibold tracking-[.14em] text-slate-400">PROOF POINTS</div>
+                <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-600">
+                  {item.proofPoints.slice(0, 3).map((point) => <li>• {point}</li>)}
+                </ul>
+              </div>
+              <div class="mt-auto pt-8 text-sm font-semibold text-[var(--aionsi-navy)]">View technical evidence →</div>
+            </a>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
+        <div>
+          <TechnicalLabel>Engineering Coverage</TechnicalLabel>
+          <h2 class="text-4xl font-semibold tracking-tight md:text-5xl">Technology is connected to the silicon workflow.</h2>
+          <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">The evidence set covers architecture and IP definition through verification and SoC integration. Physical-design, DFT and standalone AI-accelerator silicon claims are deliberately kept outside this technology evidence layer until equivalent source material is available.</p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {['Architecture & RTL','Design Verification','Protocol Verification','SoC Integration'].map((item, index) => (
+            <div class="border border-slate-200 bg-white p-7"><div class="text-xs tracking-[.16em] text-[var(--aionsi-blue)]">0{index + 1}</div><h3 class="mt-5 text-xl font-semibold">{item}</h3><p class="mt-3 text-sm leading-6 text-slate-600">Applied across the supplied PCIe, USB, DDR, HBM, AMBA and RISC-V evidence domains.</p></div>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="text-center">
+        <TechnicalLabel>Engineering Requirement</TechnicalLabel>
+        <h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Have a technology-specific silicon requirement?</h2>
+        <p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Bring the protocol, memory, processor or SoC integration challenge. We will map it to the appropriate AionSi engineering team and evidence path.</p>
+        <div class="mt-9"><Button href="/contact">Discuss Your Engineering Requirement</Button></div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
