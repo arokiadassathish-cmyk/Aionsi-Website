@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+
+export function getStaticPaths() {
+  const technologyPages = {
+    pcie: {
+      title: 'PCIe',
+      label: 'HIGH-SPEED INTERFACE ENGINEERING',
+      description: 'Engineering across PCIe controller, data-link, verification and SoC integration workflows.',
+      capabilities: ['Protocol and link-layer engineering', 'Flow control, error handling and recovery', 'Verification and interoperability closure'],
+    },
+    usb: {
+      title: 'USB',
+      label: 'CONNECTIVITY ENGINEERING',
+      description: 'USB engineering spanning protocol behavior, controller integration, verification and power-aware workflows.',
+      capabilities: ['Protocol and link behavior', 'Host/device integration', 'Compliance and interoperability verification'],
+    },
+    'ddr-lpddr': {
+      title: 'DDR / LPDDR',
+      label: 'MEMORY INTERFACE ENGINEERING',
+      description: 'Memory-interface engineering across controller behavior, timing, training and verification.',
+      capabilities: ['Command scheduling and controller logic', 'Timing and training workflows', 'Memory-subsystem verification and closure'],
+    },
+    hbm: {
+      title: 'HBM',
+      label: 'HIGH-BANDWIDTH MEMORY ENGINEERING',
+      description: 'Engineering across HBM controller integration, training, verification and subsystem closure.',
+      capabilities: ['Multi-channel controller behavior', 'Training, calibration and timing workflows', 'Memory-subsystem verification and closure'],
+    },
+    amba: {
+      title: 'AMBA',
+      label: 'SOFTWARE-CONNECTED INTERCONNECT ENGINEERING',
+      description: 'AMBA-focused engineering across AXI, CHI and subsystem connectivity for complex SoC programs.',
+      capabilities: ['AXI / CHI interconnect engineering', 'QoS, ordering and coherency behavior', 'Verification and SoC integration'],
+    },
+    'risc-v': {
+      title: 'RISC-V',
+      label: 'PROCESSOR & SOC ENGINEERING',
+      description: 'Processor engineering across RISC-V core integration, subsystem connectivity, verification and SoC deployment.',
+      capabilities: ['Core and extension integration', 'Interconnect and subsystem integration', 'Processor-centric verification and closure'],
+    },
+    'ai-accelerators': {
+      title: 'AI Accelerators',
+      label: 'ACCELERATOR ENGINEERING',
+      description: 'Engineering for accelerator-oriented datapaths, interfaces, verification and SoC integration.',
+      capabilities: ['Datapath and accelerator integration', 'Interface and memory connectivity', 'Verification and system-level closure'],
+    },
+    'heterogeneous-soc': {
+      title: 'Heterogeneous SoC',
+      label: 'HETEROGENEOUS SOC ENGINEERING',
+      description: 'System engineering across processor, accelerator, memory and high-speed interface integration.',
+      capabilities: ['Multi-domain subsystem integration', 'Interconnect and memory coordination', 'System-level verification and closure'],
+    },
+  };
+
+  return Object.entries(technologyPages).map(([slug, page]) => ({
+    params: { slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const pageTitle = `${page.title} | AionSi`;
+---
+<BaseLayout title={pageTitle} description={page.description}>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-14 lg:py-16">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-center">
+          <div class="max-w-3xl">
+            <TechnicalLabel>{page.label}</TechnicalLabel>
+            <h1 class="mt-3 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">{page.title}</h1>
+            <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">{page.description}</p>
+          </div>
+          <div class="border border-slate-200 bg-white p-7 shadow-sm md:p-8">
+            <TechnicalLabel>ENGINEERING SCOPE</TechnicalLabel>
+            <div class="mt-5 grid gap-4 sm:grid-cols-2">
+              {page.capabilities.map((item, index) => (
+                <div class={`border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6 ${index === page.capabilities.length - 1 && page.capabilities.length % 2 !== 0 ? 'sm:col-span-2' : ''}`}>
+                  <div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{String(index + 1).padStart(2, '0')}</div>
+                  <div class="mt-5 text-lg font-semibold leading-7 text-[var(--aionsi-navy)]">{item}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-16 lg:py-20">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+          <div>
+            <TechnicalLabel>ENGINEERING CONTEXT</TechnicalLabel>
+            <h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Technology integrated into the silicon workflow.</h2>
+            <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">AionSi connects technology-specific engineering with the surrounding RTL, verification, physical design, DFT and SoC integration activities required for complex silicon programs.</p>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            {['Architecture & RTL', 'Design Verification', 'Physical Implementation', 'SoC Integration'].map((item, index) => (
+              <div class="border border-slate-200 bg-white p-6">
+                <div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{String(index + 1).padStart(2, '0')}</div>
+                <h3 class="mt-4 text-lg font-semibold text-[var(--aionsi-navy)]">{item}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 md:py-16 lg:py-20 text-white">
+      <Container>
+        <div class="mx-auto max-w-4xl text-center">
+          <TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel>
+          <h2 class="mt-3 text-4xl font-semibold tracking-tight md:text-6xl">Have a technology-specific silicon requirement?</h2>
+          <p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Bring the protocol, memory, processor, accelerator or SoC integration challenge. We will map it to the appropriate AionSi engineering team.</p>
+          <div class="mt-9"><Button href="/contact">Discuss Your Engineering Requirement</Button></div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>

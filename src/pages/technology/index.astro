@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+
+const technologies = [
+  { slug: 'pcie', number: '01', title: 'PCIe' },
+  { slug: 'usb', number: '02', title: 'USB' },
+  { slug: 'ddr-lpddr', number: '03', title: 'DDR / LPDDR' },
+  { slug: 'hbm', number: '04', title: 'HBM' },
+  { slug: 'amba', number: '05', title: 'AMBA' },
+  { slug: 'risc-v', number: '06', title: 'RISC-V' },
+  { slug: 'ai-accelerators', number: '07', title: 'AI Accelerators' },
+  { slug: 'heterogeneous-soc', number: '08', title: 'Heterogeneous SoC' },
+];
+---
+<BaseLayout title="Technology | AionSi" description="Technology-specific semiconductor engineering across protocols, memory, processors, accelerators and SoC integration.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-14 lg:py-16">
+      <Container>
+        <TechnicalLabel>TECHNOLOGY PORTFOLIO</TechnicalLabel>
+        <div class="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-end">
+          <div>
+            <h1 class="mt-2 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-6xl">Technology depth for complex silicon.</h1>
+            <p class="mt-6 max-w-2xl text-xl leading-9 text-slate-600">Technology-specific expertise across high-speed protocols, memory subsystems, SoC integration and silicon engineering.</p>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            {technologies.map((technology) => (
+              <a href={`/technology/${technology.slug}`} class="group border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)] hover:shadow-[0_14px_40px_rgba(2,11,39,.06)]">
+                <div class="flex items-center justify-between gap-4">
+                  <span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{technology.number}</span>
+                  <span class="text-sm text-slate-400 transition group-hover:translate-x-1">→</span>
+                </div>
+                <h2 class="mt-5 text-xl font-semibold text-[var(--aionsi-navy)]">{technology.title}</h2>
+              </a>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
