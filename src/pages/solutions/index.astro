@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+
+const solutions = [
+  {
+    title: 'Dedicated Engineering',
+    slug: 'dedicated-engineering',
+    description: 'Dedicated semiconductor engineering capacity aligned to your program roadmap, milestones and technical ownership.',
+  },
+  {
+    title: 'Extended Engineering',
+    slug: 'extended-engineering',
+    description: 'Augment existing engineering organizations with specialist RTL, verification, physical design, DFT and protocol expertise.',
+  },
+  {
+    title: 'ODC',
+    slug: 'odc',
+    description: 'Build a dedicated engineering organization with AionSi aligned to your roadmap, governance and scalable delivery needs.',
+  },
+  {
+    title: 'Project Engineering',
+    slug: 'project-engineering',
+    description: 'Defined engineering scope with milestones, ownership and delivery around a specific semiconductor workstream.',
+  },
+  {
+    title: 'AI-Accelerated Verification',
+    slug: 'aiv',
+    description: 'Human-validated AI-assisted verification workflows designed for controlled engineering environments.',
+  },
+];
+---
+<BaseLayout title="Engineering Solutions | AionSi" description="AionSi engineering solutions for dedicated teams, extended engineering, ODC, project engineering and AI-accelerated verification.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <div class="max-w-4xl">
+          <TechnicalLabel>Engineering Solutions</TechnicalLabel>
+          <h1 class="mt-5 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Engineering models built around the silicon program.</h1>
+          <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">Choose the engagement model that matches your engineering bottleneck, program scope and required capacity.</p>
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {solutions.map((solution, index) => (
+            <a href={`/solutions/${solution.slug}`} class="group border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)] hover:shadow-sm">
+              <div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">0{index + 1}</div>
+              <h2 class="mt-5 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">{solution.title}</h2>
+              <p class="mt-4 text-sm leading-6 text-slate-600">{solution.description}</p>
+              <div class="mt-8 text-sm font-semibold text-[var(--aionsi-navy)]">Explore →</div>
+            </a>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="text-center">
+        <TechnicalLabel>Engineering Engagement</TechnicalLabel>
+        <h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Have a capacity or delivery challenge?</h2>
+        <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/70">Bring the program scope, engineering bottleneck or capacity requirement. We can map it to the appropriate AionSi engineering model.</p>
+        <div class="mt-9"><Button href="/contact">Talk to Our Engineering Team</Button></div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
