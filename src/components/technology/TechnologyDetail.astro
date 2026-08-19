@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../global/Header.astro';
+import Footer from '../global/Footer.astro';
+import Container from '../global/Container.astro';
+import Section from '../global/Section.astro';
+import TechnicalLabel from '../global/TechnicalLabel.astro';
+
+interface Props {
+  title: string;
+  eyebrow: string;
+  description: string;
+  focus: string[];
+}
+
+const { title, eyebrow, description, focus } = Astro.props;
+---
+<BaseLayout title={`AionSi | ${title} Engineering`} description={description}>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] pt-32 lg:pt-40">
+      <Container>
+        <TechnicalLabel>{eyebrow}</TechnicalLabel>
+        <div class="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
+          <div>
+            <h1 class="text-5xl font-semibold tracking-tight md:text-7xl">{title}</h1>
+            <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">{description}</p>
+          </div>
+          <div class="border border-slate-200 bg-white p-8 shadow-sm">
+            <div class="grid gap-4 sm:grid-cols-2">
+              {focus.map((item, index) => (
+                <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6">
+                  <div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index + 1).padStart(2, '0')}</div>
+                  <div class="mt-4 text-lg font-semibold">{item}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+    <Section>
+      <Container class="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
+        <div>
+          <TechnicalLabel>Engineering Context</TechnicalLabel>
+          <h2 class="text-4xl font-semibold tracking-tight md:text-5xl">Technology integrated into the silicon workflow.</h2>
+          <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">AionSi connects technology-specific engineering with the surrounding RTL, verification, physical design, DFT and SoC integration activities required for complex silicon programs.</p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {['Architecture & RTL','Design Verification','Physical Implementation','SoC Integration'].map((item, index) => (
+            <div class="border border-slate-200 p-7">
+              <div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index + 1).padStart(2, '0')}</div>
+              <div class="mt-4 text-xl font-semibold">{item}</div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </Section>
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="text-center">
+        <TechnicalLabel>Technology Engineering</TechnicalLabel>
+        <h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Have a technology-specific silicon requirement?</h2>
+        <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/70">Bring the protocol, memory, processor, accelerator or SoC integration challenge. We will map it to the appropriate AionSi engineering team.</p>
+        <div class="mt-9"><a href="/contact/" class="inline-flex rounded-full bg-[var(--aionsi-orange)] px-7 py-4 text-sm font-semibold text-[var(--aionsi-navy)] transition hover:-translate-y-0.5 hover:brightness-105">Discuss Your Engineering Requirement →</a></div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
