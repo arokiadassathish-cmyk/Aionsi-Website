@@ -15,85 +15,97 @@ export interface EvidenceDetail {
 }
 
 const approvedEvidence = [
-  {
-    slug: 'reusable-uvm-verification-architecture',
-    title: 'Reusable UVM Verification Architecture',
-    type: 'whitepaper' as const,
-    description: 'Configurable SystemVerilog-UVM verification methodology covering reusable agents, drivers, monitors, scoreboards, coverage and assertions.',
-  },
-  {
-    slug: 'pcie-5-data-link-layer-verification',
-    title: 'PCIe 5.0 Data Link Layer Verification',
-    type: 'whitepaper' as const,
-    description: 'Verification methodology covering ACK/NAK handling, replay buffers, credit-based flow control, error injection, SVA and functional coverage.',
-  },
-  {
-    slug: 'hbm4e-memory-subsystem-verification',
-    title: 'HBM4e Memory Subsystem Verification',
-    type: 'whitepaper' as const,
-    description: 'Subsystem verification covering controller, PHY, training logic, third-party model integration, functional coverage and regression automation.',
-  },
-  {
-    slug: 'processor-based-verification-arm-cortex-m7',
-    title: 'Processor-Based Verification Using ARM Cortex-M7',
-    type: 'whitepaper' as const,
-    description: 'Software-driven verification covering memory access, register validation, interrupts and subsystem initialization.',
-  },
-  {
-    slug: 'formal-verification-cadence-jaspergold',
-    title: 'Formal Verification Planning with Cadence JasperGold',
-    type: 'whitepaper' as const,
-    description: 'Structural verification planning for crossbar, multiplexer, clock, reset and overflow logic to complement simulation-based verification.',
-  },
-  {
-    slug: '5g-radio-on-chip-functional-verification',
-    title: '5G Radio-on-Chip Functional Verification',
-    type: 'case-study' as const,
-    description: 'Subsystem verification methodology combining reusable UVM infrastructure, MATLAB correlation, processor-driven verification, datapath scoreboards and formal planning.',
-  },
-  {
-    slug: 'end-to-end-iot-soc-verification',
-    title: 'End-to-End IoT SoC Verification',
-    type: 'case-study' as const,
-    description: 'IP-to-SoC verification scope including reusable environments, third-party IP integration, RTL verification, GLS and final verification sign-off.',
-  },
-  {
-    slug: 'ufs-4-low-power-verification',
-    title: 'UFS 4.0 Low-Power Verification',
-    type: 'whitepaper' as const,
-    description: 'Low-power verification covering PMU behavior, power-state transitions, clock gating, reset sequencing and UVM-based coverage closure.',
-  },
+  { slug: 'reusable-uvm-verification-architecture', title: 'Reusable UVM Verification Architecture', type: 'whitepaper' as const, description: 'Configurable SystemVerilog-UVM verification methodology covering reusable agents, drivers, monitors, scoreboards, coverage and assertions.', capability: 'Design Verification' },
+  { slug: 'pcie-5-data-link-layer-verification', title: 'PCIe 5.0 Data Link Layer Verification', type: 'whitepaper' as const, description: 'Verification methodology covering ACK/NAK handling, replay buffers, credit-based flow control, error injection, SVA and functional coverage.', capability: 'Design Verification' },
+  { slug: 'hbm4e-memory-subsystem-verification', title: 'HBM4e Memory Subsystem Verification', type: 'whitepaper' as const, description: 'Subsystem verification covering controller, PHY, training logic, third-party model integration, functional coverage and regression automation.', capability: 'Design Verification' },
+  { slug: 'processor-based-verification-arm-cortex-m7', title: 'Processor-Based Verification Using ARM Cortex-M7', type: 'whitepaper' as const, description: 'Software-driven verification covering memory access, register validation, interrupts and subsystem initialization.', capability: 'Design Verification' },
+  { slug: 'formal-verification-cadence-jaspergold', title: 'Formal Verification Planning with Cadence JasperGold', type: 'whitepaper' as const, description: 'Structural verification planning for crossbar, multiplexer, clock, reset and overflow logic to complement simulation-based verification.', capability: 'Design Verification' },
+  { slug: '5g-radio-on-chip-functional-verification', title: '5G Radio-on-Chip Functional Verification', type: 'case-study' as const, description: 'Subsystem verification methodology combining reusable UVM infrastructure, MATLAB correlation, processor-driven verification, datapath scoreboards and formal planning.', capability: 'Design Verification' },
+  { slug: 'end-to-end-iot-soc-verification', title: 'End-to-End IoT SoC Verification', type: 'case-study' as const, description: 'IP-to-SoC verification scope including reusable environments, third-party IP integration, RTL verification, GLS and final verification sign-off.', capability: 'Design Verification' },
+  { slug: 'ufs-4-low-power-verification', title: 'UFS 4.0 Low-Power Verification', type: 'whitepaper' as const, description: 'Low-power verification covering PMU behavior, power-state transitions, clock gating, reset sequencing and UVM-based coverage closure.', capability: 'Design Verification' },
+  { slug: 'physical-design-representative-engineering-experience', title: 'Representative Engineering Experience — Physical Design', type: 'case-study' as const, description: 'Representative advanced-node Physical Design experience spanning floorplanning, placement, CTS, routing, timing closure, congestion optimization, physical verification and sign-off across 3nm–28nm programs.', capability: 'Physical Design' },
+  { slug: 'advanced-node-physical-design-timing-congestion-signoff', title: 'Advanced-Node Physical Design: Timing, Congestion & Sign-Off Closure', type: 'whitepaper' as const, description: 'Engineering whitepaper covering advanced-node physical implementation challenges, timing closure, congestion management, multi-power-domain implementation and physical sign-off practices.', capability: 'Physical Design' },
+  { slug: 'dft-signoff-methodology-mixed-signal-ip', title: 'DFT Sign-off Methodology for Mixed-Signal IP', type: 'whitepaper' as const, description: 'Scan chain debugging, ATPG pattern generation, fault coverage, Gate-Level Simulation, IEEE 1149.x boundary scan, CTL generation and DFT sign-off methodology.', capability: 'DFT' },
+  { slug: 'risc-v-processor-core-family', title: 'RISC-V Processor Core Family', type: 'whitepaper' as const, description: 'Aionsi processor portfolio spanning embedded through performance and multi-core cluster tiers, with RV32/RV64 support, optional Vector/Floating-Point/Crypto extensions and AXI/CHI integration.', capability: 'SoC & IP Engineering' },
+  { slug: 'amba-chi-axi-interconnect-fabrics', title: 'AMBA CHI & AXI Interconnect Fabrics', type: 'whitepaper' as const, description: 'Aionsi CHI and AXI fabric portfolio covering coherent multi-core interconnect, QoS, configurable topologies, monitoring and heterogeneous SoC integration.', capability: 'SoC & IP Engineering' },
+  { slug: 'pcie-gen6-data-link-layer', title: 'PCIe Gen6 Data Link Layer', type: 'whitepaper' as const, description: 'PCIe Gen6 DLL IP covering LTSSM, flow control, packet processing, error detection/recovery, power management and Gen3–Gen6 compatibility.', capability: 'SoC & IP Engineering' },
+  { slug: 'ddr4-ddr5-memory-controllers', title: 'DDR4 & DDR5 Memory Controllers', type: 'whitepaper' as const, description: 'Memory-controller portfolio covering command scheduling, PHY abstraction, refresh management, SECDED/Chipkill ECC, RAS and multi-channel configurations.', capability: 'SoC & IP Engineering' },
+  { slug: 'hbm2e-hbm3-memory-controllers', title: 'HBM2e & HBM3 Memory Controllers', type: 'whitepaper' as const, description: 'High-bandwidth memory controller portfolio covering multi-channel arbitration, QoS-aware scheduling, thermal management, AXI/CHI interfaces and HBM protocol validation.', capability: 'SoC & IP Engineering' },
+  { slug: 'usb-3x-usb4-controllers', title: 'USB 3.x & USB4 Controllers', type: 'whitepaper' as const, description: 'USB controller portfolio covering PHY/link/protocol layers, link training, power delivery, error recovery and host/device integration.', capability: 'SoC & IP Engineering' },
 ];
 
-const buildEvidenceDetail = (item: typeof approvedEvidence[number]): EvidenceDetail => ({
-  slug: item.slug,
-  title: item.title,
-  type: item.type,
-  capability: 'Design Verification',
-  revision: '1.0',
-  classification: item.type === 'case-study' ? 'Engineering Case Study' : 'Technical Engineering Reference',
-  positioning: item.description,
-  context: [
-    'This evidence page presents the approved AionSi engineering scope associated with the capability library entry.',
-    'The page is intentionally limited to the evidence description available in the approved source material; customer attribution and unsupported performance claims are not implied.',
-  ],
-  architecture: ['Verification planning', 'Verification environment', 'Stimulus and checking', 'Coverage and analysis', 'Regression and debug', 'Closure / sign-off readiness'],
-  methodology: [
-    'Verification planning aligned to defined requirements and objectives',
-    'Reusable simulation and/or verification infrastructure where applicable',
-    'Stimulus, checking and assertion-based validation as defined by the evidence scope',
-    'Coverage, regression and debug activities supporting verification closure',
-  ],
-  components: ['Verification environment', 'Stimulus', 'Checkers / assertions', 'Coverage', 'Regression', 'Debug / analysis'],
-  evidenceNotes: [
-    'Content on this page is derived from the approved capability evidence description.',
-    'Detailed project-specific implementation data should only be added after the corresponding engineering source material is approved for publication.',
-  ],
-  sourceLabel: `AionSi Engineering Evidence — ${item.title}`,
-});
+const portfolioData: Record<string, { architecture: string[]; methodology: string[]; components: string[]; notes: string[] }> = {
+  'risc-v-processor-core-family': {
+    architecture: ['Tier-1 embedded RV32I core', 'Tier-2 edge-AI RV32IMC core', 'Tier-3 RV64 out-of-order performance core', 'Tier-4 2–8 core cluster with shared L3', 'AXI4 / CHI memory interface and standard debug'],
+    methodology: ['Formal ISA verification against official RISC-V documentation', 'Constrained-random simulation for instruction and privilege behavior', 'Validation of exceptions, interrupts and multi-core coherency where applicable', 'Standard GCC, LLVM and GDB software ecosystem integration'],
+    components: ['RV32I / RV32IMC', 'RV64IMACFD + optional RVV', 'Floating-point and cryptography extensions', 'I/D cache hierarchy', 'JTAG / DTM debug', 'PLIC / CLINT interfaces'],
+    notes: ['The supplied August 2026 portfolio describes four processor tiers from embedded control through multi-core compute.', 'The source states that cores are available standalone or integrated into AionSi SoC platforms.'],
+  },
+  'amba-chi-axi-interconnect-fabrics': {
+    architecture: ['CHI coherent fabric for 8–32 coherent agents', 'AXI4 fabric for 16+ clients', 'Configurable crossbar, tree or ring topology', 'QoS arbitration and fairness', 'ETM / ATB trace and performance monitoring'],
+    methodology: ['AMBA protocol compliance testing', 'UVM stress testing of coherency edge cases and QoS starvation prevention', 'Cross-protocol interoperability verification', 'Synthesis and timing optimization for advanced physical-design flows'],
+    components: ['CHI-E/D fabric', 'ACE-Lite coherency support', 'AXI4 interconnect', 'Crossbar / arbitration', 'QoS prioritization', 'Debug and monitoring'],
+    notes: ['The supplied portfolio describes CHI and AXI fabrics as the backbone for heterogeneous SoCs connecting CPUs, GPUs, accelerators and peripherals.', 'The source reports coverage above 93% for its stated verification scope.'],
+  },
+  'pcie-gen6-data-link-layer': {
+    architecture: ['LTSSM link-training state machine', 'Flow Control Unit', 'TLP / DLLP packet processing', 'Error Detection & Recovery', 'Power Management Interface'],
+    methodology: ['UVM SystemVerilog protocol-compliance verification', 'Link-training edge-case and multi-VC arbitration testing', 'Error recovery and replay validation', 'PCI-SIG compliance validation and coverage closure'],
+    components: ['64 GT/s Gen6 per lane', '1x–32x lane support', 'Gen3 / Gen4 / Gen5 backward compatibility', 'Up to 4 virtual channels', 'L0s / L1 / L1sub / L2-L3 power states', 'PIPE / APB / AXI integration'],
+    notes: ['The supplied portfolio labels the DLL production ready and describes it as designed for 5nm/3nm process nodes.', 'The source reports coverage targets exceeding 95% code and functional coverage and describes the design as PCI-SIG audit-ready; customer end-to-end compliance remains platform-specific.'],
+  },
+  'ddr4-ddr5-memory-controllers': {
+    architecture: ['Command scheduler', 'Data path and PHY abstraction', 'Temperature-aware refresh manager', 'SECDED / optional Chipkill ECC', 'Multi-channel memory configuration'],
+    methodology: ['Simulation of command scheduling and timing closure', 'UVM validation of refresh sequencing and power-state transitions', 'Corner-case validation across temperature and voltage conditions', 'Post-layout timing tuning and frequency-binning support'],
+    components: ['DDR4 / DDR5', 'Up to 8 channels', 'DFI PHY interface', 'SECDED / Chipkill', 'RAS and telemetry', 'AXI / CHI / proprietary client interfaces'],
+    notes: ['The supplied portfolio positions the controller family for compute, AI/ML and data-center platforms.', 'The source describes 7.2 Gbps DDR5 per pin and 5nm/3nm engineering targets.'],
+  },
+  'hbm2e-hbm3-memory-controllers': {
+    architecture: ['Multi-channel arbiter', 'QoS-aware request scheduler', 'Bank-group and write-coalescing latency optimization', 'Per-stack thermal monitoring and throttling', 'AXI4 / CHI client interfaces'],
+    methodology: ['Cache-coherency and memory-consistency validation', 'Sustained high-bandwidth workload stress testing', 'Thermal transient and multi-client contention scenarios', 'HBM protocol compliance and interoperability coverage'],
+    components: ['HBM2e / HBM3', '4 independent channels per stack', '8–16 competing clients', 'SECDED / interleaving', 'Thermal sensing and throttling', 'AXI4 / CHI integration'],
+    notes: ['The supplied portfolio describes the controllers for AI accelerators, GPUs and HPC platforms.', 'The source reports functional coverage above 92% for its stated validation scope.'],
+  },
+  'usb-3x-usb4-controllers': {
+    architecture: ['PHY interface layer', 'Logical / physical link layer', 'Protocol layer', 'Link training and error recovery', 'Power Delivery integration'],
+    methodology: ['UVM validation of link training and enumeration', 'USB power-delivery state-machine testing', 'USB-IF compliance scenarios', 'Interoperability and edge-case coverage'],
+    components: ['USB 3.2 Gen 2x2 — 20 Gbps', 'USB4 — 40 Gbps', 'Host and device modes', 'U0–U3 power states', 'USB PD 3.1', 'APB / AXI configuration interface'],
+    notes: ['The supplied portfolio describes integrated USB 3.x and USB4 host/device controllers for consumer, data-center and industrial applications.', 'The source reports functional coverage above 90% for its stated validation scope.'],
+  },
+};
 
-export const evidenceDetails: Record<string, EvidenceDetail> = Object.fromEntries(
-  approvedEvidence.map((item) => [item.slug, buildEvidenceDetail(item)]),
-);
+const buildEvidenceDetail = (item: typeof approvedEvidence[number]): EvidenceDetail => {
+  const isPhysicalDesign = item.capability === 'Physical Design';
+  const isDFT = item.capability === 'DFT';
+  const portfolio = portfolioData[item.slug];
 
+  if (portfolio) {
+    return {
+      slug: item.slug, title: item.title, type: item.type, capability: item.capability,
+      revision: '1.0', classification: 'IP Portfolio Technical Reference', positioning: item.description,
+      context: [
+        'This page presents the corresponding AionSi IP portfolio evidence supplied for the SoC & IP Engineering capability.',
+        'The technical values and verification statements are reproduced at the level supported by the supplied August 2026 technical overview; customer attribution and additional performance claims are not implied.',
+      ],
+      architecture: portfolio.architecture, methodology: portfolio.methodology, components: portfolio.components,
+      evidenceNotes: portfolio.notes, sourceLabel: `AionSi IP Portfolio — ${item.title}`,
+    };
+  }
+
+  return {
+    slug: item.slug, title: item.title, type: item.type, capability: item.capability,
+    revision: '1.0', classification: item.type === 'case-study' ? 'Engineering Case Study' : 'Technical Engineering Reference', positioning: item.description,
+    context: isPhysicalDesign
+      ? ['Representative AionSi Physical Design evidence covering implementation planning, floorplanning, placement, CTS, routing, timing closure, physical verification and sign-off.', 'The evidence is limited to the approved engineering description; customer attribution and unsupported implementation or performance claims are not implied.']
+      : isDFT
+        ? ['DFT evidence covering the stated mixed-signal IP sign-off methodology from scan and ATPG through GLS, boundary scan, CTL and closure.', 'The evidence is limited to the supplied methodology description; quantitative coverage or production claims are not added without approved source material.']
+        : ['This evidence page presents the approved AionSi engineering scope associated with the capability library entry.', 'The page is intentionally limited to the evidence description available in the approved source material; customer attribution and unsupported performance claims are not implied.'],
+    architecture: isPhysicalDesign ? ['Netlist', 'Floorplan', 'Placement', 'Clock-tree synthesis', 'Routing', 'Timing / physical verification', 'Sign-off'] : isDFT ? ['DFT architecture', 'Scan insertion / chains', 'ATPG', 'Fault coverage', 'Gate-level simulation', 'IEEE 1149.x / CTL', 'Sign-off'] : ['Verification planning', 'Verification environment', 'Stimulus and checking', 'Coverage and analysis', 'Regression and debug', 'Closure / sign-off readiness'],
+    methodology: isPhysicalDesign ? ['Implementation planning aligned to hierarchy, power, clocking and physical constraints', 'Floorplanning, placement, CTS and routing refinement driven by congestion and timing objectives', 'Static timing, physical verification and sign-off readiness checks supporting closure', 'Implementation feedback and ECO iteration through downstream closure activities'] : isDFT ? ['Scan chain debug and structural checks', 'ATPG pattern generation and fault-coverage analysis', 'Gate-Level Simulation validation', 'IEEE 1149.x boundary-scan and CTL generation', 'DFT sign-off readiness'] : ['Verification planning aligned to defined requirements and objectives', 'Reusable simulation and/or verification infrastructure where applicable', 'Stimulus, checking and assertion-based validation as defined by the evidence scope', 'Coverage, regression and debug activities supporting verification closure'],
+    components: isPhysicalDesign ? ['Floorplanning', 'Placement', 'CTS', 'Routing', 'Timing closure', 'Physical verification', 'Sign-off'] : isDFT ? ['Scan chains', 'ATPG', 'Fault coverage', 'GLS', 'IEEE 1149.x', 'CTL', 'Sign-off'] : ['Verification environment', 'Stimulus', 'Checkers / assertions', 'Coverage', 'Regression', 'Debug / analysis'],
+    evidenceNotes: isDFT ? ['Content on this page is derived from the supplied DFT methodology description.', 'Detailed project-specific DFT coverage, tester data or customer implementation information should only be added after the corresponding engineering source material is approved for publication.'] : ['Content on this page is derived from the approved capability evidence description.', 'Detailed project-specific implementation data should only be added after the corresponding engineering source material is approved for publication.'],
+    sourceLabel: `AionSi Engineering Evidence — ${item.title}`,
+  };
+};
+
+export const evidenceDetails: Record<string, EvidenceDetail> = Object.fromEntries(approvedEvidence.map((item) => [item.slug, buildEvidenceDetail(item)]));
 export const getEvidenceDetail = (slug: string) => evidenceDetails[slug];
