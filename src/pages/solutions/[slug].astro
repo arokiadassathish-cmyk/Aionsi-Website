@@ -7,7 +7,7 @@ import Section from '../../components/global/Section.astro';
 import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
 
-const solutions = {
+const solutionData = {
   'dedicated-engineering': {
     title: 'Dedicated Engineering',
     eyebrow: 'ENGINEERING SOLUTION',
@@ -41,11 +41,21 @@ const solutions = {
 } as const;
 
 export function getStaticPaths() {
-  return Object.keys(solutions).map((slug) => ({ params: { slug } }));
+  return [
+    { params: { slug: 'dedicated-engineering' } },
+    { params: { slug: 'extended-engineering' } },
+    { params: { slug: 'odc' } },
+    { params: { slug: 'project-engineering' } },
+    { params: { slug: 'aiv' } },
+  ];
 }
 
 const { slug } = Astro.params;
-const solution = slug ? solutions[slug as keyof typeof solutions] : undefined;
+type SolutionSlug = keyof typeof solutionData;
+const solution = slug && slug in solutionData
+  ? solutionData[slug as SolutionSlug]
+  : undefined;
+
 if (!solution) {
   throw new Error(`Unknown solution route: ${slug ?? 'undefined'}`);
 }
