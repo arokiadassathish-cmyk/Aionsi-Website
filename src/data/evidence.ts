@@ -87,43 +87,52 @@ const approvedEvidence = [
   },
 ];
 
-const buildEvidenceDetail = (item: typeof approvedEvidence[number]): EvidenceDetail => ({
-  slug: item.slug,
-  title: item.title,
-  type: item.type,
-  capability: item.capability,
-  revision: '1.0',
-  classification: item.type === 'case-study' ? 'Engineering Case Study' : 'Technical Engineering Reference',
-  positioning: item.description,
-  context: [
-    `This evidence page presents the approved AionSi engineering scope associated with the ${item.capability} capability library entry.`,
-    'The page is intentionally limited to the evidence description available in the approved source material; customer attribution and unsupported performance claims are not implied.',
-  ],
-  architecture: item.capability === 'Physical Design'
-    ? ['Netlist', 'Floorplan', 'Placement', 'Clock-tree synthesis', 'Routing', 'Timing / physical verification', 'Sign-off']
-    : ['Verification planning', 'Verification environment', 'Stimulus and checking', 'Coverage and analysis', 'Regression and debug', 'Closure / sign-off readiness'],
-  methodology: item.capability === 'Physical Design'
-    ? [
-        'Implementation planning aligned to hierarchy, power, clocking and physical constraints',
-        'Floorplanning, placement, CTS and routing refinement driven by congestion and timing objectives',
-        'Static timing, physical verification and sign-off readiness checks supporting closure',
-        'Implementation feedback and ECO iteration through downstream closure activities',
-      ]
-    : [
-        'Verification planning aligned to defined requirements and objectives',
-        'Reusable simulation and/or verification infrastructure where applicable',
-        'Stimulus, checking and assertion-based validation as defined by the evidence scope',
-        'Coverage, regression and debug activities supporting verification closure',
-      ],
-  components: item.capability === 'Physical Design'
-    ? ['Floorplanning', 'Placement', 'CTS', 'Routing', 'Timing closure', 'Physical verification', 'Sign-off']
-    : ['Verification environment', 'Stimulus', 'Checkers / assertions', 'Coverage', 'Regression', 'Debug / analysis'],
-  evidenceNotes: [
-    'Content on this page is derived from the approved capability evidence description.',
-    'Detailed project-specific implementation data should only be added after the corresponding engineering source material is approved for publication.',
-  ],
-  sourceLabel: `AionSi Engineering Evidence — ${item.title}`,
-});
+const buildEvidenceDetail = (item: typeof approvedEvidence[number]): EvidenceDetail => {
+  const isPhysicalDesign = item.capability === 'Physical Design';
+
+  return {
+    slug: item.slug,
+    title: item.title,
+    type: item.type,
+    capability: item.capability,
+    revision: '1.0',
+    classification: item.type === 'case-study' ? 'Engineering Case Study' : 'Technical Engineering Reference',
+    positioning: item.description,
+    context: isPhysicalDesign
+      ? [
+          'Representative AionSi Physical Design evidence covering implementation planning, floorplanning, placement, CTS, routing, timing closure, physical verification and sign-off.',
+          'The evidence is limited to the approved engineering description; customer attribution and unsupported implementation or performance claims are not implied.',
+        ]
+      : [
+          'This evidence page presents the approved AionSi engineering scope associated with the Design Verification capability library entry.',
+          'The page is intentionally limited to the evidence description available in the approved source material; customer attribution and unsupported performance claims are not implied.',
+        ],
+    architecture: isPhysicalDesign
+      ? ['Netlist', 'Floorplan', 'Placement', 'Clock-tree synthesis', 'Routing', 'Timing / physical verification', 'Sign-off']
+      : ['Verification planning', 'Verification environment', 'Stimulus and checking', 'Coverage and analysis', 'Regression and debug', 'Closure / sign-off readiness'],
+    methodology: isPhysicalDesign
+      ? [
+          'Implementation planning aligned to hierarchy, power, clocking and physical constraints',
+          'Floorplanning, placement, CTS and routing refinement driven by congestion and timing objectives',
+          'Static timing, physical verification and sign-off readiness checks supporting closure',
+          'Implementation feedback and ECO iteration through downstream closure activities',
+        ]
+      : [
+          'Verification planning aligned to defined requirements and objectives',
+          'Reusable simulation and/or verification infrastructure where applicable',
+          'Stimulus, checking and assertion-based validation as defined by the evidence scope',
+          'Coverage, regression and debug activities supporting verification closure',
+        ],
+    components: isPhysicalDesign
+      ? ['Floorplanning', 'Placement', 'CTS', 'Routing', 'Timing closure', 'Physical verification', 'Sign-off']
+      : ['Verification environment', 'Stimulus', 'Checkers / assertions', 'Coverage', 'Regression', 'Debug / analysis'],
+    evidenceNotes: [
+      'Content on this page is derived from the approved capability evidence description.',
+      'Detailed project-specific implementation data should only be added after the corresponding engineering source material is approved for publication.',
+    ],
+    sourceLabel: `AionSi Engineering Evidence — ${item.title}`,
+  };
+};
 
 export const evidenceDetails: Record<string, EvidenceDetail> = Object.fromEntries(
   approvedEvidence.map((item) => [item.slug, buildEvidenceDetail(item)]),
