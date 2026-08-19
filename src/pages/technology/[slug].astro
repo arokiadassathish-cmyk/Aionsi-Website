@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+
+const technologies = {
+  pcie: { title: 'PCIe', eyebrow: 'HIGH-SPEED INTERFACE ENGINEERING', description: 'Engineering across PCIe controller, data-link, verification and SoC integration workflows.', focus: ['Protocol and link-layer engineering', 'Flow control, error handling and recovery', 'Verification and interoperability closure'] },
+  usb: { title: 'USB', eyebrow: 'USB INTERFACE ENGINEERING', description: 'USB engineering spanning protocol behavior, controller integration, verification and power-aware workflows.', focus: ['Protocol and link behavior', 'Host/device integration', 'Compliance and interoperability verification'] },
+  'ddr-lpddr': { title: 'DDR / LPDDR', eyebrow: 'MEMORY INTERFACE ENGINEERING', description: 'Memory-interface engineering across controller behavior, timing, training and verification.', focus: ['Command scheduling and controller logic', 'Timing and training workflows', 'Memory-subsystem verification and closure'] },
+  hbm: { title: 'HBM', eyebrow: 'HIGH-BANDWIDTH MEMORY ENGINEERING', description: 'HBM subsystem engineering across controllers, channels, training, verification and SoC integration.', focus: ['Multi-channel memory architecture', 'Training, monitoring and error handling', 'Subsystem verification and integration'] },
+  amba: { title: 'AMBA', eyebrow: 'INTERCONNECT ENGINEERING', description: 'AMBA engineering across AXI and CHI interconnect fabrics for complex heterogeneous SoCs.', focus: ['AXI and CHI fabric architecture', 'Coherency, QoS and monitoring', 'Subsystem and SoC integration'] },
+  'risc-v': { title: 'RISC-V', eyebrow: 'PROCESSOR ENGINEERING', description: 'RISC-V processor engineering from embedded cores through multi-core and SoC integration.', focus: ['RV32 and RV64 processor integration', 'Optional vector, floating-point and crypto extensions', 'AXI / CHI integration and SoC verification'] },
+  'ai-accelerators': { title: 'AI Accelerators', eyebrow: 'ACCELERATOR ENGINEERING', description: 'Engineering support for AI accelerator integration, verification and silicon-oriented implementation workflows.', focus: ['Accelerator subsystem integration', 'Data movement and memory interfaces', 'Verification and implementation closure'] },
+  'heterogeneous-soc': { title: 'Heterogeneous SoC', eyebrow: 'SOC INTEGRATION ENGINEERING', description: 'Engineering across processors, accelerators, memory and high-speed interfaces in heterogeneous SoC programs.', focus: ['Heterogeneous subsystem architecture', 'Interconnect and memory integration', 'System-level verification and closure'] },
+};
+
+export async function getStaticPaths() {
+  return Object.keys(technologies).map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const technology = technologies[slug as keyof typeof technologies];
+if (!technology) return Astro.redirect('/technology');
+---
+<BaseLayout title={`AionSi | ${technology.title} Engineering`} description={technology.description}>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] pt-32 lg:pt-40">
+      <Container>
+        <TechnicalLabel>{technology.eyebrow}</TechnicalLabel>
+        <div class="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
+          <div>
+            <h1 class="text-5xl font-semibold tracking-tight md:text-7xl">{technology.title}</h1>
+            <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">{technology.description}</p>
+          </div>
+          <div class="border border-slate-200 bg-white p-8 shadow-sm">
+            <div class="grid gap-4 sm:grid-cols-2">
+              {technology.focus.map((item, index) => (
+                <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index + 1).padStart(2, '0')}</div><div class="mt-4 text-lg font-semibold">{item}</div></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+    <Section>
+      <Container class="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
+        <div>
+          <TechnicalLabel>Engineering Context</TechnicalLabel>
+          <h2 class="text-4xl font-semibold tracking-tight md:text-5xl">Technology integrated into the silicon workflow.</h2>
+          <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">AionSi connects technology-specific engineering with the surrounding RTL, verification, physical design, DFT and SoC integration activities required for complex silicon programs.</p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {['Architecture & RTL','Design Verification','Physical Implementation','SoC Integration'].map((item, index) => <div class="border border-slate-200 p-7"><div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index + 1).padStart(2, '0')}</div><div class="mt-4 text-xl font-semibold">{item}</div></div>)}
+        </div>
+      </Container>
+    </Section>
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="text-center"><TechnicalLabel>Technology Engineering</TechnicalLabel><h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Have a technology-specific silicon requirement?</h2><p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/70">Bring the protocol, memory, processor, accelerator or SoC integration challenge. We will map it to the appropriate AionSi engineering team.</p><div class="mt-9"><a href="/contact" class="inline-flex rounded-full bg-[var(--aionsi-orange)] px-7 py-4 text-sm font-semibold text-[var(--aionsi-navy)] transition hover:-translate-y-0.5 hover:brightness-105">Discuss Your Engineering Requirement →</a></div></Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
