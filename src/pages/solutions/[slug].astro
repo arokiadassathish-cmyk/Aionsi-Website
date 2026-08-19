@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+
+const solutionBySlug = {
+  'dedicated-engineering': {
+    title: 'Dedicated Engineering',
+    eyebrow: 'ENGINEERING SOLUTION',
+    description: 'Dedicated semiconductor engineering capacity aligned to your program roadmap, milestones and technical ownership.',
+    capabilities: ['RTL Design', 'Design Verification', 'Physical Design', 'DFT', 'Protocol Verification', 'SoC & IP Engineering'],
+  },
+  'extended-engineering': {
+    title: 'Extended Engineering',
+    eyebrow: 'ENGINEERING SOLUTION',
+    description: 'Augment an existing engineering organization with specialist capacity aligned to defined technical scope and delivery milestones.',
+    capabilities: ['Specialist augmentation', 'Defined workstream ownership', 'Flexible engineering capacity', 'Customer-aligned execution'],
+  },
+  odc: {
+    title: 'ODC',
+    eyebrow: 'ENGINEERING SOLUTION',
+    description: 'Build a dedicated semiconductor engineering organization with AionSi aligned to your roadmap, governance and scalable delivery needs.',
+    capabilities: ['Dedicated engineering organization', 'Program-aligned leadership', 'Scalable team capacity', 'Milestone and delivery governance'],
+  },
+  'project-engineering': {
+    title: 'Project Engineering',
+    eyebrow: 'ENGINEERING SOLUTION',
+    description: 'Defined engineering scope with milestones, ownership and delivery around a specific semiconductor workstream.',
+    capabilities: ['Defined scope', 'Engineering ownership', 'Milestone delivery', 'Closure-oriented execution'],
+  },
+  aiv: {
+    title: 'AI-Accelerated Verification',
+    eyebrow: 'ENGINEERING SOLUTION',
+    description: 'Human-validated AI-assisted verification workflows designed for controlled engineering environments.',
+    capabilities: ['AI-assisted workflows', 'Human validation', 'Controlled deployment', 'Security-conscious engineering'],
+  },
+} as const;
+
+export function getStaticPaths() {
+  return Object.keys(solutionBySlug).map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const solution = slug ? solutionBySlug[slug as keyof typeof solutionBySlug] : undefined;
+if (!solution) {
+  throw new Error(`Unknown solution route: ${slug ?? 'undefined'}`);
+}
+---
+<BaseLayout title={`${solution.title} | AionSi`} description={solution.description}>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <div class="max-w-5xl">
+          <TechnicalLabel>{solution.eyebrow}</TechnicalLabel>
+          <h1 class="mt-5 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">{solution.title}</h1>
+          <p class="mt-6 max-w-4xl text-xl leading-9 text-slate-600">{solution.description}</p>
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
+        <div>
+          <TechnicalLabel>Engineering Model</TechnicalLabel>
+          <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Built around the program requirement.</h2>
+          <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">AionSi can align engineering capacity to a defined bottleneck, managed workstream or longer-term program roadmap.</p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {solution.capabilities.map((capability, index) => (
+            <div class="border border-slate-200 bg-white p-6">
+              <div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">0{index + 1}</div>
+              <div class="mt-4 text-lg font-semibold text-[var(--aionsi-navy)]">{capability}</div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="text-center">
+        <TechnicalLabel>Engineering Engagement</TechnicalLabel>
+        <h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Discuss your engineering requirement.</h2>
+        <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/70">Bring the scope, timeline, capacity or closure challenge. We will map it to the appropriate AionSi engineering model.</p>
+        <div class="mt-9"><Button href="/contact">Talk to Our Engineering Team</Button></div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
