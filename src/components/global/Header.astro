@@ -8,13 +8,13 @@ interface Props {
 
 const { theme = 'light' } = Astro.props;
 const isDark = theme === 'dark';
-const navClass = isDark ? 'text-white/85' : 'text-[var(--aionsi-navy)]/80';
+const navClass = isDark ? 'text-white/90' : 'text-[var(--aionsi-navy)]/80';
 const navHoverClass = isDark ? 'hover:text-white' : 'hover:text-[var(--aionsi-navy)]';
-const menuButtonClass = isDark ? 'border-white/20 text-white' : 'border-[var(--aionsi-navy)]/20 text-[var(--aionsi-navy)]';
+const menuButtonClass = isDark ? 'border-white/25 text-white' : 'border-[var(--aionsi-navy)]/20 text-[var(--aionsi-navy)]';
 ---
-<header class="absolute inset-x-0 top-0 z-50" data-site-header>
+<header class="absolute inset-x-0 top-0 z-[60]" data-site-header>
   <Container class="flex h-20 items-center justify-between gap-6 lg:h-24">
-    <AionSiLogo />
+    <AionSiLogo light={isDark} />
 
     <nav class={`hidden items-center gap-7 text-sm lg:flex ${navClass}`} aria-label="Primary navigation">
       <a class={`transition-colors ${navHoverClass}`} href="/capabilities">Capabilities</a>
