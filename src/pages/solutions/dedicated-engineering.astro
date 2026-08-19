@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+---
+<BaseLayout title="Dedicated Engineering | AionSi" description="Dedicated semiconductor engineering capacity aligned to program roadmap, milestones and technical ownership.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <div class="grid gap-12 lg:grid-cols-[1fr_.85fr] lg:items-center">
+          <div class="max-w-4xl">
+            <TechnicalLabel>ENGINEERING SOLUTION</TechnicalLabel>
+            <h1 class="mt-5 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Dedicated Engineering</h1>
+            <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">Dedicated semiconductor engineering capacity aligned to your program roadmap, milestones and technical ownership.</p>
+            <div class="mt-8"><Button href="/contact">Discuss Your Engineering Requirement</Button></div>
+          </div>
+          <div class="border border-slate-200 bg-white p-7 shadow-sm">
+            <div class="mb-6 h-1 w-12 bg-[var(--aionsi-orange)]"></div>
+            <TechnicalLabel>DEDICATED ENGINEERING MODEL</TechnicalLabel>
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              {['Program Scope','Technical Ownership','Milestone Delivery','Engineering Scale'].map((item,index) => (
+                <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5">
+                  <div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">0{index+1}</div>
+                  <div class="mt-3 text-base font-semibold text-[var(--aionsi-navy)]">{item}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
+          <div>
+            <div class="mb-5 h-1 w-12 bg-[var(--aionsi-orange)]"></div>
+            <h2 class="text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">How the engagement works.</h2>
+            <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">AionSi can align engineering capacity to a defined bottleneck, managed workstream or longer-term program roadmap.</p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            {[
+              ['01','Define','Scope, milestones and technical requirements'],
+              ['02','Assemble','Dedicated engineering capability around the program'],
+              ['03','Integrate','Customer tools, flows, methodology and governance'],
+              ['04','Execute','Milestone-driven engineering ownership and delivery'],
+              ['05','Scale','Expand engineering capacity as roadmap demand evolves'],
+            ].map(([step,title,description]) => (
+              <div class="border border-slate-200 bg-white p-6">
+                <div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{step}</div>
+                <h3 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3>
+                <p class="mt-3 text-sm leading-6 text-slate-600">{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+          <div>
+            <div class="mb-5 h-1 w-12 bg-[var(--aionsi-orange)]"></div>
+            <h2 class="text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Engineering capability at the right level.</h2>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {['RTL Design','Design Verification','Physical Design','DFT','Protocol Verification','SoC & IP Engineering'].map((capability,index) => (
+              <a href={`/capabilities/${['rtl-design','design-verification','physical-design','dft','protocol-verification','soc-ip'][index]}`} class="border border-slate-200 bg-white p-6 transition hover:border-[var(--aionsi-blue)]">
+                <div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">0{index+1}</div>
+                <div class="mt-4 text-lg font-semibold text-[var(--aionsi-navy)]">{capability}</div>
+                <div class="mt-6 text-sm font-semibold text-[var(--aionsi-navy)]">Explore →</div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="mb-8">
+          <div class="mb-5 h-1 w-12 bg-[var(--aionsi-orange)]"></div>
+          <h2 class="text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Representative engineering experience.</h2>
+          <p class="mt-4 max-w-3xl text-lg leading-8 text-slate-600">Engineering capability is supported by approved evidence across verification, physical implementation and SoC/IP engineering.</p>
+        </div>
+        <div class="grid gap-5 md:grid-cols-3">
+          <a href="/evidence/physical-design-representative-engineering-experience" class="border border-slate-200 bg-white p-6 transition hover:border-[var(--aionsi-blue)]">
+            <TechnicalLabel>CASE STUDY</TechnicalLabel>
+            <h3 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">Representative Physical Design Experience</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">Floorplanning, placement, CTS, routing, timing closure, physical verification and sign-off.</p>
+            <div class="mt-6 text-sm font-semibold text-[var(--aionsi-navy)]">View evidence →</div>
+          </a>
+          <a href="/evidence/reusable-uvm-verification-architecture" class="border border-slate-200 bg-white p-6 transition hover:border-[var(--aionsi-blue)]">
+            <TechnicalLabel>TECHNICAL REFERENCE</TechnicalLabel>
+            <h3 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">Reusable UVM Verification Architecture</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">Reusable verification infrastructure supporting block, subsystem and SoC-level execution.</p>
+            <div class="mt-6 text-sm font-semibold text-[var(--aionsi-navy)]">View evidence →</div>
+          </a>
+          <a href="/evidence/risc-v-processor-core-family" class="border border-slate-200 bg-white p-6 transition hover:border-[var(--aionsi-blue)]">
+            <TechnicalLabel>SoC / IP EVIDENCE</TechnicalLabel>
+            <h3 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">RISC-V Processor Core Family</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">Representative SoC/IP portfolio evidence covering processor architecture, verification and AXI/CHI integration.</p>
+            <div class="mt-6 text-sm font-semibold text-[var(--aionsi-navy)]">View evidence →</div>
+          </a>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <div class="mb-8">
+          <div class="mb-5 h-1 w-12 bg-[var(--aionsi-orange)]"></div>
+          <h2 class="text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Engineering scale.</h2>
+          <p class="mt-4 max-w-3xl text-lg leading-8 text-slate-600">Approved AionSi scale indicators that help enterprise engineering teams understand the breadth of the delivery organization.</p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {[
+            ['30+','Production Tape-Out Programs','Production tape-out experience across semiconductor engineering programs.'],
+            ['270+','Engineers in 2026','Current engineering scale represented in the 2026 AionSi growth roadmap.'],
+            ['5+','Delivery Centers','Multi-location engineering delivery footprint in the supplied growth roadmap.'],
+            ['8+','Pre-Silicon Domains','Pre-silicon engineering breadth represented across the supplied service portfolio.'],
+            ['15+','Global Customers','Global customer scale represented in the supplied growth roadmap.'],
+          ].map(([value,title,description]) => (
+            <div class="border border-slate-200 bg-white p-6">
+              <div class="text-3xl font-semibold text-[var(--aionsi-blue)]">{value}</div>
+              <h3 class="mt-3 text-base font-semibold text-[var(--aionsi-navy)]">{title}</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            ['01','Technical leadership','Engineering direction aligned to the program'],
+            ['02','Reusable methodology','Established engineering patterns and assets'],
+            ['03','Scalable capacity','Specialist capacity that can expand with demand'],
+            ['04','Program governance','Milestone-focused execution and ownership'],
+          ].map(([number,title,description]) => (
+            <div class="border border-slate-200 bg-white p-6">
+              <div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{number}</div>
+              <h3 class="mt-4 text-lg font-semibold text-[var(--aionsi-navy)]">{title}</h3>
+              <p class="mt-3 text-sm leading-6 text-slate-600">{description}</p>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="text-center">
+        <div class="mx-auto mb-6 h-1 w-12 bg-[var(--aionsi-orange)]"></div>
+        <h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Have a program, workstream or capacity gap to close?</h2>
+        <p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Share your engineering requirement, target milestone and required capability. Our engineering team will map the requirement to the appropriate AionSi engagement model.</p>
+        <div class="mt-9"><Button href="/contact">Talk to Our Engineering Team</Button></div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
