@@ -7,59 +7,62 @@ import Section from '../../components/global/Section.astro';
 import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
 
-const technologyPages = {
-  pcie: {
-    title: 'PCIe',
-    label: 'HIGH-SPEED INTERFACE ENGINEERING',
-    description: 'Engineering across PCIe controller, data-link, verification and SoC integration workflows.',
-    capabilities: ['Protocol and link-layer engineering', 'Flow control, error handling and recovery', 'Verification and interoperability closure'],
-  },
-  usb: {
-    title: 'USB',
-    label: 'CONNECTIVITY ENGINEERING',
-    description: 'USB engineering spanning protocol behavior, controller integration, verification and power-aware workflows.',
-    capabilities: ['Protocol and link behavior', 'Host/device integration', 'Compliance and interoperability verification'],
-  },
-  'ddr-lpddr': {
-    title: 'DDR / LPDDR',
-    label: 'MEMORY INTERFACE ENGINEERING',
-    description: 'Memory-interface engineering across controller behavior, timing, training and verification.',
-    capabilities: ['Command scheduling and controller logic', 'Timing and training workflows', 'Memory-subsystem verification and closure'],
-  },
-  hbm: {
-    title: 'HBM',
-    label: 'HIGH-BANDWIDTH MEMORY ENGINEERING',
-    description: 'Engineering across HBM controller integration, training, verification and subsystem closure.',
-    capabilities: ['Multi-channel controller behavior', 'Training, calibration and timing workflows', 'Memory-subsystem verification and closure'],
-  },
-  amba: {
-    title: 'AMBA',
-    label: 'SOFTWARE-CONNECTED INTERCONNECT ENGINEERING',
-    description: 'AMBA-focused engineering across AXI, CHI and subsystem connectivity for complex SoC programs.',
-    capabilities: ['AXI / CHI interconnect engineering', 'QoS, ordering and coherency behavior', 'Verification and SoC integration'],
-  },
-  'risc-v': {
-    title: 'RISC-V',
-    label: 'PROCESSOR & SOC ENGINEERING',
-    description: 'Processor engineering across RISC-V core integration, subsystem connectivity, verification and SoC deployment.',
-    capabilities: ['Core and extension integration', 'Interconnect and subsystem integration', 'Processor-centric verification and closure'],
-  },
-  'ai-accelerators': {
-    title: 'AI Accelerators',
-    label: 'ACCELERATOR ENGINEERING',
-    description: 'Engineering for accelerator-oriented datapaths, interfaces, verification and SoC integration.',
-    capabilities: ['Datapath and accelerator integration', 'Interface and memory connectivity', 'Verification and system-level closure'],
-  },
-  'heterogeneous-soc': {
-    title: 'Heterogeneous SoC',
-    label: 'HETEROGENEOUS SOC ENGINEERING',
-    description: 'System engineering across processor, accelerator, memory and high-speed interface integration.',
-    capabilities: ['Multi-domain subsystem integration', 'Interconnect and memory coordination', 'System-level verification and closure'],
-  },
-};
-
 export function getStaticPaths() {
-  return Object.entries(technologyPages).map(([slug, page]) => ({ params: { slug }, props: { page } }));
+  const technologyPages = {
+    pcie: {
+      title: 'PCIe',
+      label: 'HIGH-SPEED INTERFACE ENGINEERING',
+      description: 'Engineering across PCIe controller, data-link, verification and SoC integration workflows.',
+      capabilities: ['Protocol and link-layer engineering', 'Flow control, error handling and recovery', 'Verification and interoperability closure'],
+    },
+    usb: {
+      title: 'USB',
+      label: 'CONNECTIVITY ENGINEERING',
+      description: 'USB engineering spanning protocol behavior, controller integration, verification and power-aware workflows.',
+      capabilities: ['Protocol and link behavior', 'Host/device integration', 'Compliance and interoperability verification'],
+    },
+    'ddr-lpddr': {
+      title: 'DDR / LPDDR',
+      label: 'MEMORY INTERFACE ENGINEERING',
+      description: 'Memory-interface engineering across controller behavior, timing, training and verification.',
+      capabilities: ['Command scheduling and controller logic', 'Timing and training workflows', 'Memory-subsystem verification and closure'],
+    },
+    hbm: {
+      title: 'HBM',
+      label: 'HIGH-BANDWIDTH MEMORY ENGINEERING',
+      description: 'Engineering across HBM controller integration, training, verification and subsystem closure.',
+      capabilities: ['Multi-channel controller behavior', 'Training, calibration and timing workflows', 'Memory-subsystem verification and closure'],
+    },
+    amba: {
+      title: 'AMBA',
+      label: 'SOFTWARE-CONNECTED INTERCONNECT ENGINEERING',
+      description: 'AMBA-focused engineering across AXI, CHI and subsystem connectivity for complex SoC programs.',
+      capabilities: ['AXI / CHI interconnect engineering', 'QoS, ordering and coherency behavior', 'Verification and SoC integration'],
+    },
+    'risc-v': {
+      title: 'RISC-V',
+      label: 'PROCESSOR & SOC ENGINEERING',
+      description: 'Processor engineering across RISC-V core integration, subsystem connectivity, verification and SoC deployment.',
+      capabilities: ['Core and extension integration', 'Interconnect and subsystem integration', 'Processor-centric verification and closure'],
+    },
+    'ai-accelerators': {
+      title: 'AI Accelerators',
+      label: 'ACCELERATOR ENGINEERING',
+      description: 'Engineering for accelerator-oriented datapaths, interfaces, verification and SoC integration.',
+      capabilities: ['Datapath and accelerator integration', 'Interface and memory connectivity', 'Verification and system-level closure'],
+    },
+    'heterogeneous-soc': {
+      title: 'Heterogeneous SoC',
+      label: 'HETEROGENEOUS SOC ENGINEERING',
+      description: 'System engineering across processor, accelerator, memory and high-speed interface integration.',
+      capabilities: ['Multi-domain subsystem integration', 'Interconnect and memory coordination', 'System-level verification and closure'],
+    },
+  };
+
+  return Object.entries(technologyPages).map(([slug, page]) => ({
+    params: { slug },
+    props: { page },
+  }));
 }
 
 const { page } = Astro.props;
