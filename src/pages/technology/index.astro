@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+
+const technologies = [
+  { slug: 'pcie', title: 'PCIe', description: 'High-speed PCIe engineering across controller, link and verification workflows.' },
+  { slug: 'usb', title: 'USB', description: 'USB protocol and controller engineering across link, power and interoperability requirements.' },
+  { slug: 'ddr-lpddr', title: 'DDR / LPDDR', description: 'Memory-interface engineering covering controllers, timing, training and verification.' },
+  { slug: 'hbm', title: 'HBM', description: 'High-bandwidth memory subsystem engineering across controller, interface and verification flows.' },
+  { slug: 'amba', title: 'AMBA', description: 'AMBA-based interconnect and subsystem engineering across AXI and CHI architectures.' },
+  { slug: 'risc-v', title: 'RISC-V', description: 'RISC-V processor and SoC integration engineering from core through subsystem.' },
+  { slug: 'ai-accelerators', title: 'AI Accelerators', description: 'Engineering support for accelerator integration, verification and silicon implementation.' },
+  { slug: 'heterogeneous-soc', title: 'Heterogeneous SoC', description: 'SoC engineering across processors, accelerators, memory and high-speed interfaces.' },
+];
+---
+<BaseLayout title="AionSi | Technology Engineering" description="Technology-specific semiconductor engineering across high-speed protocols, memory, compute and heterogeneous SoC architectures.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] pt-32 lg:pt-40">
+      <Container>
+        <TechnicalLabel>Technology Depth</TechnicalLabel>
+        <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+          <div>
+            <h1 class="max-w-4xl text-5xl font-semibold tracking-tight md:text-7xl">Technology depth for complex silicon.</h1>
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">Technology-specific expertise across high-speed protocols, memory subsystems, SoC integration and silicon engineering.</p>
+          </div>
+          <p class="max-w-xl text-sm font-semibold uppercase tracking-[.14em] text-slate-400 lg:justify-self-end">Explore each technology to understand the engineering scope AionSi can support.</p>
+        </div>
+        <div class="mt-12 grid gap-4 sm:grid-cols-2">
+          {technologies.map((technology, index) => (
+            <a href={`/technology/${technology.slug}`} class="group border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)]">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index + 1).padStart(2, '0')}</div>
+                  <h2 class="mt-4 text-2xl font-semibold text-[var(--aionsi-navy)]">{technology.title}</h2>
+                  <p class="mt-3 max-w-xl text-base leading-7 text-slate-600">{technology.description}</p>
+                </div>
+                <span class="text-slate-400 transition group-hover:translate-x-1 group-hover:text-[var(--aionsi-blue)]">→</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </Container>
+    </Section>
+    <Section>
+      <Container class="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+        <div>
+          <TechnicalLabel>Engineering Application</TechnicalLabel>
+          <h2 class="text-4xl font-semibold tracking-tight md:text-5xl">Connect technology expertise to the silicon program.</h2>
+          <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">AionSi can align technology-specific engineering with RTL, verification, physical implementation, DFT and SoC integration workflows.</p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {['Protocol engineering','Memory subsystem engineering','Processor & accelerator integration','SoC verification & closure'].map((item, index) => (
+            <div class="border border-slate-200 bg-white p-6"><div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index + 1).padStart(2, '0')}</div><div class="mt-4 text-xl font-semibold">{item}</div></div>
+          ))}
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
