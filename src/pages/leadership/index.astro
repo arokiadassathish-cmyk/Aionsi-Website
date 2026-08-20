@@ -18,20 +18,20 @@ const leadership = [
 <BaseLayout title="Leadership | AionSi" description="AionSi leadership team and executive responsibilities across semiconductor engineering, technology, strategy and operations.">
   <Header />
   <main>
-    <Section class="bg-[var(--aionsi-surface-alt)] py-16 md:py-20 lg:py-24">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-14 lg:py-16">
       <Container>
         <TechnicalLabel>LEADERSHIP</TechnicalLabel>
         <h1 class="mt-4 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Leadership built around engineering depth.</h1>
-        <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">A focused leadership structure connecting technology, customer growth, strategy, engineering execution and operational scale.</p>
+        <p class="mt-5 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">A focused leadership structure connecting technology, customer growth, strategy, engineering execution and operational scale.</p>
       </Container>
     </Section>
 
-    <Section>
+    <Section class="py-12 md:py-14 lg:py-16">
       <Container>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {leadership.map((leader) => (
             <article class="overflow-hidden border border-slate-200 bg-white shadow-sm">
-              <div class="aspect-[4/4] overflow-hidden bg-slate-100"><img src={leader.image} alt={`${leader.name} — ${leader.role}`} class="h-full w-full object-cover object-top" loading="lazy" decoding="async" /></div>
+              <div class="aspect-[4/5] overflow-hidden bg-slate-100"><img src={leader.image} alt={`${leader.name} — ${leader.role}`} class="h-full w-full object-cover object-top" loading="lazy" decoding="async" /></div>
               <div class="p-7">
                 <div class="flex items-center justify-between"><span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{leader.number}</span><span class="h-2 w-2 rounded-full bg-[var(--aionsi-orange)]"></span></div>
                 <h2 class="mt-5 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">{leader.name}</h2>
