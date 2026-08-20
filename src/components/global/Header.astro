@@ -2,10 +2,7 @@
 import Container from './Container.astro';
 import AionSiLogo from './AionSiLogo.astro';
 
-interface Props {
-  theme?: 'light' | 'dark';
-}
-
+interface Props { theme?: 'light' | 'dark'; }
 const { theme = 'light' } = Astro.props;
 const isDark = theme === 'dark';
 const navClass = isDark ? 'text-white/90' : 'text-[var(--aionsi-navy)]/80';
@@ -21,38 +18,28 @@ const menuButtonClass = isDark ? 'border-white/25 text-white' : 'border-[var(--a
       <a class={`transition-colors ${navHoverClass}`} href="/technology">Technology</a>
       <a class={`transition-colors ${navHoverClass}`} href="/industries">Industries</a>
       <a class={`transition-colors ${navHoverClass}`} href="/solutions">Solutions</a>
+      <a class={`transition-colors ${navHoverClass}`} href="/experience">Experience</a>
+      <a class={`transition-colors ${navHoverClass}`} href="/insights">Insights</a>
       <a class={`transition-colors ${navHoverClass}`} href="/careers">Careers</a>
     </nav>
 
     <div class="flex items-center gap-3">
-      <a href="/contact" class="hidden rounded-full bg-[var(--aionsi-orange)] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105 md:inline-flex">
-        Talk to Our Engineering Team <span aria-hidden="true">→</span>
-      </a>
+      <a href="/contact" class="hidden rounded-full bg-[var(--aionsi-orange)] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105 md:inline-flex">Talk to Our Engineering Team <span aria-hidden="true">→</span></a>
       <button type="button" class={`inline-flex h-11 w-11 items-center justify-center rounded-full border lg:hidden ${menuButtonClass}`} aria-label="Open navigation" aria-expanded="false" data-mobile-menu-button>
-        <span class="sr-only">Open navigation</span>
-        <span class="flex w-5 flex-col gap-1.5" aria-hidden="true">
-          <span class="h-px w-full bg-current"></span><span class="h-px w-full bg-current"></span><span class="h-px w-full bg-current"></span>
-        </span>
+        <span class="sr-only">Open navigation</span><span class="flex w-5 flex-col gap-1.5" aria-hidden="true"><span class="h-px w-full bg-current"></span><span class="h-px w-full bg-current"></span><span class="h-px w-full bg-current"></span></span>
       </button>
     </div>
   </Container>
-
   <div class="hidden border-y border-white/10 bg-[var(--aionsi-deep-navy)]/98 px-6 py-6 backdrop-blur lg:hidden" data-mobile-menu>
     <nav class="mx-auto grid max-w-[1440px] gap-1" aria-label="Mobile navigation">
-      <a class="border-b border-white/10 py-4 text-base text-white/90" href="/capabilities">Capabilities</a>
-      <a class="border-b border-white/10 py-4 text-base text-white/90" href="/technology">Technology</a>
-      <a class="border-b border-white/10 py-4 text-base text-white/90" href="/industries">Industries</a>
-      <a class="border-b border-white/10 py-4 text-base text-white/90" href="/solutions">Solutions</a>
-      <a class="border-b border-white/10 py-4 text-base text-white/90" href="/careers">Careers</a>
+      {['/capabilities|Capabilities','/technology|Technology','/industries|Industries','/solutions|Solutions','/experience|Experience','/insights|Insights','/careers|Careers'].map((item) => { const [href,label] = item.split('|'); return <a class="border-b border-white/10 py-4 text-base text-white/90" href={href}>{label}</a>; })}
       <a class="mt-4 inline-flex w-fit rounded-full bg-[var(--aionsi-orange)] px-5 py-3 text-sm font-semibold text-white" href="/contact">Talk to Our Engineering Team →</a>
     </nav>
   </div>
 </header>
-
 <script>
   const button = document.querySelector('[data-mobile-menu-button]');
   const menu = document.querySelector('[data-mobile-menu]');
-
   button?.addEventListener('click', () => {
     if (!menu || !(button instanceof HTMLButtonElement)) return;
     const open = button.getAttribute('aria-expanded') === 'true';
