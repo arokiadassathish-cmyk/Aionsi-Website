@@ -11,6 +11,8 @@ Reduce repetitive marketing copy and make technical evidence the source of credi
 - Technology: domain/protocol depth with evidence links.
 - Solutions: customer engagement and delivery models.
 - AIV: AI-assisted verification proposition, workflow, controls, pilot model and evidence links.
+- AionSi IP: reusable IP/subsystem engineering story, integration context and evidence-backed technical depth; do not imply unsupported IP ownership.
+- AionSi SoC: end-to-end SoC integration story across IP, subsystems, interconnect, verification, DFT, physical implementation and sign-off.
 - Customers: approved customer proof.
 - Leadership: people, engineering credibility and governance.
 
@@ -22,7 +24,9 @@ Reduce repetitive marketing copy and make technical evidence the source of credi
 5. Technology pages should connect domains to evidence rather than repeat generic capability lists.
 6. Solutions pages should focus on engagement model, ownership, operating model, scope and commercial conversion.
 7. AIV should focus on the AI-assisted verification workflow and controls, while linking to verification evidence.
-8. Customer page owns the approved customer roster; Home uses a compact shared proof component.
+8. AionSi IP should focus on reusable engineering assets, subsystem context and integration evidence, not repeat generic capability copy.
+9. AionSi SoC should focus on system integration and engineering ownership across the lifecycle, not duplicate individual capability pages.
+10. Customer page owns the approved customer roster; Home uses a compact shared proof component.
 
 ## Evidence-led priorities
 ### AionSi IP
@@ -38,6 +42,14 @@ Use the existing workflow architecture: bottleneck -> AI assistance -> engineer 
 Only publish strong project/customer/technology claims when they are supported by submitted AionSi evidence. Unsupported metrics, tape-out claims, node claims, customer attribution, or product ownership claims must remain unpublished until evidence is supplied.
 
 ## Implementation sequence
-P0: Home, Capabilities, Evidence, Experience, AIV, Technology, Customers.
+P0: Home, Capabilities, Evidence, Experience, AIV, AionSi IP, AionSi SoC, Technology, Customers.
 P1: Solutions, Industries, Leadership.
 P2: Careers, Gallery, Insights/Blogs and supporting pages.
+
+## Implementation rules for the next pass
+- Centralize reusable proof relationships in data/components rather than duplicating claim text across pages.
+- Every substantive technical claim should link to at least one relevant evidence item when such evidence exists.
+- Home may summarize a capability or technology, but detailed methodology belongs on the capability/evidence page.
+- Evidence pages should link back to the capability/technology context they substantiate.
+- AIV, IP and SoC pages should favor architecture, workflow and proof over generic marketing adjectives.
+- Keep customer, leadership and company-wide positioning statements short and authoritative; avoid repeating them verbatim across multiple pages.
