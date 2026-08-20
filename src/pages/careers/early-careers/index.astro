@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/global/Header.astro';
+import Footer from '../../../components/global/Footer.astro';
+import Container from '../../../components/global/Container.astro';
+import Section from '../../../components/global/Section.astro';
+import TechnicalLabel from '../../../components/global/TechnicalLabel.astro';
+import Button from '../../../components/global/Button.astro';
+---
+<BaseLayout title="Early Careers | AionSi" description="Start your semiconductor engineering journey at AionSi with structured learning, practical engineering exposure and experienced teams.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-20 lg:py-24">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-end">
+          <div>
+            <TechnicalLabel>CAREERS — EARLY CAREERS</TechnicalLabel>
+            <h1 class="mt-4 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Start your silicon engineering journey.</h1>
+            <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">Build semiconductor fundamentals, learn disciplined engineering methodologies and grow with experienced teams working across the silicon lifecycle.</p>
+            <div class="mt-8 flex flex-wrap gap-3"><Button href="/careers/apply">Share Your Profile</Button><a href="/careers" class="inline-flex items-center gap-3 rounded-full border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-[var(--aionsi-navy)]">View Careers <span aria-hidden="true">→</span></a></div>
+          </div>
+          <div class="border border-slate-200 bg-white p-7 md:p-8">
+            <div class="mb-7 h-1 w-11 bg-[var(--aionsi-orange)]"></div>
+            <p class="text-lg font-semibold leading-8 text-[var(--aionsi-navy)]">Learn by working on real engineering problems, with clear ownership, reviews and guidance from experienced semiconductor engineers.</p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-16 lg:py-20">
+      <Container>
+        <TechnicalLabel>YOUR ENGINEERING JOURNEY</TechnicalLabel>
+        <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            ['01', 'Build fundamentals', 'Strengthen RTL, verification, digital design and semiconductor engineering fundamentals.'],
+            ['02', 'Learn the flow', 'Understand how IP, verification, implementation, DFT and SoC integration connect.'],
+            ['03', 'Work with experts', 'Learn through reviews, collaboration, mentorship and disciplined execution.'],
+            ['04', 'Grow with ownership', 'Progress from guided tasks to defined engineering responsibilities and deliverables.'],
+          ].map(([number, title, description]) => <article class="border border-slate-200 bg-white p-6"><div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{number}</div><h2 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h2><p class="mt-3 text-sm leading-6 text-slate-600">{description}</p></article>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-16 lg:py-20">
+      <Container class="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
+        <div><TechnicalLabel>ENGINEERING AREAS</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Find your semiconductor discipline.</h2></div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          {['RTL / IP Design','Design Verification','Physical Design','DFT','Protocol Verification','SoC & IP Engineering'].map((item, index) => <div class="border border-slate-200 bg-white p-5"><div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">0{index + 1}</div><p class="mt-3 font-semibold text-[var(--aionsi-navy)]">{item}</p></div>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-16 lg:py-20">
+      <Container class="text-center"><TechnicalLabel>START WITH A CONVERSATION</TechnicalLabel><h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Build your foundation. Grow your engineering depth.</h2><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Share your profile with AionSi and tell us the semiconductor areas you want to learn and build in.</p><div class="mt-9"><Button href="/careers/apply">Share Your Profile</Button></div></Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
