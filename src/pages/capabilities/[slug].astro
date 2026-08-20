@@ -6,14 +6,12 @@ import Container from '../../components/global/Container.astro';
 import Section from '../../components/global/Section.astro';
 import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
+import ProofStrip from '../../components/capabilities/ProofStrip.astro';
 import { capabilities } from '../../data/capabilities';
 import { capabilityScenarios } from '../../data/capabilityScenarios';
 
 export function getStaticPaths() {
-  return capabilities.map((capability) => ({
-    params: { slug: capability.slug },
-    props: { capability },
-  }));
+  return capabilities.map((capability) => ({ params: { slug: capability.slug }, props: { capability } }));
 }
 
 const { capability } = Astro.props;
@@ -49,7 +47,7 @@ const outcomeItems = isPhysicalDesign
             <p class="mt-4 max-w-4xl text-xl font-semibold text-[var(--aionsi-blue)] md:text-2xl">{capability.outcome ?? 'Engineering execution from requirement through closure.'}</p>
             <p class="mt-5 max-w-4xl text-xl leading-9 text-slate-600 md:text-2xl">{capability.description}</p>
             <div class="mt-7 flex flex-wrap gap-2">{capability.technologies?.map((technology) => <span class="border border-slate-200 bg-white px-3 py-2 text-xs font-semibold tracking-[.04em] text-slate-600">{technology}</span>)}</div>
-            <Button href="/contact">Discuss Your Engineering Requirement</Button>
+            <div class="mt-8 flex flex-wrap gap-3"><Button href="/contact">Discuss Your Engineering Requirement</Button><a href="/proof" class="inline-flex items-center justify-center rounded-full border border-[var(--aionsi-navy)]/15 px-6 py-3 text-sm font-semibold text-[var(--aionsi-navy)] transition hover:border-[var(--aionsi-blue)] hover:text-[var(--aionsi-blue)]">See Representative Experience</a></div>
           </div>
           <div class="border border-slate-200 bg-white p-6 shadow-sm md:p-7">
             <TechnicalLabel>Engineering Flow</TechnicalLabel>
@@ -68,21 +66,8 @@ const outcomeItems = isPhysicalDesign
           <div class="grid gap-3">
             {scenarios.map((scenario, index) => (
               <details class="group border border-slate-200 bg-white p-5 shadow-sm">
-                <summary class="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                  <div class="grid gap-4 lg:grid-cols-[auto_1fr_auto] lg:items-start">
-                    <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--aionsi-blue)]/30 text-xs font-semibold text-[var(--aionsi-blue)]">{String(index + 1).padStart(2,'0')}</div>
-                    <div><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">Customer situation</div><h3 class="mt-1 text-base font-semibold leading-6 text-[var(--aionsi-navy)] md:text-lg">{scenario.situation}</h3></div>
-                    <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[.12em] text-[var(--aionsi-blue)]"><span>{scenario.engagement}</span><span class="transition-transform group-open:rotate-180">↓</span></div>
-                  </div>
-                </summary>
-                <div class="mt-6 border-t border-slate-100 pt-6">
-                  <div class="grid gap-4 md:grid-cols-3">
-                    <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] p-4"><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">Engineering impact</div><p class="mt-2 text-sm leading-6 text-slate-600">{scenario.impact}</p></div>
-                    <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] p-4"><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">AionSi contribution</div><p class="mt-2 text-sm leading-6 text-slate-600">{scenario.contribution}</p></div>
-                    <div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] p-4"><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">Engagement model</div><p class="mt-2 text-sm leading-6 text-slate-600">{scenario.engagement}</p></div>
-                  </div>
-                  <a href="/contact" class="mt-5 inline-flex items-center text-sm font-semibold text-[var(--aionsi-blue)] hover:underline">Discuss Your Engineering Requirement →</a>
-                </div>
+                <summary class="cursor-pointer list-none [&::-webkit-details-marker]:hidden"><div class="grid gap-4 lg:grid-cols-[auto_1fr_auto] lg:items-start"><div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--aionsi-blue)]/30 text-xs font-semibold text-[var(--aionsi-blue)]">{String(index + 1).padStart(2,'0')}</div><div><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">Customer situation</div><h3 class="mt-1 text-base font-semibold leading-6 text-[var(--aionsi-navy)] md:text-lg">{scenario.situation}</h3></div><div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[.12em] text-[var(--aionsi-blue)]"><span>{scenario.engagement}</span><span class="transition-transform group-open:rotate-180">↓</span></div></div></summary>
+                <div class="mt-6 border-t border-slate-100 pt-6"><div class="grid gap-4 md:grid-cols-3"><div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] p-4"><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">Engineering impact</div><p class="mt-2 text-sm leading-6 text-slate-600">{scenario.impact}</p></div><div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] p-4"><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">AionSi contribution</div><p class="mt-2 text-sm leading-6 text-slate-600">{scenario.contribution}</p></div><div class="border border-slate-100 bg-[var(--aionsi-surface-alt)] p-4"><div class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">Engagement model</div><p class="mt-2 text-sm leading-6 text-slate-600">{scenario.engagement}</p></div></div><a href="/contact" class="mt-5 inline-flex items-center text-sm font-semibold text-[var(--aionsi-blue)] hover:underline">Discuss Your Engineering Requirement →</a></div>
               </details>
             ))}
           </div>
@@ -91,26 +76,14 @@ const outcomeItems = isPhysicalDesign
     </Section>
 
     <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-14 lg:py-16">
-      <Container>
-        <div class="grid gap-6 md:grid-cols-2">
-          <div class="border border-slate-200 bg-white p-7 md:p-8"><TechnicalLabel>Technology / Methodology</TechnicalLabel><div class="mt-5 flex flex-wrap gap-2">{capability.technologies?.map((technology) => <span class="border border-slate-200 px-3 py-2 text-sm text-slate-600">{technology}</span>)}</div></div>
-          <div class="border border-slate-200 bg-white p-7 md:p-8"><TechnicalLabel>Engineering Outcome</TechnicalLabel><div class="mt-5 space-y-3">{outcomeItems.map((item, index) => <div class="flex items-start gap-3 text-sm font-medium text-[var(--aionsi-navy)]"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[var(--aionsi-blue)]/30 text-[10px] font-semibold text-[var(--aionsi-blue)]">{String(index + 1).padStart(2,'0')}</span><span>{item}</span></div>)}</div></div>
-        </div>
-      </Container>
+      <Container><div class="grid gap-6 md:grid-cols-2"><div class="border border-slate-200 bg-white p-7 md:p-8"><TechnicalLabel>Technology / Methodology</TechnicalLabel><div class="mt-5 flex flex-wrap gap-2">{capability.technologies?.map((technology) => <span class="border border-slate-200 px-3 py-2 text-sm text-slate-600">{technology}</span>)}</div></div><div class="border border-slate-200 bg-white p-7 md:p-8"><TechnicalLabel>Engineering Outcome</TechnicalLabel><div class="mt-5 space-y-3">{outcomeItems.map((item, index) => <div class="flex items-start gap-3 text-sm font-medium text-[var(--aionsi-navy)]"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[var(--aionsi-blue)]/30 text-[10px] font-semibold text-[var(--aionsi-blue)]">{String(index + 1).padStart(2,'0')}</span><span>{item}</span></div>)}</div></div></div></Container>
     </Section>
 
     {capability.evidence?.length ? <Section class="py-14 md:py-16 lg:py-20"><Container><div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start"><div class="lg:sticky lg:top-28"><TechnicalLabel>Engineering Evidence</TechnicalLabel><h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Evidence before claims.</h2><p class="mt-4 max-w-md text-slate-600">Explore approved technical material supporting the engineering capability represented on this page.</p></div><div class="grid gap-4 md:grid-cols-2">{capability.evidence.map((item, index) => item.href ? <a href={item.href} class="group border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)] hover:shadow-[0_14px_40px_rgba(2,11,39,.06)]"><div class="flex items-start justify-between gap-4"><span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><span class="text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400">{item.type}</span></div><h3 class="mt-5 text-lg font-semibold leading-7 text-[var(--aionsi-navy)]">{item.title}</h3><p class="mt-3 text-sm leading-6 text-slate-600">{item.description}</p><div class="mt-5 text-sm font-semibold text-[var(--aionsi-navy)]">Technical evidence →</div></a> : <article class="border border-slate-200 bg-white p-6"><h3 class="text-lg font-semibold text-[var(--aionsi-navy)]">{item.title}</h3><p class="mt-3 text-sm leading-6 text-slate-600">{item.description}</p></article>)}</div></div></Container></Section> : <Section class="py-14"><Container><div class="border border-slate-200 bg-white p-7 md:p-9"><TechnicalLabel>Engineering Evidence</TechnicalLabel><p class="mt-4 text-lg leading-8 text-slate-600">Approved technical evidence will be added here as the evidence library is completed.</p></div></Container></Section>}
 
-    <Section class="py-12 md:py-14 lg:py-16">
-      <Container>
-        <div class="grid gap-6 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
-          <div><TechnicalLabel>Engagement Model</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Start focused. Expand with the program.</h2><p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">AionSi can enter through a focused engineering need and scale as scope, trust and roadmap requirements grow.</p></div>
-          <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">{[['01','Specialist Engineering','Targeted engineering capacity'],['02','Managed Workstream','Defined scope with milestones and closure'],['03','Project / Turnkey','Bounded engineering deliverable'],['04','Dedicated Engineering ODC','Team aligned to the customer roadmap']].map(([number,title,description]) => <div class="border border-slate-200 bg-white p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{number}</span><h3 class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{description}</p></div>)}</div>
-        </div>
-      </Container>
-    </Section>
+    <Section class="py-12 md:py-14 lg:py-16"><Container><div class="grid gap-6 lg:grid-cols-[.72fr_1.28fr] lg:items-start"><div><TechnicalLabel>Engagement Model</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Start focused. Expand with the program.</h2><p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">AionSi can enter through a focused engineering need and scale as scope, trust and roadmap requirements grow.</p></div><div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">{[['01','Specialist Engineering','Targeted engineering capacity','/solutions/extended-engineering'],['02','Managed Workstream','Defined scope with milestones and closure','/solutions/project-engineering'],['03','Project / Turnkey','Bounded engineering deliverable','/solutions/project-engineering'],['04','Dedicated Engineering ODC','Team aligned to the customer roadmap','/solutions/odc']].map(([number,title,description,href]) => <a href={href} class="border border-slate-200 bg-white p-5 transition hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{number}</span><h3 class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{description}</p><div class="mt-4 text-xs font-semibold text-[var(--aionsi-blue)]">Explore model →</div></a>)}</div></div></Container></Section>
 
-    <Section class="bg-[var(--aionsi-deep-navy)] py-12 md:py-14 lg:py-16 text-white"><Container><div class="grid gap-7 lg:grid-cols-[1fr_auto] lg:items-center"><div class="max-w-4xl"><TechnicalLabel>Engineering Discovery</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Bring the engineering problem.</h2><p class="mt-4 text-base leading-7 text-white/70 md:text-lg md:leading-8">Share the program stage, bottleneck and required engineering capacity. We can map the requirement to the appropriate AionSi engineering model.</p></div><Button href="/contact">Discuss Your Engineering Requirement</Button></div></Container></Section>
+    <Section class="bg-[var(--aionsi-deep-navy)] py-12 text-white md:py-14 lg:py-16"><Container><div class="grid gap-7 lg:grid-cols-[1fr_auto] lg:items-center"><div class="max-w-4xl"><TechnicalLabel>Engineering Discovery</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Bring the engineering problem.</h2><p class="mt-4 text-base leading-7 text-white/70 md:text-lg md:leading-8">Share the program stage, bottleneck and required engineering capacity. We can map the requirement to the appropriate AionSi engineering model.</p></div><Button href="/contact">Discuss Your Engineering Requirement</Button></div></Container></Section>
   </main>
   <Footer />
 </BaseLayout>
