@@ -1,57 +1,45 @@
 ---
-const stages = [
-  { name: 'IP', kicker: '01 / IP ENGINEERING', focus: 'Reusable semiconductor building blocks engineered for integration and scale.', capabilities: ['IP definition', 'RTL development', 'Interface architecture', 'Design quality'], outcome: 'Integration-ready IP' },
-  { name: 'SUBSYSTEM', kicker: '02 / SUBSYSTEM ENGINEERING', focus: 'Connect IP, interfaces and control logic into a coherent subsystem architecture.', capabilities: ['IP integration', 'Subsystem architecture', 'Interface connectivity', 'Functional planning'], outcome: 'Validated subsystem architecture' },
-  { name: 'SoC', kicker: '03 / SoC ENGINEERING', focus: 'Integrate complex IP and subsystems into a scalable SoC architecture.', capabilities: ['SoC integration', 'Interconnect architecture', 'Memory integration', 'System coordination'], outcome: 'SoC integration-ready design' },
-  { name: 'VERIFICATION', kicker: '04 / DESIGN VERIFICATION', focus: 'Verify block, subsystem and SoC behaviour with disciplined verification methodology.', capabilities: ['SystemVerilog', 'UVM', 'Coverage', 'Assertions and regression'], outcome: 'Verified design confidence' },
-  { name: 'PHYSICAL DESIGN', kicker: '05 / PHYSICAL DESIGN', focus: 'Translate the logical design into an implementation ready for physical signoff.', capabilities: ['Floorplanning', 'Placement', 'CTS', 'Routing and signoff'], outcome: 'Implementation-ready silicon design' },
-  { name: 'DFT', kicker: '06 / DFT ENGINEERING', focus: 'Build testability into the silicon lifecycle for manufacturing readiness.', capabilities: ['Test architecture', 'Scan', 'ATPG', 'DFT verification'], outcome: 'Manufacturing-test readiness' },
-  { name: 'SILICON', kicker: '07 / SILICON', focus: 'Bring the engineering lifecycle together around signoff, silicon and system outcomes.', capabilities: ['Signoff readiness', 'Silicon bring-up support', 'Quality focus', 'System outcomes'], outcome: 'Silicon-ready engineering outcome' },
-];
+interface Props {
+  stages: Array<{
+    kicker: string;
+    name: string;
+    focus: string;
+    outcome: string;
+    capabilities: string[];
+  }>;
+}
+
+const { stages } = Astro.props;
 ---
-
-<div class="w-full" data-engineering-trace>
-  <div class="relative">
-    <div class="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-white via-white/90 to-transparent md:hidden" aria-hidden="true"></div>
-    <div class="overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" data-stage-scroller aria-label="AionSi engineering lifecycle selector">
-      <div class="flex min-w-[900px] items-center md:min-w-0">
-        {stages.map((stage, index) => (
-          <div class="flex flex-1 items-center" data-stage-item={index}>
-            <button type="button" data-stage-button={index} aria-current={index === 0 ? 'step' : undefined} aria-label={`View ${stage.name} engineering stage`} class={`group w-full border px-4 py-3.5 text-left transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--aionsi-orange)] ${index === 0 ? 'border-[var(--aionsi-orange)] bg-[var(--aionsi-orange)]/[.04] text-[var(--aionsi-orange)] shadow-[0_0_0_1px_rgba(244,81,30,.08)]' : 'border-slate-200 bg-white text-[var(--aionsi-blue)] hover:border-[var(--aionsi-blue)]'}`}>
-              <div class="text-[10px] font-semibold tracking-[.18em]">{String(index + 1).padStart(2, '0')}</div>
-              <div class="mt-1.5 whitespace-nowrap text-xs font-semibold tracking-[.12em] sm:text-sm">{stage.name}</div>
-            </button>
-            {index < stages.length - 1 && <span data-stage-line={index} class={`h-px w-6 shrink-0 transition-colors ${index === 0 ? 'bg-[var(--aionsi-orange)]' : 'bg-[var(--aionsi-blue)]'}`} aria-hidden="true" />}
-          </div>
-        ))}
-      </div>
-    </div>
-    <div class="mt-2 flex items-center justify-end gap-2 text-[9px] font-semibold uppercase tracking-[.16em] text-slate-400 md:hidden" aria-hidden="true"><span>Swipe to explore</span><span class="text-[var(--aionsi-blue)]">→</span></div>
-  </div>
-
-  <div class="mt-6 grid gap-6 lg:grid-cols-[.9fr_1.1fr]">
-    <article class="relative border border-slate-200 bg-white p-6 md:p-9">
-      <div class="absolute left-0 top-0 h-px w-16 bg-[var(--aionsi-orange)]" aria-hidden="true"></div>
-      <div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-orange)]" data-stage-kicker>{stages[0].kicker}</div>
-      <h3 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl" data-stage-name>{stages[0].name}</h3>
-      <p class="mt-3 text-base leading-7 text-slate-600 md:text-lg" data-stage-focus>{stages[0].focus}</p>
-      <div class="mt-6"><div class="text-[10px] font-semibold tracking-[.18em] text-slate-400">ENGINEERING OUTCOME</div><div class="mt-2 text-lg font-semibold text-[var(--aionsi-navy)]" data-stage-outcome>{stages[0].outcome}</div></div>
-    </article>
+<div data-engineering-trace>
+  <div class="grid gap-5 lg:grid-cols-[.32fr_1.68fr]">
+    <nav class="grid gap-2" aria-label="Engineering lifecycle stages">
+      {stages.map((stage, index) => (
+        <button type="button" class={`group flex items-center justify-between border p-4 text-left transition ${index === 0 ? 'border-[var(--aionsi-navy)] bg-[var(--aionsi-navy)] text-white' : 'border-slate-200 bg-white text-[var(--aionsi-navy)] hover:border-[var(--aionsi-blue)]'}`} data-stage-button data-stage-index={index}>
+          <span><span class="block text-[10px] font-semibold tracking-[.16em] opacity-60">{String(index + 1).padStart(2, '0')}</span><span class="mt-1 block text-sm font-semibold">{stage.name}</span></span>
+          <span aria-hidden="true">→</span>
+        </button>
+      ))}
+    </nav>
 
     <article class="relative overflow-hidden border border-[var(--aionsi-navy)] bg-[var(--aionsi-navy)] p-6 text-white md:p-9">
       <div class="absolute inset-y-0 right-0 w-1/2 opacity-20" aria-hidden="true" style="background-image:linear-gradient(90deg,transparent,rgba(22,119,255,.16)),linear-gradient(rgba(22,119,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(22,119,255,.12) 1px,transparent 1px);background-size:auto,28px 28px,28px 28px;"></div>
-      <div class="relative"><div class="text-[10px] font-semibold tracking-[.18em] text-white/50">AIONSI ENGINEERING FOCUS</div><div class="mt-4 grid gap-3 sm:grid-cols-2" data-stage-capabilities>{stages[0].capabilities.map((capability) => <div class="border border-white/10 bg-white/[.03] px-4 py-4 text-sm font-medium text-white/80">{capability}</div>)}</div><div class="mt-6 flex items-center justify-between gap-4 border-t border-white/10 pt-5 text-xs text-white/55"><span data-stage-count>Stage 01 of 07</span><span>← / → to navigate</span></div></div>
+      <div class="relative">
+        <div class="text-[10px] font-semibold tracking-[.18em] text-white/50">AIONSI ENGINEERING FOCUS</div>
+        <div class="mt-4" data-stage-name>{stages[0].name}</div>
+        <div class="mt-2 text-sm text-white/65" data-stage-focus>{stages[0].focus}</div>
+        <div class="mt-4 text-base font-semibold text-[var(--aionsi-orange)]" data-stage-outcome>{stages[0].outcome}</div>
+        <div class="mt-6 grid gap-3 sm:grid-cols-2" data-stage-capabilities>{stages[0].capabilities.map((capability) => <div class="border border-white/10 bg-white/[.03] px-4 py-4 text-sm font-medium text-white/80">{capability}</div>)}</div>
+        <div class="mt-6 flex items-center justify-between gap-4 border-t border-white/10 pt-5 text-xs text-white/55"><span data-stage-count>Stage 01 of {String(stages.length).padStart(2, '0')}</span><span>← / → to navigate</span></div>
+      </div>
     </article>
   </div>
 </div>
 
-<script define:vars={{ stages }}>
+<script is:inline define:vars={{ stages }}>
   const root = document.querySelector('[data-engineering-trace]');
   if (root) {
     const buttons = Array.from(root.querySelectorAll('[data-stage-button]'));
-    const lines = Array.from(root.querySelectorAll('[data-stage-line]'));
-    const scroller = root.querySelector('[data-stage-scroller]');
-    const kicker = root.querySelector('[data-stage-kicker]');
     const name = root.querySelector('[data-stage-name]');
     const focus = root.querySelector('[data-stage-focus]');
     const outcome = root.querySelector('[data-stage-outcome]');
@@ -59,52 +47,31 @@ const stages = [
     const count = root.querySelector('[data-stage-count]');
     let active = 0;
 
-    const render = (index, shouldScroll = true) => {
-      active = Math.max(0, Math.min(index, stages.length - 1));
+    const render = (index) => {
+      active = (index + stages.length) % stages.length;
       const stage = stages[active];
-      buttons.forEach((button, i) => {
-        const selected = i === active;
-        button.setAttribute('aria-current', selected ? 'step' : 'false');
-        button.classList.toggle('border-[var(--aionsi-orange)]', selected);
-        button.classList.toggle('bg-[var(--aionsi-orange)]/[.04]', selected);
-        button.classList.toggle('text-[var(--aionsi-orange)]', selected);
-        button.classList.toggle('shadow-[0_0_0_1px_rgba(244,81,30,.08)]', selected);
-        button.classList.toggle('border-slate-200', !selected);
-        button.classList.toggle('bg-white', !selected);
-        button.classList.toggle('text-[var(--aionsi-blue)]', !selected);
-        button.classList.toggle('hover:border-[var(--aionsi-blue)]', !selected);
-      });
-      lines.forEach((line, i) => {
-        const activeLine = i < active + 1;
-        line.classList.toggle('bg-[var(--aionsi-orange)]', activeLine);
-        line.classList.toggle('bg-[var(--aionsi-blue)]', !activeLine);
-      });
-      if (kicker) kicker.textContent = stage.kicker;
       if (name) name.textContent = stage.name;
       if (focus) focus.textContent = stage.focus;
       if (outcome) outcome.textContent = stage.outcome;
+      if (capabilities) capabilities.innerHTML = stage.capabilities.map((capability) => `<div class="border border-white/10 bg-white/[.03] px-4 py-4 text-sm font-medium text-white/80">${capability}</div>`).join('');
       if (count) count.textContent = `Stage ${String(active + 1).padStart(2, '0')} of ${String(stages.length).padStart(2, '0')}`;
-      if (capabilities) {
-        capabilities.innerHTML = '';
-        stage.capabilities.forEach((item) => {
-          const card = document.createElement('div');
-          card.className = 'border border-white/10 bg-white/[.03] px-4 py-4 text-sm font-medium text-white/80';
-          card.textContent = item;
-          capabilities.appendChild(card);
-        });
-      }
-      if (shouldScroll && scroller && window.matchMedia('(max-width: 767px)').matches) {
-        const activeButton = buttons[active];
-        activeButton?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }
+      buttons.forEach((button, index) => {
+        button.classList.toggle('border-[var(--aionsi-navy)]', index === active);
+        button.classList.toggle('bg-[var(--aionsi-navy)]', index === active);
+        button.classList.toggle('text-white', index === active);
+        button.classList.toggle('border-slate-200', index !== active);
+        button.classList.toggle('bg-white', index !== active);
+        button.classList.toggle('text-[var(--aionsi-navy)]', index !== active);
+      });
     };
 
-    buttons.forEach((button, index) => button.addEventListener('click', () => render(index, true)));
-    root.setAttribute('tabindex', '0');
-    root.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowRight') { event.preventDefault(); render(active + 1, true); buttons[active]?.focus(); }
-      if (event.key === 'ArrowLeft') { event.preventDefault(); render(active - 1, true); buttons[active]?.focus(); }
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => render(Number(button.getAttribute('data-stage-index'))));
     });
-    render(0, false);
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') render(active + 1);
+      if (event.key === 'ArrowLeft') render(active - 1);
+    });
   }
 </script>
