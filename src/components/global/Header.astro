@@ -19,24 +19,24 @@ const primaryNav = [
 ] as const;
 ---
 <header class="absolute inset-x-0 top-0 z-[60] border-b border-slate-200/80 bg-white/95 backdrop-blur" data-site-header>
-  <Container class="flex h-20 items-center justify-between gap-5 lg:h-24">
-    <AionSiLogo />
+  <Container class="flex min-h-20 items-center justify-between gap-3 py-3 lg:min-h-24 lg:py-4">
+    <AionSiLogo class="shrink-0" />
 
-    <nav class={`hidden items-center gap-4 text-xs font-semibold lg:flex xl:gap-5 ${navClass}`} aria-label="Primary navigation">
-      {primaryNav.map(([href, label]) => <a class={`transition-colors ${navHoverClass}`} href={href}>{label}</a>)}
+    <nav class={`hidden items-center gap-3 text-xs font-semibold lg:flex xl:gap-5 ${navClass}`} aria-label="Primary navigation">
+      {primaryNav.map(([href, label]) => <a class={`whitespace-nowrap transition-colors ${navHoverClass}`} href={href}>{label}</a>)}
     </nav>
 
-    <div class="flex items-center gap-3">
-      <a href="/contact" class="hidden rounded-full bg-[var(--aionsi-orange)] px-5 py-3 text-xs font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105 xl:inline-flex">Talk to Our Engineering Team <span aria-hidden="true">→</span></a>
+    <div class="flex shrink-0 items-center gap-3">
+      <a href="/contact" class="hidden rounded-full bg-[var(--aionsi-orange)] px-5 py-3 text-xs font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105 2xl:inline-flex">Talk to Our Engineering Team <span aria-hidden="true">→</span></a>
       <button type="button" class={`inline-flex h-11 w-11 items-center justify-center rounded-full border lg:hidden ${menuButtonClass}`} aria-label="Open navigation" aria-expanded="false" data-mobile-menu-button>
         <span class="sr-only">Open navigation</span><span class="flex w-5 flex-col gap-1.5" aria-hidden="true"><span class="h-px w-full bg-current"></span><span class="h-px w-full bg-current"></span><span class="h-px w-full bg-current"></span></span>
       </button>
     </div>
   </Container>
-  <div class="hidden border-y border-slate-200 bg-[var(--aionsi-deep-navy)] px-6 py-6 shadow-lg lg:hidden" data-mobile-menu>
+  <div class="hidden border-y border-slate-200 bg-[var(--aionsi-deep-navy)] px-5 py-5 shadow-lg lg:hidden" data-mobile-menu>
     <nav class="mx-auto grid max-w-[1440px] gap-1" aria-label="Mobile navigation">
-      {primaryNav.map(([href, label]) => <a class="border-b border-white/10 py-4 text-base text-white/90" href={href}>{label}</a>)}
-      <a class="mt-4 inline-flex w-fit rounded-full bg-[var(--aionsi-orange)] px-5 py-3 text-sm font-semibold text-white" href="/contact">Talk to Our Engineering Team →</a>
+      {primaryNav.map(([href, label]) => <a class="border-b border-white/10 py-3.5 text-base text-white/90" href={href}>{label}</a>)}
+      <a class="mt-3 inline-flex w-fit rounded-full bg-[var(--aionsi-orange)] px-5 py-3 text-sm font-semibold text-white" href="/contact">Talk to Our Engineering Team →</a>
     </nav>
   </div>
 </header>
