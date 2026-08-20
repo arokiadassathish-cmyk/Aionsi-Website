@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+import { ipEvidence } from '../../data/ipEvidence';
+
+const families = ['Connectivity', 'Interconnect', 'Memory', 'Compute'] as const;
+const lifecycle = [
+  ['01', 'Specification', 'Translate interface, subsystem and system requirements into an engineering scope.'],
+  ['02', 'Architecture', 'Define reusable blocks, interfaces, configuration and integration boundaries.'],
+  ['03', 'RTL / IP', 'Develop synthesizable RTL and implementation-ready engineering collateral.'],
+  ['04', 'Verification', 'Validate functional intent, protocol behavior and integration scenarios.'],
+  ['05', 'Integration', 'Connect IP and subsystems through standard interfaces such as AXI, CHI, DFI and PIPE where applicable.'],
+  ['06', 'SoC context', 'Carry the engineering work into subsystem and SoC integration with downstream implementation considerations.'],
+];
+---
+<BaseLayout title="AionSi IP Engineering & Integration | AionSi" description="Evidence-backed AionSi IP engineering across connectivity, interconnect, memory and compute, with verification and SoC integration context.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-deep-navy)] py-16 text-white md:py-24 lg:py-28">
+      <Container class="grid gap-12 lg:grid-cols-[.95fr_1.05fr] lg:items-center">
+        <div>
+          <TechnicalLabel>AIONSI IP ENGINEERING & INTEGRATION</TechnicalLabel>
+          <h1 class="mt-4 max-w-4xl text-5xl font-semibold tracking-tight md:text-7xl">IP engineering that connects into the SoC.</h1>
+          <p class="mt-6 max-w-2xl text-xl leading-9 text-white/70 md:text-2xl">Evidence-backed engineering across connectivity, interconnect, memory and compute, with verification and integration carried through to the system context.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <Button href="/contact">Discuss an IP Requirement</Button>
+            <a href="/evidence" class="inline-flex items-center rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white hover:border-white/40">Explore Engineering Evidence →</a>
+          </div>
+        </div>
+        <div class="border border-white/10 bg-white/[.025] p-8 sm:p-10">
+          <div class="grid gap-3 sm:grid-cols-2">
+            {families.map((family) => <div class="border border-white/10 p-5"><div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-orange)]">IP FAMILY</div><div class="mt-3 text-xl font-semibold">{family}</div></div>)}
+          </div>
+          <div class="mt-6 border-t border-white/10 pt-6 text-sm leading-7 text-white/65">Positioned as engineering and integration capability. This page does not imply standalone commercial IP ownership or licensing unless separately validated.</div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.75fr_1.25fr] lg:items-start">
+          <div><TechnicalLabel>IP ENGINEERING DOMAINS</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Four engineering families. One integration path.</h2><p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">The technical material supplied for AionSi supports a focused portfolio view across connectivity, interconnect, memory and compute. Each domain links to its underlying engineering evidence.</p></div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {ipEvidence.map((item) => (
+              <a href={item.detailHref} class="group border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]">
+                <div class="flex items-center justify-between gap-3"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{item.number}</span><span class="text-[10px] font-semibold uppercase tracking-[.12em] text-slate-400">{item.family}</span></div>
+                <h3 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">{item.title}</h3>
+                <p class="mt-2 text-sm leading-6 text-slate-600">{item.summary}</p>
+                <span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View engineering evidence →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <TechnicalLabel>IP → SILICON → SYSTEM</TechnicalLabel>
+        <h2 class="mt-3 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Carry the engineering context beyond the IP block.</h2>
+        <div class="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {lifecycle.map(([number, title, description]) => <article class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{number}</span><h3 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-3 text-sm leading-6 text-slate-600">{description}</p></article>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="border border-slate-200 bg-white p-8 md:p-10">
+          <TechnicalLabel>INTEGRATION CONTEXT</TechnicalLabel>
+          <h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Interfaces and subsystem boundaries matter as much as the block itself.</h2>
+          <div class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {['AXI / CHI integration','DFI / PHY integration','PIPE / protocol integration','Power / thermal context'].map((item) => <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5 text-sm font-semibold text-[var(--aionsi-navy)]">{item}</div>)}
+          </div>
+          <p class="mt-6 max-w-4xl text-sm leading-7 text-slate-600">Specific interface and implementation details vary by technology domain. The supporting evidence pages provide the authoritative technical context for each family.</p>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
+        <div><TechnicalLabel>ENGINEERING ENGAGEMENT</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">Bring an IP block, subsystem or integration requirement.</h2><p class="mt-5 max-w-xl text-lg leading-8 text-white/70">AionSi can scope the engineering boundary around a specific IP requirement, integration challenge or SoC program and map the relevant evidence and delivery model.</p></div>
+        <div class="grid gap-3 sm:grid-cols-3"><a href="/solutions/project-engineering" class="border border-white/10 p-5 text-sm font-semibold hover:border-[var(--aionsi-blue)]">Project Engineering →</a><a href="/solutions/dedicated-engineering" class="border border-white/10 p-5 text-sm font-semibold hover:border-[var(--aionsi-blue)]">Dedicated Engineering →</a><a href="/solutions/odc" class="border border-white/10 p-5 text-sm font-semibold hover:border-[var(--aionsi-blue)]">Engineering ODC →</a></div>
+      </Container>
+    </Section>
+
+    <Section class="bg-white"><Container class="text-center"><TechnicalLabel>START WITH THE REQUIREMENT</TechnicalLabel><h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-6xl">Discuss an IP, subsystem or SoC integration requirement.</h2><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">Share the interfaces, subsystem boundary, verification need and target integration context. AionSi will map the engineering scope.</p><div class="mt-9"><Button href="/contact">Talk to AionSi</Button></div></Container></Section>
+  </main>
+  <Footer />
+</BaseLayout>
