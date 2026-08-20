@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+import { industries } from '../../data/industries';
+
+export function getStaticPaths() {
+  return industries.map((industry) => ({ params: { slug: industry.slug }, props: { industry } }));
+}
+
+const { industry } = Astro.props;
+const capabilityMap: Record<string, string> = {'RTL Design':'rtl-design','Design Verification':'design-verification','Physical Design':'physical-design','DFT':'dft','Protocol Verification':'protocol-verification','SoC & IP Engineering':'soc-ip'};
+---
+<BaseLayout title={`${industry.title} | AionSi`} description={industry.summary}>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)]"><Container><TechnicalLabel>INDUSTRY ENGINEERING</TechnicalLabel><div class="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{industry.number}</div><h1 class="mt-5 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">{industry.title}</h1><p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">{industry.summary}</p></div><div class="border border-slate-200 bg-white p-7"><TechnicalLabel>ENGINEERING RESPONSE</TechnicalLabel><p class="mt-5 text-lg leading-8 text-[var(--aionsi-navy)]">{industry.solution}</p></div></div></Container></Section>
+    <Section><Container class="grid gap-10 lg:grid-cols-[.8fr_1.2fr]"><div><TechnicalLabel>CUSTOMER CHALLENGES</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Where engineering pressure appears.</h2></div><div class="grid gap-4 sm:grid-cols-2">{industry.challenges.map((challenge,index) => <div class="border border-slate-200 bg-white p-7"><div class="text-xs tracking-[.18em] text-[var(--aionsi-blue)]">0{index+1}</div><p class="mt-5 text-lg font-semibold leading-7">{challenge}</p></div>)}</div></Container></Section>
+    <Section class="bg-[var(--aionsi-surface-alt)]"><Container><TechnicalLabel>RELEVANT CAPABILITIES</TechnicalLabel><div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{industry.capabilities.map((capability) => <a href={`/capabilities/${capabilityMap[capability]}`} class="border border-slate-200 bg-white p-7 transition hover:border-[var(--aionsi-blue)]"><div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">ENGINEERING CAPABILITY</div><h3 class="mt-5 text-xl font-semibold text-[var(--aionsi-navy)]">{capability}</h3><div class="mt-7 text-sm font-semibold text-[var(--aionsi-navy)]">Explore →</div></a>)}</div></Container></Section>
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white"><Container class="text-center"><TechnicalLabel>ENGINEERING ENGAGEMENT</TechnicalLabel><h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">{industry.ctaLabel}</h2><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Bring the scope, bottleneck, technology requirement or engineering-capacity gap. We can map it to the appropriate AionSi delivery model.</p><div class="mt-9"><Button href="/contact">{industry.ctaLabel}</Button></div></Container></Section>
+  </main>
+  <Footer />
+</BaseLayout>
