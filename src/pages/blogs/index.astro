@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+
+const blogs = [
+  { type: 'Verification', title: 'Reusable UVM Verification Architecture', description: 'A practical engineering view of reusable agents, stimulus, checking, assertions, coverage and regression structure.', href: '/evidence/reusable-uvm-verification-architecture' },
+  { type: 'Physical Design', title: 'Timing, Congestion & Sign-Off Closure', description: 'How physical implementation teams can structure closure around timing, congestion, physical verification and sign-off.', href: '/evidence/advanced-node-physical-design-timing-congestion-signoff' },
+  { type: 'Protocol Verification', title: 'PCIe Data Link Layer Verification', description: 'Key verification concerns around flow control, replay, error recovery and coverage closure.', href: '/evidence/pcie-5-data-link-layer-verification' },
+];
+---
+<BaseLayout title="Blogs | AionSi" description="AionSi engineering blogs and technical perspectives across semiconductor design and verification.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-16 md:py-20 lg:py-24"><Container><TechnicalLabel>ENGINEERING BLOG</TechnicalLabel><h1 class="mt-4 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Practical semiconductor engineering perspectives.</h1><p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">A technical content channel for verification, physical implementation, protocols, SoC and engineering execution.</p></Container></Section>
+    <Section><Container><div class="grid gap-5 lg:grid-cols-3">{blogs.map((blog, index) => <article class="border border-slate-200 bg-white p-8 shadow-sm"><div class="flex items-center justify-between"><span class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">{blog.type}</span><span class="text-xs text-slate-400">0{index + 1}</span></div><h2 class="mt-7 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">{blog.title}</h2><p class="mt-4 text-sm leading-7 text-slate-600">{blog.description}</p><a href={blog.href} class="mt-7 inline-flex text-sm font-semibold text-[var(--aionsi-navy)] hover:text-[var(--aionsi-blue)]">Read the engineering reference →</a></article>)}</div></Container></Section>
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white"><Container class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center"><div><TechnicalLabel>CONTENT PIPELINE</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">Turn engineering knowledge into trusted content.</h2><p class="mt-5 max-w-2xl text-lg leading-8 text-white/70">Future posts can be published here after technical review, confidentiality checks and approval for external publication.</p></div><Button href="/contact">Discuss a Technical Topic</Button></Container></Section>
+  </main>
+  <Footer />
+</BaseLayout>

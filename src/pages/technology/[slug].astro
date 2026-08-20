@@ -8,6 +8,8 @@ import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
 import { technologyEvidence, getTechnologyEvidence } from '../../data/technologyEvidence';
 
+export const prerender = true;
+
 export function getStaticPaths() {
   return technologyEvidence.map((technology) => ({
     params: { slug: technology.slug },
