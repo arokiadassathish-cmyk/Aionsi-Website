@@ -4,12 +4,15 @@ interface Props {
   light?: boolean;
 }
 const { class: className = '', light = false } = Astro.props;
+const brandColor = light ? '#ffffff' : 'var(--aionsi-blue)';
 ---
 <a href="/" class={`group inline-flex flex-col ${className}`} aria-label="AionSi home">
-  <span class="relative inline-flex items-start font-sans text-[2rem] font-semibold leading-none tracking-[-0.07em] sm:text-[2.2rem]" style={`color:${light ? '#ffffff' : 'var(--aionsi-blue)'}`}>
-    <span>A</span>
-    <span class="relative mx-[0.03em] inline-block">Ai<span class="absolute left-1/2 top-[0.12em] h-[0.34em] w-[0.34em] -translate-x-1/2 rounded-full border border-white/70 bg-[var(--aionsi-orange)] shadow-[0_0_0_1px_rgba(244,81,30,.15)]" aria-hidden="true"></span></span>
-    <span>onSi</span>
+  <span
+    class="inline-flex items-baseline font-sans text-[2rem] font-semibold leading-none tracking-[-0.065em] sm:text-[2.2rem]"
+    style={`color:${brandColor}`}
+  >
+    <span aria-hidden="true">AionSi</span>
+    <span class="sr-only">AionSi</span>
   </span>
   <span class="mt-1 text-[0.68rem] font-semibold leading-none tracking-[0.01em]" style="color:var(--aionsi-orange)">Driven by Commitment</span>
 </a>
