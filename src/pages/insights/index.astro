@@ -14,12 +14,18 @@ const resources = [
   { number:'05', type:'Representative Experience', title:'Reusable UVM Verification Architecture', description:'Representative verification scope covering planning, reusable infrastructure, stimulus, checking, coverage and closure.', href:'/experience/reusable-uvm-verification' },
   { number:'06', type:'Representative Experience', title:'PCIe Data Link Layer Verification', description:'Representative protocol verification scope covering ACK/NAK, replay, credits, error injection and functional coverage.', href:'/experience/pcie-data-link-verification' },
 ];
+const channels = [
+  ['/news', 'News', 'Company announcements, engineering milestones and approved public updates.'],
+  ['/blogs', 'Blogs', 'Technical perspectives from AionSi engineering teams.'],
+  ['/gallery', 'Gallery', 'Engineering, technology, people and company visuals.'],
+];
 ---
-<BaseLayout title="Engineering Resources | AionSi" description="Technical papers, methodologies and representative semiconductor engineering references from AionSi.">
+<BaseLayout title="Engineering Resources | AionSi" description="Technical papers, methodologies, blogs, news and representative semiconductor engineering references from AionSi.">
   <Header />
   <main>
     <Section class="bg-[var(--aionsi-surface-alt)]"><Container><TechnicalLabel>ENGINEERING RESOURCES</TechnicalLabel><h1 class="text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Technical thinking behind the engineering.</h1><p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">Explore approved technical references and representative engineering experience that illustrate how AionSi approaches complex silicon problems.</p></Container></Section>
     <Section><Container><div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{resources.map((resource) => <article class="border border-slate-200 bg-white p-8"><div class="text-xs tracking-[.18em] text-[var(--aionsi-blue)]">{resource.number}</div><div class="mt-5 text-xs font-semibold uppercase tracking-[.16em] text-slate-400">{resource.type}</div><h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">{resource.title}</h2><p class="mt-4 text-base leading-7 text-slate-600">{resource.description}</p><a href={resource.href} class="mt-8 inline-flex text-sm font-semibold text-[var(--aionsi-navy)] hover:text-[var(--aionsi-blue)]">Read reference →</a></article>)}</div></Container></Section>
+    <Section class="bg-[var(--aionsi-surface-alt)]"><Container><TechnicalLabel>CONTENT CHANNELS</TechnicalLabel><div class="mt-6 grid gap-5 md:grid-cols-3">{channels.map(([href, title, description]) => <a href={href} class="group border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)]"><h2 class="text-2xl font-semibold text-[var(--aionsi-navy)]">{title}</h2><p class="mt-3 text-sm leading-7 text-slate-600">{description}</p><span class="mt-7 inline-flex text-sm font-semibold text-[var(--aionsi-blue)]">Explore →</span></a>)}</div></Container></Section>
     <Section class="bg-[var(--aionsi-surface-alt)]"><Container class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center"><div><TechnicalLabel>CONTENT → CONVERSION</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Use technical content to start an engineering conversation.</h2><p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">Bring a similar workstream, protocol, implementation bottleneck or capacity requirement. The next step is a scoped engineering discovery discussion.</p></div><div class="flex lg:justify-end"><Button href="/contact">Discuss Your Engineering Requirement</Button></div></Container></Section>
   </main>
   <Footer />
