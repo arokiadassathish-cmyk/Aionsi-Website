@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+
+const principles = [
+  ['01', 'AI Assisted', 'Use AI to accelerate repetitive engineering analysis, triage, documentation and verification workflows.'],
+  ['02', 'Human Validated', 'Keep engineers accountable for decisions, sign-off and technical interpretation.'],
+  ['03', 'Secure', 'Design workflows around controlled access, approved data boundaries and deployment governance.'],
+  ['04', 'Measured', 'Track productivity, quality and closure outcomes rather than treating AI usage as the objective.'],
+];
+---
+<BaseLayout title="AIV — AI-Accelerated Verification | AionSi" description="AionSi AIV combines AI-assisted verification workflows with human validation, security-conscious execution and controlled deployment.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-deep-navy)] py-20 text-white md:py-28"><Container class="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><TechnicalLabel>AIV — AI-ACCELERATED VERIFICATION</TechnicalLabel><h1 class="mt-4 max-w-4xl text-5xl font-semibold tracking-tight md:text-7xl">AI-Accelerated Verification.</h1><p class="mt-6 max-w-2xl text-xl leading-9 text-white/70 md:text-2xl">Engineering productivity accelerated with human validation, security-conscious workflows and controlled deployment models.</p><div class="mt-8"><Button href="/contact">Discuss AIV</Button></div></div><div class="border border-white/10 bg-white/[.025] p-8 sm:p-10"><div class="mx-auto flex max-w-md flex-col items-center gap-4 text-center"><div class="flex h-28 w-28 items-center justify-center border border-[var(--aionsi-orange)]/70 text-2xl font-semibold tracking-[.12em] text-[var(--aionsi-orange)]">AIV</div><div class="h-10 w-px bg-[var(--aionsi-blue)]"></div><div class="grid w-full gap-3 sm:grid-cols-3">{['AI Assisted','Human Validated','Secure'].map((item) => <div class="border border-white/10 p-4 text-xs uppercase tracking-[.14em] text-white/65">{item}</div>)}</div></div></div></Container></Section>
+
+    <Section><Container><div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">{principles.map(([number, title, description]) => <article class="border border-slate-200 bg-white p-7 shadow-sm"><span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{number}</span><h2 class="mt-7 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">{title}</h2><p class="mt-4 text-sm leading-7 text-slate-600">{description}</p></article>)}</div></Container></Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]"><Container class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start"><div><TechnicalLabel>WORKFLOW AREAS</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Where AIV can assist engineering teams.</h2></div><div class="grid gap-3 sm:grid-cols-2">{['Verification planning and test intent analysis','Failure triage and regression prioritization','Coverage and assertion analysis','Protocol and specification assistance','Reusable testbench documentation','Engineering knowledge search and summarization'].map((item, index) => <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">0{index + 1}</span><p class="mt-3 font-semibold text-[var(--aionsi-navy)]">{item}</p></div>)}</div></Container></Section>
+
+    <Section><Container><div class="border border-slate-200 bg-white p-8 md:p-10"><TechnicalLabel>CONTROLLED DEPLOYMENT</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">AI should accelerate engineering — not replace engineering accountability.</h2><p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">AIV is designed as an engineering-assistance layer. Teams define the approved workflow, data boundaries, validation checkpoints and release criteria before using AI in production engineering processes.</p></div></Container></Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white"><Container class="text-center"><TechnicalLabel>START WITH A WORKFLOW</TechnicalLabel><h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Bring one verification workflow. We will map the acceleration opportunity.</h2><div class="mt-9"><Button href="/contact">Talk to AionSi</Button></div></Container></Section>
+  </main>
+  <Footer />
+</BaseLayout>
