@@ -10,6 +10,8 @@ import ProofStrip from '../../components/capabilities/ProofStrip.astro';
 import { capabilities } from '../../data/capabilities';
 import { capabilityScenarios } from '../../data/capabilityScenarios';
 
+export const prerender = true;
+
 export function getStaticPaths() {
   return capabilities.map((capability) => ({ params: { slug: capability.slug }, props: { capability } }));
 }
