@@ -2,7 +2,7 @@ name: AionSi Preview Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, 'feature/**' ]
   pull_request:
     branches: [ main ]
 
@@ -20,9 +20,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Astro type and content check
+        run: npm run check
 
       - name: Build Astro site
         run: npm run build
