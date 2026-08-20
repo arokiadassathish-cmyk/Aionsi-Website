@@ -13,6 +13,14 @@ export function getStaticPaths() {
 }
 
 const { industry } = Astro.props;
+const capabilityMap: Record<string, string> = {
+  'RTL Design': 'rtl-design',
+  'Design Verification': 'design-verification',
+  'Physical Design': 'physical-design',
+  DFT: 'dft',
+  'Protocol Verification': 'protocol-verification',
+  'SoC & IP Engineering': 'soc-ip',
+};
 ---
 <BaseLayout title={`${industry.title} | AionSi`} description={industry.summary}>
   <Header />
@@ -52,12 +60,13 @@ const { industry } = Astro.props;
       <Container>
         <TechnicalLabel>RELEVANT CAPABILITIES</TechnicalLabel>
         <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {industry.capabilities.map((capability) => {
-            const map: Record<string, string> = {
-              'RTL Design': 'rtl-design', 'Design Verification': 'design-verification', 'Physical Design': 'physical-design', DFT: 'dft', 'Protocol Verification': 'protocol-verification', 'SoC & IP Engineering': 'soc-ip'
-            };
-            return <a href={`/capabilities/${map[capability]}`} class="border border-slate-200 bg-white p-7 transition hover:border-[var(--aionsi-blue)]"><div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">ENGINEERING CAPABILITY</div><h3 class="mt-5 text-xl font-semibold text-[var(--aionsi-navy)]">{capability}</h3><div class="mt-7 text-sm font-semibold text-[var(--aionsi-navy)]">Explore →</div></a>;
-          })}
+          {industry.capabilities.map((capability) => (
+            <a href={`/capabilities/${capabilityMap[capability]}`} class="border border-slate-200 bg-white p-7 transition hover:border-[var(--aionsi-blue)]">
+              <div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">ENGINEERING CAPABILITY</div>
+              <h3 class="mt-5 text-xl font-semibold text-[var(--aionsi-navy)]">{capability}</h3>
+              <div class="mt-7 text-sm font-semibold text-[var(--aionsi-navy)]">Explore →</div>
+            </a>
+          ))}
         </div>
       </Container>
     </Section>
