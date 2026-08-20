@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+const solutions = [
+  ['dedicated-engineering','01','Dedicated Engineering','Add specialist semiconductor engineering capacity aligned to a defined program, workstream or roadmap.'],
+  ['extended-engineering','02','Extended Engineering','Extend an existing engineering organization with focused capability and continuity.'],
+  ['odc','03','Engineering ODC','Build a dedicated engineering organization with leadership, governance and scalable capacity.'],
+  ['project-engineering','04','Project Engineering','Engage AionSi around defined scope, milestones, deliverables and technical ownership.'],
+];
+---
+<BaseLayout title="Solutions | AionSi" description="Semiconductor engineering engagement models from specialist capacity and extended engineering to ODC and project delivery.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <TechnicalLabel>ENGINEERING SOLUTIONS</TechnicalLabel>
+        <div class="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-end">
+          <div><h1 class="text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Choose the engineering model that fits the program.</h1><p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">From a specialist bottleneck to a dedicated engineering organization, AionSi structures delivery around scope, ownership, milestones and scale.</p></div>
+          <div class="border border-slate-200 bg-white p-7"><TechnicalLabel>ENGAGEMENT PATH</TechnicalLabel><div class="mt-5 text-sm uppercase tracking-[.14em] text-slate-500">Specialist → Workstream → Project → ODC</div><p class="mt-4 text-base leading-7 text-[var(--aionsi-navy)]">Start with the level of ownership your program needs and scale the engagement as requirements expand.</p></div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section><Container><TechnicalLabel>SOLUTIONS</TechnicalLabel><div class="mt-8 grid gap-5 md:grid-cols-2">{solutions.map(([slug,number,title,description]) => <article class="border border-slate-200 bg-white p-8"><div class="text-xs tracking-[.18em] text-[var(--aionsi-blue)]">{number}</div><h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)]">{title}</h2><p class="mt-4 text-base leading-7 text-slate-600">{description}</p><a href={`/solutions/${slug}`} class="mt-8 inline-flex text-sm font-semibold text-[var(--aionsi-navy)] hover:text-[var(--aionsi-blue)]">Explore Solution →</a></article>)}</div></Container></Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white"><Container class="text-center"><TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel><h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Start with the problem you need to solve.</h2><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Share the engineering bottleneck, program stage, required expertise and target timeline. We can map it to the right delivery model.</p><div class="mt-9"><Button href="/contact">Discuss Your Engineering Requirement</Button></div></Container></Section>
+  </main><Footer />
+</BaseLayout>
