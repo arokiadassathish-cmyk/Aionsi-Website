@@ -1,18 +1,9 @@
 ---
 interface Props {
   class?: string;
-  light?: boolean;
 }
-const { class: className = '', light = false } = Astro.props;
-const brandColor = light ? '#ffffff' : 'var(--aionsi-blue)';
+const { class: className = '' } = Astro.props;
 ---
-<a href="/" class={`group inline-flex flex-col ${className}`} aria-label="AionSi home">
-  <span
-    class="inline-flex items-baseline font-sans text-[2rem] font-semibold leading-none tracking-[-0.065em] sm:text-[2.2rem]"
-    style={`color:${brandColor}`}
-  >
-    <span aria-hidden="true">AionSi</span>
-    <span class="sr-only">AionSi</span>
-  </span>
-  <span class="mt-1 text-[0.68rem] font-semibold leading-none tracking-[0.01em]" style="color:var(--aionsi-orange)">Driven by Commitment</span>
+<a href="/" class={`inline-flex items-center ${className}`} aria-label="AionSi home">
+  <img src="/images/aionsi-logo.svg" alt="AionSi — Driven by Commitment" class="block h-auto w-[150px] sm:w-[168px]" decoding="async" />
 </a>
