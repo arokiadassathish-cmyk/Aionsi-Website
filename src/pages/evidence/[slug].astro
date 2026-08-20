@@ -10,6 +10,8 @@ import { capabilities } from '../../data/capabilities';
 import { getEvidenceDetail } from '../../data/evidence';
 import { getEvidencePresentation } from '../../data/evidenceContent';
 
+export const prerender = true;
+
 export function getStaticPaths() {
   const paths = [];
   for (const capability of capabilities) {
