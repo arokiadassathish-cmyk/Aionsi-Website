@@ -6,6 +6,7 @@ import Container from '../../components/global/Container.astro';
 import Section from '../../components/global/Section.astro';
 import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
+import { technologyEvidence } from '../../data/technologyEvidence';
 
 const principles = [
   ['01', 'AI Assisted', 'Use AI to accelerate repetitive engineering analysis, triage, documentation and verification workflows.'],
@@ -33,6 +34,7 @@ const pilotSteps = [
 ];
 
 const measures = ['Engineering hours recovered', 'Failure-triage effort', 'Debug turnaround', 'Coverage-analysis effort', 'Documentation effort', 'Engineer validation / acceptance'];
+const verificationEvidence = technologyEvidence.filter((item) => ['pcie-gen6', 'usb-3x-usb4', 'ddr4-ddr5', 'hbm2e-hbm3', 'amba-chi-axi', 'risc-v'].includes(item.slug));
 ---
 <BaseLayout title="AIV — AI-Accelerated Verification | AionSi" description="AionSi AIV accelerates verification workflows with AI assistance while keeping engineering decisions, validation and sign-off under human control.">
   <Header />
@@ -42,11 +44,11 @@ const measures = ['Engineering hours recovered', 'Failure-triage effort', 'Debug
         <div>
           <TechnicalLabel>AIV — AI-ACCELERATED VERIFICATION</TechnicalLabel>
           <h1 class="mt-4 max-w-4xl text-5xl font-semibold tracking-tight md:text-7xl">AI-Accelerated Verification.</h1>
-          <p class="mt-6 max-w-2xl text-xl leading-9 text-white/70 md:text-2xl">Accelerate verification workflows with AI while keeping engineering decisions, validation and sign-off under human control.</p>
+          <p class="mt-6 max-w-2xl text-xl leading-9 text-white/70 md:text-2xl">Accelerate repetitive and analysis-heavy verification work while keeping engineering review, validation and sign-off under human control.</p>
           <div class="mt-8 flex flex-wrap gap-3"><Button href="/contact">Assess a Verification Workflow</Button><a href="/capabilities/design-verification" class="inline-flex items-center rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white hover:border-white/40">Explore Verification Engineering →</a></div>
         </div>
         <div class="border border-white/10 bg-white/[.025] p-8 sm:p-10">
-          <div class="mx-auto flex max-w-md flex-col items-center gap-4 text-center"><div class="flex h-28 w-28 items-center justify-center border border-[var(--aionsi-orange)]/70 text-2xl font-semibold tracking-[.12em] text-[var(--aionsi-orange)]">AIV</div><div class="h-10 w-px bg-[var(--aionsi-blue)]"></div><div class="grid w-full gap-3 sm:grid-cols-3">{['AI Assisted','Human Validated','Secure'].map((item) => <div class="border border-white/10 p-4 text-xs uppercase tracking-[.14em] text-white/65">{item}</div>)}</div></div>
+          <div class="mx-auto flex max-w-md flex-col items-center gap-4 text-center"><div class="flex h-28 w-28 items-center justify-center border border-[var(--aionsi-orange)]/70 text-2xl font-semibold tracking-[.12em] text-[var(--aionsi-orange)]">AIV</div><div class="h-10 w-px bg-[var(--aionsi-blue)]"></div><div class="grid w-full gap-3 sm:grid-cols-3"><div class="border border-white/10 p-4 text-xs uppercase tracking-[.14em] text-white/65">AI Assisted</div><div class="border border-white/10 p-4 text-xs uppercase tracking-[.14em] text-white/65">Human Validated</div><div class="border border-white/10 p-4 text-xs uppercase tracking-[.14em] text-white/65">Secure</div></div></div>
         </div>
       </Container>
     </Section>
@@ -64,13 +66,31 @@ const measures = ['Engineering hours recovered', 'Failure-triage effort', 'Debug
 
     <Section class="bg-[var(--aionsi-surface-alt)]"><Container><TechnicalLabel>HOW AIV WORKS</TechnicalLabel><div class="mt-7 grid gap-3 md:grid-cols-5">{['Engineering data','AIV assistance','Engineer review','Validation','Decision / sign-off'].map((item, index) => <div class="relative border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">0{index + 1}</span><h3 class="mt-4 text-lg font-semibold text-[var(--aionsi-navy)]">{item}</h3>{index < 4 && <span class="absolute right-[-10px] top-1/2 z-10 hidden -translate-y-1/2 bg-[var(--aionsi-surface-alt)] px-1 text-slate-400 lg:block">→</span>}</div>)}</div><p class="mt-6 text-sm font-semibold text-[var(--aionsi-navy)]">No autonomous sign-off. Engineering accountability remains with the responsible team.</p></Container></Section>
 
+    <Section>
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:items-start">
+          <div><TechnicalLabel>EVIDENCE-CONNECTED VERIFICATION</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Connect AIV workflows to verified engineering domains.</h2><p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">AIV is positioned as an assistance layer around verification workflows. Where AionSi has supporting technical evidence, visitors can move directly from the workflow to the underlying engineering reference.</p></div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {verificationEvidence.map((item) => (
+              <a href={item.detailHref} class="group border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]">
+                <div class="flex items-center justify-between gap-3"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{item.number}</span><span class="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold tracking-[.12em] text-emerald-700">EVIDENCE READY</span></div>
+                <h3 class="mt-4 text-lg font-semibold text-[var(--aionsi-navy)]">{item.title}</h3>
+                <p class="mt-2 text-sm leading-6 text-slate-600">{item.summary}</p>
+                <span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View engineering evidence →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
     <Section><Container><div class="border border-slate-200 bg-white p-8 md:p-10"><TechnicalLabel>CONTROLLED DEPLOYMENT</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">AI should accelerate engineering — not replace engineering accountability.</h2><p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">AIV is designed as an engineering-assistance layer. Teams define approved workflows, data boundaries, validation checkpoints and release criteria before using AI in production engineering processes.</p><div class="mt-7 grid gap-3 sm:grid-cols-3"><div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5 text-sm font-semibold text-[var(--aionsi-navy)]">On-premise deployment</div><div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5 text-sm font-semibold text-[var(--aionsi-navy)]">Private / controlled cloud</div><div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5 text-sm font-semibold text-[var(--aionsi-navy)]">Enterprise data boundaries</div></div></div></Container></Section>
 
     <Section class="bg-[var(--aionsi-surface-alt)]"><Container><TechnicalLabel>CUSTOMER PILOT</TechnicalLabel><h2 class="mt-3 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Start small. Prove value. Scale responsibly.</h2><div class="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{pilotSteps.map(([number, title, description]) => <article class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{number}</span><h3 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-3 text-sm leading-6 text-slate-600">{description}</p></article>)}</div></Container></Section>
 
     <Section><Container><div class="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:items-start"><div><TechnicalLabel>MEASURED OUTCOMES</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Measure the engineering outcome — not the AI usage.</h2><p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">Start with an agreed baseline and evaluate the workflow against measurable engineering signals.</p></div><div class="grid gap-3 sm:grid-cols-2">{measures.map((item, index) => <div class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">0{index + 1}</span><p class="mt-3 font-semibold text-[var(--aionsi-navy)]">{item}</p></div>)}</div></div></Container></Section>
 
-    <Section class="bg-[var(--aionsi-deep-navy)] text-white"><Container><div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-center"><div><TechnicalLabel>AIV + AIONSI ENGINEERING</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">AI that strengthens verification engineering.</h2><p class="mt-5 max-w-xl text-lg leading-8 text-white/70">AIV sits inside AionSi's broader engineering model across design verification, protocol verification, UVM, coverage, assertions and regression workflows.</p></div><div class="grid gap-3 sm:grid-cols-2">{['Design Verification','Protocol Verification','UVM','Coverage & Assertions','Regression','Engineering Evidence'].map((item, index) => <a href={index === 0 ? '/capabilities/design-verification' : '/proof'} class="border border-white/10 p-5 text-sm font-semibold text-white/85 hover:border-[var(--aionsi-blue)]">{item} →</a>)}</div></div></Container></Section>
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white"><Container><div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-center"><div><TechnicalLabel>AIV + AIONSI ENGINEERING</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">AI that strengthens verification engineering.</h2><p class="mt-5 max-w-xl text-lg leading-8 text-white/70">AIV sits inside AionSi's broader engineering model across design verification, protocol verification, UVM, coverage, assertions and regression workflows.</p></div><div class="grid gap-3 sm:grid-cols-2">{['Design Verification','Protocol Verification','UVM','Coverage & Assertions','Regression'].map((item, index) => <a href={index === 0 ? '/capabilities/design-verification' : index === 1 ? '/capabilities/protocol-verification' : '/evidence/reusable-uvm-verification-architecture'} class="border border-white/10 p-5 text-sm font-semibold text-white/85 hover:border-[var(--aionsi-blue)]">{item} →</a>)}<a href="/evidence" class="border border-white/10 p-5 text-sm font-semibold text-white/85 hover:border-[var(--aionsi-blue)]">Engineering Evidence →</a></div></div></Container></Section>
 
     <Section class="bg-white"><Container class="text-center"><TechnicalLabel>START WITH A WORKFLOW</TechnicalLabel><h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-6xl">Bring one verification workflow. We will map the acceleration opportunity.</h2><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">Share the workflow, current bottleneck, data boundary and expected outcome. AionSi will map a controlled AIV discovery path.</p><div class="mt-9"><Button href="/contact">Assess Your Verification Workflow</Button></div></Container></Section>
   </main>
