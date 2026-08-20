@@ -2,19 +2,45 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const root = path.resolve('src/pages');
-const routes = new Set(['/']);
+const staticRoutes = new Set(['/']);
+const dynamicRoutes = [];
 
 async function walk(dir) {
   const entries = await readdir(dir, { withFileTypes: true });
+
   for (const entry of entries) {
     const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) await walk(full);
-    else if (entry.isFile() && entry.name.endsWith('.astro')) {
-      const relative = path.relative(root, full).replaceAll(path.sep, '/');
-      if (relative === 'index.astro') routes.add('/');
-      else if (!relative.includes('[') && relative.endsWith('.astro')) {
-        routes.add(`/${relative.slice(0, -6)}`.replace(/\/index$/, '/'));
-      }
+    if (entry.isDirectory()) {
+      await walk(full);
+      continue;
+    }
+
+    if (!entry.isFile() || !entry.name.endsWith('.astro')) continue;
+
+    const relative = path.relative(root, full).replaceAll(path.sep, '/');
+    const withoutExtension = relative.slice(0, -'.astro'.length);
+    const segments = withoutExtension.split('/');
+
+    if (segments.at(-1) === 'index') {
+      segments.pop();
+    }
+
+    const route = `/${segments.filter(Boolean).join('/')}` || '/';
+
+    if (route === '/') {
+      staticRoutes.add('/');
+      continue;
+    }
+
+    if (segments.some((segment) => segment.startsWith('['))) {
+      const pattern = segments.map((segment) => {
+        if (/^\[\.\.\.[^\]]+\]$/.test(segment)) return '.+';
+        if (/^\[[^\]]+\]$/.test(segment)) return '[^/]+';
+        return segment.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      }).join('/');
+      dynamicRoutes.push(new RegExp(`^/${pattern}/?$`));
+    } else {
+      staticRoutes.add(route);
     }
   }
 }
@@ -23,6 +49,10 @@ function normalizeHref(href) {
   if (!href || !href.startsWith('/') || href.startsWith('//')) return null;
   const value = href.split('#')[0].split('?')[0];
   return value === '' ? '/' : value.replace(/\/$/, '') || '/';
+}
+
+function routeExists(href) {
+  return staticRoutes.has(href) || dynamicRoutes.some((pattern) => pattern.test(href));
 }
 
 const files = [];
@@ -44,14 +74,16 @@ const hrefPattern = /(?:href|detailHref|canonical|url)\s*=\s*["'`]([^"'`]+)["'`]
 for (const file of files) {
   const content = await readFile(file, 'utf8');
   let match;
+
   while ((match = hrefPattern.exec(content)) !== null) {
     const href = normalizeHref(match[1]);
     if (!href || href.startsWith('/api/')) continue;
-    const isDynamic = href.includes('$') || href.includes('{') || href.includes('[');
-    if (!isDynamic && !routes.has(href)) {
+
+    const isDynamicExpression = href.includes('$') || href.includes('{') || href.includes('[');
+    if (!isDynamicExpression && !routeExists(href)) {
       const relative = path.relative(process.cwd(), file).replaceAll(path.sep, '/');
       const list = missing.get(href) ?? [];
-      list.push(relative);
+      if (!list.includes(relative)) list.push(relative);
       missing.set(href, list);
     }
   }
@@ -65,4 +97,4 @@ if (missing.size) {
   process.exit(1);
 }
 
-console.log(`Route QA passed: ${routes.size} static routes discovered; no missing literal internal links found.`);
+console.log(`Route QA passed: ${staticRoutes.size} static routes and ${dynamicRoutes.length} dynamic route patterns discovered; no missing literal internal links found.`);
