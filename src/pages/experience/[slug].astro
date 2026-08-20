@@ -8,6 +8,8 @@ import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
 import { implementationExperiences } from '../../data/implementation';
 
+export const prerender = true;
+
 export function getStaticPaths() {
   return implementationExperiences.map((item) => ({ params: { slug: item.slug }, props: { item } }));
 }
