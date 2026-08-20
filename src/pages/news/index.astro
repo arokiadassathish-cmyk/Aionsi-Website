@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+
+const updates = [
+  { type: 'Engineering Update', title: 'AionSi Engineering Evidence Library', description: 'A growing library of approved technical references and representative engineering experience across verification, physical design, DFT, protocols and SoC/IP engineering.', href: '/proof' },
+  { type: 'Company Update', title: 'Expanding Engineering Engagement Models', description: 'AionSi supports specialist engineering, dedicated teams, project engineering and engineering ODC models for semiconductor programs.', href: '/solutions' },
+  { type: 'Technical Update', title: 'AI-Accelerated Verification', description: 'AIV is positioned around AI-assisted engineering workflows with human validation, security-conscious execution and controlled deployment.', href: '/solutions/aiv' },
+];
+---
+<BaseLayout title="News | AionSi" description="AionSi company updates, engineering announcements and semiconductor industry news.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-16 md:py-20 lg:py-24"><Container><TechnicalLabel>NEWSROOM</TechnicalLabel><h1 class="mt-4 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">AionSi news and company updates.</h1><p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">A controlled publishing space for company announcements, engineering milestones, partnerships, events and approved public updates.</p></Container></Section>
+    <Section><Container><div class="grid gap-5 lg:grid-cols-3">{updates.map((update, index) => <article class="border border-slate-200 bg-white p-8 shadow-sm"><div class="flex items-center justify-between"><span class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">{update.type}</span><span class="text-xs text-slate-400">0{index + 1}</span></div><h2 class="mt-7 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">{update.title}</h2><p class="mt-4 text-sm leading-7 text-slate-600">{update.description}</p><a href={update.href} class="mt-7 inline-flex text-sm font-semibold text-[var(--aionsi-navy)] hover:text-[var(--aionsi-blue)]">Explore →</a></article>)}</div></Container></Section>
+    <Section class="bg-[var(--aionsi-surface-alt)]"><Container class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center"><div><TechnicalLabel>PUBLICATION STANDARD</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Publish only what is ready for the market.</h2></div><div class="grid gap-3 sm:grid-cols-2"><div class="border border-slate-200 bg-white p-6 text-sm leading-7 text-slate-600">Technical review completed</div><div class="border border-slate-200 bg-white p-6 text-sm leading-7 text-slate-600">Customer confidentiality cleared</div><div class="border border-slate-200 bg-white p-6 text-sm leading-7 text-slate-600">Marketing approval completed</div><div class="border border-slate-200 bg-white p-6 text-sm leading-7 text-slate-600">Source and claims verified</div></div></Container></Section>
+    <Section><Container class="flex flex-col gap-6 border border-slate-200 bg-white p-8 md:flex-row md:items-center md:justify-between"><div><TechnicalLabel>MEDIA ENQUIRIES</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)]">Contact AionSi for approved company information.</h2></div><Button href="/contact">Contact Us</Button></Container></Section>
+  </main>
+  <Footer />
+</BaseLayout>
