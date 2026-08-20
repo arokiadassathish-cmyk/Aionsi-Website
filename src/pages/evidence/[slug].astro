@@ -13,18 +13,18 @@ import { getEvidencePresentation } from '../../data/evidenceContent';
 export const prerender = true;
 
 export function getStaticPaths() {
-  const paths = [];
+  const paths = new Map();
   for (const capability of capabilities) {
     for (const item of capability.evidence ?? []) {
       if (!item.href) continue;
       const parts = item.href.split('/').filter(Boolean);
       const slug = parts[parts.length - 1];
       const detail = slug ? getEvidenceDetail(slug) : undefined;
-      if (!slug || !detail) continue;
-      paths.push({ params: { slug }, props: { evidence: { ...item, capability }, detail } });
+      if (!slug || !detail || paths.has(slug)) continue;
+      paths.set(slug, { params: { slug }, props: { evidence: { ...item, capability }, detail } });
     }
   }
-  return paths;
+  return [...paths.values()];
 }
 
 const { evidence, detail } = Astro.props;
