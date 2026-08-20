@@ -5,6 +5,8 @@ export const customerLogos = [
   { name: 'Synopsys', logo: '/images/customers/synopsys.png' },
   { name: 'Aeva', logo: '/images/customers/aeva.png' },
   { name: 'SanDisk', logo: '/images/customers/sandisk.png' },
+  { name: 'NodeA', logo: '/images/customers/nodea.jpg' },
+  { name: 'NXP', logo: '/images/customers/nxp.png' },
 ];
 
 export const customerStatement =
