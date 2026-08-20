@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://aionsi.com',
+  output: 'static',
   integrations: [react()],
   vite: { plugins: [tailwindcss()] }
 });
