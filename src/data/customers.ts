@@ -1,10 +1,10 @@
 export const customerLogos = [
-  { name: 'C SPEED', logo: '/images/customers/c-speed.svg' },
-  { name: 'Cadence', logo: '/images/customers/cadence.svg' },
-  { name: 'Samsung', logo: '/images/customers/samsung.svg' },
+  { name: 'C SPEED', logo: '/images/customers/c-speed.png' },
+  { name: 'Cadence', logo: '/images/customers/cadence.png' },
+  { name: 'Samsung', logo: '/images/customers/samsung.png' },
   { name: 'Synopsys', logo: '/images/customers/synopsys.png' },
-  { name: 'Aeva', logo: '/images/customers/aeva.svg' },
-  { name: 'SanDisk', logo: '/images/customers/sandisk.svg' },
+  { name: 'Aeva', logo: '/images/customers/aeva.png' },
+  { name: 'SanDisk', logo: '/images/customers/sandisk.png' },
 ];
 
 export const customerStatement =
