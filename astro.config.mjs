@@ -1,10 +1,12 @@
 import { defineConfig } from 'astro/config';
+import node from '@astrojs/node';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://aionsi.com',
-  output: 'static',
+  output: 'server',
+  adapter: node({ mode: 'standalone' }),
   integrations: [react()],
   vite: { plugins: [tailwindcss()] }
 });
