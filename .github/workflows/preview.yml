@@ -2,7 +2,7 @@ name: AionSi Preview Build
 
 on:
   push:
-    branches: [ main, 'feature/**' ]
+    branches: [ main, 'feature/**', 'fix/**' ]
   pull_request:
     branches: [ main ]
 
@@ -25,11 +25,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Astro type and content check
-        run: npm run check
-
-      - name: Build Astro site
-        run: npm run build
+      - name: Full website QA
+        run: npm run qa
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
