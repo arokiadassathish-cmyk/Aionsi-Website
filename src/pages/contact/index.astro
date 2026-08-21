@@ -64,30 +64,32 @@ import { engineeringDiscoveryOptions, engineeringDiscoveryRouting } from '../../
       form?.addEventListener('submit', async (event) => {
         event.preventDefault();
         if (!(form instanceof HTMLFormElement)) return;
-        const data = new FormData(form);
+        const formData = new FormData(form);
         if (status) {
           status.textContent = 'Submitting your engineering requirement…';
           status.classList.remove('hidden');
           status.classList.remove('text-red-600');
           status.classList.add('text-[var(--aionsi-navy)]');
         }
-        const payload = Object.fromEntries(data.entries());
         try {
           const response = await fetch('/api/engineering-requirement', {
             method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(payload),
+            body: formData,
           });
           const result = await response.json().catch(() => ({}));
           if (!response.ok) throw new Error(result.message || 'We could not submit your requirement.');
-          status.textContent = 'Engineering requirement received. The AionSi business development team will review it and respond with the appropriate next step.';
-          status.classList.remove('text-red-600');
-          status.classList.add('text-[var(--aionsi-navy)]');
+          if (status) {
+            status.textContent = 'Engineering requirement received. The AionSi business development team will review it and respond with the appropriate next step.';
+            status.classList.remove('text-red-600');
+            status.classList.add('text-[var(--aionsi-navy)]');
+          }
           form.reset();
         } catch (error) {
-          status.textContent = error instanceof Error ? error.message : 'We could not submit your requirement. Please try again.';
-          status.classList.remove('text-[var(--aionsi-navy)]');
-          status.classList.add('text-red-600');
+          if (status) {
+            status.textContent = error instanceof Error ? error.message : 'We could not submit your requirement. Please try again.';
+            status.classList.remove('text-[var(--aionsi-navy)]');
+            status.classList.add('text-red-600');
+          }
         }
       });
     </script>
