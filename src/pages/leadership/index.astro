@@ -8,11 +8,11 @@ import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
 
 const leadership = [
-  { number: '01', name: 'Jayaprakash Polimetla', role: 'Chief Executive Officer', focus: 'Corporate strategy, customer relationships, growth and long-term company direction.', image: '/images/leadership/jayaprakash-polimetla-ceo.svg' },
-  { number: '02', name: 'Indrasena Reddy Maru', role: 'Chief Technology Officer', focus: 'Technology strategy, semiconductor engineering depth, IP and SoC architecture.', image: '/images/leadership/indrasena-reddy-maru-cto.svg' },
-  { number: '03', name: 'Paul Adams', role: 'Chief Strategy Officer', focus: 'Market strategy, strategic partnerships, business development and global expansion.', image: '/images/leadership/paul-adams-cso.svg' },
-  { number: '04', name: 'Shri K. V. Chowdary', role: 'Director', focus: 'Engineering delivery, capability development, quality and technical execution.', image: '/images/leadership/shri-k-v-chowdary.svg' },
-  { number: '05', name: 'Shri Ravi Prasad. P', role: 'Director', focus: 'People, operating systems, delivery governance and organizational scale.', image: '/images/leadership/shri-ravi-prasad-p.svg' },
+  { number: '01', name: 'Jayaprakash Polimetla', role: 'Chief Executive Officer', focus: 'Corporate strategy, customer relationships, growth and long-term company direction.', image: '/images/leadership/jayaprakash-polimetla-ceo.png' },
+  { number: '02', name: 'Indrasena Reddy Maru', role: 'Chief Technology Officer', focus: 'Technology strategy, semiconductor engineering depth, IP and SoC architecture.', image: '/images/leadership/indrasena-reddy-maru-cto.png' },
+  { number: '03', name: 'Paul Adams', role: 'Chief Strategy Officer', focus: 'Market strategy, strategic partnerships, business development and global expansion.', image: '/images/leadership/paul-adams-cso.jpg' },
+  { number: '04', name: 'Shri K. V. Chowdary', role: 'Director', focus: 'Engineering delivery, capability development, quality and technical execution.', image: '/images/leadership/shri-k-v-chowdary.png' },
+  { number: '05', name: 'Shri Ravi Prasad. P', role: 'Director', focus: 'People, operating systems, delivery governance and organizational scale.', image: '/images/leadership/shri-ravi-prasad-p.png' },
 ];
 ---
 <BaseLayout title="Leadership | AionSi" description="AionSi leadership team and executive responsibilities across semiconductor engineering, technology, strategy and operations.">
@@ -26,13 +26,17 @@ const leadership = [
       </Container>
     </Section>
 
-    <Section class="py-12 md:py-14 lg:py-16">
+    <Section class="py-10 md:py-12 lg:py-14">
       <Container>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {leadership.map((leader) => (
             <article class="overflow-hidden border border-slate-200 bg-white shadow-sm">
-              <div class="aspect-[4/5] overflow-hidden bg-slate-100"><img src={leader.image} alt={`${leader.name} — ${leader.role}`} class="h-full w-full object-cover object-top" loading="lazy" decoding="async" /></div>
-              <div class="p-7">
+              <div class="mx-auto w-full max-w-[220px] px-4 pt-5">
+                <div class="aspect-[4/5] overflow-hidden rounded-sm bg-slate-100">
+                  <img src={leader.image} alt={`${leader.name} — ${leader.role}`} class="h-full w-full object-contain object-top" loading="lazy" decoding="async" />
+                </div>
+              </div>
+              <div class="p-7 pt-6">
                 <div class="flex items-center justify-between"><span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">{leader.number}</span><span class="h-2 w-2 rounded-full bg-[var(--aionsi-orange)]"></span></div>
                 <h2 class="mt-5 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">{leader.name}</h2>
                 <p class="mt-2 text-sm font-semibold uppercase tracking-[.12em] text-[var(--aionsi-blue)]">{leader.role}</p>
