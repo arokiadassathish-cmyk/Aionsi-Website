@@ -1,12 +1,12 @@
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel/serverless';
+import node from '@astrojs/node';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://aionsi.com',
   output: 'server',
-  adapter: vercel(),
+  adapter: node({ mode: 'standalone' }),
   integrations: [react()],
   vite: { plugins: [tailwindcss()] }
 });
