@@ -1,5 +1,12 @@
-const HUBSPOT_TOKEN = process.env.HUBSPOT_PRIVATE_APP_TOKEN;
 const HUBSPOT_BASE = 'https://api.hubapi.com';
+
+function getHubSpotToken() {
+  return String(
+    process.env.HUBSPOT_PRIVATE_APP_TOKEN ||
+      import.meta.env.HUBSPOT_PRIVATE_APP_TOKEN ||
+      ''
+  ).trim();
+}
 
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -13,17 +20,26 @@ function clean(value) {
 }
 
 async function hubspotRequest(path, options = {}) {
-  if (!HUBSPOT_TOKEN) throw new Error('HubSpot integration is not configured.');
+  const token = getHubSpotToken();
+  if (!token) throw new Error('HubSpot integration is not configured.');
+
   const response = await fetch(`${HUBSPOT_BASE}${path}`, {
     ...options,
     headers: {
-      Authorization: `Bearer ${HUBSPOT_TOKEN}`,
+      Authorization: `Bearer ${token}`,
       'content-type': 'application/json',
       ...(options.headers || {}),
     },
   });
+
   const payload = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(payload?.message || `HubSpot returned HTTP ${response.status}.`);
+  if (!response.ok) {
+    const message = payload?.message || `HubSpot returned HTTP ${response.status}.`;
+    if (response.status === 401) {
+      throw new Error('HubSpot authentication failed. Check that the configured credential is valid and has not been revoked.');
+    }
+    throw new Error(message);
+  }
   return payload;
 }
 
