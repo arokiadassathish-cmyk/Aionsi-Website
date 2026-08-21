@@ -2,7 +2,9 @@ const HUBSPOT_BASE = 'https://api.hubapi.com';
 
 function getHubSpotToken() {
   return String(
-    process.env.HUBSPOT_PRIVATE_APP_TOKEN ||
+    process.env.HUBSPOT_ACCESS_TOKEN ||
+      process.env.HUBSPOT_PRIVATE_APP_TOKEN ||
+      import.meta.env.HUBSPOT_ACCESS_TOKEN ||
       import.meta.env.HUBSPOT_PRIVATE_APP_TOKEN ||
       ''
   ).trim();
@@ -21,7 +23,7 @@ function clean(value) {
 
 async function hubspotRequest(path, options = {}) {
   const token = getHubSpotToken();
-  if (!token) throw new Error('HubSpot integration is not configured.');
+  if (!token) throw new Error('HubSpot integration is not configured. Set HUBSPOT_ACCESS_TOKEN in the runtime environment.');
 
   const response = await fetch(`${HUBSPOT_BASE}${path}`, {
     ...options,
@@ -36,7 +38,10 @@ async function hubspotRequest(path, options = {}) {
   if (!response.ok) {
     const message = payload?.message || `HubSpot returned HTTP ${response.status}.`;
     if (response.status === 401) {
-      throw new Error('HubSpot authentication failed. Check that the configured credential is valid and has not been revoked.');
+      throw new Error('HubSpot authentication failed. The configured credential was rejected by HubSpot. Verify that HUBSPOT_ACCESS_TOKEN contains a current HubSpot Service Key or Private App access token, not an OAuth refresh token.');
+    }
+    if (response.status === 403) {
+      throw new Error('HubSpot authorization failed. Verify that the credential has permission to read/write contacts and create notes.');
     }
     throw new Error(message);
   }
