@@ -9,6 +9,7 @@ import Button from '../components/global/Button.astro';
 import EngineeringCard from '../components/capabilities/EngineeringCard.astro';
 import EngineeringTrace from '../components/lifecycle/EngineeringTrace.astro';
 import SiliconHero from '../components/hero/SiliconHero.astro';
+import CustomerProof from '../components/customers/CustomerProof.astro';
 import { capabilities } from '../data/capabilities';
 import { technologyEvidence } from '../data/technologyEvidence';
 ---
@@ -116,6 +117,8 @@ import { technologyEvidence } from '../data/technologyEvidence';
       </Container>
     </Section>
 
+    <CustomerProof />
+
     <Section class="bg-white">
       <Container>
         <TechnicalLabel>Talent at AionSi</TechnicalLabel>
@@ -128,8 +131,7 @@ import { technologyEvidence } from '../data/technologyEvidence';
     </Section>
 
     <Section class="bg-[var(--aionsi-deep-navy)] text-white">
-      <Container class="text-center"><TechnicalLabel>Engineering Excellence</TechnicalLabel><h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Have a silicon challenge?</h2><p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/70">Let's engineer it together.</p><div class="mt-9"><Button href="/contact">Talk to Our Engineering Team</Button></div></Container>
-    </Section>
+      <Container class="text-center"><TechnicalLabel>Engineering Excellence</TechnicalLabel><h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Have a silicon challenge?</h2><p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/70">Let's engineer it together.</p><div class="mt-9"><Button href="/contact">Talk to Our Engineering Team</Button></div></Container></Section>
   </main>
   <Footer />
 </BaseLayout>
