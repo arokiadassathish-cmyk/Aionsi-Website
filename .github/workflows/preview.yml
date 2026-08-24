@@ -34,3 +34,58 @@ jobs:
           name: aionsi-preview-build
           path: dist/
           retention-days: 7
+
+  zoho-diagnostic:
+    name: Zoho Recruit Diagnostic
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query Zoho Recruit Job Openings
+        env:
+          ZOHO_ACCOUNTS_URL: ${{ secrets.ZOHO_ACCOUNTS_URL }}
+          ZOHO_RECRUIT_API_BASE_URL: ${{ secrets.ZOHO_RECRUIT_API_BASE_URL }}
+          ZOHO_CLIENT_ID: ${{ secrets.ZOHO_CLIENT_ID }}
+          ZOHO_CLIENT_SECRET: ${{ secrets.ZOHO_CLIENT_SECRET }}
+          ZOHO_RECRUIT_REFRESH_TOKEN: ${{ secrets.ZOHO_RECRUIT_REFRESH_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          : "${ZOHO_ACCOUNTS_URL:=https://accounts.zoho.in}"
+          : "${ZOHO_RECRUIT_API_BASE_URL:=https://recruit.zoho.in/recruit/v2}"
+
+          if [[ -z "${ZOHO_CLIENT_ID:-}" || -z "${ZOHO_CLIENT_SECRET:-}" || -z "${ZOHO_RECRUIT_REFRESH_TOKEN:-}" ]]; then
+            echo "Missing one or more required Zoho secrets."
+            exit 1
+          fi
+
+          token_response=$(curl -fsS -X POST "${ZOHO_ACCOUNTS_URL}/oauth/v2/token" \
+            -H 'Content-Type: application/x-www-form-urlencoded' \
+            --data-urlencode "refresh_token=${ZOHO_RECRUIT_REFRESH_TOKEN}" \
+            --data-urlencode "client_id=${ZOHO_CLIENT_ID}" \
+            --data-urlencode "client_secret=${ZOHO_CLIENT_SECRET}" \
+            --data-urlencode 'grant_type=refresh_token')
+
+          access_token=$(python - "$token_response" <<'PY'
+import json,sys
+payload=json.loads(sys.argv[1])
+value=payload.get('access_token')
+if not value:
+    print(payload.get('error') or payload.get('message') or 'No access token returned', file=sys.stderr)
+    raise SystemExit(1)
+print(value)
+PY
+)
+
+          openings=$(curl -fsS "${ZOHO_RECRUIT_API_BASE_URL}/JobOpenings" \
+            -H "Authorization: Zoho-oauthtoken ${access_token}")
+
+          python - "$openings" <<'PY'
+import json,sys
+payload=json.loads(sys.argv[1])
+rows=payload.get('data') or []
+print('Zoho Recruit Job Openings:')
+for row in rows:
+    name=row.get('Job_Opening_Name') or row.get('Posting_Title') or row.get('Name') or 'Unnamed'
+    rid=row.get('id') or row.get('ID') or row.get('Job_Opening_ID')
+    status=row.get('Job_Opening_Status') or ''
+    print(f'- {name} | id={rid} | status={status}')
+PY
