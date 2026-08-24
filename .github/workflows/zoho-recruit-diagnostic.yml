@@ -35,9 +35,30 @@ jobs:
             --data-urlencode "client_secret=${ZOHO_CLIENT_SECRET}" \
             --data-urlencode 'grant_type=refresh_token')
 
-          access_token=$(python -c 'import json,sys; p=json.loads(sys.argv[1]); v=p.get("access_token"); print(v) if v else (print(p.get("error") or p.get("message") or "No access token returned", file=sys.stderr), sys.exit(1))' "$token_response")
+          access_token=$(python - "$token_response" <<'PY'
+import json
+import sys
+payload = json.loads(sys.argv[1])
+value = payload.get("access_token")
+if not value:
+    print(payload.get("error") or payload.get("message") or "No access token returned", file=sys.stderr)
+    raise SystemExit(1)
+print(value)
+PY
+)
 
           openings=$(curl -fsS "${ZOHO_RECRUIT_API_BASE_URL}/JobOpenings" \
             -H "Authorization: Zoho-oauthtoken ${access_token}")
 
-          python -c 'import json,sys; p=json.loads(sys.argv[1]); rows=p.get("data") or []; print("Zoho Recruit Job Openings:"); [print(f"- {r.get("Job_Opening_Name") or r.get("Posting_Title") or r.get("Name") or "Unnamed"} | id={r.get("id") or r.get("ID") or r.get("Job_Opening_ID")} | status={r.get("Job_Opening_Status") or ""}") for r in rows]' "$openings"
+          python - "$openings" <<'PY'
+import json
+import sys
+payload = json.loads(sys.argv[1])
+rows = payload.get("data") or []
+print("Zoho Recruit Job Openings:")
+for row in rows:
+    name = row.get("Job_Opening_Name") or row.get("Posting_Title") or row.get("Name") or "Unnamed"
+    rid = row.get("id") or row.get("ID") or row.get("Job_Opening_ID")
+    status = row.get("Job_Opening_Status") or ""
+    print(f"- {name} | id={rid} | status={status}")
+PY
