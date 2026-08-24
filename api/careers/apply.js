@@ -6,7 +6,10 @@ const INDIA_RECRUIT_URL = 'https://recruit.zoho.in/recruit/v2';
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { 'content-type': 'application/json; charset=utf-8' },
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+      'cache-control': 'no-store',
+    },
   });
 }
 
@@ -15,7 +18,7 @@ function clean(value) {
 }
 
 function experienceToNumber(value) {
-  const match = clean(value).match(/\d+/);
+  const match = clean(value).match(/\d+(?:\.\d+)?/);
   return match ? Number(match[0]) : undefined;
 }
 
@@ -27,7 +30,8 @@ function extensionOf(filename) {
 
 function getJobOpeningMap() {
   try {
-    return JSON.parse(process.env.ZOHO_RECRUIT_JOB_OPENINGS_JSON || '{}');
+    const parsed = JSON.parse(process.env.ZOHO_RECRUIT_JOB_OPENINGS_JSON || '{}');
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
   } catch {
     return {};
   }
@@ -49,13 +53,14 @@ async function getZohoAccessToken() {
     });
     const result = await response.json();
     if (!response.ok || !result.access_token) {
-      throw new Error('Zoho OAuth token refresh failed.');
+      console.error('Zoho OAuth token refresh failed:', response.status, result?.error || result?.message || 'unknown error');
+      throw new Error('Recruitment service authentication failed.');
     }
     return result.access_token;
   }
 
   if (process.env.ZOHO_RECRUIT_ACCESS_TOKEN) return process.env.ZOHO_RECRUIT_ACCESS_TOKEN;
-  throw new Error('Zoho Recruit credentials are not configured.');
+  throw new Error('Recruitment service is not configured.');
 }
 
 async function zohoRequest(path, options = {}) {
@@ -77,6 +82,7 @@ async function zohoRequest(path, options = {}) {
   }
   if (!response.ok) {
     const message = payload?.message || payload?.data?.[0]?.message || `Zoho Recruit returned HTTP ${response.status}.`;
+    console.error('Zoho Recruit API error:', { path, status: response.status, message });
     throw new Error(message);
   }
   return payload;
@@ -122,7 +128,7 @@ export default {
 
       const experienceYears = experienceToNumber(experience);
       const jobOpeningMap = getJobOpeningMap();
-      const jobOpeningId = jobOpeningMap[jobSlug] || '';
+      const jobOpeningId = clean(jobOpeningMap[jobSlug]);
       const roleLabel = jobSlug === 'general' ? 'General / Future Opportunity' : jobSlug.replaceAll('-', ' ');
 
       const additionalInfo = [
@@ -131,7 +137,7 @@ export default {
         `Notice period: ${noticePeriod || 'Not specified'}`,
         currentTitle ? `Current designation: ${currentTitle}` : '',
         candidateNote ? `Candidate note: ${candidateNote}` : '',
-        `Application source: AionSi Careers website`,
+        'Application source: AionSi Careers website',
       ].filter(Boolean).join('\n');
 
       const candidate = {
@@ -176,7 +182,7 @@ export default {
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({
               data: [{
-                jobids: [String(jobOpeningId)],
+                jobids: [jobOpeningId],
                 ids: [String(candidateId)],
                 comments: 'Applied through AionSi Careers website',
               }],
@@ -198,7 +204,9 @@ export default {
     } catch (error) {
       console.error('Career application error:', error);
       return json({
-        message: error instanceof Error ? error.message : 'We could not submit the application. Please email careers@aionsi.com with your CV.',
+        message: error instanceof Error && error.message === 'Recruitment service is not configured.'
+          ? 'Our recruitment service is temporarily unavailable. Please try again shortly.'
+          : 'We could not submit the application. Please try again shortly or email careers@aionsi.com with your CV.',
       }, 500);
     }
   },
