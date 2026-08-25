@@ -1,9 +1,25 @@
 ---
 import '../styles/global.css';
-interface Props { title?: string; description?: string; canonical?: string; }
-const { title = 'AionSi | Semiconductor Engineering', description = 'Semiconductor engineering from IP to Silicon.', canonical } = Astro.props;
+interface Props { title?: string; description?: string; canonical?: string; ogImage?: string; schema?: Record<string, unknown> | Record<string, unknown>[]; }
+const { title = 'AionSi | Semiconductor Engineering', description = 'Semiconductor engineering from IP to Silicon.', canonical, ogImage = 'https://aionsi.com/og-image.png', schema } = Astro.props;
 const siteUrl = 'https://aionsi.com';
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
+const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'AionSi',
+  url: siteUrl,
+  logo: `${siteUrl}/favicon.svg`,
+  description: 'Semiconductor engineering from IP to Silicon.',
+  sameAs: ['https://www.linkedin.com/company/aionsitechnologies/']
+};
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'AionSi',
+  url: siteUrl
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -11,14 +27,22 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString(
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <title>{title}</title>
+    {schemas.map((item) => <script type="application/ld+json" set:html={JSON.stringify(item)} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
   </head>
   <body>
     <slot />
