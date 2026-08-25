@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import { targetAccounts } from '../../data/targetAccounts';
+
+export function getStaticPaths() {
+  return targetAccounts.map((account) => ({ params: { slug: account.slug }, props: { account } }));
+}
+
+const { account } = Astro.props;
+---
+<BaseLayout title={`${account.name} Semiconductor Engineering Capability Relevance | AionSi`} description={`${account.headline} Explore AionSi engineering capabilities, evidence and a qualification path relevant to ${account.name}.`}>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-16 lg:py-20">
+      <Container>
+        <TechnicalLabel>CAPABILITY RELEVANCE</TechnicalLabel>
+        <div class="mt-5 max-w-5xl">
+          <div class="text-sm font-semibold uppercase tracking-[.16em] text-slate-400">{account.category}</div>
+          <h1 class="mt-4 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">{account.name}: {account.headline}</h1>
+          <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">{account.description}</p>
+        </div>
+        <div class="mt-8 border-l-2 border-[var(--aionsi-orange)] pl-5 text-sm leading-7 text-slate-500">{account.disclosure}</div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container class="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
+        <div>
+          <TechnicalLabel>FOCUS AREAS</TechnicalLabel>
+          <h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Where AionSi capability may align.</h2>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {account.focusAreas.map((focus, index) => (
+            <div class="border border-slate-200 bg-white p-7">
+              <div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">0{index + 1}</div>
+              <h3 class="mt-5 text-xl font-semibold text-[var(--aionsi-navy)]">{focus}</h3>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <TechnicalLabel>QUALIFICATION PATH</TechnicalLabel>
+        <h2 class="mt-3 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Evaluate fit through evidence, not assumptions.</h2>
+        <div class="mt-10 grid gap-3 md:grid-cols-5">
+          {account.discoveryPath.map((step, index) => (
+            <div class="border border-slate-200 bg-white p-6">
+              <div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-blue)]">0{index + 1}</div>
+              <div class="mt-5 font-semibold leading-6 text-[var(--aionsi-navy)]">{step}</div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <TechnicalLabel>ENGINEERING EVIDENCE</TechnicalLabel>
+        <div class="mt-5 grid gap-5 md:grid-cols-3">
+          <a href="/capabilities" class="border border-slate-200 bg-white p-7 transition hover:border-[var(--aionsi-blue)]"><h3 class="text-xl font-semibold text-[var(--aionsi-navy)]">Capabilities</h3><p class="mt-3 text-sm leading-7 text-slate-600">Review the engineering portfolio across the silicon lifecycle.</p><span class="mt-7 inline-flex text-sm font-semibold text-[var(--aionsi-blue)]">Explore capabilities →</span></a>
+          <a href="/experience" class="border border-slate-200 bg-white p-7 transition hover:border-[var(--aionsi-blue)]"><h3 class="text-xl font-semibold text-[var(--aionsi-navy)]">Representative experience</h3><p class="mt-3 text-sm leading-7 text-slate-600">Review representative engineering ownership and evidence.</p><span class="mt-7 inline-flex text-sm font-semibold text-[var(--aionsi-blue)]">Explore experience →</span></a>
+          <a href="/evidence" class="border border-slate-200 bg-white p-7 transition hover:border-[var(--aionsi-blue)]"><h3 class="text-xl font-semibold text-[var(--aionsi-navy)]">Engineering evidence</h3><p class="mt-3 text-sm leading-7 text-slate-600">Read technical references supporting the relevant capability areas.</p><span class="mt-7 inline-flex text-sm font-semibold text-[var(--aionsi-blue)]">Explore evidence →</span></a>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="text-center">
+        <TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel>
+        <h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Have a requirement that maps to one of these areas?</h2>
+        <p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Start with a defined engineering problem. AionSi can map the requirement to capability, evidence and a bounded qualification path.</p>
+        <div class="mt-9"><a href="/contact" class="inline-flex rounded-full bg-[var(--aionsi-orange)] px-6 py-3.5 text-sm font-semibold text-white">Discuss Your Engineering Requirement →</a></div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
