@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/global/Header.astro';
+import Footer from '../../../components/global/Footer.astro';
+import Container from '../../../components/global/Container.astro';
+import Section from '../../../components/global/Section.astro';
+import TechnicalLabel from '../../../components/global/TechnicalLabel.astro';
+import Button from '../../../components/global/Button.astro';
+---
+<BaseLayout title="PCIe 6.0 Verification: PAM4, Assertions & Coverage Closure | AionSi" description="AionSi engineering perspective on PCIe 6.0 verification, PAM4 protocol complexity, assertions, coverage and closure strategy.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-16 lg:py-20">
+      <Container>
+        <TechnicalLabel>TECHNICAL PAPER</TechnicalLabel>
+        <h1 class="mt-5 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">PCIe 6.0 Verification: PAM4, Assertions &amp; Coverage Closure</h1>
+        <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">A practical engineering perspective on verification complexity as PCIe moves to PAM4 signaling and higher-throughput data-link behavior.</p>
+      </Container>
+    </Section>
+    <Section>
+      <Container class="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
+        <aside class="h-fit border border-slate-200 bg-white p-6"><div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">Focus</div><ul class="mt-4 grid gap-3 text-sm leading-6 text-slate-600"><li>PAM4-aware verification strategy</li><li>Data-link and replay behavior</li><li>Assertions and coverage</li><li>Regression and closure discipline</li></ul></aside>
+        <article class="prose prose-slate max-w-none">
+          <h2>Why PCIe 6.0 changes the verification problem</h2>
+          <p>PCIe 6.0 introduces PAM4 signaling and increases the interaction density between protocol behavior, error handling, replay and link management. Verification therefore needs more than stimulus volume: it needs intentional checking, assertions and coverage models that make corner-case behavior visible.</p>
+          <h2>Verification areas to isolate early</h2>
+          <p>Teams should isolate flow control, replay, retry, error paths and state-machine transitions early enough that failures can be localized instead of appearing as late-system regressions.</p>
+          <h2>Coverage is a closure mechanism, not a dashboard</h2>
+          <p>Coverage should connect directly to the engineering intent: meaningful functional points, assertion results, cross coverage and regression trends. A rising percentage without a clear mapping to risk does not establish closure.</p>
+          <h2>Where engineering ownership helps</h2>
+          <p>A bounded verification work package can define interfaces, reusable sequences, checkers, assertion strategy, coverage goals and regression reporting with explicit acceptance criteria. This makes specialist capacity additive without obscuring technical accountability.</p>
+          <h2>Related AionSi evidence</h2>
+          <p>See the supporting protocol and verification references for representative experience, while keeping customer and program details generic unless disclosure is authorized.</p>
+        </article>
+      </Container>
+    </Section>
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="text-center"><TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel><h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Working through a high-speed verification bottleneck?</h2><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Bring the interface, verification stage and closure challenge to AionSi.</p><div class="mt-9"><Button href="/contact">Discuss Your Engineering Requirement</Button></div></Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
