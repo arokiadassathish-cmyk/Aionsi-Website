@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/global/Header.astro';
+import Footer from '../../../components/global/Footer.astro';
+import Container from '../../../components/global/Container.astro';
+import Section from '../../../components/global/Section.astro';
+import TechnicalLabel from '../../../components/global/TechnicalLabel.astro';
+import Button from '../../../components/global/Button.astro';
+---
+<BaseLayout title="Reusable UVM Verification Architecture | AionSi" description="AionSi engineering perspective on reusable UVM verification architecture, assertions, coverage and regression closure for scalable SoC verification programs.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-16 lg:py-20"><Container><TechnicalLabel>TECHNICAL PAPER</TechnicalLabel><h1 class="mt-5 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Reusable UVM Verification Architecture for Scalable SoC Programs</h1><p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">A practical view of reusable environments, checking strategy, assertions, coverage and regression discipline for IP, subsystem and SoC verification.</p></Container></Section>
+    <Section><Container class="grid gap-10 lg:grid-cols-[.7fr_1.3fr]"><aside class="h-fit border border-slate-200 bg-white p-6"><div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">Focus</div><ul class="mt-4 grid gap-3 text-sm leading-6 text-slate-600"><li>Reusable UVM structure</li><li>Stimulus and checking</li><li>Assertions and functional coverage</li><li>Regression closure</li></ul></aside><article class="prose prose-slate max-w-none"><h2>Why reuse matters</h2><p>As verification programs span multiple IPs and subsystems, a reusable environment can preserve methodology while allowing protocol-specific sequences, agents and scoreboards to evolve with the design.</p><h2>Separate stimulus from intent</h2><p>Reusable verification benefits when stimulus generation, checking, coverage and configuration are clearly separated. This makes the environment easier to extend without weakening the checks that define expected behavior.</p><h2>Assertions and coverage work together</h2><p>Assertions should express local invariants and protocol expectations, while functional coverage should demonstrate that the intended behaviors and meaningful corner cases have been exercised.</p><h2>Regression must expose risk</h2><p>A scalable regression flow needs deterministic reporting, failure triage and trend visibility. Coverage growth alone is not closure; unresolved failures and untested risk remain engineering debt.</p><h2>Related AionSi evidence</h2><p>See the supporting verification evidence for representative experience across reusable UVM environments, assertions, coverage and regression closure.</p></article></Container></Section>
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white"><Container class="text-center"><TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel><h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Need scalable verification capacity?</h2><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Bring the IP, subsystem or SoC verification challenge to AionSi.</p><div class="mt-9"><Button href="/contact">Discuss Your Engineering Requirement</Button></div></Container></Section>
+  </main>
+  <Footer />
+</BaseLayout>
