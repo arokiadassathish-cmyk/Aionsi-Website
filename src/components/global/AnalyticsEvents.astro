@@ -1,0 +1,34 @@
+---
+---
+<script is:inline>
+  const sendEvent = (name, params = {}) => {
+    window.dispatchEvent(new CustomEvent('aionsi:analytics', { detail: { name, params } }));
+  };
+
+  document.addEventListener('click', (event) => {
+    const target = event.target instanceof Element ? event.target.closest('a') : null;
+    if (!target) return;
+    const href = target.getAttribute('href') || '';
+    const text = (target.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120);
+
+    if (href.startsWith('mailto:')) {
+      sendEvent('contact_email_click', { link_text: text });
+    } else if (href.startsWith('tel:')) {
+      sendEvent('contact_phone_click', { link_text: text });
+    } else if (/\/contact\/?$/.test(href)) {
+      sendEvent('contact_page_click', { link_text: text });
+    } else if (/\/capabilities\//.test(href)) {
+      sendEvent('capability_click', { destination: href, link_text: text });
+    } else if (/\/evidence\//.test(href) || /\/experience\//.test(href)) {
+      sendEvent('engineering_evidence_click', { destination: href, link_text: text });
+    } else if (/\/insights\//.test(href) || /\/blogs\//.test(href)) {
+      sendEvent('content_click', { destination: href, link_text: text });
+    }
+  });
+
+  document.addEventListener('submit', (event) => {
+    const form = event.target instanceof HTMLFormElement ? event.target : null;
+    if (!form) return;
+    sendEvent('engineering_requirement_submit', { form_id: form.id || 'unknown' });
+  });
+</script>
