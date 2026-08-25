@@ -4,6 +4,7 @@ interface Props { title?: string; description?: string; canonical?: string; }
 const { title = 'AionSi | Semiconductor Engineering', description = 'Semiconductor engineering from IP to Silicon.', canonical } = Astro.props;
 const siteUrl = 'https://aionsi.com';
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
 <!doctype html>
 <html lang="en">
@@ -19,6 +20,21 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString(
     <meta property="og:url" content={canonicalUrl} />
     <meta name="twitter:card" content="summary" />
     <title>{title}</title>
+    {gaMeasurementId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+        <script is:inline define:vars={{ gaMeasurementId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaMeasurementId, { anonymize_ip: true });
+          window.addEventListener('aionsi:analytics', (event) => {
+            const detail = event?.detail || {};
+            if (detail.name) gtag('event', detail.name, detail.params || {});
+          });
+        </script>
+      </>
+    )}
   </head>
   <body>
     <slot />
