@@ -4,6 +4,7 @@ interface Props { title?: string; description?: string; canonical?: string; }
 const { title = 'AionSi | Semiconductor Engineering', description = 'Semiconductor engineering from IP to Silicon.', canonical } = Astro.props;
 const siteUrl = 'https://aionsi.com';
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
 <!doctype html>
 <html lang="en">
@@ -19,6 +20,37 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString(
     <meta property="og:url" content={canonicalUrl} />
     <meta name="twitter:card" content="summary" />
     <title>{title}</title>
+    {gaMeasurementId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+        <script is:inline define:vars={{ gaMeasurementId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaMeasurementId, { anonymize_ip: true });
+          window.addEventListener('aionsi:analytics', (event) => {
+            const detail = event?.detail || {};
+            if (detail.name) gtag('event', detail.name, detail.params || {});
+          });
+          document.addEventListener('click', (event) => {
+            const target = event.target instanceof Element ? event.target.closest('a') : null;
+            if (!target) return;
+            const href = target.getAttribute('href') || '';
+            const text = (target.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120);
+            if (href.startsWith('mailto:')) gtag('event', 'contact_email_click', { link_text: text });
+            else if (href.startsWith('tel:')) gtag('event', 'contact_phone_click', { link_text: text });
+            else if (/\/contact\/?$/.test(href)) gtag('event', 'contact_page_click', { link_text: text });
+            else if (/\/capabilities\//.test(href)) gtag('event', 'capability_click', { destination: href, link_text: text });
+            else if (/\/evidence\//.test(href) || /\/experience\//.test(href)) gtag('event', 'engineering_evidence_click', { destination: href, link_text: text });
+            else if (/\/insights\//.test(href) || /\/blogs\//.test(href)) gtag('event', 'content_click', { destination: href, link_text: text });
+          });
+          document.addEventListener('submit', (event) => {
+            const form = event.target instanceof HTMLFormElement ? event.target : null;
+            if (form) gtag('event', 'engineering_requirement_submit', { form_id: form.id || 'unknown' });
+          });
+        </script>
+      </>
+    )}
   </head>
   <body>
     <slot />
