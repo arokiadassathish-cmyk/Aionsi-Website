@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/global/Header.astro';
+import Footer from '../../../components/global/Footer.astro';
+import Container from '../../../components/global/Container.astro';
+import Section from '../../../components/global/Section.astro';
+import TechnicalLabel from '../../../components/global/TechnicalLabel.astro';
+import Button from '../../../components/global/Button.astro';
+---
+<BaseLayout title="Advanced-Node Physical Design: Timing, Congestion & Sign-Off | AionSi" description="AionSi engineering perspective on advanced-node physical design, congestion, timing closure and sign-off execution.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-16 lg:py-20">
+      <Container>
+        <TechnicalLabel>TECHNICAL PAPER</TechnicalLabel>
+        <h1 class="mt-5 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Advanced-Node Physical Design: Timing, Congestion &amp; Sign-Off</h1>
+        <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">An engineering perspective on the interaction between floorplanning, placement, CTS, routing, congestion and timing closure at advanced nodes.</p>
+      </Container>
+    </Section>
+    <Section>
+      <Container class="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
+        <aside class="h-fit border border-slate-200 bg-white p-6"><div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">Focus</div><ul class="mt-4 grid gap-3 text-sm leading-6 text-slate-600"><li>Floorplan and congestion control</li><li>Placement and CTS trade-offs</li><li>Setup/hold closure</li><li>Sign-off discipline</li></ul></aside>
+        <article class="prose prose-slate max-w-none">
+          <h2>Why closure becomes a coupled problem</h2>
+          <p>At advanced nodes, local implementation decisions can create global timing and routing effects. Physical design therefore benefits from an iterative approach that treats congestion, timing, power and physical quality as connected constraints rather than isolated checkpoints.</p>
+          <h2>Floorplan and placement set the closure envelope</h2>
+          <p>Macro placement, utilization, pin access and early timing estimates establish much of the later routing and timing environment. The goal is not simply a routable floorplan, but a floorplan that leaves practical margin for closure.</p>
+          <h2>CTS and route change the problem again</h2>
+          <p>Clock-tree decisions influence skew, insertion delay and downstream optimization. Route congestion, detours and coupling then feed back into timing. Closure requires disciplined iteration and visibility into the dominant contributors.</p>
+          <h2>Sign-off needs evidence, not just tool completion</h2>
+          <p>A governed closure flow should connect STA, physical verification, design-rule checks and open-issue ownership to explicit acceptance criteria. This supports predictable handoff and reduces late-stage surprises.</p>
+          <h2>Related AionSi evidence</h2>
+          <p>See the representative advanced-node physical-design evidence for the documented engineering scope and keep customer/product details generic unless disclosure is authorized.</p>
+        </article>
+      </Container>
+    </Section>
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white"><Container class="text-center"><TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel><h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Need additional physical-design closure capacity?</h2><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Bring the node, stage and closure bottleneck to AionSi.</p><div class="mt-9"><Button href="/contact">Discuss Your Engineering Requirement</Button></div></Container></Section>
+  </main>
+  <Footer />
+</BaseLayout>
