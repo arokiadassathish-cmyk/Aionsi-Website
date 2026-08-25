@@ -9,36 +9,27 @@ import EngineeringCard from '../../components/capabilities/EngineeringCard.astro
 import Button from '../../components/global/Button.astro';
 import { capabilities } from '../../data/capabilities';
 ---
-<BaseLayout title="Engineering Capabilities | AionSi" description="AionSi engineering capabilities across RTL Design, Design Verification, Physical Design, DFT, Protocol Verification and SoC & IP Engineering.">
+<BaseLayout title="Semiconductor Engineering Capabilities | AionSi" description="Semiconductor engineering capabilities across RTL design, design verification, physical design, DFT, protocol verification and SoC/IP engineering." canonical="https://aionsi.com/capabilities">
   <Header />
   <main>
     <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-16 lg:py-20">
       <Container>
         <div class="max-w-4xl">
           <TechnicalLabel>Engineering Capabilities</TechnicalLabel>
-          <h1 class="mt-5 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Engineering depth across the silicon lifecycle.</h1>
-          <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">Explore AionSi engineering capabilities from RTL development through verification, physical implementation, DFT, protocol verification and SoC integration.</p>
+          <h1 class="mt-5 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Semiconductor engineering from IP to Silicon.</h1>
+          <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">Explore AionSi engineering capabilities from RTL development through verification, physical implementation, DFT, protocol verification and SoC/IP engineering.</p>
         </div>
       </Container>
     </Section>
-
     <Section class="py-12 md:py-16 lg:py-20">
       <Container>
         <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((capability) => (
-            <EngineeringCard
-              number={capability.number}
-              title={capability.title}
-              description={capability.description}
-              technologies={capability.technologies?.join(' · ')}
-              outcome={capability.outcome}
-              href={`/capabilities/${capability.slug}`}
-            />
+            <EngineeringCard number={capability.number} title={capability.title} description={capability.description} technologies={capability.technologies?.join(' · ')} outcome={capability.outcome} href={`/capabilities/${capability.slug}`} />
           ))}
         </div>
       </Container>
     </Section>
-
     <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-16 lg:py-20">
       <Container class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
         <div>
@@ -54,13 +45,12 @@ import { capabilities } from '../../data/capabilities';
         </div>
       </Container>
     </Section>
-
     <Section class="bg-[var(--aionsi-deep-navy)] py-12 text-white md:py-16">
       <Container class="text-center">
         <TechnicalLabel>ENGINEERING EVIDENCE</TechnicalLabel>
         <h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">See representative engineering experience before you start the conversation.</h2>
         <p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Review approved examples across Physical Design, Design Verification and Protocol Verification.</p>
-        <div class="mt-9 flex flex-wrap justify-center gap-4"><Button href="/proof">Explore Engineering Experience</Button><Button href="/contact" variant="secondary">Discuss Your Engineering Requirement</Button></div>
+        <div class="mt-9 flex flex-wrap justify-center gap-4"><Button href="/proof">Explore Engineering Evidence</Button><Button href="/contact" variant="secondary">Discuss Your Engineering Requirement</Button></div>
       </Container>
     </Section>
   </main>
