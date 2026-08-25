@@ -1,9 +1,27 @@
 ---
 import '../styles/global.css';
-interface Props { title?: string; description?: string; canonical?: string; }
-const { title = 'AionSi | Semiconductor Engineering', description = 'Semiconductor engineering from IP to Silicon.', canonical } = Astro.props;
-const siteUrl = 'https://aionsi.com';
+import { organizationSchema, siteSeo, websiteSchema } from '../data/seo';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title = siteSeo.defaultTitle,
+  description = siteSeo.defaultDescription,
+  canonical,
+  ogImage = siteSeo.socialImage,
+} = Astro.props;
+
+const siteUrl = new URL(siteSeo.siteUrl);
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
+const socialImageUrl = new URL(ogImage, siteUrl).toString();
+
+const organization = JSON.stringify(organizationSchema);
+const website = JSON.stringify(websiteSchema);
 ---
 <!doctype html>
 <html lang="en">
@@ -11,13 +29,24 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString(
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <meta property="og:site_name" content={siteSeo.siteName} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={socialImageUrl} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+
+    <script type="application/ld+json" set:html={organization}></script>
+    <script type="application/ld+json" set:html={website}></script>
     <title>{title}</title>
   </head>
   <body>
