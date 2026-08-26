@@ -57,8 +57,8 @@ export const physicalDesignScope = {
     {
       type: 'case-study',
       title: 'Representative Engineering Experience — Physical Design',
-      description: 'Approved representative Physical Design evidence covering hierarchical SoC implementation, power and clocking constraints, timing closure, congestion management, routing and sign-off.',
-      href: '/evidence/physical-design-representative-engineering-experience',
+      description: 'Profile-derived evidence spanning 13+ and 14.1-year engineering profiles, with advanced-node implementation, STA, congestion optimization, physical verification and sign-off examples.',
+      href: '/evidence/physical-design-profile-derived-experience',
     },
     {
       type: 'whitepaper',
