@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/global/Header.astro';
+import Footer from '../../../components/global/Footer.astro';
+import Container from '../../../components/global/Container.astro';
+import Section from '../../../components/global/Section.astro';
+import TechnicalLabel from '../../../components/global/TechnicalLabel.astro';
+---
+<BaseLayout title="Gallery Admin Login | AionSi" description="Private AionSi gallery administration login.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-16 md:py-24"><Container><div class="mx-auto max-w-xl border border-slate-200 bg-white p-8 shadow-sm"><TechnicalLabel>PRIVATE GALLERY MANAGER</TechnicalLabel><h1 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)]">Sign in to manage event media.</h1><p class="mt-4 text-sm leading-7 text-slate-600">Use the Hostinger-configured gallery administrator credentials. Credentials are never stored in GitHub.</p><form id="gallery-login" class="mt-8 grid gap-5"><label class="text-sm font-semibold text-slate-700">Username<input name="username" value="admin" autocomplete="username" class="mt-2 w-full rounded border border-slate-300 px-4 py-3" /></label><label class="text-sm font-semibold text-slate-700">Password<input name="password" type="password" autocomplete="current-password" class="mt-2 w-full rounded border border-slate-300 px-4 py-3" required /></label><button class="w-fit rounded-full bg-[var(--aionsi-orange)] px-5 py-3 text-sm font-semibold text-white" type="submit">Sign in</button><p id="login-status" class="text-sm text-slate-500" role="status"></p></form></div></Container></Section>
+  </main>
+  <Footer />
+  <script>
+    const form = document.querySelector('#gallery-login');
+    const status = document.querySelector('#login-status');
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const response = await fetch('/api/gallery/auth/login', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ username: data.get('username'), password: data.get('password') }),
+      });
+      const body = await response.json().catch(() => ({}));
+      if (response.ok && body.ok) {
+        window.location.href = '/admin/gallery';
+        return;
+      }
+      if (status) status.textContent = body.error || 'Unable to sign in.';
+    });
+  </script>
+</BaseLayout>
