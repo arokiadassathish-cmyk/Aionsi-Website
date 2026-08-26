@@ -7,6 +7,11 @@ import Section from '../../components/global/Section.astro';
 import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import { targetAccounts } from '../../data/targetAccounts';
 
+// Target-account pages are content-driven and should be generated at build time.
+// This is required because the site uses server output globally, while these
+// account pages already provide their complete static paths via getStaticPaths().
+export const prerender = true;
+
 export function getStaticPaths() {
   return targetAccounts.map((account) => ({ params: { slug: account.slug }, props: { account } }));
 }
