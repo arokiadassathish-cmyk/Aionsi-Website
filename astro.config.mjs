@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
