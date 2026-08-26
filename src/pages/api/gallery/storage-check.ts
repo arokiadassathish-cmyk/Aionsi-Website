@@ -1,0 +1,27 @@
+import type { APIRoute } from 'astro';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+
+const storageRoot = process.env.GALLERY_STORAGE_ROOT || path.resolve(process.cwd(), 'var', 'gallery-media');
+
+export const GET: APIRoute = async () => {
+  try {
+    await fs.mkdir(storageRoot, { recursive: true });
+    const probe = path.join(storageRoot, '.write-probe');
+    await fs.writeFile(probe, new Date().toISOString(), 'utf8');
+    await fs.unlink(probe);
+
+    return new Response(JSON.stringify({
+      status: 'ok',
+      writable: true,
+      storageConfigured: Boolean(process.env.GALLERY_STORAGE_ROOT),
+      note: 'Persistent media storage is writable. Upload APIs remain disabled until admin authentication is configured.'
+    }), { status: 200, headers: { 'content-type': 'application/json; charset=utf-8' } });
+  } catch (error) {
+    return new Response(JSON.stringify({
+      status: 'error',
+      writable: false,
+      message: error instanceof Error ? error.message : 'Storage check failed'
+    }), { status: 500, headers: { 'content-type': 'application/json; charset=utf-8' } });
+  }
+};
