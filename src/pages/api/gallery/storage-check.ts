@@ -18,7 +18,7 @@ export const GET: APIRoute = async () => {
       writable: true,
       storageConfigured: Boolean(process.env.GALLERY_STORAGE_ROOT),
       storageRoot: process.env.GALLERY_STORAGE_ROOT ? 'configured' : 'default-app-path',
-      note: 'Persistent media storage is writable. Upload APIs remain disabled until admin authentication is configured.'
+      note: 'Persistent media storage is writable. Authenticated gallery upload APIs are enabled.'
     }), { status: 200, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
   } catch (error) {
     return new Response(JSON.stringify({
