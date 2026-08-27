@@ -12,11 +12,89 @@ if (!hasGalleryAdminSession(Astro)) return Astro.redirect('/admin/gallery/login'
 <BaseLayout title="Gallery Manager | AionSi" description="Private AionSi event gallery management area.">
   <Header />
   <main>
-    <Section class="bg-[var(--aionsi-surface-alt)] py-16 md:py-20 lg:py-24"><Container><TechnicalLabel>PRIVATE GALLERY MANAGER</TechnicalLabel><h1 class="mt-4 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Manage event media without editing website code.</h1><p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">Create an event, upload photos and videos to persistent Hostinger storage, choose a cover image, then publish when ready.</p></Container></Section>
-    <Section><Container><div id="status" class="mb-6 hidden rounded border p-4 text-sm"></div><div class="grid gap-6 lg:grid-cols-2">
-      <div class="border border-slate-200 bg-white p-8"><TechnicalLabel>EVENT MANAGEMENT</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold text-[var(--aionsi-navy)]">Create an event</h2><form id="event-form" class="mt-6 grid gap-4"><label class="text-sm font-semibold text-slate-700">Event title<input id="title" required class="mt-2 w-full rounded border border-slate-300 px-4 py-3" placeholder="e.g. DVCon India 2026" /></label><label class="text-sm font-semibold text-slate-700">Category<select id="category" class="mt-2 w-full rounded border border-slate-300 px-4 py-3"><option>Conference</option><option>Exhibition</option><option>Technical Event</option><option>Company Event</option></select></label><div class="grid gap-4 sm:grid-cols-2"><label class="text-sm font-semibold text-slate-700">Date<input id="date" type="date" required class="mt-2 w-full rounded border border-slate-300 px-4 py-3" /></label><label class="text-sm font-semibold text-slate-700">Location<input id="location" required class="mt-2 w-full rounded border border-slate-300 px-4 py-3" placeholder="Bengaluru, India" /></label></div><label class="text-sm font-semibold text-slate-700">Description<textarea id="description" required class="mt-2 min-h-32 w-full rounded border border-slate-300 px-4 py-3" placeholder="Describe the event and AionSi participation."></textarea></label><button type="submit" class="w-fit rounded-full bg-[var(--aionsi-orange)] px-5 py-3 text-sm font-semibold text-white">Create draft event</button></form><div class="mt-8 border-t border-slate-200 pt-6"><label class="text-sm font-semibold text-slate-700">Current event<select id="event-select" class="mt-2 w-full rounded border border-slate-300 px-4 py-3"><option value="">Create an event first</option></select></label><div class="mt-4 flex flex-wrap gap-3"><button id="publish" type="button" class="rounded-full bg-[var(--aionsi-blue)] px-5 py-3 text-sm font-semibold text-white disabled:opacity-40" disabled>Publish selected event</button><a id="view-event" class="hidden rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700" target="_blank">View public gallery</a></div></div></div>
-      <div class="border border-slate-200 bg-white p-8"><TechnicalLabel>MEDIA WORKFLOW</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold text-[var(--aionsi-navy)]">Upload media</h2><div class="mt-6 grid gap-5"><label class="text-sm font-semibold text-slate-700">Photos<input id="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple class="mt-2 block w-full rounded border border-slate-300 p-3" /></label><button id="upload-photos" type="button" class="w-fit rounded-full border border-[var(--aionsi-blue)] px-5 py-3 text-sm font-semibold text-[var(--aionsi-blue)] disabled:opacity-40" disabled>Upload photos</button><p class="text-xs leading-6 text-slate-500">JPG, PNG and WebP. Maximum 10 MB per image.</p><label class="text-sm font-semibold text-slate-700">Videos<input id="videos" type="file" accept="video/mp4,video/webm" multiple class="mt-2 block w-full rounded border border-slate-300 p-3" /></label><button id="upload-videos" type="button" class="w-fit rounded-full border border-[var(--aionsi-blue)] px-5 py-3 text-sm font-semibold text-[var(--aionsi-blue)] disabled:opacity-40" disabled>Upload videos</button><p class="text-xs leading-6 text-slate-500">MP4 or WebM. Maximum 250 MB per video.</p><label class="text-sm font-semibold text-slate-700">Cover image<input id="cover" type="file" accept="image/jpeg,image/png,image/webp" class="mt-2 block w-full rounded border border-slate-300 p-3" /></label><button id="upload-cover" type="button" class="w-fit rounded-full border border-[var(--aionsi-blue)] px-5 py-3 text-sm font-semibold text-[var(--aionsi-blue)] disabled:opacity-40" disabled>Set cover image</button><div class="rounded border border-green-200 bg-green-50 p-4 text-sm leading-6 text-green-900">Hostinger storage is writable and configured. Uploaded media stays outside GitHub and persists across website redeployments.</div><button id="logout" type="button" class="w-fit rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700">Sign out</button></div></div>
-    </div></Container></Section>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-10 md:py-12 lg:py-14">
+      <Container>
+        <TechnicalLabel>PRIVATE GALLERY MANAGER</TechnicalLabel>
+        <h1 class="mt-3 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Manage AionSi event media.</h1>
+        <p class="mt-4 max-w-3xl text-lg leading-8 text-slate-600">Create an event, upload photos and videos to persistent Hostinger storage, review the gallery, then publish when ready.</p>
+        <div class="mt-7 grid gap-2 sm:grid-cols-5" aria-label="Gallery publishing workflow">
+          {[
+            ['01', 'Create event'],
+            ['02', 'Upload media'],
+            ['03', 'Set cover'],
+            ['04', 'Preview'],
+            ['05', 'Publish'],
+          ].map(([number, label], index) => (
+            <div class="flex items-center gap-3 rounded border border-slate-200 bg-white px-3 py-3 text-sm">
+              <span class="font-semibold text-[var(--aionsi-orange)]">{number}</span>
+              <span class="font-semibold text-slate-700">{label}</span>
+              {index < 4 && <span class="ml-auto hidden text-slate-300 sm:inline" aria-hidden="true">→</span>}
+            </div>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-10 md:py-12">
+      <Container>
+        <div id="status" class="mb-6 hidden rounded border p-4 text-sm" role="status" aria-live="polite"></div>
+        <div class="grid gap-6 lg:grid-cols-2">
+          <div class="border border-slate-200 bg-white p-6 md:p-8">
+            <TechnicalLabel>01 · EVENT MANAGEMENT</TechnicalLabel>
+            <h2 class="mt-3 text-2xl font-semibold text-[var(--aionsi-navy)]">Create an event</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-500">Start with a draft. You can upload media before publishing.</p>
+            <form id="event-form" class="mt-6 grid gap-4">
+              <label class="text-sm font-semibold text-slate-700">Event title<input id="title" required class="mt-2 w-full rounded border border-slate-300 px-4 py-3" placeholder="e.g. DVCon India 2026" /></label>
+              <label class="text-sm font-semibold text-slate-700">Category<select id="category" class="mt-2 w-full rounded border border-slate-300 px-4 py-3"><option>Conference</option><option>Exhibition</option><option>Technical Event</option><option>Company Event</option></select></label>
+              <div class="grid gap-4 sm:grid-cols-2"><label class="text-sm font-semibold text-slate-700">Date<input id="date" type="date" required class="mt-2 w-full rounded border border-slate-300 px-4 py-3" /></label><label class="text-sm font-semibold text-slate-700">Location<input id="location" required class="mt-2 w-full rounded border border-slate-300 px-4 py-3" placeholder="Bengaluru, India" /></label></div>
+              <label class="text-sm font-semibold text-slate-700">Description<textarea id="description" required class="mt-2 min-h-28 w-full rounded border border-slate-300 px-4 py-3" placeholder="Describe the event and AionSi participation."></textarea></label>
+              <button type="submit" class="w-fit rounded-full bg-[var(--aionsi-orange)] px-5 py-3 text-sm font-semibold text-white">Create draft event</button>
+            </form>
+            <div class="mt-8 border-t border-slate-200 pt-6">
+              <TechnicalLabel>SELECT EVENT</TechnicalLabel>
+              <label class="mt-3 block text-sm font-semibold text-slate-700">Current event<select id="event-select" class="mt-2 w-full rounded border border-slate-300 px-4 py-3"><option value="">Create an event first</option></select></label>
+              <div id="event-summary" class="mt-4 hidden rounded border border-slate-200 bg-slate-50 p-4 text-sm"></div>
+              <div class="mt-4 flex flex-wrap gap-3">
+                <button id="publish" type="button" class="rounded-full bg-[var(--aionsi-blue)] px-5 py-3 text-sm font-semibold text-white disabled:opacity-40" disabled>Publish selected event</button>
+                <a id="view-event" class="hidden rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700" target="_blank" rel="noopener">Preview public gallery ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="border border-slate-200 bg-white p-6 md:p-8">
+            <TechnicalLabel>02–04 · MEDIA WORKFLOW</TechnicalLabel>
+            <h2 class="mt-3 text-2xl font-semibold text-[var(--aionsi-navy)]">Upload, review &amp; cover</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-500">Select an event first. Files remain outside GitHub on persistent Hostinger storage.</p>
+
+            <div class="mt-6 grid gap-6">
+              <div>
+                <label class="text-sm font-semibold text-slate-700">Photos<input id="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple class="mt-2 block w-full rounded border border-slate-300 p-3" /></label>
+                <p class="mt-2 text-xs leading-5 text-slate-500">JPG, PNG and WebP · maximum 10 MB per image.</p>
+                <div id="photo-preview" class="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-4"></div>
+                <div class="mt-3 flex flex-wrap items-center gap-3"><button id="upload-photos" type="button" class="rounded-full border border-[var(--aionsi-blue)] px-5 py-3 text-sm font-semibold text-[var(--aionsi-blue)] disabled:opacity-40" disabled>Upload photos</button><span id="photo-count" class="text-xs text-slate-500"></span></div>
+              </div>
+
+              <div class="border-t border-slate-200 pt-6">
+                <label class="text-sm font-semibold text-slate-700">Videos<input id="videos" type="file" accept="video/mp4,video/webm" multiple class="mt-2 block w-full rounded border border-slate-300 p-3" /></label>
+                <p class="mt-2 text-xs leading-5 text-slate-500">MP4 or WebM · maximum 250 MB per video.</p>
+                <div id="video-preview" class="mt-3 grid gap-2"></div>
+                <div class="mt-3 flex flex-wrap items-center gap-3"><button id="upload-videos" type="button" class="rounded-full border border-[var(--aionsi-blue)] px-5 py-3 text-sm font-semibold text-[var(--aionsi-blue)] disabled:opacity-40" disabled>Upload videos</button><span id="video-count" class="text-xs text-slate-500"></span></div>
+              </div>
+
+              <div class="border-t border-slate-200 pt-6">
+                <label class="text-sm font-semibold text-slate-700">Cover image<input id="cover" type="file" accept="image/jpeg,image/png,image/webp" class="mt-2 block w-full rounded border border-slate-300 p-3" /></label>
+                <div id="cover-preview" class="mt-3 hidden overflow-hidden rounded border border-slate-200 bg-slate-50"></div>
+                <button id="upload-cover" type="button" class="mt-3 rounded-full border border-[var(--aionsi-blue)] px-5 py-3 text-sm font-semibold text-[var(--aionsi-blue)] disabled:opacity-40" disabled>Set cover image</button>
+              </div>
+
+              <div class="rounded border border-green-200 bg-green-50 p-4 text-sm leading-6 text-green-900"><strong>Storage ready.</strong> Hostinger storage is writable and configured. Uploaded media stays outside GitHub and persists across website redeployments.</div>
+              <div id="upload-progress" class="hidden rounded border border-slate-200 bg-slate-50 p-4" aria-live="polite"><div class="flex justify-between text-sm font-semibold text-slate-700"><span id="progress-label">Uploading…</span><span id="progress-value">0%</span></div><div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-200"><div id="progress-bar" class="h-full w-0 rounded-full bg-[var(--aionsi-blue)] transition-[width] duration-200"></div></div></div>
+              <button id="logout" type="button" class="w-fit rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700">Sign out</button>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
   </main>
   <Footer />
   <script>
@@ -24,18 +102,94 @@ if (!hasGalleryAdminSession(Astro)) return Astro.redirect('/admin/gallery/login'
     const select = document.querySelector('#event-select');
     const publish = document.querySelector('#publish');
     const view = document.querySelector('#view-event');
-    const buttons = [document.querySelector('#upload-photos'), document.querySelector('#upload-videos'), document.querySelector('#upload-cover')];
+    const summary = document.querySelector('#event-summary');
+    const progress = document.querySelector('#upload-progress');
+    const progressBar = document.querySelector('#progress-bar');
+    const progressValue = document.querySelector('#progress-value');
+    const progressLabel = document.querySelector('#progress-label');
+    const uploadButtons = [document.querySelector('#upload-photos'), document.querySelector('#upload-videos'), document.querySelector('#upload-cover')];
     let events = [];
-    const status = (message, ok = true) => { statusBox.textContent = message; statusBox.className = `mb-6 rounded border p-4 text-sm ${ok ? 'border-green-200 bg-green-50 text-green-900' : 'border-red-200 bg-red-50 text-red-900'}`; };
-    const refresh = async () => { const response = await fetch('/api/gallery/events'); const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Unable to load events.'); events = data.events || []; select.innerHTML = events.length ? events.map((event) => `<option value="${event.slug}">${event.title} — ${event.published ? 'Published' : 'Draft'}</option>`).join('') : '<option value="">Create an event first</option>'; updateControls(); };
+
+    const status = (message, ok = true) => {
+      statusBox.textContent = message;
+      statusBox.className = `mb-6 rounded border p-4 text-sm ${ok ? 'border-green-200 bg-green-50 text-green-900' : 'border-red-200 bg-red-50 text-red-900'}`;
+      statusBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
     const selected = () => events.find((event) => event.slug === select.value);
-    const updateControls = () => { const has = Boolean(select.value); buttons.forEach((button) => button.disabled = !has); publish.disabled = !has || Boolean(selected()?.published); if (has) { view.href = `/gallery/${select.value}`; view.classList.remove('hidden'); } else view.classList.add('hidden'); };
-    document.querySelector('#event-form').addEventListener('submit', async (event) => { event.preventDefault(); try { const body = { title: document.querySelector('#title').value, category: document.querySelector('#category').value, date: document.querySelector('#date').value, location: document.querySelector('#location').value, description: document.querySelector('#description').value }; const response = await fetch('/api/gallery/events', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }); const data = await response.json(); if (!response.ok) throw new Error(data.error); await refresh(); select.value = data.event.slug; updateControls(); status(`Draft created: ${data.event.title}`); } catch (error) { status(error.message || 'Unable to create event.', false); } });
-    const upload = async (inputId, kind) => { if (!select.value) return status('Select an event first.', false); const input = document.querySelector(inputId); if (!input.files.length) return status('Select at least one file.', false); const form = new FormData(); form.append('eventSlug', select.value); form.append('kind', kind); [...input.files].forEach((file) => form.append('files', file)); const response = await fetch('/api/gallery/upload', { method: 'POST', body: form }); const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Upload failed.'); await refresh(); status(`${data.files.length} file${data.files.length === 1 ? '' : 's'} uploaded successfully.`); input.value = ''; };
-    document.querySelector('#upload-photos').addEventListener('click', () => upload('#photos', 'media').catch((error) => status(error.message, false)));
-    document.querySelector('#upload-videos').addEventListener('click', () => upload('#videos', 'media').catch((error) => status(error.message, false)));
-    document.querySelector('#upload-cover').addEventListener('click', () => upload('#cover', 'cover').catch((error) => status(error.message, false)));
-    publish.addEventListener('click', async () => { try { const response = await fetch('/api/gallery/events', { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ slug: select.value, published: true }) }); const data = await response.json(); if (!response.ok) throw new Error(data.error); await refresh(); select.value = data.event.slug; updateControls(); status(`Published: ${data.event.title}`); } catch (error) { status(error.message || 'Unable to publish event.', false); } });
+    const bytes = (value) => { if (!value) return '0 B'; const units = ['B', 'KB', 'MB', 'GB']; const index = Math.min(Math.floor(Math.log(value) / Math.log(1024)), units.length - 1); return `${(value / 1024 ** index).toFixed(index ? 1 : 0)} ${units[index]}`; };
+    const updateSummary = () => {
+      const event = selected();
+      if (!event) { summary.classList.add('hidden'); view.classList.add('hidden'); return; }
+      summary.classList.remove('hidden');
+      summary.innerHTML = `<div class="font-semibold text-slate-800">${event.title}</div><div class="mt-1 text-slate-500">${event.category} · ${event.location} · ${event.date}</div><div class="mt-2 font-semibold ${event.published ? 'text-green-700' : 'text-amber-700'}">● ${event.published ? 'Published' : 'Draft'}</div>`;
+      view.href = `/gallery/${event.slug}`;
+      view.classList.remove('hidden');
+    };
+    const updateControls = () => { const has = Boolean(select.value); uploadButtons.forEach((button) => { button.disabled = !has; }); publish.disabled = !has || Boolean(selected()?.published); updateSummary(); };
+    const refresh = async () => { const response = await fetch('/api/gallery/events', { cache: 'no-store' }); const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Unable to load events.'); events = data.events || []; select.innerHTML = events.length ? events.map((event) => `<option value="${event.slug}">${event.title} — ${event.published ? 'Published' : 'Draft'}</option>`).join('') : '<option value="">Create an event first</option>'; updateControls(); };
+
+    const renderImagePreviews = (input, target, countTarget) => {
+      target.innerHTML = '';
+      const files = [...input.files];
+      countTarget.textContent = files.length ? `${files.length} file${files.length === 1 ? '' : 's'} · ${bytes(files.reduce((sum, file) => sum + file.size, 0))}` : '';
+      files.forEach((file) => {
+        const url = URL.createObjectURL(file);
+        const card = document.createElement('div');
+        card.className = 'overflow-hidden rounded border border-slate-200 bg-slate-50';
+        card.innerHTML = `<img src="${url}" alt="Selected ${file.name}" class="aspect-square w-full object-cover" /><div class="truncate px-2 py-1 text-[11px] text-slate-500">${file.name}</div>`;
+        target.appendChild(card);
+      });
+    };
+    const renderVideoPreviews = (input, target, countTarget) => {
+      target.innerHTML = '';
+      const files = [...input.files];
+      countTarget.textContent = files.length ? `${files.length} file${files.length === 1 ? '' : 's'} · ${bytes(files.reduce((sum, file) => sum + file.size, 0))}` : '';
+      files.forEach((file) => {
+        const row = document.createElement('div');
+        row.className = 'rounded border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-600';
+        row.textContent = `${file.name} · ${bytes(file.size)}`;
+        target.appendChild(row);
+      });
+    };
+
+    document.querySelector('#photos').addEventListener('change', (event) => renderImagePreviews(event.target, document.querySelector('#photo-preview'), document.querySelector('#photo-count')));
+    document.querySelector('#videos').addEventListener('change', (event) => renderVideoPreviews(event.target, document.querySelector('#video-preview'), document.querySelector('#video-count')));
+    document.querySelector('#cover').addEventListener('change', (event) => {
+      const file = event.target.files[0]; const target = document.querySelector('#cover-preview'); target.innerHTML = '';
+      if (!file) { target.classList.add('hidden'); return; }
+      target.classList.remove('hidden'); const image = document.createElement('img'); image.src = URL.createObjectURL(file); image.alt = `Selected cover ${file.name}`; image.className = 'max-h-64 w-full object-cover'; target.appendChild(image);
+    });
+
+    document.querySelector('#event-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      try {
+        const body = { title: document.querySelector('#title').value, category: document.querySelector('#category').value, date: document.querySelector('#date').value, location: document.querySelector('#location').value, description: document.querySelector('#description').value };
+        const response = await fetch('/api/gallery/events', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+        const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Unable to create event.');
+        await refresh(); select.value = data.event.slug; updateControls(); status(`Draft created: ${data.event.title}`); document.querySelector('#event-form').reset();
+      } catch (error) { status(error.message || 'Unable to create event.', false); }
+    });
+
+    const setProgress = (value, label = 'Uploading…') => { progress.classList.remove('hidden'); progressLabel.textContent = label; progressValue.textContent = `${value}%`; progressBar.style.width = `${value}%`; };
+    const upload = (inputId, kind) => new Promise((resolve, reject) => {
+      if (!select.value) return reject(new Error('Select an event first.'));
+      const input = document.querySelector(inputId); if (!input.files.length) return reject(new Error('Select at least one file.'));
+      const form = new FormData(); form.append('eventSlug', select.value); form.append('kind', kind); [...input.files].forEach((file) => form.append('files', file));
+      const request = new XMLHttpRequest(); request.open('POST', '/api/gallery/upload'); request.upload.addEventListener('progress', (event) => { if (event.lengthComputable) setProgress(Math.round((event.loaded / event.total) * 100), `Uploading ${input.files.length} file${input.files.length === 1 ? '' : 's'}…`); });
+      request.addEventListener('load', async () => { try { const data = JSON.parse(request.responseText || '{}'); if (request.status < 200 || request.status >= 300) throw new Error(data.error || 'Upload failed.'); setProgress(100, 'Upload complete'); await refresh(); input.value = ''; if (kind === 'media') { if (inputId === '#photos') { document.querySelector('#photo-preview').innerHTML = ''; document.querySelector('#photo-count').textContent = ''; } else { document.querySelector('#video-preview').innerHTML = ''; document.querySelector('#video-count').textContent = ''; } } else { document.querySelector('#cover-preview').classList.add('hidden'); } setTimeout(() => progress.classList.add('hidden'), 1200); resolve(data); } catch (error) { progress.classList.add('hidden'); reject(error); } });
+      request.addEventListener('error', () => { progress.classList.add('hidden'); reject(new Error('Network error while uploading.')); }); request.addEventListener('abort', () => { progress.classList.add('hidden'); reject(new Error('Upload cancelled.')) }); request.send(form);
+    });
+
+    document.querySelector('#upload-photos').addEventListener('click', () => upload('#photos', 'media').then((data) => status(`${data.files.length} photo${data.files.length === 1 ? '' : 's'} uploaded successfully.`)).catch((error) => status(error.message, false)));
+    document.querySelector('#upload-videos').addEventListener('click', () => upload('#videos', 'media').then((data) => status(`${data.files.length} video${data.files.length === 1 ? '' : 's'} uploaded successfully.`)).catch((error) => status(error.message, false)));
+    document.querySelector('#upload-cover').addEventListener('click', () => upload('#cover', 'cover').then(() => status('Cover image uploaded successfully.')).catch((error) => status(error.message, false)));
+
+    publish.addEventListener('click', async () => {
+      if (!select.value) return;
+      const event = selected();
+      if (!event || !window.confirm(`Publish “${event.title}” to the public gallery?`)) return;
+      try { const response = await fetch('/api/gallery/events', { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ slug: select.value, published: true }) }); const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Unable to publish event.'); await refresh(); select.value = data.event.slug; updateControls(); status(`Published: ${data.event.title}`); } catch (error) { status(error.message || 'Unable to publish event.', false); }
+    });
     select.addEventListener('change', updateControls);
     document.querySelector('#logout').addEventListener('click', async () => { await fetch('/api/gallery/auth/logout', { method: 'POST' }); window.location.href = '/admin/gallery/login'; });
     refresh().catch((error) => status(error.message || 'Unable to load gallery events.', false));
