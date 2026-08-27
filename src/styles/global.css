@@ -6,7 +6,7 @@ body {
   margin: 0;
   background: var(--aionsi-surface);
   color: var(--aionsi-text);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
