@@ -11,6 +11,7 @@ export const engineeringDiscoveryFields = [
   { name: 'ndaStatus', label: 'NDA / technical review status', type: 'select', required: false },
   { name: 'expectedTimeline', label: 'Expected timeline', type: 'select', required: false },
   { name: 'engineeringCapacity', label: 'Required engineering capacity', type: 'select', required: false },
+  { name: 'desiredOutcome', label: 'What are you looking to achieve?', type: 'select', required: false },
   { name: 'engineeringRequirement', label: 'Engineering requirement', type: 'textarea', required: true },
 ] as const;
 
@@ -22,12 +23,13 @@ export const engineeringDiscoveryOptions = {
   ndaStatus: ['NDA already available', 'NDA required', 'Technical discussion possible before NDA', 'Not sure'],
   expectedTimeline: ['Immediate', 'Within 1 month', '1–3 months', '3–6 months', '6+ months'],
   engineeringCapacity: ['1–2 engineers', '3–5 engineers', '6–10 engineers', '10+ engineers', 'To be determined'],
+  desiredOutcome: ['Engineering capacity augmentation', 'Project-based execution', 'Verification / validation support', 'IP development', 'SoC development', 'ODC / dedicated engineering team', 'Technical feasibility / PoC', 'Other'],
 } as const;
 
 export const engineeringDiscoveryRouting = [
   'Customer requirement',
   'Technical qualification',
-  'Opportunity',
+  'Opportunity definition',
   'Engineering discovery',
   'NDA / technical review',
   'Pilot / workstream / project',
