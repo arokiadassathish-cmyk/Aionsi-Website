@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+---
+<BaseLayout
+  title="Advanced-Node Physical Design: Timing, Congestion & Sign-Off Closure | AionSi"
+  description="AionSi engineering methodology for advanced-node physical design, including floorplanning, placement, CTS, routing, timing closure, congestion optimization and physical sign-off."
+>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-16 lg:py-20">
+      <Container>
+        <div class="max-w-5xl">
+          <div class="flex flex-wrap items-center gap-4 text-xs font-semibold tracking-[.2em] text-[var(--aionsi-blue)]">
+            <span>PHYSICAL DESIGN</span><span class="h-px w-10 bg-[var(--aionsi-blue)]/40"></span><span>TECHNICAL REFERENCE</span>
+          </div>
+          <h1 class="mt-6 text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Advanced-Node Physical Design: Timing, Congestion & Sign-Off Closure</h1>
+          <p class="mt-5 max-w-4xl text-xl leading-9 text-slate-600 md:text-2xl">A practical engineering methodology for complex ASIC and SoC implementation where physical architecture, timing, congestion, power intent and sign-off must converge.</p>
+          <div class="mt-7 border-l-2 border-[var(--aionsi-orange)] bg-white px-5 py-4 text-sm leading-7 text-slate-600 shadow-sm"><strong class="text-[var(--aionsi-navy)]">Positioning:</strong> This page summarizes representative engineering practices and evidence supplied to AionSi. It does not imply customer attribution or a guarantee of a specific implementation outcome.</div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-12 md:py-14 lg:py-16">
+      <Container>
+        <TechnicalLabel>Representative Engineering Evidence</TechnicalLabel>
+        <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            ['3nm–28nm','Representative process range'],
+            ['8M+','Representative cell scale'],
+            ['352','Representative macro scale'],
+            ['2.8 GHz','Representative high-frequency experience'],
+          ].map(([value,label]) => <div class="border border-slate-200 bg-white p-6 shadow-sm"><div class="text-3xl font-semibold text-[var(--aionsi-blue)]">{value}</div><p class="mt-2 text-sm leading-6 text-slate-600">{label}</p></div>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-12 md:py-16 text-white">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+          <div><TechnicalLabel>End-to-End Flow</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">From netlist to sign-off.</h2><p class="mt-4 text-lg leading-8 text-white/70">Physical implementation is treated as a closure loop, not a sequence of disconnected tool stages.</p></div>
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              ['01','Floorplan','Hierarchy, macros, ports and power domains'],
+              ['02','Placement','Density, timing and congestion optimization'],
+              ['03','CTS','Clock balance, skew, latency and transition'],
+              ['04','Routing','Detailed routing and physical-rule closure'],
+              ['05','Timing / PPA','STA, path groups, optimization and ECO'],
+              ['06','Sign-Off','Physical verification and release readiness'],
+            ].map(([num,title,desc]) => <div class="border border-white/10 bg-white/5 p-5"><div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</div><h3 class="mt-3 text-lg font-semibold">{title}</h3><p class="mt-2 text-sm leading-6 text-white/65">{desc}</p></div>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-12 md:py-14 lg:py-16">
+      <Container>
+        <div class="grid gap-6 lg:grid-cols-3">
+          {[
+            ['Floorplan & Power Intent','Hierarchical floorplanning, macro planning, port placement, feedthrough analysis and power-domain considerations establish an implementation-ready physical architecture.'],
+            ['Placement & Congestion','Density analysis, cell padding, placement blockages, density screens and routing-resource analysis are used to address congestion hotspots while protecting timing objectives.'],
+            ['Timing Closure','STA, critical-path analysis, path grouping, implementation feedback and ECO iteration connect physical implementation with sign-off timing closure.'],
+            ['CTS & Routing','Clock-tree synthesis, clock routing and detailed route optimization are tuned for skew, latency, transition, capacitance and physical-rule constraints.'],
+            ['Physical Verification','DRC, LVS, antenna/DFM-related checks, extraction-aware analysis and sign-off ECO activities support final physical closure.'],
+            ['Power / PPA','Power-domain planning, IR/EM-aware activities and power-aware implementation feedback can be integrated into the broader closure loop where required.'],
+          ].map(([title,desc]) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><h2 class="text-lg font-semibold text-[var(--aionsi-navy)]">{title}</h2><p class="mt-3 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-14 lg:py-16">
+      <Container>
+        <TechnicalLabel>Representative Program Patterns</TechnicalLabel>
+        <div class="mt-6 grid gap-5 lg:grid-cols-3">
+          <article class="border border-slate-200 bg-white p-7"><div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">3NM</div><h2 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">High-Complexity Block</h2><p class="mt-3 text-sm leading-6 text-slate-600">Representative profile evidence includes approximately 8M cells, 352 macros, 3 power domains, 17 metal layers and a 2.4 GHz primary clock, with ownership across floorplan, placement, CTS, routing, timing, congestion and sign-off.</p></article>
+          <article class="border border-slate-200 bg-white p-7"><div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">3NM</div><h2 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Multi-Power-Domain Block</h2><p class="mt-3 text-sm leading-6 text-slate-600">Representative experience includes approximately 4.3M cells, 189 macros, 7 power domains, 15 metal layers and a 2.8 GHz main clock across implementation and sign-off activities.</p></article>
+          <article class="border border-slate-200 bg-white p-7"><div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">HIGH-DENSITY</div><h2 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Congestion & Timing Closure</h2><p class="mt-3 text-sm leading-6 text-slate-600">Representative closure work uses blockages, cell padding, density screens, path groups, repeater bounds and manual ECOs to systematically address physical bottlenecks.</p></article>
+        </div>
+        <p class="mt-6 text-xs leading-5 text-slate-500">Figures shown here are representative engineering evidence from approved profiles and should be treated as program-specific examples, not a single combined design.</p>
+      </Container>
+    </Section>
+
+    <Section class="py-12 md:py-14 lg:py-16">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+          <div><TechnicalLabel>Tooling Environment</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Implementation and sign-off across industry-standard flows.</h2></div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {['Synopsys Fusion Compiler / ICC2','Cadence Innovus','Synopsys Design Compiler','Synopsys PrimeTime / Tweaker','Synopsys Star-RC','Calibre / ICV','Tcl / Shell automation'].map((item) => <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-4 text-sm font-medium text-slate-600">{item}</div>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-14 lg:py-16">
+      <Container>
+        <div class="grid gap-6 md:grid-cols-3">
+          <div class="border border-slate-200 bg-white p-6"><div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">01</div><h2 class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">Qualification</h2><p class="mt-2 text-sm leading-6 text-slate-600">Map a defined physical-design bottleneck to the appropriate engineering capability and ownership model.</p></div>
+          <div class="border border-slate-200 bg-white p-6"><div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">02</div><h2 class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">Pilot</h2><p class="mt-2 text-sm leading-6 text-slate-600">Start with a bounded block, timing/congestion problem or sign-off package with clear acceptance criteria.</p></div>
+          <div class="border border-slate-200 bg-white p-6"><div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">03</div><h2 class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">Scale</h2><p class="mt-2 text-sm leading-6 text-slate-600">Expand proven execution into specialist pods, managed workstreams or a dedicated Physical Design ODC.</p></div>
+        </div>
+        <div class="mt-8"><Button href="/contact">Discuss a Physical Design Workstream</Button></div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
