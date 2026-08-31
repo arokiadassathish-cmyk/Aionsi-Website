@@ -7,73 +7,114 @@ import Section from '../../components/global/Section.astro';
 import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
 ---
-<BaseLayout title="Tarang SoC Engineering Experience | AionSi" description="Representative AionSi Tarang SoC engineering experience spanning high-speed interfaces, memory, security, RISC-V, FPGA prototyping and embedded software.">
+<BaseLayout title="Tarang SoC Engineering Experience | AionSi" description="Representative AionSi SoC engineering experience across RISC-V compute, PCIe Gen6, memory, security, FPGA prototyping and embedded software.">
   <Header />
   <main>
     <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-20">
       <Container>
         <TechnicalLabel>REPRESENTATIVE ENGINEERING EXPERIENCE</TechnicalLabel>
         <h1 class="mt-5 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Tarang SoC Engineering Experience</h1>
-        <p class="mt-6 max-w-4xl text-xl leading-9 text-slate-600 md:text-2xl">Representative SoC engineering evidence spanning compute, high-speed connectivity, memory, security, FPGA prototyping and embedded software.</p>
-        <div class="mt-7 border-l-2 border-[var(--aionsi-orange)] bg-white px-5 py-4 text-sm leading-7 text-slate-600"><strong class="text-[var(--aionsi-navy)]">Positioning:</strong> This page presents approved Tarang-related engineering material as representative experience. It does not imply customer attribution or ownership of third-party IP unless explicitly stated.</div>
+        <p class="mt-6 max-w-4xl text-xl leading-9 text-slate-600 md:text-2xl">Representative SoC engineering experience spanning compute, high-speed connectivity, memory, security, FPGA prototyping and embedded software.</p>
+        <div class="mt-7 border-l-2 border-[var(--aionsi-orange)] bg-white px-5 py-4 text-sm leading-7 text-slate-600"><strong class="text-[var(--aionsi-navy)]">Representative engineering experience:</strong> This page highlights approved Tarang-related engineering scope and methodology. It does not imply customer attribution, third-party IP ownership, or that every listed block was developed by AionSi.</div>
       </Container>
     </Section>
+
     <Section>
       <Container>
-        <TechnicalLabel>SoC Scope</TechnicalLabel>
-        <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {[
-            ['Compute','RISC-V based SoC platform and subsystem integration'],
-            ['High-Speed I/O','PCIe Gen6, USB3 and Ethernet connectivity'],
-            ['Memory','DDR4 / LPDDR4 and HBM subsystem integration'],
-            ['Security','Security subsystem integration and validation'],
-            ['Prototyping','FPGA prototyping and hardware/software bring-up'],
-            ['Software','Embedded software integration and system validation'],
-          ].map(([title,desc],index) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h2 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h2><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
-        </div>
-      </Container>
-    </Section>
-    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-18">
-      <Container>
-        <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
-          <div><TechnicalLabel>Engineering Flow</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold md:text-4xl">Architecture to system validation.</h2><p class="mt-4 text-lg leading-8 text-white/70">A representative SoC flow connecting architecture, integration, verification, prototyping and software bring-up.</p></div>
-          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {['Architecture','IP / Subsystem Integration','RTL & Verification','FPGA Prototyping','Embedded Software','System Validation'].map((item,index) => <div class="border border-white/10 bg-white/5 p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 font-semibold">{item}</h3></div>)}
+        <div class="grid gap-8 lg:grid-cols-[.78fr_1.22fr] lg:items-start">
+          <div>
+            <TechnicalLabel>SoC Architecture Context</TechnicalLabel>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">A representative path from architecture to system validation.</h2>
+            <p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">The Tarang engineering context spans compute, connectivity, memory, security and software-oriented validation. The emphasis here is on the engineering interactions between those domains rather than ownership of individual third-party technologies.</p>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            {[
+              ['01','Compute','RISC-V based SoC platform and subsystem integration'],
+              ['02','Connectivity','PCIe Gen6, USB3 and Ethernet integration scope'],
+              ['03','Memory','DDR4 / LPDDR4 and HBM subsystem scope'],
+              ['04','Security','Security subsystem integration and validation'],
+              ['05','Prototyping','FPGA prototyping and hardware/software bring-up'],
+              ['06','Software','Embedded software integration and system validation'],
+            ].map(([number,title,description]) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{number}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{description}</p></article>)}
           </div>
         </div>
       </Container>
     </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-18">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.68fr_1.32fr] lg:items-start">
+          <div><TechnicalLabel>Engineering Lifecycle</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold md:text-4xl">From architecture to system validation.</h2><p class="mt-4 text-lg leading-8 text-white/70">A representative SoC lifecycle showing where cross-domain engineering activities connect.</p></div>
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              ['01','Architecture','Define system structure and subsystem requirements'],
+              ['02','IP / Subsystem Integration','Connect compute, interface, memory and security building blocks'],
+              ['03','RTL & Verification','Validate integration and subsystem behavior'],
+              ['04','FPGA Prototyping','Exercise hardware/software interaction early'],
+              ['05','Embedded Software','Integrate software-driven system behavior'],
+              ['06','System Validation','Validate integrated functionality across defined use cases'],
+            ].map(([number,title,description]) => <div class="border border-white/10 bg-white/5 p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{number}</span><h3 class="mt-3 font-semibold">{title}</h3><p class="mt-2 text-sm leading-6 text-white/65">{description}</p></div>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
     <Section>
       <Container>
-        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <TechnicalLabel>Representative Engineering Scope</TechnicalLabel>
+        <div class="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {[
-            ['PCIe Gen6','High-speed connectivity path for SoC integration and verification.'],
-            ['DDR4 / LPDDR4','Mainstream memory-controller and subsystem integration scope.'],
+            ['PCIe Gen6','High-speed connectivity integration and verification within the SoC engineering scope.'],
+            ['DDR4 / LPDDR4','Memory-controller and subsystem integration scope for mainstream memory interfaces.'],
             ['HBM','High-bandwidth memory subsystem integration for demanding compute paths.'],
             ['USB3','Peripheral connectivity and system integration.'],
             ['Ethernet','Network connectivity within the SoC/system integration scope.'],
             ['Security Subsystem','Security-focused subsystem integration and validation.'],
-          ].map(([title,desc]) => <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><h2 class="font-semibold text-[var(--aionsi-navy)]">{title}</h2><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></div>)}
+          ].map(([title,description]) => <article class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><h3 class="text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{description}</p></article>)}
         </div>
       </Container>
     </Section>
+
     <Section class="bg-[var(--aionsi-surface-alt)]">
       <Container>
         <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
-          <div><TechnicalLabel>Where AionSi Contributes</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Cross-domain SoC engineering.</h2></div>
+          <div><TechnicalLabel>Engineering Contributions</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Where AionSi can contribute.</h2><p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">Use the Tarang experience as a reference point for structuring comparable SoC engineering workstreams.</p></div>
           <div class="grid gap-4 sm:grid-cols-2">
             {[
               ['SoC Integration','Coordinate processor, interface, memory and security subsystem integration around defined architecture requirements.'],
               ['Verification','Support block, subsystem and SoC verification across functional, protocol and system-level requirements.'],
               ['Prototype & Bring-Up','Use FPGA prototyping and embedded software to accelerate hardware/software validation.'],
-              ['Scalable Engineering','Start with a focused subsystem and expand into a managed workstream or dedicated engineering team.'],
-            ].map(([title,desc],index) => <article class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+              ['Scalable Workstream','Start with a focused subsystem and expand into a managed workstream or dedicated engineering team.'],
+            ].map(([title,description],index) => <article class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{description}</p></article>)}
           </div>
         </div>
       </Container>
     </Section>
-    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
-      <Container class="text-center"><TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel><h2 class="mx-auto mt-3 max-w-4xl text-4xl font-semibold tracking-tight md:text-5xl">Have a SoC or IP integration requirement?</h2><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Bring the architecture, subsystem, interface or verification requirement. AionSi can map it to the appropriate engineering capability and engagement model.</p><div class="mt-8"><Button href="/contact">Discuss Your Engineering Requirement</Button></div></Container>
+
+    <Section>
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+          <div><TechnicalLabel>Engineering Outcomes</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Outcome-oriented SoC execution.</h2><p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">Representative outcomes are framed at the engineering level so prospects can assess applicability without implying unsupported project-specific results.</p></div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            {[
+              ['01','Integration readiness','Defined interfaces and subsystem interactions brought together for system-level validation.'],
+              ['02','Verification confidence','Structured verification across functional, interface and subsystem requirements.'],
+              ['03','Earlier hardware/software feedback','FPGA prototyping and embedded software used as part of system validation.'],
+              ['04','Scalable execution','A focused engineering scope can evolve into a managed workstream or dedicated team.'],
+            ].map(([number,title,description]) => <article class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{number}</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{description}</p></article>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container class="text-center">
+        <TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel>
+        <h2 class="mx-auto mt-3 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Planning your next SoC or IP program?</h2>
+        <p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">Share your architecture, subsystem, interface or verification requirement. AionSi can map the engineering scope, team model and delivery approach.</p>
+        <div class="mt-8"><Button href="/contact">Discuss Your Engineering Requirement</Button></div>
+        <p class="mx-auto mt-4 max-w-2xl text-xs leading-5 text-slate-500">Representative engineering content is based on approved source material; detailed project attribution and metrics are added only where publication is authorized.</p>
+      </Container>
     </Section>
   </main>
   <Footer />
