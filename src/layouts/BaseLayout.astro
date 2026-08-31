@@ -5,6 +5,22 @@ const { title = 'AionSi | Semiconductor Engineering', description = 'Semiconduct
 const siteUrl = 'https://aionsi.com';
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'AionSi India Pvt. Ltd.',
+  url: siteUrl,
+  logo: `${siteUrl}/favicon.svg`,
+  description: 'Semiconductor engineering services from IP to Silicon across RTL design, verification, physical design, DFT, protocol verification and SoC engineering.',
+  email: 'mailto:dass.kishore@aionsi.com',
+};
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'AionSi',
+  url: siteUrl,
+  description: 'Semiconductor engineering from IP to Silicon.',
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -12,14 +28,18 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="AionSi" />
     <meta name="twitter:card" content="summary" />
-    <title>{title}</title>
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)}></script>
     {gaMeasurementId && (
       <>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
