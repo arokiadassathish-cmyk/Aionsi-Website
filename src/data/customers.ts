@@ -3,6 +3,7 @@ export const customerLogos = [
   { name: 'Aeva', logo: '/images/customer-logos/aeva.png' },
   { name: 'Cadence', logo: '/images/customer-logos/cadence.png' },
   { name: 'Nordea', logo: '/images/customer-logos/nordea.png' },
+  { name: 'NXP', logo: '/images/customer-logos/nxp.png' },
   { name: 'Samsung', logo: '/images/customer-logos/samsung.png' },
   { name: 'SanDisk', logo: '/images/customer-logos/sandisk.png' },
   { name: 'Synopsys', logo: '/images/customer-logos/synopsys.png' },
