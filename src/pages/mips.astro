@@ -14,6 +14,7 @@ const alignmentAreas = [
   ['04', 'High-Speed Connectivity', 'Verification and implementation support for PCIe, USB, Ethernet and other complex interface subsystems.'],
   ['05', 'AI / Compute Platforms', 'Engineering support for compute-heavy and edge-AI architectures where performance, power and verification closure matter.'],
   ['06', 'Dedicated Engineering Capacity', 'Focused workstreams that can start with a defined engineering problem and scale into a managed or dedicated team.'],
+  ['07', 'DFT & Post-Silicon Validation', 'DFT coordination, silicon bring-up, validation and debug support across defined SoC program scopes.'],
 ];
 
 const discovery = [
@@ -24,7 +25,7 @@ const discovery = [
 ];
 ---
 
-<BaseLayout title="AionSi × MIPS | Semiconductor Engineering Alignment" description="AionSi engineering capability alignment for MIPS processor IP, RISC-V, Physical AI, SoC integration, verification and silicon engineering programs.">
+<BaseLayout title="MIPS RISC-V & Physical AI Engineering | AionSi" description="AionSi engineering capability aligned to RISC-V processor IP, Physical AI, SoC integration, verification, physical design, DFT and silicon engineering programs.">
   <Header />
   <main>
     <Section class="bg-[var(--aionsi-surface-alt)] py-16 md:py-24">
@@ -32,8 +33,8 @@ const discovery = [
         <div class="grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
           <div>
             <TechnicalLabel>ACCOUNT ENGINEERING BRIEF</TechnicalLabel>
-            <h1 class="mt-5 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Engineering capacity for the next generation of RISC-V compute.</h1>
-            <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">A focused AionSi engineering proposition aligned to MIPS' processor IP, Physical AI, SoC and silicon-development ecosystem.</p>
+            <h1 class="mt-5 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Engineering execution for RISC-V, Physical AI and next-generation SoCs.</h1>
+            <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">A focused AionSi engineering proposition aligned to MIPS processor IP, Physical AI, SoC integration and silicon-development programs.</p>
             <div class="mt-8 flex flex-wrap gap-3">
               <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">RISC-V</span>
               <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">Physical AI</span>
@@ -44,8 +45,8 @@ const discovery = [
           <div class="border border-slate-200 bg-white p-7 shadow-sm md:p-9">
             <div class="h-1 w-12 bg-[var(--aionsi-orange)]"></div>
             <h2 class="mt-5 text-2xl font-semibold text-[var(--aionsi-navy)]">Why this page?</h2>
-            <p class="mt-3 text-base leading-7 text-slate-600">A concise technical starting point for an engineering conversation — not a claim of customer relationship, endorsement or existing MIPS engagement.</p>
-            <div class="mt-6 border-l-2 border-[var(--aionsi-blue)] pl-4 text-sm leading-6 text-slate-600"><strong class="text-[var(--aionsi-navy)]">Positioning:</strong> The MIPS capabilities referenced here are based on publicly available MIPS material. AionSi capability statements describe areas we can discuss and qualify with MIPS engineering teams.</div>
+            <p class="mt-3 text-base leading-7 text-slate-600">A technical starting point for exploring how AionSi engineering capability can complement MIPS processor-IP and SoC programs.</p>
+            <div class="mt-6 border-l-2 border-[var(--aionsi-blue)] pl-4 text-sm leading-6 text-slate-600"><strong class="text-[var(--aionsi-navy)]">Positioning:</strong> MIPS references are based on publicly available information. This page does not imply an existing customer, partner, endorsement or commercial relationship unless explicitly stated.</div>
           </div>
         </div>
       </Container>
@@ -54,7 +55,7 @@ const discovery = [
     <Section>
       <Container>
         <div class="grid gap-10 lg:grid-cols-[.65fr_1.35fr]">
-          <div><TechnicalLabel>MIPS CONTEXT</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">From software to silicon for Physical AI.</h2><p class="mt-5 text-lg leading-8 text-slate-600">MIPS currently positions its Atlas portfolio around open, RISC-V-based compute for Physical AI, with a signal chain spanning Sense, Think, Act and Communicate. Its public portfolio includes processor IP, software and tools, and custom-silicon capabilities.</p></div>
+          <div><TechnicalLabel>MIPS CONTEXT</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">RISC-V compute for Physical AI.</h2><p class="mt-5 text-lg leading-8 text-slate-600">MIPS publicly describes processor IP, software and tools, and custom-silicon capabilities relevant to RISC-V compute and Physical AI. This page uses that public context only to frame a technical engineering discussion.</p></div>
           <div class="grid gap-4 md:grid-cols-2">
             {[
               ['Processor IP','RISC-V processor families, multi-threading, configurable compute and subsystem-level IP.'],
@@ -92,7 +93,7 @@ const discovery = [
       <Container>
         <div class="grid gap-5 md:grid-cols-3">
           {[
-            ['Technical qualification','Review the architecture, interfaces, tools, methodology and expected engineering outcomes.'],
+            ['Technical qualification','Review architecture, interfaces, tools, methodology and expected engineering outcomes.'],
             ['Pilot workstream','Define a bounded scope with measurable deliverables, engineering ownership and review cadence.'],
             ['Scale / ODC','Expand a proven workstream into project engineering or dedicated engineering capacity where appropriate.'],
           ].map(([title,desc],index) => <article class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
@@ -101,7 +102,7 @@ const discovery = [
     </Section>
 
     <Section class="bg-[var(--aionsi-deep-navy)] text-white">
-      <Container class="text-center"><TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel><h2 class="mx-auto mt-4 max-w-4xl text-4xl font-semibold tracking-tight md:text-5xl">Have a processor, SoC or verification capacity requirement?</h2><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Bring the engineering problem. AionSi can qualify the requirement, map the right capability and define a focused next step.</p><div class="mt-8"><Button href="/contact">Discuss the Engineering Requirement</Button></div></Container>
+      <Container class="text-center"><TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel><h2 class="mx-auto mt-4 max-w-4xl text-4xl font-semibold tracking-tight md:text-5xl">Have a RISC-V, SoC or silicon-engineering bottleneck?</h2><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Bring the engineering problem. AionSi can qualify the requirement, map the right capability and define a focused next step.</p><div class="mt-8"><Button href="/contact">Discuss an Engineering Workstream</Button></div></Container>
     </Section>
   </main>
   <Footer />
