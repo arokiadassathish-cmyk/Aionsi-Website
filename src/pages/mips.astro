@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/global/Header.astro';
+import Footer from '../components/global/Footer.astro';
+import Container from '../components/global/Container.astro';
+import Section from '../components/global/Section.astro';
+import TechnicalLabel from '../components/global/TechnicalLabel.astro';
+import Button from '../components/global/Button.astro';
+
+const alignmentAreas = [
+  ['01', 'Processor IP Engineering', 'RTL implementation, design verification and integration support around RISC-V processor and subsystem programs.'],
+  ['02', 'SoC & Subsystem Verification', 'Block, subsystem and SoC verification across functional, interface, integration and system-level requirements.'],
+  ['03', 'Physical Design & Signoff', 'Physical implementation, timing closure, DFT coordination and signoff-oriented engineering for silicon programs.'],
+  ['04', 'High-Speed Connectivity', 'Verification and implementation support for PCIe, USB, Ethernet and other complex interface subsystems.'],
+  ['05', 'AI / Compute Platforms', 'Engineering support for compute-heavy and edge-AI architectures where performance, power and verification closure matter.'],
+  ['06', 'Dedicated Engineering Capacity', 'Focused workstreams that can start with a defined engineering problem and scale into a managed or dedicated team.'],
+];
+
+const discovery = [
+  ['Architecture / IP', 'Processor, subsystem, accelerator or interface requirement'],
+  ['Verification', 'RTL, UVM, formal, protocol, coverage or system validation requirement'],
+  ['Implementation', 'Physical design, STA, DFT, PPA or signoff capacity requirement'],
+  ['Scale', 'Pilot workstream, project engineering or dedicated ODC requirement'],
+];
+---
+
+<BaseLayout title="AionSi × MIPS | Semiconductor Engineering Alignment" description="AionSi engineering capability alignment for MIPS processor IP, RISC-V, Physical AI, SoC integration, verification and silicon engineering programs.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-16 md:py-24">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
+          <div>
+            <TechnicalLabel>ACCOUNT ENGINEERING BRIEF</TechnicalLabel>
+            <h1 class="mt-5 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Engineering capacity for the next generation of RISC-V compute.</h1>
+            <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">A focused AionSi engineering proposition aligned to MIPS' processor IP, Physical AI, SoC and silicon-development ecosystem.</p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">RISC-V</span>
+              <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">Physical AI</span>
+              <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">SoC Engineering</span>
+              <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">Verification</span>
+            </div>
+          </div>
+          <div class="border border-slate-200 bg-white p-7 shadow-sm md:p-9">
+            <div class="h-1 w-12 bg-[var(--aionsi-orange)]"></div>
+            <h2 class="mt-5 text-2xl font-semibold text-[var(--aionsi-navy)]">Why this page?</h2>
+            <p class="mt-3 text-base leading-7 text-slate-600">A concise technical starting point for an engineering conversation — not a claim of customer relationship, endorsement or existing MIPS engagement.</p>
+            <div class="mt-6 border-l-2 border-[var(--aionsi-blue)] pl-4 text-sm leading-6 text-slate-600"><strong class="text-[var(--aionsi-navy)]">Positioning:</strong> The MIPS capabilities referenced here are based on publicly available MIPS material. AionSi capability statements describe areas we can discuss and qualify with MIPS engineering teams.</div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.65fr_1.35fr]">
+          <div><TechnicalLabel>MIPS CONTEXT</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">From software to silicon for Physical AI.</h2><p class="mt-5 text-lg leading-8 text-slate-600">MIPS currently positions its Atlas portfolio around open, RISC-V-based compute for Physical AI, with a signal chain spanning Sense, Think, Act and Communicate. Its public portfolio includes processor IP, software and tools, and custom-silicon capabilities.</p></div>
+          <div class="grid gap-4 md:grid-cols-2">
+            {[
+              ['Processor IP','RISC-V processor families, multi-threading, configurable compute and subsystem-level IP.'],
+              ['Physical AI','Real-time edge workloads across automotive, robotics and embedded platforms.'],
+              ['Software-first development','Virtual-platform evaluation and software/hardware co-design before silicon.'],
+              ['Safety & mission critical','Safety-capable compute and platforms where deterministic, efficient processing is important.'],
+            ].map(([title,desc],index) => <article class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-16 text-white md:py-20">
+      <Container>
+        <TechnicalLabel>AIONSI ENGINEERING ALIGNMENT</TechnicalLabel>
+        <h2 class="mt-4 max-w-4xl text-3xl font-semibold md:text-5xl">Where AionSi can add engineering capacity.</h2>
+        <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {alignmentAreas.map(([num,title,desc]) => <article class="border border-white/10 bg-white/5 p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-xl font-semibold">{title}</h3><p class="mt-3 text-sm leading-6 text-white/65">{desc}</p></article>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
+          <div><TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Start with one engineering problem.</h2><p class="mt-4 text-lg leading-8 text-slate-600">The objective is not to sell a generic services catalogue. It is to qualify a specific engineering bottleneck, demonstrate technical fit and expand only when the workstream proves value.</p></div>
+          <div class="grid gap-4 md:grid-cols-2">
+            {discovery.map(([title,desc],index) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <div class="grid gap-5 md:grid-cols-3">
+          {[
+            ['Technical qualification','Review the architecture, interfaces, tools, methodology and expected engineering outcomes.'],
+            ['Pilot workstream','Define a bounded scope with measurable deliverables, engineering ownership and review cadence.'],
+            ['Scale / ODC','Expand a proven workstream into project engineering or dedicated engineering capacity where appropriate.'],
+          ].map(([title,desc],index) => <article class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="text-center"><TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel><h2 class="mx-auto mt-4 max-w-4xl text-4xl font-semibold tracking-tight md:text-5xl">Have a processor, SoC or verification capacity requirement?</h2><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Bring the engineering problem. AionSi can qualify the requirement, map the right capability and define a focused next step.</p><div class="mt-8"><Button href="/contact">Discuss the Engineering Requirement</Button></div></Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
