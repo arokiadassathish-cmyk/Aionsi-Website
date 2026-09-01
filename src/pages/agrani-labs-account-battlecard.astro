@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/global/Header.astro';
+import Footer from '../components/global/Footer.astro';
+import Container from '../components/global/Container.astro';
+import Section from '../components/global/Section.astro';
+import TechnicalLabel from '../components/global/TechnicalLabel.astro';
+import Button from '../components/global/Button.astro';
+---
+<BaseLayout title="Agrani Labs Account Battlecard | AionSi" description="Internal AionSi account battlecard for approaching Agrani Labs with technically grounded SoC, verification, physical design, memory and ODC propositions.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-20">
+      <Container>
+        <TechnicalLabel>ACCOUNT BATTLECARD • INTERNAL BD USE</TechnicalLabel>
+        <h1 class="mt-5 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Agrani Labs: Technical Fit & Account Approach</h1>
+        <p class="mt-6 max-w-4xl text-xl leading-9 text-slate-600 md:text-2xl">A structured approach for opening an engineering conversation around AI compute, accelerator silicon, verification, physical implementation and scalable engineering capacity.</p>
+        <div class="mt-7 border-l-2 border-[var(--aionsi-orange)] bg-white px-5 py-4 text-sm leading-7 text-slate-600 shadow-sm"><strong class="text-[var(--aionsi-navy)]">Use:</strong> Internal business-development enablement. Do not present this page as customer evidence or as proof of an Agrani Labs relationship.</div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
+          <div>
+            <TechnicalLabel>WHY THIS ACCOUNT</TechnicalLabel>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Target the execution gap between AI architecture and silicon.</h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600">Agrani Labs' public positioning around AI compute creates a logical entry point for AionSi: support the engineering layers that turn complex compute architecture into verified, implementation-ready and validation-ready silicon.</p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            {[
+              ['Account trigger','AI compute / accelerator development creates demand for execution bandwidth.'],
+              ['Primary opening','A bounded engineering bottleneck rather than a broad services pitch.'],
+              ['Best proof','Tarang SoC, Design Verification and advanced-node Physical Design evidence.'],
+              ['Commercial path','Technical qualification → pilot → managed workstream → dedicated ODC.'],
+            ].map(([title,desc],index) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-18">
+      <Container>
+        <TechnicalLabel>BEST-FIT ENGINEERING EVIDENCE</TechnicalLabel>
+        <h2 class="mt-3 max-w-4xl text-3xl font-semibold md:text-5xl">Lead with evidence we can actually defend.</h2>
+        <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {[
+            ['01','Tarang SoC Engineering Experience','RISC-V compute, PCIe Gen6, DDR4 / LPDDR4, HBM, USB3, Ethernet, security, FPGA prototyping and embedded software.','/evidence/tarang-soc-engineering-experience'],
+            ['02','Design Verification Engineering','SystemVerilog, UVM, assertions, coverage, regression, protocol and SoC verification.','/evidence/design-verification-engineering'],
+            ['03','Advanced-Node Physical Design','3nm–28nm representative range, timing, congestion, CTS, routing, PPA and sign-off.','/evidence/advanced-node-physical-design-timing-congestion-signoff'],
+            ['04','OpenTitan-Based Secure SoC Engineering','Cryptography, secure boot, lifecycle controls and security-oriented verification.','/evidence/opentitan-cryptography-secure-soc'],
+            ['05','Memory & High-Speed Protocol Evidence','HBM, DDR/LPDDR and PCIe/USB engineering references can support subsystem discussions.','/evidence'],
+            ['06','ODC / Dedicated Engineering','Use the proven specialist-to-managed-to-dedicated model as the scale mechanism.','/solutions/engineering-odc'],
+          ].map(([num,title,desc,href]) => <a href={href} class="border border-white/10 bg-white/5 p-6 transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-xl font-semibold">{title}</h3><p class="mt-3 text-sm leading-6 text-white/65">{desc}</p><div class="mt-5 text-sm font-semibold">Open reference →</div></a>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <TechnicalLabel>BUYER / INFLUENCER MAP</TechnicalLabel>
+        <div class="mt-6 grid gap-5 lg:grid-cols-2">
+          {[
+            ['VP / Head of Hardware','Conversation: accelerator RTL, SoC integration, verification capacity and execution bottlenecks.','Lead: Tarang + DV evidence'],
+            ['Chief / Lead Architect','Conversation: subsystem boundaries, verification strategy, memory/interconnect and implementation readiness.','Lead: Tarang + Physical Design'],
+            ['Verification Leadership','Conversation: UVM scale, coverage closure, regression and SoC verification bandwidth.','Lead: DV evidence'],
+            ['Physical Design Leadership','Conversation: timing closure, congestion, advanced-node implementation and sign-off capacity.','Lead: Physical Design evidence'],
+            ['CTO / Founder','Conversation: execution velocity, risk reduction and scalable engineering capacity.','Lead: pilot → ODC model'],
+            ['Procurement / Vendor Management','Conversation: bounded scope, governance, capacity model and commercial scalability.','Lead: managed workstream → ODC'],
+          ].map(([role,conv,proof]) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><h3 class="text-lg font-semibold text-[var(--aionsi-navy)]">{role}</h3><p class="mt-3 text-sm leading-6 text-slate-600">{conv}</p><div class="mt-4 text-xs font-semibold uppercase tracking-[.14em] text-[var(--aionsi-blue)]">{proof}</div></article>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr]">
+          <div><TechnicalLabel>FIRST-CONVERSATION PLAYBOOK</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Ask about the bottleneck, not the vendor list.</h2></div>
+          <div class="grid gap-4 md:grid-cols-2">
+            {[
+              ['1','What stage is the program in?','Architecture, RTL, verification, implementation, bring-up or validation?'],
+              ['2','Where is capacity constrained?','Specialist capability, schedule, verification closure, implementation or sign-off?'],
+              ['3','What is the bounded first problem?','One block, subsystem, regression package, timing closure problem or validation task.'],
+              ['4','What proves success?','Coverage target, closure metric, milestone, sign-off package or engineering deliverable.'],
+            ].map(([num,title,desc]) => <article class="border border-slate-200 bg-white p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <TechnicalLabel>PROPOSED ENTRY MOTION</TechnicalLabel>
+        <div class="mt-6 grid gap-4 md:grid-cols-4">
+          {[
+            ['01','Technical discovery','20–30 min engineering discussion to identify one high-value bottleneck.'],
+            ['02','NDA / technical review','Align on architecture context, tools, interfaces and deliverables.'],
+            ['03','Pilot workstream','Define a bounded scope with measurable acceptance criteria.'],
+            ['04','Scale / ODC','Expand only after the workstream demonstrates execution value.'],
+          ].map(([num,title,desc]) => <article class="border border-slate-200 bg-white p-5 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{num}</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+        </div>
+        <div class="mt-8 border-l-2 border-[var(--aionsi-orange)] bg-[var(--aionsi-surface-alt)] px-5 py-4 text-sm leading-7 text-slate-600"><strong class="text-[var(--aionsi-navy)]">Do not lead with:</strong> generic manpower, large team counts, unsupported AI-GPU claims, customer attribution, or broad cost savings promises.</div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="text-center"><TechnicalLabel>ACCOUNT NEXT STEP</TechnicalLabel><h2 class="mx-auto mt-3 max-w-4xl text-4xl font-semibold md:text-5xl">Open one engineering conversation.</h2><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Use the Agrani landing page as the external entry point. Use this battlecard to qualify the first technical bottleneck and select the strongest evidence.</p><div class="mt-8 flex flex-wrap justify-center gap-3"><Button href="/agrani-labs">Open Agrani Landing Page</Button><Button href="/contact">Capture Engineering Requirement</Button></div></Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
