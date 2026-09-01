@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/global/Header.astro';
+import Footer from '../components/global/Footer.astro';
+import Container from '../components/global/Container.astro';
+import Section from '../components/global/Section.astro';
+import TechnicalLabel from '../components/global/TechnicalLabel.astro';
+import Button from '../components/global/Button.astro';
+
+const alignment = [
+  ['01','AI Accelerator RTL','RTL implementation, micro-architecture support and subsystem integration for compute-intensive accelerator designs.'],
+  ['02','Functional & System Verification','Block, subsystem and SoC verification across functional, interface and system-level requirements.'],
+  ['03','Memory & Interconnect','Engineering support across high-bandwidth memory paths, NoC/interconnects and complex interface subsystems.'],
+  ['04','Physical Design & Timing','Physical implementation, STA, PPA-oriented optimization and signoff support for silicon programs.'],
+  ['05','DFT & Silicon Validation','DFT coordination, silicon bring-up, validation and debug support within defined program scope.'],
+  ['06','Dedicated Engineering Capacity','Focused workstreams that can start with a defined engineering problem and scale into a managed or dedicated team.'],
+];
+
+const engagement = [
+  ['01','Technical qualification','Review architecture, interfaces, methodology, tools and expected engineering outcomes.'],
+  ['02','Pilot workstream','Define a bounded scope with measurable deliverables, engineering ownership and review cadence.'],
+  ['03','Scale / ODC','Expand a proven workstream into project engineering or dedicated engineering capacity where appropriate.'],
+];
+---
+<BaseLayout title="Agrani Labs AI Accelerator & Silicon Engineering | AionSi" description="AionSi engineering capability for AI accelerator RTL, SoC verification, memory and interconnect, physical design, DFT and silicon validation programs relevant to next-generation AI compute.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-16 md:py-24">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
+          <div>
+            <TechnicalLabel>ACCOUNT ENGINEERING BRIEF</TechnicalLabel>
+            <h1 class="mt-5 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Engineering capacity for next-generation AI compute.</h1>
+            <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">A focused AionSi engineering proposition for AI accelerator, SoC, verification, physical design and silicon-development programs.</p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              {['AI Accelerators','SoC Engineering','Verification','Physical Design','Silicon Validation'].map((tag) => <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">{tag}</span>)}
+            </div>
+          </div>
+          <div class="border border-slate-200 bg-white p-7 shadow-sm md:p-9">
+            <div class="h-1 w-12 bg-[var(--aionsi-orange)]"></div>
+            <h2 class="mt-5 text-2xl font-semibold text-[var(--aionsi-navy)]">How AionSi can support Agrani</h2>
+            <p class="mt-3 text-base leading-7 text-slate-600">A technical starting point for exploring how AionSi engineering capacity can complement AI compute and silicon-development programs.</p>
+            <div class="mt-6 border-l-2 border-[var(--aionsi-blue)] pl-4 text-sm leading-6 text-slate-600"><strong class="text-[var(--aionsi-navy)]">Positioning:</strong> Agrani references are based on publicly available information. This page does not imply an existing customer, partner, endorsement or commercial relationship unless explicitly stated.</div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.65fr_1.35fr]">
+          <div><TechnicalLabel>AGRANI LABS CONTEXT</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">From AI architecture to production silicon.</h2><p class="mt-5 text-lg leading-8 text-slate-600">Agrani Labs publicly describes an AI-compute direction spanning accelerator hardware and software for enterprise and datacenter workloads. AionSi can frame engineering support around the execution layers that connect compute architecture to verified and implementation-ready silicon.</p></div>
+          <div class="grid gap-4 md:grid-cols-2">
+            {[
+              ['AI Accelerator Engineering','RTL, micro-architecture support, subsystem integration and verification for compute-heavy designs.'],
+              ['SoC & System Integration','Integration of compute, memory, interconnect and interface subsystems with system-level verification.'],
+              ['Physical Implementation','Physical design, timing closure, PPA optimization and signoff-oriented execution.'],
+              ['Silicon Validation','Bring-up, validation and debug activities that connect hardware and software execution.'],
+            ].map(([title,desc],index) => <article class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-16 text-white md:py-20">
+      <Container>
+        <TechnicalLabel>AIONSI ENGINEERING ALIGNMENT</TechnicalLabel>
+        <h2 class="mt-4 max-w-4xl text-3xl font-semibold md:text-5xl">Where AionSi can accelerate AI silicon execution.</h2>
+        <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {alignment.map(([num,title,desc]) => <article class="border border-white/10 bg-white/5 p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-xl font-semibold">{title}</h3><p class="mt-3 text-sm leading-6 text-white/65">{desc}</p></article>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+          <div><TechnicalLabel>AI SILICON EXECUTION</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Architecture → RTL → verification → implementation → silicon.</h2><p class="mt-4 text-lg leading-8 text-slate-600">AionSi can support defined engineering workstreams across the silicon lifecycle while keeping architecture ownership and program governance with the customer.</p></div>
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {['Architecture','AI Accelerator RTL','Verification','Memory & Interconnect','Physical Design / STA','DFT & Validation'].map((item,index) => <div class="border border-slate-200 bg-white p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">{item}</h3></div>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <div class="grid gap-5 md:grid-cols-3">
+          {engagement.map(([num,title,desc]) => <article class="border border-slate-200 bg-white p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{num}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="text-center"><TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel><h2 class="mx-auto mt-4 max-w-4xl text-4xl font-semibold tracking-tight md:text-5xl">Have an AI silicon engineering bottleneck?</h2><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Bring the architecture, verification, implementation or validation problem. AionSi can qualify the requirement, map the right capability and define a focused next step.</p><div class="mt-8"><Button href="/contact">Discuss an Engineering Workstream</Button></div></Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
