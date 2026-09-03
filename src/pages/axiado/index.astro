@@ -7,103 +7,133 @@ import Section from '../../components/global/Section.astro';
 import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
 
+const complexityMap = [
+  ['01', 'Hardware Root of Trust', 'Secure boot, device identity, attestation, lifecycle state, key management and hardware-enforced security.'],
+  ['02', 'Security + Management', 'Security functions interacting with BMC/platform-management responsibilities across hardware, firmware and system software.'],
+  ['03', 'AI-Assisted Threat Detection', 'AI/ML detection and response introduce verification challenges beyond conventional functional verification.'],
+  ['04', 'Datacenter Platform Integration', 'PCIe, memory, management interfaces and server-platform integration create system-level dependencies.'],
+];
+
+const architectureLayers = [
+  ['Hardware Root of Trust', 'Security verification'],
+  ['Trusted Control / Compute', 'SoC integration'],
+  ['BMC + Security + Cryptography + AI/ML', 'Subsystem / system verification'],
+  ['PCIe + Memory + Platform Interfaces', 'Protocol + integration verification'],
+  ['Server / Datacenter Platform', 'System validation'],
+  ['Silicon', 'Bring-up + debug'],
+];
+
 const alignmentAreas = [
   ['01', 'Secure SoC Verification', 'Block, subsystem and SoC verification for security-critical control planes, trusted computing and hardware-anchored security requirements.'],
   ['02', 'Cryptography & Root of Trust', 'Verification support around hardware root of trust, secure boot, key-management flows, cryptographic accelerators and lifecycle controls.'],
-  ['03', 'BMC & Management Control', 'Embedded and verification engineering around management controllers, telemetry, platform-control firmware interfaces and system management requirements.'],
-  ['04', 'High-Speed Connectivity', 'Engineering support for PCIe, USB, Ethernet and platform-management interfaces across complex SoC and subsystem environments.'],
+  ['03', 'Platform Management & Embedded Control', 'Embedded engineering and verification around management controllers, telemetry, platform-control interfaces and firmware-facing requirements.'],
+  ['04', 'PCIe / Platform Connectivity', 'Engineering support for PCIe, USB, Ethernet and platform-management interfaces across complex SoC and server-platform environments.'],
   ['05', 'Physical Design & Signoff', 'Physical implementation, timing closure, PPA-oriented optimization, DFT coordination and signoff support for advanced SoC programs.'],
   ['06', 'Silicon Validation', 'Bring-up, debug, post-silicon validation and structured failure analysis for security, management and platform-control functions.'],
   ['07', 'Dedicated Secure-SoC Capacity', 'A focused workstream that can begin with a bounded engineering problem and scale into managed or dedicated secure-SoC engineering capacity.'],
 ];
 
 const discovery = [
-  ['Security Architecture', 'Root of trust, secure boot, lifecycle, cryptography or platform-security requirement'],
-  ['Verification', 'RTL, UVM, assertions, security-state, interface or system-validation requirement'],
-  ['Implementation', 'Physical design, STA, PPA, DFT or signoff capacity requirement'],
-  ['System / Silicon', 'BMC, firmware interface, bring-up, debug or post-silicon validation requirement'],
-  ['Scale', 'Pilot workstream, project engineering or dedicated ODC requirement'],
+  ['Security Verification', 'Secure boot, root of trust, lifecycle, cryptography and security-state verification'],
+  ['SoC / Subsystem Verification', 'RTL, UVM, assertions, interface and system-level verification'],
+  ['Implementation', 'Physical design, STA, PPA, DFT and signoff capacity'],
+  ['Platform / Silicon', 'Management interfaces, bring-up, debug and post-silicon validation'],
+  ['Engineering Capacity', 'Pilot workstream, project engineering or dedicated ODC requirement'],
 ];
 ---
 
-<BaseLayout title="Axiado Hardware-Anchored AI Security Engineering | AionSi" description="AionSi engineering capability aligned to secure SoC verification, hardware root of trust, cryptography, BMC, connectivity, physical design and silicon validation for accelerated-computing security programs.">
+<BaseLayout title="Axiado Secure Compute Platform Engineering | AionSi" description="AionSi engineering capability aligned to secure SoC verification, hardware root of trust, cryptography, platform management, connectivity, physical design and silicon validation for accelerated-computing security programs.">
   <Header />
   <main>
-    <Section class="bg-[var(--aionsi-surface-alt)] py-16 md:py-24">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-18">
       <Container>
-        <div class="grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
+        <div class="grid gap-8 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
           <div>
             <TechnicalLabel>ACCOUNT ENGINEERING BRIEF</TechnicalLabel>
-            <h1 class="mt-5 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Engineering capacity for hardware-anchored AI security.</h1>
-            <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">A focused AionSi engineering proposition for secure SoCs, hardware root of trust, cryptography, management control, high-speed interfaces and silicon validation.</p>
-            <div class="mt-8 flex flex-wrap gap-3">
+            <h1 class="mt-5 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Engineering capacity for secure compute platforms.</h1>
+            <p class="mt-5 max-w-3xl text-xl leading-8 text-slate-600 md:text-2xl">Verification, security-IP integration, physical implementation and silicon engineering for hardware-anchored security and accelerated-computing platforms.</p>
+            <div class="mt-7 flex flex-wrap gap-3">
               <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">Secure SoC</span>
               <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">Root of Trust</span>
               <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">AI Security</span>
-              <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">Verification</span>
+              <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">Silicon</span>
             </div>
           </div>
-          <div class="border border-slate-200 bg-white p-7 shadow-sm md:p-9">
+          <div class="border border-slate-200 bg-white p-7 shadow-sm md:p-8">
             <div class="h-1 w-12 bg-[var(--aionsi-orange)]"></div>
             <h2 class="mt-5 text-2xl font-semibold text-[var(--aionsi-navy)]">How AionSi can support Axiado</h2>
-            <p class="mt-3 text-base leading-7 text-slate-600">A focused engineering proposition for extending secure-SoC development capacity across verification, integration, implementation and silicon execution.</p>
-            <div class="mt-6 border-l-2 border-[var(--aionsi-blue)] pl-4 text-sm leading-6 text-slate-600"><strong class="text-[var(--aionsi-navy)]">Positioning:</strong> Axiado references are based on publicly available information. This page does not imply an existing customer, supplier, partnership, endorsement or other commercial relationship. Any engagement would be defined and qualified directly with Axiado.</div>
+            <p class="mt-3 text-base leading-7 text-slate-600">A focused engineering proposition for extending secure-compute development capacity across verification, integration, implementation and silicon execution.</p>
+            <div class="mt-5 border-l-2 border-[var(--aionsi-blue)] pl-4 text-sm leading-6 text-slate-600"><strong class="text-[var(--aionsi-navy)]">Positioning:</strong> Axiado references are based on publicly available information. This page does not imply an existing customer, supplier, partnership, endorsement or other commercial relationship.</div>
           </div>
         </div>
       </Container>
     </Section>
 
-    <Section>
+    <Section class="py-14 md:py-18">
       <Container>
-        <div class="grid gap-10 lg:grid-cols-[.65fr_1.35fr]">
+        <div class="grid gap-8 lg:grid-cols-[.65fr_1.35fr]">
           <div>
-            <TechnicalLabel>AXIADO CONTEXT</TechnicalLabel>
-            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Hardware-anchored security for accelerated computing.</h2>
-            <p class="mt-5 text-lg leading-8 text-slate-600">Axiado publicly positions its technology around AI-driven cybersecurity, hardware-anchored trust and integrated platform management for accelerated-computing environments. The engineering proposition below is framed around those public themes.</p>
+            <TechnicalLabel>WHY THIS ENGINEERING PROBLEM IS COMPLEX</TechnicalLabel>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Security, management and compute converge in the silicon.</h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600">Axiado's publicly described platform themes combine hardware trust, security processing, management control and accelerated-computing integration. The engineering challenge is validating these domains as one system.</p>
           </div>
-          <div class="grid gap-4 md:grid-cols-2">
-            {[
-              ['Trusted Computing','Hardware root of trust, secure boot, attestation and security-state controls.'],
-              ['Cryptography','Security primitives, key handling, hardware cryptography and protected execution paths.'],
-              ['Platform Management','BMC and embedded management functions supporting observability, control and lifecycle operations.'],
-              ['AI Security','AI/ML-assisted detection and real-time response for platform and workload security.'],
-              ['Accelerated Platforms','Security and management for servers, datacenter systems, AI factories and other complex compute platforms.'],
-              ['Open Platform Interfaces','Security-aware integration across high-speed connectivity and platform-management interfaces.'],
-            ].map(([title,desc],index) => <article class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+          <div class="grid gap-3 sm:grid-cols-2">
+            {complexityMap.map(([num,title,desc]) => <article class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{num}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
           </div>
         </div>
       </Container>
     </Section>
 
-    <Section class="bg-[var(--aionsi-deep-navy)] py-16 text-white md:py-20">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18">
+      <Container>
+        <TechnicalLabel>ENGINEERING COMPLEXITY MAP</TechnicalLabel>
+        <div class="mt-4 grid gap-8 lg:grid-cols-[.65fr_1.35fr] lg:items-center">
+          <div>
+            <h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">From hardware root of trust to production silicon.</h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600">A practical view of where engineering complexity accumulates and where AionSi can take ownership of a defined workstream.</p>
+          </div>
+          <div class="space-y-2">
+            {architectureLayers.map(([layer,opportunity],index) => <div class="flex flex-col gap-2 border border-slate-200 bg-white px-5 py-4 sm:flex-row sm:items-center sm:justify-between"><div class="flex items-center gap-3"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><span class="font-semibold text-[var(--aionsi-navy)]">{layer}</span></div><span class="text-sm text-slate-500 sm:text-right">AionSi opportunity: {opportunity}</span></div>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-18">
       <Container>
         <TechnicalLabel>AIONSI ENGINEERING ALIGNMENT</TechnicalLabel>
         <h2 class="mt-4 max-w-4xl text-3xl font-semibold md:text-5xl">Where AionSi can add engineering capacity.</h2>
-        <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {alignmentAreas.map(([num,title,desc]) => <article class="border border-white/10 bg-white/5 p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-xl font-semibold">{title}</h3><p class="mt-3 text-sm leading-6 text-white/65">{desc}</p></article>)}
+        <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {alignmentAreas.map(([num,title,desc]) => <article class="border border-white/10 bg-white/5 p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-xl font-semibold">{title}</h3><p class="mt-3 text-sm leading-6 text-white/65">{desc}</p></article>)}
         </div>
       </Container>
     </Section>
 
-    <Section>
+    <Section class="py-14 md:py-18">
       <Container>
-        <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
+        <div class="grid gap-8 lg:grid-cols-[.68fr_1.32fr]">
           <div>
             <TechnicalLabel>ENGINEERING EVIDENCE</TechnicalLabel>
-            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Relevant AionSi experience, without over-claiming.</h2>
-            <p class="mt-4 text-lg leading-8 text-slate-600">AionSi can anchor the discussion in existing representative engineering evidence: secure-SoC work involving OpenTitan technologies, broader complex-SoC experience, and verification/implementation capability. These references describe engineering capability and do not imply Axiado-specific delivery.</p>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Engineering evidence relevant to secure silicon.</h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600">AionSi brings representative experience across secure SoC integration, hardware cryptography, complex interfaces, verification, implementation and system validation. These references describe engineering capability and do not imply Axiado-specific delivery.</p>
           </div>
-          <div class="grid gap-4 md:grid-cols-2">
+          <div class="grid gap-4 md:grid-cols-3">
             <a href="/evidence/opentitan-cryptography-secure-soc" class="group border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]">
-              <span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">SECURE SOC EXPERIENCE</span>
+              <span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">SECURE SOC</span>
               <h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">OpenTitan-Based Secure SoC Engineering</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-600">Representative engineering experience spanning secure SoC integration, hardware cryptography, secure boot, key management and security-oriented verification.</p>
+              <p class="mt-2 text-sm leading-6 text-slate-600">Secure SoC integration, hardware cryptography, secure boot, key management and security-oriented verification.</p>
               <span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View evidence →</span>
             </a>
             <a href="/evidence/tarang-soc-engineering-experience" class="group border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]">
-              <span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">REPRESENTATIVE SOC EXPERIENCE</span>
+              <span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">SOC EXPERIENCE</span>
               <h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Tarang SoC Engineering Experience</h3>
-              <p class="mt-2 text-sm leading-6 text-slate-600">Representative SoC engineering evidence covering complex interfaces, memory, security, FPGA prototyping and embedded-software integration.</p>
+              <p class="mt-2 text-sm leading-6 text-slate-600">Representative complex-SoC engineering spanning interfaces, memory, security, FPGA prototyping and embedded-software integration.</p>
+              <span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View evidence →</span>
+            </a>
+            <a href="/evidence/physical-design-signoff" class="group border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]">
+              <span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">IMPLEMENTATION</span>
+              <h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Physical Design & Signoff</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">Representative physical-design experience across floorplanning, placement, CTS, routing, STA, PPA, ECO and signoff.</p>
               <span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View evidence →</span>
             </a>
           </div>
@@ -111,9 +141,9 @@ const discovery = [
       </Container>
     </Section>
 
-    <Section class="bg-[var(--aionsi-surface-alt)]">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18">
       <Container>
-        <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
+        <div class="grid gap-8 lg:grid-cols-[.68fr_1.32fr]">
           <div>
             <TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel>
             <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Start with one security or silicon problem.</h2>
@@ -126,7 +156,7 @@ const discovery = [
       </Container>
     </Section>
 
-    <Section>
+    <Section class="py-12 md:py-14">
       <Container>
         <div class="grid gap-4 md:grid-cols-3">
           {[
@@ -138,12 +168,12 @@ const discovery = [
       </Container>
     </Section>
 
-    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-16">
       <Container class="text-center">
         <TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel>
         <h2 class="mx-auto mt-3 max-w-4xl text-4xl font-semibold tracking-tight md:text-5xl">Building a security-critical SoC for accelerated computing?</h2>
-        <p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/70">Bring the security, verification, management, implementation or silicon-validation bottleneck. AionSi can map it to the right engineering capability and define a focused next step.</p>
-        <div class="mt-8"><Button href="/contact">Discuss a Secure-SoC Engineering Workstream</Button></div>
+        <p class="mx-auto mt-4 max-w-3xl text-lg leading-8 text-white/70">Bring the security, verification, management, implementation or silicon-validation bottleneck. AionSi can map it to the right engineering capability and define a focused next step.</p>
+        <div class="mt-7"><Button href="/contact">Discuss a Security Silicon Workstream</Button></div>
       </Container>
     </Section>
   </main>
