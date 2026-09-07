@@ -13,7 +13,6 @@ const engineeringAreas = [
   ['03','Validation Automation','Python/Linux automation, regression orchestration, log analysis, failure triage and repeatable validation workflows.'],
   ['04','Silicon Validation & Debug','Bring-up support, interface validation, failure reproduction, trace analysis and hardware/software debug within defined scope.'],
   ['05','Verification Closure','Coverage analysis, regression health, failure classification, root-cause analysis and structured milestone closure.'],
-  ['06','Dedicated Engineering Pod','A focused specialist pod that can start around one workstream and scale with roadmap demand.'],
 ];
 
 const workstreams = [
@@ -65,12 +64,45 @@ const deliveryModel = [
       </Container>
     </Section>
 
+    <Section class="py-12 md:py-16">
+      <Container>
+        <TechnicalLabel>CONTINUING THE DVCON CONVERSATION</TechnicalLabel>
+        <div class="mt-4 grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+          <div>
+            <h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Engineering experience first. Then the fit.</h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600">Before discussing a workstream, Prodigy should be able to quickly assess the engineering depth behind the proposition.</p>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {experience.map(([label,title,href]) => <a href={href} class="group border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{label}</span><p class="mt-3 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">{title}</p><span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View experience →</span></a>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.68fr_1.32fr]">
+          <div>
+            <TechnicalLabel>ENGINEERING EXPERIENCE</TechnicalLabel>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Engineering experience across the semiconductor lifecycle.</h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600">AionSi brings representative experience across Design Verification, SoC engineering, secure silicon and physical implementation to support technical qualification.</p>
+          </div>
+          <div class="border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+            <div class="grid gap-3 sm:grid-cols-2">
+              {['Design Verification — UVM / SystemVerilog, IP & subsystem verification, regression, debug and coverage-oriented execution','SoC Engineering — interfaces, memory, security, prototyping and embedded integration','Secure SoC — secure silicon and cryptography-oriented engineering context','Physical Implementation — timing closure, PPA optimization, ECO and signoff for complex designs'].map((item,index) => <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><p class="mt-3 text-sm leading-6 text-[var(--aionsi-navy)]">{item}</p></div>)}
+            </div>
+            <p class="mt-5 text-sm leading-6 text-slate-500">Representative experience is provided for engineering qualification and does not imply an existing Prodigy customer or supplier relationship.</p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
     <Section class="py-14 md:py-18">
       <Container>
-        <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+        <TechnicalLabel>FROM PROTOCOL ANALYSIS TO SILICON VALIDATION</TechnicalLabel>
+        <div class="mt-4 grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
           <div>
-            <TechnicalLabel>CONTINUING THE DVCON CONVERSATION</TechnicalLabel>
-            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">From protocol analysis to silicon validation.</h2>
+            <h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Protocol-product engineering spans multiple validation layers.</h2>
             <p class="mt-4 text-lg leading-8 text-slate-600">Protocol-intensive products connect verification, exercising, validation, interoperability and system-level debug. The engineering challenge is not only generating tests, but turning failures and traces into actionable closure.</p>
           </div>
           <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6 md:p-8">
@@ -87,11 +119,7 @@ const deliveryModel = [
         <TechnicalLabel>WHERE AIONSI CAN COMPLEMENT PRODIGY</TechnicalLabel>
         <h2 class="mt-4 max-w-5xl text-3xl font-semibold md:text-5xl">Specialist capacity where validation complexity meets engineering bandwidth.</h2>
         <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {engineeringAreas.slice(0,5).map(([num,title,desc]) => <article class="border border-white/10 bg-white/5 p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-xl font-semibold">{title}</h3><p class="mt-3 text-sm leading-6 text-white/65">{desc}</p></article>)}
-        </div>
-        <div class="mt-4 border border-[var(--aionsi-orange)]/40 bg-white/5 p-6 md:flex md:items-center md:justify-between md:gap-8">
-          <div><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">ENGINEERING MODEL</span><h3 class="mt-3 text-xl font-semibold">Dedicated Engineering Pod</h3><p class="mt-2 max-w-3xl text-sm leading-6 text-white/65">Start with one specialist workstream and scale the engineering pod as roadmap demand and delivery value are demonstrated.</p></div>
-          <span class="mt-4 inline-flex shrink-0 border border-white/15 px-4 py-2 text-sm font-semibold text-white/80 md:mt-0">01 workstream → specialist pod</span>
+          {engineeringAreas.map(([num,title,desc]) => <article class="border border-white/10 bg-white/5 p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-xl font-semibold">{title}</h3><p class="mt-3 text-sm leading-6 text-white/65">{desc}</p></article>)}
         </div>
       </Container>
     </Section>
@@ -108,19 +136,6 @@ const deliveryModel = [
             {workstreams.map(([title,desc],index) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
           </div>
         </div>
-      </Container>
-    </Section>
-
-    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18">
-      <Container>
-        <TechnicalLabel>REPRESENTATIVE ENGINEERING EXPERIENCE</TechnicalLabel>
-        <div class="mt-4 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <h2 class="max-w-4xl text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Technical depth that can support the conversation.</h2>
-        </div>
-        <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {experience.map(([label,title,href]) => <a href={href} class="group border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{label}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View experience →</span></a>)}
-        </div>
-        <p class="mt-5 text-sm leading-6 text-slate-500">Representative experience is provided for engineering qualification and does not imply an existing Prodigy customer or supplier relationship.</p>
       </Container>
     </Section>
 
