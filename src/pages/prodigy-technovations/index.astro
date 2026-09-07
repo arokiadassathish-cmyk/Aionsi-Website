@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+
+const engineeringAreas = [
+  ['01','Protocol Verification','SystemVerilog, UVM, assertions, functional verification, regression, debug and closure for protocol-heavy IP and subsystems.'],
+  ['02','High-Speed Interface Verification','Potential alignment across PCIe, USB, UFS, MIPI, I3C and related interface verification and integration workstreams.'],
+  ['03','Validation Automation','Python/Linux automation, regression orchestration, log analysis, failure triage and repeatable validation workflows.'],
+  ['04','Silicon Validation & Debug','Bring-up support, interface validation, failure reproduction, trace analysis and hardware/software debug within defined scope.'],
+  ['05','Verification Closure','Coverage analysis, regression health, failure classification, root-cause analysis and structured milestone closure.'],
+  ['06','Dedicated Engineering Capacity','A focused specialist pod that can start around one workstream and scale with roadmap demand.'],
+];
+
+const workstreams = [
+  ['Protocol analyzer / exerciser development','DV, subsystem verification, test development and validation automation around protocol behavior.'],
+  ['Protocol compliance & corner-case validation','Test planning, negative scenarios, regression and debug across complex interface behaviors.'],
+  ['Validation workflow automation','Reduce repetitive analysis through scripting, CI-oriented regression and structured failure triage.'],
+  ['Silicon-facing debug','Extend engineering bandwidth for bring-up, trace interpretation, issue reproduction and root-cause isolation.'],
+  ['New protocol adoption','Provide specialist verification capacity when a roadmap introduces a new interface or validation requirement.'],
+  ['Customer-specific validation','Deploy bounded engineering capacity around defined requirements, interoperability or system-level debug.'],
+];
+
+const experience = [
+  ['DESIGN VERIFICATION','UVM/SystemVerilog, IP and subsystem verification, regression, debug and coverage-oriented execution.','/evidence/design-verification-engineering'],
+  ['SOC ENGINEERING','Representative SoC engineering across interfaces, memory, security, prototyping and embedded integration.','/evidence/tarang-soc-engineering-experience'],
+  ['SECURE SOC','Representative secure-SoC and cryptography-oriented engineering context.','/evidence/opentitan-cryptography-secure-soc'],
+  ['IMPLEMENTATION','Physical-design experience across timing closure, PPA optimization, ECO and signoff for complex designs.','/evidence/physical-design-profile-derived-experience'],
+];
+
+const deliveryModel = [
+  ['01','Technical qualification','Understand the product context, methodology, tools, validation flow, scope and expected engineering outcome.'],
+  ['02','Bounded workstream','Start with one clearly defined engineering problem and measurable deliverables.'],
+  ['03','Milestone ownership','Operate against agreed checkpoints, technical reviews and quality expectations.'],
+  ['04','Scale','Expand into a specialist pod or dedicated engineering capacity when delivery value is demonstrated.'],
+];
+---
+
+<BaseLayout title="AionSi × Prodigy Technovations | Protocol Validation Engineering" description="AionSi engineering capability aligned to protocol validation, verification automation, silicon-facing debug and specialist semiconductor engineering capacity for Prodigy Technovations.">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-10 md:py-14 lg:py-16">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[1.02fr_.98fr] lg:items-center lg:gap-14">
+          <div class="max-w-[700px]">
+            <TechnicalLabel>ACCOUNT ENGINEERING BRIEF</TechnicalLabel>
+            <h1 class="mt-5 max-w-[680px] text-[3.05rem] font-semibold leading-[1.06] tracking-[-0.035em] text-[var(--aionsi-navy)] sm:text-[3.45rem] lg:text-[3.75rem] xl:text-[3.95rem]">Engineering capacity for protocol validation and silicon debug.</h1>
+            <p class="mt-5 max-w-[650px] text-lg leading-8 text-slate-600 lg:text-[1.18rem]">AionSi complements semiconductor technology teams with specialist engineering capability across Design Verification, protocol verification, validation automation and silicon-facing debug.</p>
+            <div class="mt-7 flex max-w-[680px] flex-wrap gap-3">
+              {['Protocol Verification','Interface DV','Validation Automation','Silicon Debug'].map((tag) => <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">{tag}</span>)}
+              <span class="border border-[var(--aionsi-orange)] bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">Dedicated Engineering</span>
+            </div>
+          </div>
+          <div class="w-full max-w-[550px] justify-self-end border border-slate-200 bg-white p-6 shadow-sm md:p-7">
+            <div class="h-1 w-12 bg-[var(--aionsi-orange)]"></div>
+            <h2 class="mt-5 text-2xl font-semibold leading-tight text-[var(--aionsi-navy)] md:text-[1.75rem]">A focused engineering proposition</h2>
+            <p class="mt-3 text-base leading-7 text-slate-600">Explore where AionSi could complement protocol validation, verification and silicon-facing workflows with measurable engineering ownership.</p>
+            <div class="mt-5 border-l-2 border-[var(--aionsi-blue)] pl-4 text-sm leading-6 text-slate-500">Prepared for discussion based on publicly available information and AionSi's representative engineering experience.</div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+          <div>
+            <TechnicalLabel>CONTINUING THE DVCON CONVERSATION</TechnicalLabel>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">From protocol analysis to silicon validation.</h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600">Protocol-intensive products connect verification, exercising, validation, interoperability and system-level debug. The engineering challenge is not only generating tests, but turning failures and traces into actionable closure.</p>
+          </div>
+          <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6 md:p-8">
+            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {['Protocol Definition','IP / SoC Verification','Protocol Exercising','Electrical / Interface Validation','Silicon Validation','System-Level Debug'].map((item,index) => <div class="border border-slate-200 bg-white p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">{item}</h3></div>)}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-18">
+      <Container>
+        <TechnicalLabel>WHERE AIONSI CAN COMPLEMENT THE ENGINEERING FLOW</TechnicalLabel>
+        <h2 class="mt-4 max-w-5xl text-3xl font-semibold md:text-5xl">Specialist capacity where validation complexity meets engineering bandwidth.</h2>
+        <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {engineeringAreas.map(([num,title,desc]) => <article class="border border-white/10 bg-white/5 p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-xl font-semibold">{title}</h3><p class="mt-3 text-sm leading-6 text-white/65">{desc}</p></article>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.68fr_1.32fr]">
+          <div>
+            <TechnicalLabel>POTENTIAL PRODIGY × AIONSI WORKSTREAMS</TechnicalLabel>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Start with a concrete engineering problem.</h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600">The intent is not to assume an internal challenge. It is to create a technical starting point the Prodigy engineering team can validate or redirect.</p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            {workstreams.map(([title,desc],index) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18">
+      <Container>
+        <TechnicalLabel>REPRESENTATIVE ENGINEERING EXPERIENCE</TechnicalLabel>
+        <div class="mt-4 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <h2 class="max-w-4xl text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Technical depth that can support the conversation.</h2>
+          <span class="max-w-sm text-sm leading-6 text-slate-500">Representative experience is presented for engineering qualification; it does not imply a Prodigy customer or supplier relationship.</span>
+        </div>
+        <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {experience.map(([label,title,href]) => <a href={href} class="group border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{label}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View experience →</span></a>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18">
+      <Container>
+        <TechnicalLabel>DELIVERY MODEL</TechnicalLabel>
+        <h2 class="mt-4 max-w-4xl text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">A practical path from technical discussion to delivery.</h2>
+        <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {deliveryModel.map(([num,title,desc]) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{num}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-16">
+      <Container class="text-center">
+        <TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel>
+        <h2 class="mx-auto mt-3 max-w-4xl text-4xl font-semibold tracking-tight md:text-5xl">Let's identify one validation engineering workstream.</h2>
+        <p class="mx-auto mt-4 max-w-3xl text-lg leading-8 text-white/70">Bring the protocol, verification, automation or silicon-validation requirement. AionSi can qualify the scope, map the engineering capability and define a focused next step.</p>
+        <div class="mt-7 flex flex-wrap justify-center gap-3"><Button href="/contact">Discuss a Validation Workstream</Button><a href="/capabilities" class="inline-flex items-center justify-center border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/40">Explore AionSi Capabilities</a></div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
