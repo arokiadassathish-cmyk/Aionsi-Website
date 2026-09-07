@@ -7,13 +7,13 @@ import Section from '../../components/global/Section.astro';
 import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
 
-const dvCapabilities = [
+const engineeringCapabilities = [
   ['01','Design Verification','SystemVerilog, UVM, SVA, functional verification, coverage, regression and debug across IP, subsystem and SoC levels.'],
-  ['02','Protocol & Interface Verification','Verification support for complex interfaces, integration dependencies and system-level protocol behavior.'],
-  ['03','Verification Closure','Regression execution, failure analysis, coverage closure and structured debug toward milestone readiness.'],
-  ['04','RTL & SoC Engineering','RTL implementation, subsystem integration and engineering support across the semiconductor lifecycle.'],
-  ['05','Physical Design & Signoff','Floorplanning, placement, CTS, routing, STA, PPA optimization, ECO and physical signoff support.'],
-  ['06','DFT, Silicon & Embedded','DFT coordination, silicon bring-up, validation, debug and embedded engineering support within defined scope.'],
+  ['02','RTL & SoC Engineering','RTL implementation, subsystem integration and engineering support across the semiconductor lifecycle.'],
+  ['03','Physical Design & Signoff','Floorplanning, placement, CTS, routing, STA, PPA optimization, ECO and physical signoff support.'],
+  ['04','DFT & Silicon','DFT coordination, silicon bring-up, validation and structured debug within defined program scope.'],
+  ['05','Protocol & Interface Verification','Verification support for complex interfaces, integration dependencies and system-level protocol behavior.'],
+  ['06','Verification Closure','Regression execution, failure analysis, coverage closure and structured debug toward milestone readiness.'],
 ];
 
 const deliveryModel = [
@@ -43,18 +43,19 @@ const audienceOutcomes = [
   <main>
     <Section class="bg-[var(--aionsi-surface-alt)] py-10 md:py-14 lg:py-16">
       <Container>
-        <div class="grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-14">
-          <div class="max-w-[720px]">
+        <div class="grid gap-10 lg:grid-cols-[1.02fr_.98fr] lg:items-center lg:gap-14">
+          <div class="max-w-[700px]">
             <TechnicalLabel>ACCOUNT ENGINEERING BRIEF</TechnicalLabel>
-            <h1 class="mt-5 max-w-[680px] text-[3.5rem] font-semibold leading-[1.04] tracking-[-0.035em] text-[var(--aionsi-navy)] sm:text-6xl lg:text-[4rem] xl:text-[4.25rem]">Strengthening semiconductor delivery with engineering ownership.</h1>
-            <p class="mt-6 max-w-[650px] text-lg leading-8 text-slate-600 lg:text-xl">AionSi complements semiconductor delivery organizations with specialist engineering capability across Design Verification, RTL, Physical Design, DFT and Silicon — starting with a defined workstream and scaling with demonstrated delivery.</p>
-            <div class="mt-7 flex max-w-[680px] flex-wrap gap-3">
-              {['Design Verification','RTL & SoC','Physical Design','DFT & Silicon','Dedicated Capacity'].map((tag) => <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">{tag}</span>)}
+            <h1 class="mt-5 max-w-[670px] text-[3.1rem] font-semibold leading-[1.06] tracking-[-0.035em] text-[var(--aionsi-navy)] sm:text-[3.5rem] lg:text-[3.8rem] xl:text-[4rem]">Strengthening semiconductor delivery with engineering ownership.</h1>
+            <p class="mt-5 max-w-[650px] text-lg leading-8 text-slate-600 lg:text-[1.18rem]">AionSi complements semiconductor delivery organizations with specialist engineering capability across Design Verification, RTL, Physical Design, DFT and Silicon — starting with a defined workstream and scaling with demonstrated delivery.</p>
+            <div class="mt-7 flex max-w-[660px] flex-wrap gap-3">
+              {['Design Verification','RTL & SoC','Physical Design','DFT & Silicon'].map((tag) => <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">{tag}</span>)}
+              <span class="border border-[var(--aionsi-orange)] bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">Dedicated Engineering</span>
             </div>
           </div>
-          <div class="w-full max-w-[560px] justify-self-end border border-slate-200 bg-white p-6 shadow-sm md:p-7">
+          <div class="w-full max-w-[550px] justify-self-end border border-slate-200 bg-white p-6 shadow-sm md:p-7">
             <div class="h-1 w-12 bg-[var(--aionsi-orange)]"></div>
-            <h2 class="mt-5 text-2xl font-semibold leading-tight text-[var(--aionsi-navy)] md:text-[1.8rem]">A specialist semiconductor engineering partner</h2>
+            <h2 class="mt-5 text-2xl font-semibold leading-tight text-[var(--aionsi-navy)] md:text-[1.75rem]">A specialist semiconductor engineering partner</h2>
             <p class="mt-3 text-base leading-7 text-slate-600">A focused proposition for extending delivery capacity, owning specialist workstreams and scaling engineering execution when program demand increases.</p>
             <div class="mt-5 border-l-2 border-[var(--aionsi-blue)] pl-4 text-sm leading-6 text-slate-500">Prepared for discussion based on publicly available information and AionSi's representative engineering experience.</div>
           </div>
@@ -82,7 +83,7 @@ const audienceOutcomes = [
         <TechnicalLabel>AIONSI SEMICONDUCTOR ENGINEERING</TechnicalLabel>
         <h2 class="mt-4 max-w-4xl text-3xl font-semibold md:text-5xl">Where AionSi can extend TCS semiconductor delivery.</h2>
         <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {dvCapabilities.map(([num,title,desc]) => <article class="border border-white/10 bg-white/5 p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-xl font-semibold">{title}</h3><p class="mt-3 text-sm leading-6 text-white/65">{desc}</p></article>)}
+          {engineeringCapabilities.map(([num,title,desc]) => <article class="border border-white/10 bg-white/5 p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-xl font-semibold">{title}</h3><p class="mt-3 text-sm leading-6 text-white/65">{desc}</p></article>)}
         </div>
       </Container>
     </Section>
@@ -94,6 +95,7 @@ const audienceOutcomes = [
             <TechnicalLabel>DESIGN VERIFICATION — OUR DVCON STARTING POINT</TechnicalLabel>
             <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">From verification execution to milestone ownership.</h2>
             <p class="mt-4 text-lg leading-8 text-slate-600">AionSi can support defined DV workstreams across planning, environment development, execution, regression, debug and closure.</p>
+            <p class="mt-5 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">Potential ownership: planning → execution → regression health → debug → coverage closure → milestone reporting.</p>
           </div>
           <div class="grid gap-3 sm:grid-cols-2">
             {['Verification Planning','UVM / SystemVerilog','IP & Subsystem Verification','Protocol / Interface Verification','Regression & Debug','Coverage Closure'].map((item,index) => <div class="border border-slate-200 bg-white p-5 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><h3 class="mt-3 font-semibold text-[var(--aionsi-navy)]">{item}</h3></div>)}
@@ -116,14 +118,14 @@ const audienceOutcomes = [
       <Container>
         <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr]">
           <div>
-            <TechnicalLabel>REPRESENTATIVE ENGINEERING EVIDENCE</TechnicalLabel>
-            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Evidence across the semiconductor lifecycle.</h2>
+            <TechnicalLabel>REPRESENTATIVE ENGINEERING EXPERIENCE</TechnicalLabel>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Engineering experience across the semiconductor lifecycle.</h2>
             <p class="mt-4 text-lg leading-8 text-slate-600">AionSi customer discussions can be grounded in representative engineering experience rather than generic capability claims.</p>
           </div>
           <div class="grid gap-4 md:grid-cols-3">
-            <a href="/evidence/opentitan-cryptography-secure-soc" class="group border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">SECURE SOC</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Secure SoC Engineering</h3><p class="mt-2 text-sm leading-6 text-slate-600">Representative secure-SoC, cryptography and security-oriented engineering context.</p><span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View evidence →</span></a>
-            <a href="/evidence/tarang-soc-engineering-experience" class="group border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">SOC EXPERIENCE</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Complex SoC Engineering</h3><p class="mt-2 text-sm leading-6 text-slate-600">Representative SoC engineering across interfaces, memory, security, prototyping and embedded integration.</p><span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View evidence →</span></a>
-            <a href="/evidence/physical-design-profile-derived-experience" class="group border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">IMPLEMENTATION</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Physical Design &amp; Signoff</h3><p class="mt-2 text-sm leading-6 text-slate-600">Representative physical-design experience across timing closure, PPA, ECO and signoff.</p><span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View evidence →</span></a>
+            <a href="/evidence/opentitan-cryptography-secure-soc" class="group border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">SECURE SOC</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Secure SoC Engineering</h3><p class="mt-2 text-sm leading-6 text-slate-600">Representative secure-SoC, cryptography and security-oriented engineering context.</p><span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View experience →</span></a>
+            <a href="/evidence/tarang-soc-engineering-experience" class="group border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">SOC EXPERIENCE</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Complex SoC Engineering</h3><p class="mt-2 text-sm leading-6 text-slate-600">Representative SoC engineering across interfaces, memory, security, prototyping and embedded integration.</p><span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View experience →</span></a>
+            <a href="/evidence/physical-design-profile-derived-experience" class="group border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">IMPLEMENTATION</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Physical Design &amp; Signoff</h3><p class="mt-2 text-sm leading-6 text-slate-600">Representative physical-design experience across timing closure, PPA, ECO and signoff.</p><span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View experience →</span></a>
           </div>
         </div>
       </Container>
