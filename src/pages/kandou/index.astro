@@ -11,7 +11,14 @@ const experience = [
   ['DESIGN VERIFICATION','UVM/SystemVerilog, IP and subsystem verification, regression, debug and coverage-oriented execution.','/evidence/design-verification-engineering'],
   ['SOC ENGINEERING','Interfaces, memory, security, prototyping and embedded integration across representative SoC programs.','/evidence/tarang-soc-engineering-experience'],
   ['PHYSICAL IMPLEMENTATION','Representative experience across advanced-node implementation, timing closure, PPA optimization, ECO and signoff.','/evidence/advanced-node-physical-design-timing-congestion-signoff'],
-  ['SECURE / CONNECTIVITY CONTEXT','Engineering experience around complex SoC interfaces, verification dependencies and silicon-facing debug; protocol-specific scope is to be technically qualified.','/evidence/opentitan-cryptography-secure-soc'],
+  ['CONNECTIVITY & SILICON CONTEXT','Engineering experience around complex SoC interfaces, verification dependencies and silicon-facing debug; protocol-specific scope is to be technically qualified.','/evidence/opentitan-cryptography-secure-soc'],
+];
+
+const questions = [
+  ['Verification scalability','How regression, coverage and debug scale as connectivity IP and subsystem complexity increases.'],
+  ['Protocol corner cases','How interoperability, error handling and corner-case behavior are isolated, reproduced and traced to root cause.'],
+  ['Cross-functional debug','How efficiently failures can be localized across RTL, verification, firmware, interface behavior and implementation.'],
+  ['Validation continuity','How verification intent, automation and silicon-facing validation remain connected through the development cycle.'],
 ];
 
 const areas = [
@@ -29,14 +36,14 @@ const workstreams = [
   ['Verification regression & closure','Regression health, failure triage, coverage analysis, root-cause isolation and milestone-oriented verification closure.'],
   ['Validation automation','Python/Linux automation for regression orchestration, log analysis, result processing and repeatable validation workflows.'],
   ['SoC integration & cross-functional debug','Interface integration, subsystem interactions and debug across RTL, verification, firmware and downstream implementation dependencies.'],
-  ['Implementation / signoff engineering','Physical implementation, STA, timing closure, PPA/congestion optimization and ECO/signoff support where the workstream requires downstream ownership.'],
+  ['Silicon validation / post-silicon debug','Validation planning, failure reproduction, debug and structured handoff from verification environments into silicon-facing investigation where the workstream requires it.'],
 ];
 
 const delivery = [
   ['01','Technical alignment','Understand the architecture, connectivity requirements, protocols, verification environment, tools and specific engineering constraint.'],
   ['02','Defined workstream','Agree one bounded scope with clear deliverables, interfaces, technical ownership and closure criteria.'],
   ['03','Milestone execution','Operate against agreed checkpoints, regression health, quality expectations, reviews and measurable engineering outcomes.'],
-  ['04','Scale where proven','Extend the engineering model only where technical fit, delivery quality and ownership are demonstrated.'],
+  ['04','Extend where relevant','Extend the engineering model only where technical fit, delivery quality and ownership are demonstrated.'],
 ];
 ---
 
@@ -48,7 +55,7 @@ const delivery = [
         <div class="grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-14">
           <div class="max-w-[720px]">
             <TechnicalLabel>AIONSI × KANDOU · ENGINEERING BRIEF</TechnicalLabel>
-            <h1 class="mt-5 max-w-[700px] text-[3rem] font-semibold leading-[1.06] tracking-[-0.035em] text-[var(--aionsi-navy)] sm:text-[3.4rem] lg:text-[3.75rem]">Engineering capability for high-speed connectivity silicon.</h1>
+            <h1 class="mt-5 max-w-[700px] text-[3rem] font-semibold leading-[1.06] tracking-[-0.035em] text-[var(--aionsi-navy)] sm:text-[3.4rem] lg:text-[3.75rem]">Engineering capability for connectivity-focused silicon engineering.</h1>
             <p class="mt-5 max-w-[670px] text-lg leading-8 text-slate-600 lg:text-[1.18rem]">A technical view of AionSi's representative engineering experience across ASIC verification, SoC integration, connectivity-oriented verification, automation, physical implementation and silicon-facing closure.</p>
             <div class="mt-7 flex flex-wrap gap-3">{['ASIC Verification','High-Speed Interfaces','SoC Integration','Validation Automation','Timing & Signoff','Engineering Capacity'].map((tag) => <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">{tag}</span>)}</div>
           </div>
@@ -68,7 +75,7 @@ const delivery = [
       <Container>
         <TechnicalLabel>DVCON CONTEXT</TechnicalLabel>
         <div class="mt-4 grid gap-8 lg:grid-cols-[.62fr_1.38fr] lg:items-start">
-          <div><h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Continuing the engineering conversation.</h2><p class="mt-4 text-lg leading-8 text-slate-600">AionSi connected with Nirmal Arumugam, Director R&amp;D, at DVCon. This brief captures relevant engineering experience and technical areas for a deeper discussion without assuming a specific Kandou requirement.</p></div>
+          <div><h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Continuing our DVCon engineering discussion.</h2><p class="mt-4 text-lg leading-8 text-slate-600">AionSi connected with Nirmal Arumugam, Director R&amp;D, at DVCon. This brief captures relevant AionSi engineering experience and a few technical areas for further discussion, without assuming a specific Kandou requirement.</p></div>
           <div class="grid gap-4 sm:grid-cols-2">
             {[
               ['Connectivity architecture','High-speed links create dependencies across protocol behavior, PHY/SerDes characteristics, verification, validation and system integration.'],
@@ -83,7 +90,17 @@ const delivery = [
 
     <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18">
       <Container>
-        <div class="grid gap-8 lg:grid-cols-[.68fr_1.32fr]">
+        <TechnicalLabel>ENGINEERING QUESTIONS WORTH EXPLORING</TechnicalLabel>
+        <div class="mt-4 grid gap-8 lg:grid-cols-[.62fr_1.38fr] lg:items-start">
+          <div><h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Where does closure become difficult?</h2><p class="mt-4 text-lg leading-8 text-slate-600">A few engineering questions provide a practical starting point for understanding where additional technical ownership may be relevant.</p></div>
+          <div class="grid gap-4 sm:grid-cols-2">{questions.map(([title,desc]) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><h3 class="text-lg font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}</div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18 bg-white">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.68fr_1.32fr] lg:items-start">
           <div><TechnicalLabel>RELEVANT ENGINEERING EXPERIENCE</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Technical depth first.</h2><p class="mt-4 text-lg leading-8 text-slate-600">The engineering areas and representative execution experience provide the basis for assessing technical fit before discussing any specific scope.</p></div>
           <div class="grid gap-4 sm:grid-cols-2">{experience.map(([label,title,href]) => <a href={href} class="group border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{label}</span><p class="mt-3 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">{title}</p><span class="mt-5 inline-block text-sm font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">View experience →</span></a>)}</div>
         </div>
@@ -107,9 +124,9 @@ const delivery = [
               ].map(([num,item]) => <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{num}</span><p class="mt-3 text-sm leading-6 text-[var(--aionsi-navy)]">{item}</p></div>)}
             </div>
             <div class="mt-5 grid gap-3 sm:grid-cols-3">
-              <div class="border border-slate-200 p-4"><span class="text-xs font-semibold tracking-[.12em] text-slate-500">DV</span><p class="mt-2 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">UVM / SystemVerilog</p></div>
+              <div class="border border-slate-200 p-4"><span class="text-xs font-semibold tracking-[.12em] text-slate-500">VERIFICATION</span><p class="mt-2 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">UVM / SystemVerilog</p></div>
               <div class="border border-slate-200 p-4"><span class="text-xs font-semibold tracking-[.12em] text-slate-500">AUTOMATION</span><p class="mt-2 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">Python / Linux</p></div>
-              <div class="border border-slate-200 p-4"><span class="text-xs font-semibold tracking-[.12em] text-slate-500">CLOSURE</span><p class="mt-2 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">Timing / signoff</p></div>
+              <div class="border border-slate-200 p-4"><span class="text-xs font-semibold tracking-[.12em] text-slate-500">SILICON CLOSURE</span><p class="mt-2 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">Timing / signoff</p></div>
             </div>
             <p class="mt-5 text-sm leading-6 text-slate-500">Connectivity-specific protocol or PHY expertise should be qualified against the exact Kandou architecture, product and tool environment before defining a workstream.</p>
           </div>
@@ -138,7 +155,7 @@ const delivery = [
         <TechnicalLabel>TECHNICAL DISCUSSION</TechnicalLabel>
         <h2 class="mx-auto mt-3 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Continue the technical discussion.</h2>
         <p class="mx-auto mt-4 max-w-3xl text-lg leading-8 text-slate-600">A focused discussion can map the relevant engineering requirement to technical experience, scope, ownership and the appropriate execution model.</p>
-        <div class="mt-7 flex flex-wrap justify-center gap-3"><Button href="/contact">Continue the Discussion</Button><a href="/capabilities" class="inline-flex items-center justify-center border border-slate-300 px-5 py-3 text-sm font-semibold text-[var(--aionsi-navy)] transition hover:border-slate-400">AionSi Capabilities</a></div>
+        <div class="mt-7 flex flex-wrap justify-center gap-3"><Button href="/contact">Discuss an Engineering Workstream</Button><a href="/capabilities" class="inline-flex items-center justify-center border border-slate-300 px-5 py-3 text-sm font-semibold text-[var(--aionsi-navy)] transition hover:border-slate-400">AionSi Capabilities</a></div>
         <p class="mx-auto mt-6 max-w-3xl text-xs leading-5 text-slate-500">Prepared for discussion based on publicly available information and AionSi's representative engineering experience.</p>
       </Container>
     </Section>
