@@ -19,8 +19,8 @@ const areas = [
   ['02','PCIe / High-Speed Interface Verification','Verification of high-speed interfaces and subsystem interactions, including protocol behavior, corner cases and integration debug.'],
   ['03','Connectivity & SoC Integration','Interface-heavy SoC engineering, memory, embedded integration and cross-functional debug across complex connectivity paths.'],
   ['04','Verification Closure & Automation','Regression orchestration, failure triage, root-cause analysis, coverage-oriented execution and Python/Linux-based engineering automation.'],
-  ['05','Implementation & Signoff','Physical implementation, STA, timing closure, congestion/PPA optimization, ECO support and signoff-oriented execution.'],
-  ['06','Specialist Engineering Capacity','Defined engineering ownership around a bounded technical workstream, with experienced technical leadership and milestone-based execution.'],
+  ['05','Cross-Functional Debug & Closure','Structured debug across RTL, verification, interface behavior and downstream implementation dependencies.'],
+  ['06','Implementation & Signoff','Physical implementation, STA, timing closure, congestion/PPA optimization, ECO support and signoff-oriented execution.'],
 ];
 
 const workstreams = [
@@ -29,7 +29,7 @@ const workstreams = [
   ['Regression & coverage closure','Regression health, failure triage, coverage analysis, root-cause isolation and milestone-oriented verification closure.'],
   ['Verification automation','Python/Linux automation for regression orchestration, log analysis, result processing and repeatable verification workflows.'],
   ['SoC integration & debug','Interface integration, subsystem interactions, embedded dependencies and structured debug across design and verification boundaries.'],
-  ['Dedicated engineering capacity','A bounded specialist engineering team aligned to a defined Astera Labs requirement and scaled only where the technical model is proven.'],
+  ['Interface / subsystem interoperability','Cross-interface scenarios, corner-case behavior, subsystem interactions and failure isolation across complex connectivity paths.'],
 ];
 
 const delivery = [
@@ -48,14 +48,14 @@ const delivery = [
         <div class="grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-14">
           <div class="max-w-[720px]">
             <TechnicalLabel>AIONSI × ASTERA LABS · ENGINEERING BRIEF</TechnicalLabel>
-            <h1 class="mt-5 max-w-[700px] text-[3rem] font-semibold leading-[1.06] tracking-[-0.035em] text-[var(--aionsi-navy)] sm:text-[3.4rem] lg:text-[3.75rem]">Engineering capability for ASIC verification and connectivity silicon.</h1>
+            <h1 class="mt-5 max-w-[700px] text-[3rem] font-semibold leading-[1.06] tracking-[-0.035em] text-[var(--aionsi-navy)] sm:text-[3.4rem] lg:text-[3.75rem]">ASIC verification engineering for complex connectivity silicon.</h1>
             <p class="mt-5 max-w-[670px] text-lg leading-8 text-slate-600 lg:text-[1.18rem]">A technical view of AionSi's representative engineering experience across ASIC verification, SoC engineering, high-speed interfaces, verification closure, implementation and signoff.</p>
-            <div class="mt-7 flex flex-wrap gap-3">{['ASIC Verification','SoC Engineering','PCIe / Interfaces','Regression & Closure','Physical Design','Signoff'].map((tag) => <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">{tag}</span>)}</div>
+            <div class="mt-7 flex flex-wrap gap-3">{['ASIC Verification','IP & Subsystem DV','PCIe / High-Speed Interfaces','Regression & Coverage Closure','SoC Integration & Debug','Verification Automation'].map((tag) => <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">{tag}</span>)}</div>
           </div>
           <div class="w-full max-w-[550px] justify-self-end border border-slate-200 bg-white p-6 shadow-sm md:p-7">
             <div class="h-1 w-12 bg-[var(--aionsi-orange)]"></div>
-            <h2 class="mt-5 text-2xl font-semibold leading-tight text-[var(--aionsi-navy)] md:text-[1.75rem]">Verification-led engineering capability.</h2>
-            <p class="mt-3 text-base leading-7 text-slate-600">AionSi's engineering experience spans verification planning and execution, regression and coverage closure, SoC and interface integration, implementation and signoff-oriented workflows.</p>
+            <h2 class="mt-5 text-2xl font-semibold leading-tight text-[var(--aionsi-navy)] md:text-[1.75rem]">Verification engineering across the closure path.</h2>
+            <p class="mt-3 text-base leading-7 text-slate-600">AionSi's engineering experience spans verification planning and execution, regression and coverage closure, SoC and interface integration, debug and signoff-oriented workflows.</p>
             <div class="mt-5 grid gap-3 sm:grid-cols-2">
               {['IP & subsystem verification','High-speed interface verification','Regression & coverage closure','SoC integration & debug'].map((item) => <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-4 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">{item}</div>)}
             </div>
@@ -75,7 +75,27 @@ const delivery = [
     </Section>
 
     <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18">
-      <Container><div class="grid gap-8 lg:grid-cols-[.68fr_1.32fr]"><div><TechnicalLabel>VERIFICATION & ENGINEERING COMPLEXITY</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Engineering across verification, integration and closure.</h2><p class="mt-4 text-lg leading-8 text-slate-600">Complex semiconductor verification requires more than test execution: interface behavior, subsystem interactions, regression health, coverage, debug and downstream implementation dependencies all influence closure.</p></div><div class="border border-slate-200 bg-white p-6 shadow-sm md:p-8"><div class="grid gap-3 sm:grid-cols-2">{['IP and subsystem verification','Protocol and interface corner cases','Regression scalability and failure triage','Coverage analysis and closure','SoC integration and cross-block debug','Verification dependencies into implementation and signoff'].map((item,index) => <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><p class="mt-3 text-sm leading-6 text-[var(--aionsi-navy)]">{item}</p></div>)}</div><p class="mt-5 text-sm leading-6 text-slate-500">Representative experience is provided for engineering qualification and does not disclose confidential customer information.</p></div></div></Container>
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.68fr_1.32fr]">
+          <div><TechnicalLabel>VERIFICATION ENGINEERING DEPTH</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Engineering across verification, integration and closure.</h2><p class="mt-4 text-lg leading-8 text-slate-600">A verification workstream can span planning, environment development, stimulus and checking, regression, failure analysis, debug and coverage closure — with dependencies across RTL, firmware and implementation.</p></div>
+          <div class="border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+            <div class="grid gap-3 sm:grid-cols-2">{[
+              ['01','Verification planning & environment'],
+              ['02','UVM / SystemVerilog execution'],
+              ['03','Stimulus, checking & assertions'],
+              ['04','Regression health & failure triage'],
+              ['05','Coverage analysis & closure'],
+              ['06','Cross-functional debug & handoff'],
+            ].map(([num,item]) => <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{num}</span><p class="mt-3 text-sm leading-6 text-[var(--aionsi-navy)]">{item}</p></div>)}</div>
+            <div class="mt-5 grid gap-3 sm:grid-cols-3">
+              <div class="border border-slate-200 p-4"><span class="text-xs font-semibold tracking-[.12em] text-slate-500">ENVIRONMENT</span><p class="mt-2 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">UVM / SystemVerilog</p></div>
+              <div class="border border-slate-200 p-4"><span class="text-xs font-semibold tracking-[.12em] text-slate-500">AUTOMATION</span><p class="mt-2 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">Python / Linux</p></div>
+              <div class="border border-slate-200 p-4"><span class="text-xs font-semibold tracking-[.12em] text-slate-500">OUTCOME</span><p class="mt-2 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">Coverage & closure</p></div>
+            </div>
+            <p class="mt-5 text-sm leading-6 text-slate-500">Representative experience is provided for engineering qualification and does not disclose confidential customer information.</p>
+          </div>
+        </div>
+      </Container>
     </Section>
 
     <Section class="py-14 md:py-18"><Container><TechnicalLabel>TECHNICAL AREAS</TechnicalLabel><div class="mt-4 grid gap-8 lg:grid-cols-[.68fr_1.32fr]"><div><h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Where the engineering capability can align.</h2><p class="mt-4 text-lg leading-8 text-slate-600">These areas are framed as technical alignment points rather than assumptions about an internal roadmap or immediate requirement.</p></div><div class="grid gap-4 md:grid-cols-2">{areas.map(([num,title,desc]) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{num}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}</div></div></Container></Section>
@@ -84,6 +104,6 @@ const delivery = [
 
     <Section class="py-14 md:py-18"><Container><TechnicalLabel>ENGAGEMENT MODEL</TechnicalLabel><h2 class="mt-4 max-w-4xl text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Start with the engineering requirement.</h2><div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">{delivery.map(([num,title,desc]) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{num}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}</div></Container></Section>
 
-    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-16"><Container class="text-center"><TechnicalLabel>TECHNICAL DISCUSSION</TechnicalLabel><h2 class="mx-auto mt-3 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Continue the engineering discussion.</h2><p class="mx-auto mt-4 max-w-3xl text-lg leading-8 text-slate-600">For a relevant verification or semiconductor engineering requirement, the next step can be a focused discussion around scope, capability, technical ownership and deployment model.</p><div class="mt-7 flex flex-wrap justify-center gap-3"><Button href="/contact">Continue the Discussion</Button><a href="/capabilities" class="inline-flex items-center justify-center border border-slate-300 px-5 py-3 text-sm font-semibold text-[var(--aionsi-navy)] transition hover:border-slate-400">AionSi Capabilities</a></div></Container></Section>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-16"><Container class="text-center"><TechnicalLabel>TECHNICAL DISCUSSION</TechnicalLabel><h2 class="mx-auto mt-3 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Continue the technical discussion.</h2><p class="mx-auto mt-4 max-w-3xl text-lg leading-8 text-slate-600">A focused discussion can map the relevant requirement to engineering experience, technical scope and the appropriate execution model.</p><div class="mt-7 flex flex-wrap justify-center gap-3"><Button href="/contact">Continue the Discussion</Button><a href="/capabilities" class="inline-flex items-center justify-center border border-slate-300 px-5 py-3 text-sm font-semibold text-[var(--aionsi-navy)] transition hover:border-slate-400">AionSi Capabilities</a></div></Container></Section>
   </main><Footer />
 </BaseLayout>
