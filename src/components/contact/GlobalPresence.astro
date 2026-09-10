@@ -1,30 +1,68 @@
 ---
 const locations = [
-  { country: 'USA', city: 'Silicon Valley' },
-  { country: 'UK', city: 'London' },
-  { country: 'SWEDEN', city: 'Stockholm' },
-  { country: 'SPAIN', city: 'Barcelona' },
-  { country: 'INDIA', city: 'Bengaluru' },
-  { country: 'MALAYSIA', city: 'Kuala Lumpur' },
+  { country: 'USA', city: 'Silicon Valley', icon: 'bridge' },
+  { country: 'UK', city: 'London', icon: 'clock' },
+  { country: 'SWEDEN', city: 'Stockholm', icon: 'tower' },
+  { country: 'SPAIN', city: 'Barcelona', icon: 'cathedral' },
+  { country: 'INDIA', city: 'Bengaluru', icon: 'gate' },
+  { country: 'MALAYSIA', city: 'Kuala Lumpur', icon: 'towers' },
 ];
 ---
 
-<section class="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_24px_80px_rgba(2,11,39,.08)]">
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(37,99,235,.08),transparent_35%),linear-gradient(180deg,#fff_0%,#f8fbff_100%)]"></div>
-  <div class="relative grid gap-8 p-7 md:p-10 lg:grid-cols-[.9fr_1.6fr] lg:items-center">
-    <div>
-      <p class="text-xs font-semibold uppercase tracking-[.2em] text-[var(--aionsi-blue)]">OUR GLOBAL PRESENCE</p>
-      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">6 countries. One engineering network.</h2>
-      <p class="mt-4 max-w-xl text-base leading-7 text-slate-600">AionSi connects semiconductor programs with engineering teams across North America, Europe, India and Malaysia.</p>
+<section class="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_18px_60px_rgba(2,11,39,.07)]">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_78%_12%,rgba(37,99,235,.08),transparent_34%),linear-gradient(180deg,#fff_0%,#f8fbff_100%)]"></div>
+  <div class="relative p-7 md:p-9 lg:p-10">
+    <div class="grid gap-8 lg:grid-cols-[.72fr_1.78fr] lg:items-center">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[.2em] text-[var(--aionsi-blue)]">OUR GLOBAL PRESENCE</p>
+        <h2 class="mt-3 max-w-sm text-3xl font-semibold leading-[1.12] tracking-tight text-[var(--aionsi-navy)] md:text-4xl">6 countries. One engineering network.</h2>
+        <div class="mt-6 h-[3px] w-10 bg-[var(--aionsi-orange)]"></div>
+      </div>
+
+      <div class="grid grid-cols-2 divide-x divide-y divide-slate-200 border-l border-t border-slate-200 sm:grid-cols-3 sm:divide-y-0">
+        {locations.map((location) => (
+          <div class="min-h-[128px] px-4 py-4 text-center sm:px-5">
+            <div class="mx-auto mb-3 grid h-12 w-12 place-items-center text-[var(--aionsi-blue)]" aria-hidden="true">
+              {location.icon === 'bridge' && (
+                <svg viewBox="0 0 64 64" class="h-11 w-11" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <path d="M9 50h46M13 48V25m38 23V25M14 25c8 10 14 15 18 15s10-5 18-15M13 25h38M18 25v23m28-23v23M11 20h42" />
+                  <path d="M13 20V14m38 6v-6M18 12h28" />
+                </svg>
+              )}
+              {location.icon === 'clock' && (
+                <svg viewBox="0 0 64 64" class="h-11 w-11" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <path d="M21 9h22v46H21zM17 55h30M28 9v46M36 18h5M36 24h5M36 30h5M32 15v25" />
+                  <path d="M27 41h10v14H27z" />
+                </svg>
+              )}
+              {location.icon === 'tower' && (
+                <svg viewBox="0 0 64 64" class="h-11 w-11" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <path d="M23 55h18M27 55l4-42h2l4 42M25 20h14M29 13h6M31 7h2M25 25h14M22 55V34h20v21M26 34v-9m12 9v-9" />
+                  <path d="M20 55h24" />
+                </svg>
+              )}
+              {location.icon === 'cathedral' && (
+                <svg viewBox="0 0 64 64" class="h-11 w-11" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <path d="M16 55V25l8-8 8 8 8-8 8 8v30M11 55h42M23 25v8M41 25v8M20 55V38h8v17M36 55V38h8v17M27 23V14l5-5 5 5v9" />
+                </svg>
+              )}
+              {location.icon === 'gate' && (
+                <svg viewBox="0 0 64 64" class="h-11 w-11" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <path d="M11 55h42M16 53V30l16-13 16 13v23M24 53V36h16v17M30 20V12h4v8M21 30h22M27 53V40m10 13V40" />
+                </svg>
+              )}
+              {location.icon === 'towers' && (
+                <svg viewBox="0 0 64 64" class="h-11 w-11" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <path d="M14 55V15h12v40M38 55V15h12v40M11 55h42M20 15v-5h2v5M44 15v-5h2v5M17 22h6M41 22h6M17 29h6M41 29h6M17 36h6M41 36h6M17 43h6M41 43h6" />
+                </svg>
+              )}
+            </div>
+            <div class="text-sm font-bold tracking-wide text-[var(--aionsi-navy)]">{location.country}</div>
+            <div class="mt-1 text-sm text-slate-500">{location.city}</div>
+          </div>
+        ))}
+      </div>
     </div>
-    <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
-      {locations.map((location) => (
-        <div class="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:shadow-md">
-          <div class="mb-3 h-1 w-8 bg-[var(--aionsi-orange)]"></div>
-          <div class="text-sm font-bold tracking-wide text-[var(--aionsi-navy)]">{location.country}</div>
-          <div class="mt-1 text-sm text-slate-500">{location.city}</div>
-        </div>
-      ))}
-    </div>
+    <p class="mt-7 text-center text-sm leading-6 text-slate-500 md:text-base">AionSi connects semiconductor programs with engineering teams across North America, Europe, India and Malaysia.</p>
   </div>
 </section>
