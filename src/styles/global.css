@@ -21,8 +21,22 @@ img { max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button, a { -webkit-tap-highlight-color: transparent; }
 :focus-visible { outline: 2px solid var(--aionsi-orange); outline-offset: 3px; }
+
+/* Contact hero: use a recognizable world map as the quiet visual foundation,
+   while the existing AionSi network arcs and country pins remain on top. */
+main > section:first-of-type svg[aria-label="AionSi six-country global engineering network"] {
+  background-image: url('/images/world-map-network.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
 @media (max-width: 639px) {
   h1 { text-wrap: balance; }
   h2, h3 { text-wrap: balance; }
+  main > section:first-of-type svg[aria-label="AionSi six-country global engineering network"] {
+    background-size: 118% 118%;
+    background-position: center;
+  }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
