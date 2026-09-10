@@ -11,18 +11,18 @@ import { engineeringDiscoveryOptions, engineeringDiscoveryRouting } from '../../
 <BaseLayout title="Engineering Discovery | AionSi" description="Start an engineering discovery conversation with AionSi for semiconductor engineering, verification, physical implementation, DFT and SoC requirements.">
   <Header />
   <main>
-    <Section class="relative overflow-hidden bg-[var(--aionsi-surface-alt)] py-12 md:py-16 lg:py-20">
+    <Section class="relative overflow-hidden bg-[var(--aionsi-surface-alt)] py-10 md:py-12 lg:py-14">
       <div class="pointer-events-none absolute inset-0" aria-hidden="true">
         <div class="absolute inset-y-0 right-0 w-[62%] opacity-70 bg-[radial-gradient(circle_at_60%_42%,rgba(37,99,235,.12),transparent_48%),linear-gradient(90deg,transparent,rgba(237,246,255,.85))]"></div>
         <div class="absolute inset-0 opacity-[.18]" style="background-image:linear-gradient(rgba(37,99,235,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.14) 1px,transparent 1px);background-size:48px 48px;"></div>
       </div>
       <Container>
-        <div class="relative grid gap-10 lg:grid-cols-[.86fr_1.14fr] lg:items-center">
+        <div class="relative grid gap-8 lg:grid-cols-[.86fr_1.14fr] lg:items-center">
           <div class="relative z-10">
             <TechnicalLabel>GLOBAL TEAMS. LOCAL IMPACT.</TechnicalLabel>
             <h1 class="mt-5 max-w-3xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-6xl lg:text-7xl">Get in Touch.<br /><span class="text-[var(--aionsi-blue)]">Let’s Build What’s Next.</span></h1>
             <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl md:leading-9">Partner with AionSi for high-performance semiconductor engineering. Our global teams support programs from IP to silicon across verification, RTL/SoC, physical design, DFT and timing closure.</p>
-            <div class="mt-8 grid gap-4 sm:grid-cols-3">
+            <div class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-2">
               <a href="tel:+14422074472" class="rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
                 <div class="text-xs font-semibold uppercase tracking-[.14em] text-[var(--aionsi-blue)]">Call — US</div>
                 <div class="mt-2 text-base font-bold text-[var(--aionsi-navy)]">+1 (442) 207-4472</div>
@@ -31,14 +31,14 @@ import { engineeringDiscoveryOptions, engineeringDiscoveryRouting } from '../../
                 <div class="text-xs font-semibold uppercase tracking-[.14em] text-[var(--aionsi-blue)]">Call — India</div>
                 <div class="mt-2 text-base font-bold text-[var(--aionsi-navy)]">+91 8618679681</div>
               </a>
-              <a href="mailto:dass.kishore@aionsi.com" class="rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:col-span-3 lg:col-span-1">
+              <a href="mailto:dass.kishore@aionsi.com" class="rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:col-span-2">
                 <div class="text-xs font-semibold uppercase tracking-[.14em] text-[var(--aionsi-blue)]">Email Us</div>
                 <div class="mt-2 break-words text-base font-bold text-[var(--aionsi-navy)]">dass.kishore@aionsi.com</div>
               </a>
             </div>
           </div>
 
-          <div class="relative min-h-[25rem] overflow-hidden rounded-[2rem] border border-blue-100 bg-white/65 shadow-[0_24px_80px_rgba(2,11,39,.08)] lg:min-h-[34rem]">
+          <div class="relative min-h-[24rem] overflow-hidden rounded-[2rem] border border-blue-100 bg-white/65 shadow-[0_24px_80px_rgba(2,11,39,.08)] lg:min-h-[32rem]">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_55%_35%,rgba(37,99,235,.10),transparent_42%),linear-gradient(145deg,#ffffff_0%,#eef6ff_100%)]"></div>
             <div class="absolute inset-0 opacity-20" aria-hidden="true" style="background-image:linear-gradient(rgba(37,99,235,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.12) 1px,transparent 1px);background-size:32px 32px;"></div>
             <svg viewBox="0 0 820 520" class="absolute inset-0 h-full w-full" role="img" aria-label="AionSi six-country global engineering network">
@@ -65,25 +65,18 @@ import { engineeringDiscoveryOptions, engineeringDiscoveryRouting } from '../../
               ))}
               <text x="410" y="454" text-anchor="middle" font-size="15" font-weight="600" fill="#64748b" letter-spacing="2">CONNECTED ENGINEERING ACROSS SIX COUNTRIES</text>
             </svg>
-            <div class="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/90 bg-white/88 p-5 shadow-lg backdrop-blur-md">
-              <div class="text-xs font-semibold uppercase tracking-[.18em] text-[var(--aionsi-blue)]">Our Global Engineering Network</div>
-              <div class="mt-2 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">6 countries. One engineering network.</div>
-              <div class="mt-3 grid grid-cols-2 gap-x-5 gap-y-2 text-sm sm:grid-cols-3">
-                {['USA — Silicon Valley','UK — London','Sweden — Stockholm','Spain — Barcelona','India — Bengaluru','Malaysia — Kuala Lumpur'].map((location) => <div class="font-medium text-slate-600">{location}</div>)}
-              </div>
-            </div>
           </div>
         </div>
       </Container>
     </Section>
 
-    <Section class="py-10 md:py-14 lg:py-16">
+    <Section class="py-8 md:py-10 lg:py-12">
       <Container>
         <GlobalPresence />
       </Container>
     </Section>
 
-    <Section id="engineering-discovery-form" class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18 lg:py-20">
+    <Section id="engineering-discovery-form" class="bg-[var(--aionsi-surface-alt)] py-12 md:py-14 lg:py-16">
       <Container>
         <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
           <div>
