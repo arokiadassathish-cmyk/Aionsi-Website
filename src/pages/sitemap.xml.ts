@@ -15,6 +15,13 @@ const routes = [
   '/solutions/aiv',
   '/contact',
   '/careers',
+  '/scioteq/',
+  '/insights',
+  '/insights/when-a-display-becomes-a-computing-platform',
+  '/news',
+  '/blogs',
+  '/experience',
+  '/evidence',
 ];
 
 export const GET = () => {

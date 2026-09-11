@@ -6,12 +6,35 @@ import Container from '../../components/global/Container.astro';
 import Section from '../../components/global/Section.astro';
 import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
+
+const pageTitle = 'ScioTeq Engineering Services | FPGA, Verification & Embedded Engineering | AionSi';
+const pageDescription = 'AionSi engineering support for ScioTeq across FPGA, RTL, SystemVerilog/UVM verification, high-speed interfaces and embedded compute for mission-critical platforms.';
+const pageUrl = 'https://aionsi.com/scioteq/';
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: pageTitle,
+  description: pageDescription,
+  url: pageUrl,
+  isPartOf: { '@type': 'WebSite', name: 'AionSi', url: 'https://aionsi.com' },
+  about: [
+    { '@type': 'Thing', name: 'FPGA engineering' },
+    { '@type': 'Thing', name: 'Design verification' },
+    { '@type': 'Thing', name: 'Embedded systems' },
+    { '@type': 'Thing', name: 'High-speed interfaces' },
+    { '@type': 'Thing', name: 'Mission-critical visualization' },
+  ],
+};
 ---
-<BaseLayout title="ScioTeq | AionSi Semiconductor & Embedded Engineering" description="AionSi engineering support for ScioTeq across FPGA, verification, high-speed interfaces and embedded systems.">
+<BaseLayout title={pageTitle} description={pageDescription} canonical={pageUrl}>
+  <script type="application/ld+json" set:html={JSON.stringify(pageSchema)}></script>
   <Header />
   <main>
     <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-20">
       <Container>
+        <nav class="mb-6 text-xs font-medium text-slate-500" aria-label="Breadcrumb">
+          <a class="hover:text-[var(--aionsi-blue)]" href="/">AionSi</a><span class="mx-2">/</span><span>ScioTeq Engineering</span>
+        </nav>
         <TechnicalLabel>SCIO TEQ · ENGINEERING PARTNERSHIP</TechnicalLabel>
         <div class="mt-5 grid gap-10 lg:grid-cols-[1.25fr_.75fr] lg:items-center">
           <div>
@@ -67,4 +90,12 @@ import Button from '../../components/global/Button.astro';
     </Section>
   </main>
   <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'AionSi', item: 'https://aionsi.com/' },
+      { '@type': 'ListItem', position: 2, name: 'ScioTeq Engineering', item: pageUrl },
+    ],
+  })}></script>
 </BaseLayout>
