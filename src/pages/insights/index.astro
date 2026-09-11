@@ -11,23 +11,23 @@ const perspectives = [
   {
     number: '01',
     type: 'Engineering Perspective',
+    title: 'When a Display Becomes a Computing Platform',
+    description: 'As visualization systems absorb FPGA processing, embedded compute, high-speed interfaces and AI, the difficult engineering work increasingly sits at the boundaries between them.',
+    href: '/insights/when-a-display-becomes-a-computing-platform',
+  },
+  {
+    number: '02',
+    type: 'Engineering Perspective',
     title: 'Advanced-Node Physical Design: Timing, Congestion & Sign-Off Closure',
     description: 'An engineering perspective built from the physical-design evidence base, focused on closure strategy, implementation trade-offs and the path from congestion to sign-off.',
     href: '/evidence/advanced-node-physical-design-timing-congestion-signoff',
   },
   {
-    number: '02',
+    number: '03',
     type: 'Verification Perspective',
     title: 'Reusable UVM Architectures for Scalable Verification Programs',
     description: 'A practical perspective on reusable verification environments, checking strategy, coverage, assertions and regression closure, with supporting technical evidence.',
     href: '/evidence/reusable-uvm-verification-architecture',
-  },
-  {
-    number: '03',
-    type: 'Protocol Perspective',
-    title: 'PCIe Data Link Verification: Where Protocol Complexity Concentrates',
-    description: 'A protocol-focused perspective on flow control, replay, error handling and verification closure, grounded in the supporting PCIe engineering reference.',
-    href: '/evidence/pcie-5-data-link-layer-verification',
   },
 ];
 
@@ -58,7 +58,7 @@ const channels = [
               <h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">{resource.title}</h2>
               <p class="mt-4 text-base leading-7 text-slate-600">{resource.description}</p>
               <div class="mt-auto flex flex-wrap gap-4 pt-8">
-                <a href={resource.href} class="inline-flex text-sm font-semibold text-[var(--aionsi-navy)] hover:text-[var(--aionsi-blue)]">Read supporting evidence →</a>
+                <a href={resource.href} class="inline-flex text-sm font-semibold text-[var(--aionsi-navy)] hover:text-[var(--aionsi-blue)]">Read the perspective →</a>
               </div>
             </article>
           ))}
