@@ -19,7 +19,7 @@ import Button from '../components/global/Button.astro';
           <p class="mt-7 max-w-3xl text-xl leading-9 text-white/70 md:text-2xl">AionSi helps semiconductor teams add specialist engineering capacity across SoC Design Verification, subsystem verification, validation and silicon execution — without compromising engineering ownership.</p>
           <div class="mt-9 flex flex-wrap gap-3">
             <Button href="#conversation">Discuss an Engineering Bottleneck</Button>
-            <a href="#capabilities" class="inline-flex items-center rounded-md border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/50">Explore Capabilities ↓</a>
+            <a href="#capabilities" class="inline-flex items-center rounded-md border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/60 focus:ring-offset-2 focus:ring-offset-[var(--aionsi-deep-navy)]">Explore Capabilities ↓</a>
           </div>
         </div>
         <div class="mt-14 grid max-w-4xl gap-3 sm:grid-cols-3">
@@ -48,7 +48,25 @@ import Button from '../components/global/Button.astro';
       </Container>
     </Section>
 
-    <Section id="capabilities" class="bg-[var(--aionsi-surface-alt)]">
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <TechnicalLabel>AUTONOMOUS-DRIVING SILICON CONTEXT</TechnicalLabel>
+        <h2 class="mt-3 max-w-4xl text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Built for the verification realities of ADAS and autonomous-driving silicon.</h2>
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">AionSi focuses on the engineering points where complex automotive compute programs can accumulate verification load, specialist dependencies and milestone risk.</p>
+        <div class="mt-9 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {[
+            ['ADAS & SoC compute','Verification support for complex compute, perception and safety-oriented silicon.'],
+            ['Sensor & interface subsystems','Verification across heterogeneous IP, memory, interconnect and high-speed interfaces.'],
+            ['Safety & verification evidence','Structured coverage, assertions, regression and traceability to support disciplined sign-off.'],
+            ['Pre-silicon → post-silicon','Continuity across simulation, emulation, validation, debug and silicon bring-up activities.'],
+            ['Verification capacity at milestones','Specialist engineering capacity when internal teams face schedule or resource constraints.'],
+            ['Engineering ownership stays with you','AionSi extends execution capacity without replacing the customer engineering organization.'],
+          ].map(([title,desc],i) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">0{i+1}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-3 text-sm leading-7 text-slate-600">{desc}</p></article>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section id="capabilities">
       <Container>
         <TechnicalLabel>WHERE AIONSI CAN PLUG IN</TechnicalLabel>
         <h2 class="mt-3 max-w-4xl text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Specialist execution, aligned to the existing silicon team.</h2>
@@ -57,10 +75,29 @@ import Button from '../components/global/Button.astro';
             ['01','SoC Design Verification','SystemVerilog, UVM, assertions, functional coverage, constrained-random verification and regression ownership.'],
             ['02','Subsystem & IP Verification','Protocol, memory, interconnect and accelerator-subsystem verification with reusable environments and scoreboards.'],
             ['03','Validation & Debug','Test planning, failure triage, root-cause analysis and structured debug across pre-silicon and post-silicon stages.'],
-            ['04','Automotive Silicon','Engineering support for ADAS-oriented compute, perception and sensor-processing silicon with quality-first execution.'],
-            ['05','Verification Acceleration','Add focused specialists to remove a bottleneck instead of replacing the customer engineering organization.'],
+            ['04','ADAS & Automotive SoC Engineering','Engineering support for ADAS-oriented compute, perception and sensor-processing silicon with quality-first execution.'],
+            ['05','Verification Bottleneck Removal','Add focused specialists to improve throughput around a defined milestone instead of replacing the customer engineering organization.'],
             ['06','Dedicated ODC','Convert a successful pilot into a governed engineering pod with defined ownership, metrics and scaling.'],
           ].map(([num,title,desc]) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{num}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-3 text-sm leading-7 text-slate-600">{desc}</p></article>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <TechnicalLabel>DESIGNED AROUND MEASURABLE ENGINEERING OUTCOMES</TechnicalLabel>
+        <h2 class="mt-3 max-w-4xl text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Success is measured against the engineering problem, not team size.</h2>
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">During technical discovery, AionSi and the customer define the acceptance criteria and operating metrics for the workstream. Typical measures can include the following.</p>
+        <div class="mt-9 overflow-hidden border border-slate-200 bg-white shadow-sm">
+          <div class="grid grid-cols-[1fr_1.2fr] border-b border-slate-200 bg-slate-50 px-5 py-4 text-sm font-semibold text-[var(--aionsi-navy)] md:grid-cols-[.8fr_1.2fr]"><div>Engineering problem</div><div>Targeted outcome</div></div>
+          {[
+            ['Regression backlog','Faster regression closure and clearer ownership'],
+            ['Coverage gaps','Improved coverage progress with disciplined closure tracking'],
+            ['Verification bottleneck','Increased engineering throughput around a defined milestone'],
+            ['Debug backlog','Faster failure triage and root-cause analysis'],
+            ['Specialist resource shortage','Additional qualified capacity without disrupting core ownership'],
+            ['Schedule pressure','Improved milestone predictability through focused execution'],
+          ].map(([problem,outcome]) => <div class="grid grid-cols-[1fr_1.2fr] border-b border-slate-200 px-5 py-4 text-sm leading-6 text-slate-600 last:border-b-0 md:grid-cols-[.8fr_1.2fr]"><div class="font-semibold text-[var(--aionsi-navy)]">{problem}</div><div>{outcome}</div></div>)}
         </div>
       </Container>
     </Section>
@@ -96,15 +133,44 @@ import Button from '../components/global/Button.astro';
       </Container>
     </Section>
 
+    <Section>
+      <Container>
+        <TechnicalLabel>ENGINEERING EVIDENCE</TechnicalLabel>
+        <div class="mt-4 grid gap-10 lg:grid-cols-[.75fr_1.25fr]">
+          <div>
+            <h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Proof should be technical, specific and reviewable.</h2>
+            <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">Before scaling an engagement, AionSi can align the proposed workstream to the relevant capability evidence, engineering profiles, execution model and agreed acceptance criteria.</p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            {[
+              ['Design Verification','SystemVerilog • UVM • Assertions • Coverage • Constrained random • Regression'],
+              ['Engineering environments','IP • Subsystem • SoC • Accelerator • Interface verification'],
+              ['Execution model','Dedicated engineers • Technical lead • Defined workstream • Weekly governance'],
+              ['Evidence package','Capability profiles • Relevant case studies • Technical review • Milestone reporting'],
+            ].map(([title,desc],i) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">0{i+1}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-3 text-sm leading-7 text-slate-600">{desc}</p></article>)}
+          </div>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/evidence" class="inline-flex items-center rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-[var(--aionsi-navy)] transition hover:border-slate-500 focus:outline-none focus:ring-2 focus:ring-[var(--aionsi-blue)] focus:ring-offset-2">Review Engineering Evidence →</a>
+          <a href="/capabilities" class="inline-flex items-center rounded-md bg-[var(--aionsi-blue)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--aionsi-navy)] focus:outline-none focus:ring-2 focus:ring-[var(--aionsi-blue)] focus:ring-offset-2">View Capabilities →</a>
+        </div>
+      </Container>
+    </Section>
+
     <section id="conversation" class="bg-[var(--aionsi-surface-alt)] py-16 md:py-24">
       <Container>
-        <div class="mx-auto max-w-4xl border border-slate-200 bg-white p-7 shadow-sm md:p-10">
+        <div class="mx-auto max-w-5xl border border-slate-200 bg-white p-7 shadow-sm md:p-10">
           <TechnicalLabel>ENGINEERING CONVERSATION</TechnicalLabel>
           <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Have a verification or validation bottleneck?</h2>
-          <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-600">Share the engineering area you are evaluating. AionSi will respond with a focused capability match rather than a generic services pitch.</p>
-          <div class="mt-8 grid gap-4 sm:grid-cols-2">
-            <a href="mailto:business@aionsi.com?subject=Mobileye%20Engineering%20Conversation" class="rounded-md bg-[var(--aionsi-orange)] px-6 py-4 text-center font-semibold text-white transition hover:opacity-90">Start a Technical Conversation</a>
-            <a href="/contact" class="rounded-md border border-slate-300 px-6 py-4 text-center font-semibold text-[var(--aionsi-navy)] transition hover:border-slate-500">Use AionSi Contact Form</a>
+          <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">Share the engineering area you are evaluating. AionSi will respond with a focused capability match rather than a generic services pitch.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="/contact#engineering-discovery-form" class="inline-flex items-center justify-center rounded-md bg-[var(--aionsi-orange)] px-6 py-4 text-center font-semibold text-white transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--aionsi-orange)] focus:ring-offset-2">Request a Technical Capability Match →</a>
+            <a href="/capabilities" class="inline-flex items-center justify-center rounded-md border border-slate-300 px-6 py-4 text-center font-semibold text-[var(--aionsi-navy)] transition hover:border-slate-500 focus:outline-none focus:ring-2 focus:ring-[var(--aionsi-blue)] focus:ring-offset-2">Review Capabilities</a>
+          </div>
+          <div class="mt-8 grid gap-4 border-t border-slate-200 pt-7 sm:grid-cols-3">
+            <div><div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">Technical area</div><div class="mt-2 text-sm text-slate-600">SoC DV • IP • subsystem • validation • silicon</div></div>
+            <div><div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">Engagement</div><div class="mt-2 text-sm text-slate-600">Specialist • pilot • managed workstream • ODC</div></div>
+            <div><div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">Response</div><div class="mt-2 text-sm text-slate-600">Capability match led by an engineering-focused discovery</div></div>
           </div>
           <p class="mt-5 text-xs leading-5 text-slate-500">This page is an AionSi engineering outreach page. It is not an endorsement, partnership announcement or representation of a relationship with Mobileye.</p>
         </div>
