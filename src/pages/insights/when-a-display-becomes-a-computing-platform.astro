@@ -6,21 +6,32 @@ import Container from '../../components/global/Container.astro';
 import Section from '../../components/global/Section.astro';
 import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
 import Button from '../../components/global/Button.astro';
+
+const questions = [
+  ['01','Architecture','What should live in deterministic hardware?','FPGA and embedded compute are complementary. The engineering challenge is deciding what belongs where based on latency, throughput, determinism and future change.'],
+  ['02','Verification','Where does verification stop and integration begin?','A block can pass simulation and still fail at a clock, interface, software or system boundary. Verification has to follow the behavior that the operator actually experiences.'],
+  ['03','System validation','How do you verify the complete data path?','The important path is not one component in isolation. It is the chain from input and interface through FPGA, memory, compute, software and visualization.'],
+];
 ---
-<BaseLayout title="When a Display Becomes a Computing Platform | AionSi" description="As mission-critical visualization platforms absorb FPGA processing, embedded compute, high-speed interfaces and AI, the engineering challenge is increasingly at the boundaries between them.">
+<BaseLayout title="When a Display Becomes a Computing Platform | AionSi" description="As mission-critical visualization platforms absorb FPGA processing, embedded compute, high-speed interfaces and AI, the engineering challenge increasingly sits at the boundaries between them.">
   <Header />
   <main>
-    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-20">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-20">
       <Container>
-        <TechnicalLabel>ENGINEERING INSIGHT · FPGA · EMBEDDED · VERIFICATION</TechnicalLabel>
-        <div class="mt-6 max-w-5xl">
-          <h1 class="text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-6xl">When a Display Becomes a Computing Platform: The Engineering Challenge Behind Next-Generation Visualization</h1>
-          <p class="mt-6 max-w-4xl text-xl leading-9 text-slate-600 md:text-2xl">As visualization systems absorb more processing, AI, high-speed interfaces and real-time data, the difficult part is no longer simply displaying information. It is engineering the boundaries between compute, FPGA, software and verification.</p>
-          <div class="mt-7 flex flex-wrap gap-2 text-xs font-semibold tracking-wide text-slate-500">
-            <span class="border border-slate-200 bg-white px-3 py-2">Mission-critical systems</span>
-            <span class="border border-slate-200 bg-white px-3 py-2">FPGA & RTL</span>
-            <span class="border border-slate-200 bg-white px-3 py-2">Embedded compute</span>
-            <span class="border border-slate-200 bg-white px-3 py-2">Verification</span>
+        <div class="grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
+          <div>
+            <TechnicalLabel>ENGINEERING INSIGHT · FPGA · EMBEDDED · VERIFICATION</TechnicalLabel>
+            <h1 class="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-6xl lg:text-7xl">When a Display Becomes a Computing Platform</h1>
+            <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">The engineering challenge behind next-generation visualization is no longer simply displaying information. It is engineering the boundaries between compute, FPGA, software and verification.</p>
+            <div class="mt-7 flex flex-wrap gap-2 text-xs font-semibold tracking-wide text-slate-500"><span class="border border-slate-200 bg-white px-3 py-2">Mission-critical systems</span><span class="border border-slate-200 bg-white px-3 py-2">FPGA & RTL</span><span class="border border-slate-200 bg-white px-3 py-2">Embedded compute</span><span class="border border-slate-200 bg-white px-3 py-2">Verification</span></div>
+          </div>
+          <div class="relative overflow-hidden border border-slate-200 bg-white p-5 shadow-sm md:p-7">
+            <div class="absolute right-0 top-0 h-1 w-24 bg-[var(--aionsi-orange)]"></div>
+            <TechnicalLabel>SYSTEM BOUNDARY</TechnicalLabel>
+            <div class="mt-6 space-y-3 text-sm font-semibold text-[var(--aionsi-navy)]">
+              {['Sensor / Video Input','Interface Layer','FPGA — deterministic processing','Memory / Data Movement','CPU / GPU / AI Compute','Software / System Logic','Visualization'].map((item,index) => <div class="grid grid-cols-[38px_1fr] items-center gap-3"><span class="flex h-8 w-8 items-center justify-center border border-slate-200 text-xs text-[var(--aionsi-blue)]">{String(index+1).padStart(2,'0')}</span><div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3">{item}</div></div>)}
+            </div>
+            <p class="mt-5 border-t border-slate-200 pt-5 text-sm leading-7 text-slate-500"><strong class="text-[var(--aionsi-navy)]">The difficult problems are often between the components.</strong></p>
           </div>
         </div>
       </Container>
@@ -28,80 +39,23 @@ import Button from '../../components/global/Button.astro';
 
     <section class="border-y border-slate-200 bg-white">
       <Container>
-        <div class="mx-auto max-w-4xl py-10 md:py-14">
-          <article class="prose prose-slate max-w-none prose-headings:font-semibold prose-headings:text-[var(--aionsi-navy)] prose-a:text-[var(--aionsi-blue)] prose-p:text-slate-600 prose-p:leading-8 prose-li:text-slate-600">
+        <div class="mx-auto max-w-4xl py-12 md:py-16">
+          <div class="mb-10 grid gap-4 sm:grid-cols-3"><div class="border border-slate-200 p-5"><TechnicalLabel>QUESTION</TechnicalLabel><p class="mt-3 font-semibold leading-6 text-[var(--aionsi-navy)]">Where should the intelligence live?</p></div><div class="border border-slate-200 p-5"><TechnicalLabel>BOUNDARY</TechnicalLabel><p class="mt-3 font-semibold leading-6 text-[var(--aionsi-navy)]">Where does verification meet integration?</p></div><div class="border border-slate-200 p-5"><TechnicalLabel>OUTCOME</TechnicalLabel><p class="mt-3 font-semibold leading-6 text-[var(--aionsi-navy)]">How do you validate the complete path?</p></div></div>
+          <article class="prose prose-slate max-w-none prose-headings:font-semibold prose-headings:text-[var(--aionsi-navy)] prose-p:text-slate-600 prose-p:leading-8">
             <h2>A display is no longer just a display</h2>
             <p>For decades, the engineering objective for a mission-critical display was relatively straightforward: receive information, render it reliably and make it visible to the operator.</p>
             <p>That architecture is changing.</p>
             <p>Modern avionics, defense and air-traffic-control systems increasingly bring together high-resolution video, multiple sensor feeds, embedded computing, real-time processing, networking and intelligent data analysis.</p>
             <p>The display is becoming part of the computing architecture.</p>
-            <p>And that creates an interesting engineering question:</p>
             <blockquote><strong>Where should the intelligence of the system live?</strong></blockquote>
 
             <h2>The real challenge is not choosing FPGA or CPU</h2>
             <p>It is deciding what belongs where.</p>
-            <p>FPGA logic can provide deterministic processing, low latency and flexible hardware-based data paths.</p>
-            <p>Embedded processors provide programmability, application processing and increasingly sophisticated AI capabilities.</p>
-            <p>Software provides another layer of flexibility.</p>
+            <p>FPGA logic can provide deterministic processing, low latency and flexible hardware-based data paths. Embedded processors provide programmability, application processing and increasingly sophisticated AI capabilities. Software adds another layer of flexibility.</p>
             <p>The architecture becomes powerful when these elements work together. It also becomes much harder to verify.</p>
             <p>A seemingly simple video path can cross multiple boundaries:</p>
             <p><strong>Sensor → interface → FPGA → memory → processor → software → display</strong></p>
             <p>Every boundary introduces another opportunity for latency, synchronization, data integrity or integration problems.</p>
-            <p>This is where engineering teams often discover that the hardest problems are not inside individual components.</p>
-            <p><strong>They are between them.</strong></p>
-
-            <h2>Three engineering questions worth asking early</h2>
-            <h3>1. Which functions really need deterministic hardware processing?</h3>
-            <p>Not every data-processing function belongs in the FPGA.</p>
-            <p>At the same time, pushing too much functionality into software can introduce latency, processor load or unpredictable system behavior.</p>
-            <p>The right architecture depends on the required throughput, latency, determinism and future upgrade requirements.</p>
-            <p>That makes FPGA architecture an important system-level decision—not simply an RTL implementation exercise.</p>
-
-            <h3>2. Where does verification stop and integration begin?</h3>
-            <p>This boundary is becoming increasingly blurred.</p>
-            <p>A block may pass simulation but still fail when connected to a high-speed interface, a different clock domain, embedded software, real sensor data or a system-level workload.</p>
-            <p>For complex platforms, verification therefore has to move beyond isolated IP blocks.</p>
-            <p>SystemVerilog/UVM environments, regression automation, coverage and requirements traceability become more valuable when they are connected to actual system behavior.</p>
-
-            <h3>3. How do you verify the complete data path?</h3>
-            <p>This may be the biggest challenge.</p>
-            <p>Testing an FPGA block independently tells you something. Testing the processor independently tells you something else.</p>
-            <p>But the operator does not experience either one independently.</p>
-            <p>They experience the <strong>complete path</strong>.</p>
-            <p>That means engineering teams increasingly need validation strategies that connect:</p>
-            <p><strong>FPGA + interfaces + embedded compute + software + visualization</strong></p>
-            <p>rather than treating them as separate engineering islands.</p>
-
-            <h2>High-speed interfaces are becoming engineering boundaries</h2>
-            <p>PCIe, Ethernet and other high-speed interfaces are not just communication mechanisms. They are architectural boundaries.</p>
-            <p>They determine how quickly data moves, how systems synchronize, how errors are handled and how components behave under real workloads.</p>
-            <p>As data volumes increase, these interfaces can become one of the most difficult areas to debug because an apparently small timing or protocol problem can surface much further downstream.</p>
-            <p><strong>Interface engineering should be considered part of system architecture, not an integration task left until the end.</strong></p>
-
-            <h2>AI adds another layer of complexity</h2>
-            <p>The arrival of embedded AI makes the architecture even more interesting.</p>
-            <p>Modern visualization and video-processing platforms increasingly combine FPGA-based processing with embedded CPU/GPU compute for high-performance and AI workloads.</p>
-            <p>This creates a new engineering question:</p>
-            <blockquote><strong>How should deterministic video processing and flexible AI processing work together?</strong></blockquote>
-            <p>There is no universal answer.</p>
-            <p>Some workloads naturally belong in FPGA logic. Others belong in GPU or CPU compute.</p>
-            <p>The challenge is designing the handoff between them so that the system remains predictable, testable and maintainable.</p>
-
-            <h2>The engineering model may need to change too</h2>
-            <p>As architectures become more complicated, adding more engineers does not automatically solve the problem.</p>
-            <p>The more useful question may be:</p>
-            <blockquote><strong>Which technical problem needs clear ownership?</strong></blockquote>
-            <p>A team may need someone to own FPGA architecture. Another group may need additional verification capacity. A program may have a difficult high-speed interface integration problem. Or perhaps the biggest issue is simply the growing amount of work between hardware and software teams.</p>
-            <p>These are very different problems. They should not all be solved with the same engineering model.</p>
-            <p>A focused engineering team taking ownership of a defined technical outcome can sometimes create more value than simply increasing headcount.</p>
-
-            <h2>A thought for engineering leaders</h2>
-            <p>As visualization platforms evolve into integrated compute platforms, the competitive advantage may increasingly come from <strong>how well the engineering disciplines connect</strong>.</p>
-            <p>FPGA. Embedded compute. High-speed interfaces. Software. Verification. System integration.</p>
-            <p>The strongest architecture is not necessarily the one with the most advanced individual technologies.</p>
-            <p>It may be the one where those technologies are <strong>engineered to work together with the fewest surprises</strong>.</p>
-            <p>And perhaps that is the more interesting question for the next generation of mission-critical visualization:</p>
-            <blockquote><strong>Are we designing better components—or designing better connections between them?</strong></blockquote>
           </article>
         </div>
       </Container>
@@ -109,29 +63,43 @@ import Button from '../../components/global/Button.astro';
 
     <Section class="bg-[var(--aionsi-surface-alt)]">
       <Container>
-        <div class="grid gap-7 lg:grid-cols-[1.4fr_.6fr] lg:items-center">
-          <div>
-            <TechnicalLabel>ENGINEERING PERSPECTIVE</TechnicalLabel>
-            <h2 class="mt-3 text-3xl font-semibold text-[var(--aionsi-navy)] md:text-4xl">What engineering boundary is slowing your program today?</h2>
-            <p class="mt-4 max-w-3xl text-lg leading-8 text-slate-600">AionSi works across FPGA, digital verification, high-speed interfaces and embedded systems—especially where the difficult work sits between disciplines.</p>
-          </div>
-          <div class="flex justify-start lg:justify-end">
-            <Button href="/contact">Start an Engineering Conversation</Button>
-          </div>
+        <TechnicalLabel>THREE ENGINEERING QUESTIONS</TechnicalLabel>
+        <h2 class="mt-3 max-w-4xl text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">The difficult work often happens at the boundaries.</h2>
+        <div class="mt-8 grid gap-5 lg:grid-cols-3">
+          {questions.map(([num,label,title,desc]) => <article class="border border-slate-200 bg-white p-7 shadow-sm"><div class="flex items-center justify-between"><span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">{num}</span><TechnicalLabel>{label}</TechnicalLabel></div><h3 class="mt-6 text-2xl font-semibold leading-tight text-[var(--aionsi-navy)]">{title}</h3><p class="mt-4 text-sm leading-7 text-slate-600">{desc}</p></article>)}
         </div>
       </Container>
     </Section>
 
     <Section>
       <Container>
-        <div class="border border-slate-200 bg-white p-7 shadow-sm md:p-9">
-          <TechnicalLabel>RELATED</TechnicalLabel>
-          <h2 class="mt-3 text-2xl font-semibold text-[var(--aionsi-navy)]">Explore AionSi’s engineering focus for mission-critical platforms.</h2>
-          <p class="mt-3 max-w-3xl text-sm leading-7 text-slate-600">See how FPGA engineering, verification, high-speed interfaces and embedded integration can be brought together around a defined technical challenge.</p>
-          <a href="/scioteq" class="mt-5 inline-flex font-semibold text-[var(--aionsi-blue)]">Explore the ScioTeq engineering focus →</a>
+        <div class="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
+          <div><TechnicalLabel>THE COMPLETE DATA PATH</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Verify the system the way the operator experiences it.</h2><p class="mt-5 text-lg leading-8 text-slate-600">A block can pass simulation and still fail at a system boundary. That is why complex platforms need verification and validation strategies that connect hardware, interfaces, compute and software.</p></div>
+          <div class="border border-slate-200 bg-white p-5 shadow-sm md:p-7"><div class="grid gap-2 md:grid-cols-7 md:items-center">{['Input','Interface','FPGA','Memory','CPU/GPU','Software','Display'].map((item,index) => <div class="flex items-center gap-2 md:contents"><div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] px-3 py-3 text-center text-xs font-semibold text-[var(--aionsi-navy)] md:flex-1">{item}</div>{index < 6 && <span class="hidden text-[var(--aionsi-blue)] md:block">→</span>}</div>)}</div><p class="mt-6 border-t border-slate-200 pt-5 text-center text-sm font-semibold text-[var(--aionsi-navy)]">The verification boundary should follow the system behavior.</p></div>
         </div>
       </Container>
     </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
+          <div><TechnicalLabel>FPGA + EMBEDDED + AI</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold md:text-5xl">The architecture gets more interesting when AI enters the path.</h2><p class="mt-5 text-lg leading-8 text-white/70">Some workloads naturally belong in deterministic FPGA logic. Others fit CPU or GPU compute. The engineering challenge is the handoff between them—and proving that the combined system remains predictable, testable and maintainable.</p></div>
+          <div class="border border-white/10 bg-white/5 p-6 md:p-8"><div class="grid gap-4 md:grid-cols-3"><div class="border border-white/10 p-5"><TechnicalLabel>FPGA</TechnicalLabel><p class="mt-3 text-sm leading-6 text-white/70">Deterministic data paths, video processing, low-latency functions.</p></div><div class="border border-white/10 p-5"><TechnicalLabel>COMPUTE</TechnicalLabel><p class="mt-3 text-sm leading-6 text-white/70">CPU/GPU resources for flexible application and AI workloads.</p></div><div class="border border-white/10 p-5"><TechnicalLabel>INTEGRATION</TechnicalLabel><p class="mt-3 text-sm leading-6 text-white/70">Interfaces, synchronization, validation and system behavior.</p></div></div></div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.75fr_1.25fr] lg:items-center"><div><TechnicalLabel>ENGINEERING OWNERSHIP</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">More engineers are not always the answer.</h2></div><div class="border-l-2 border-[var(--aionsi-orange)] pl-6"><p class="text-xl leading-9 text-slate-700">The more useful question may be: <strong>which technical problem needs clear ownership?</strong></p><p class="mt-4 text-base leading-7 text-slate-600">Architecture, verification, interface integration and system validation can require different forms of engineering ownership. The right model depends on where the program is actually constrained.</p></div></div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container><div class="mx-auto max-w-5xl text-center"><TechnicalLabel>A THOUGHT FOR ENGINEERING LEADERS</TechnicalLabel><blockquote class="mt-5 text-3xl font-semibold leading-tight tracking-tight text-[var(--aionsi-navy)] md:text-5xl">“Are we designing better components—or designing better connections between them?”</blockquote><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">As visualization platforms evolve into integrated compute platforms, the advantage may increasingly come from how well the engineering disciplines connect.</p></div></Container>
+    </Section>
+
+    <Section><Container><div class="border border-slate-200 bg-white p-7 shadow-sm md:p-9"><div class="grid gap-6 md:grid-cols-[1.4fr_.6fr] md:items-center"><div><TechnicalLabel>CONTINUE THE CONVERSATION</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold text-[var(--aionsi-navy)] md:text-4xl">What engineering boundary is slowing your program today?</h2><p class="mt-3 max-w-3xl text-base leading-7 text-slate-600">Architecture, verification, interfaces or hardware/software integration—we are interested in the engineering problem, not a predefined answer.</p></div><div class="flex md:justify-end"><Button href="/contact">Discuss the Engineering Challenge</Button></div></div></div></Container></Section>
   </main>
   <Footer />
 </BaseLayout>
