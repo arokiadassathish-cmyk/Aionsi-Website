@@ -18,120 +18,81 @@ import { technologyEvidence } from '../data/technologyEvidence';
   <main>
     <SiliconHero />
 
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-20">
+      <Container>
+        <TechnicalLabel>SCIO TEQ · TECHNICAL ENGINEERING BRIEF</TechnicalLabel>
+        <div class="mt-5 grid gap-10 lg:grid-cols-[1.25fr_.75fr] lg:items-center">
+          <div>
+            <h1 class="max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Engineering leverage for ScioTeq’s next-generation platforms.</h1>
+            <p class="mt-6 max-w-4xl text-xl leading-9 text-slate-600 md:text-2xl">AionSi can complement ScioTeq’s existing engineering ecosystem with semiconductor, FPGA, verification and embedded engineering capacity — starting with a focused work package and scaling into a dedicated India ODC.</p>
+            <div class="mt-8 flex flex-wrap gap-3"><Button href="/scioteq">Explore the ScioTeq opportunity →</Button><a href="/scioteq#strategy" class="inline-flex items-center border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-[var(--aionsi-navy)]">View engagement strategy</a></div>
+          </div>
+          <div class="border border-slate-200 border-t-2 border-t-[var(--aionsi-blue)] bg-white p-6 shadow-sm">
+            <TechnicalLabel>EXECUTIVE SIGNAL</TechnicalLabel>
+            <div class="mt-3 text-5xl font-semibold text-[var(--aionsi-blue)]">SCIO</div>
+            <h2 class="mt-2 text-2xl font-semibold text-[var(--aionsi-navy)]">Specialist second-source</h2>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Do not lead with a vendor-replacement pitch. Enter where AionSi is differentiated: PCIe/high-speed IP, SystemVerilog/UVM, FPGA engineering and scalable ODC execution.</p>
+            <div class="mt-6 grid grid-cols-3 gap-3 border-t border-slate-200 pt-5 text-center"><div><strong class="block text-xl text-[var(--aionsi-navy)]">140+</strong><span class="text-xs text-slate-500">R&amp;D*</span></div><div><strong class="block text-xl text-[var(--aionsi-navy)]">32</strong><span class="text-xs text-slate-500">roles*</span></div><div><strong class="block text-xl text-[var(--aionsi-navy)]">3</strong><span class="text-xs text-slate-500">entry tracks</span></div></div>
+          </div>
+        </div>
+        <p class="mt-5 text-xs text-slate-500">*Signals from the supplied ScioTeq account opportunity research; validate externally before using as customer-facing claims.</p>
+      </Container>
+    </Section>
+
+    <section class="border-y border-slate-200 bg-white">
+      <Container class="grid gap-0 md:grid-cols-3">
+        {[['Recommended motion','Technical discovery → defined pilot → engineering pod → India ODC'],['Primary wedge','FPGA / DO-254 verification + high-speed interface engineering'],['Strategic timing','Bangalore presence + product expansion + active engineering demand']].map(([title,desc]) => <div class="border-x border-slate-200 px-5 py-5 first:border-l-0 last:border-r-0"><TechnicalLabel>{title}</TechnicalLabel><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></div>)}
+      </Container>
+    </section>
+
+    <Section id="scio-entry">
+      <Container>
+        <TechnicalLabel>ACCOUNT-BASED ENGINEERING TARGET</TechnicalLabel>
+        <div class="mb-8 mt-3 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div><h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Three conversations. One expansion path.</h2><p class="mt-3 max-w-3xl text-lg text-slate-600">Use ScioTeq as a concrete example of how AionSi converts a technical problem into an engineering relationship.</p></div>
+          <a href="/scioteq" class="text-sm font-semibold text-[var(--aionsi-navy)]">Open the full ScioTeq brief →</a>
+        </div>
+        <div class="grid gap-5 lg:grid-cols-3">
+          {[['01','NOW · HIGH FIT','FPGA & DO-254 Engineering','Offer verification, RTL support, regression automation and certification-oriented engineering around FPGA-heavy avionics and defense programs.',['VHDL / FPGA verification','SystemVerilog / UVM','DO-254 evidence & coverage']],['02','TECHNICAL WEDGE','High-Speed / PCIe IP','Position AionSi around modern interconnect and FPGA↔compute integration, especially where future compute platforms require high-speed interfaces.',['PCIe IP / DLL expertise','FPGA integration','Protocol verification']],['03','EXPANSION','India Engineering ODC','Use the Bangalore footprint as the bridge from a focused technical engagement to a dedicated engineering pod supporting product programs.',['3–5 engineer pilot pod','Scale to 6–10+','Multi-program ownership']]].map(([num,tag,title,desc,items]) => <article class="border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><div class="mt-3 text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{tag}</div><h3 class="mt-3 text-2xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-3 min-h-[92px] text-sm leading-7 text-slate-600">{desc}</p><div class="mt-4 border-t border-slate-200 pt-3">{items.map(item => <div class="py-1 text-xs font-medium text-slate-600">→ {item}</div>)}</div></article>)}
+        </div>
+      </Container>
+    </Section>
+
+    <section id="scio-strategy" class="border-y border-slate-800 bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-20">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+          <div><TechnicalLabel>THE SALES STRATEGY</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold md:text-5xl">Complement the incumbent.<br/>Own a deliverable.</h2><p class="mt-5 max-w-2xl text-lg leading-8 text-white/70">The objective is not to win a vendor replacement conversation. Make AionSi useful on one technically bounded work package that ScioTeq can measure.</p></div>
+          <div class="border-l border-white/10 pl-5">{[['01','Discover','Identify capacity, schedule or verification bottlenecks.'],['02','Qualify','Confirm pain, technical owner, deadline and budget.'],['03','Pilot','1–3 engineers, one work package, 8–12 weeks.'],['04','Expand','Convert the pilot into a 3–5 person engineering pod.'],['05','Establish ODC','Build a repeatable India delivery capability.']].map(([num,title,desc]) => <div class="grid grid-cols-[40px_1fr] gap-4 border-b border-white/10 py-4"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><div><strong>{title}</strong><p class="mt-1 text-sm text-white/60">{desc}</p></div></div>)}</div>
+        </div>
+      </Container>
+    </section>
+
     <Section>
       <Container>
         <TechnicalLabel>AionSi Engineering Lifecycle</TechnicalLabel>
-        <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
-          <div>
-            <h2 class="max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">From IP to Silicon.</h2>
-            <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">Engineering expertise across the semiconductor development lifecycle.</p>
-          </div>
-          <p class="max-w-xl text-sm font-medium uppercase tracking-[.12em] text-slate-400 lg:justify-self-end">Explore each stage to see where AionSi engineering contributes.</p>
-        </div>
+        <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end"><div><h2 class="max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">From IP to Silicon.</h2><p class="mt-4 max-w-2xl text-lg leading-8 text-slate-600">Engineering expertise across the semiconductor development lifecycle.</p></div><p class="max-w-xl text-sm font-medium uppercase tracking-[.12em] text-slate-400 lg:justify-self-end">Explore each stage to see where AionSi engineering contributes.</p></div>
         <div class="mt-10"><EngineeringTrace /></div>
-        <div class="mt-10 flex flex-col gap-4 border-t border-slate-200 pt-7 sm:flex-row sm:items-center sm:justify-between">
-          <p class="text-base text-slate-600">Need engineering capacity at any stage of the silicon lifecycle?</p>
-          <Button href="/contact" variant="technical">Talk to Our Engineering Team</Button>
-        </div>
+        <div class="mt-10 flex flex-col gap-4 border-t border-slate-200 pt-7 sm:flex-row sm:items-center sm:justify-between"><p class="text-base text-slate-600">Need engineering capacity at any stage of the silicon lifecycle?</p><Button href="/contact" variant="technical">Talk to Our Engineering Team</Button></div>
       </Container>
     </Section>
 
     <Section class="bg-[var(--aionsi-surface-alt)]">
       <Container>
         <TechnicalLabel>Engineering Capabilities</TechnicalLabel>
-        <div class="mb-10 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
-          <div>
-            <h2 class="max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">Engineering depth across the silicon lifecycle.</h2>
-            <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">From RTL design through verification, physical implementation, DFT, protocol verification and SoC integration—AionSi engineering capabilities are built around complex silicon programs.</p>
-          </div>
-          <a href="/capabilities" class="group inline-flex items-center gap-2 pb-1 text-sm font-semibold text-[var(--aionsi-navy)]">Explore the full engineering portfolio <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span></a>
-        </div>
-        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {capabilities.map((capability) => (
-            <EngineeringCard
-              number={capability.number}
-              title={capability.title}
-              description={capability.description}
-              technologies={capability.technologies?.join(' · ')}
-              outcome={capability.outcome}
-              href={`/capabilities/${capability.slug}`}
-            />
-          ))}
-        </div>
+        <div class="mb-10 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end"><div><h2 class="max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">Engineering depth across the silicon lifecycle.</h2><p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">From RTL design through verification, physical implementation, DFT, protocol verification and SoC integration—AionSi engineering capabilities are built around complex silicon programs.</p></div><a href="/capabilities" class="group inline-flex items-center gap-2 pb-1 text-sm font-semibold text-[var(--aionsi-navy)]">Explore the full engineering portfolio <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span></a></div>
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{capabilities.map((capability) => <EngineeringCard number={capability.number} title={capability.title} description={capability.description} technologies={capability.technologies?.join(' · ')} outcome={capability.outcome} href={`/capabilities/${capability.slug}`} />)}</div>
       </Container>
     </Section>
 
-    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
-      <Container class="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
-        <div>
-          <TechnicalLabel>Built Around Your Engineering Problem</TechnicalLabel>
-          <h2 class="text-4xl font-semibold tracking-tight md:text-5xl">What are you trying to accelerate?</h2>
-          <p class="mt-5 max-w-xl text-lg leading-8 text-white/70">Bring a verification, implementation or engineering-capacity challenge. We will connect it to the right AionSi capability.</p>
-        </div>
-        <div class="grid gap-4 md:grid-cols-3">
-          <a href="/capabilities/design-verification" class="group border border-white/10 p-6 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)]"><div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">01</div><h3 class="mt-8 text-xl font-semibold">Accelerate Verification</h3><p class="mt-3 text-sm leading-6 text-white/60">Extend verification capacity without losing engineering discipline.</p><span class="mt-8 inline-block text-sm font-semibold">Explore DV →</span></a>
-          <a href="/solutions/dedicated-engineering" class="group border border-white/10 p-6 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)]"><div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">02</div><h3 class="mt-8 text-xl font-semibold">Scale Engineering</h3><p class="mt-3 text-sm leading-6 text-white/60">Add specialized RTL, DV, PD, DFT and protocol engineering capacity.</p><span class="mt-8 inline-block text-sm font-semibold">Build a Team →</span></a>
-          <a href="/solutions/odc" class="group border border-white/10 p-6 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)]"><div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">03</div><h3 class="mt-8 text-xl font-semibold">Build an ODC</h3><p class="mt-3 text-sm leading-6 text-white/60">Create a dedicated engineering organization aligned to your program.</p><span class="mt-8 inline-block text-sm font-semibold">Explore ODC →</span></a>
-        </div>
-      </Container>
-    </Section>
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white"><Container class="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center"><div><TechnicalLabel>Built Around Your Engineering Problem</TechnicalLabel><h2 class="text-4xl font-semibold tracking-tight md:text-5xl">What are you trying to accelerate?</h2><p class="mt-5 max-w-xl text-lg leading-8 text-white/70">Bring a verification, implementation or engineering-capacity challenge. We will connect it to the right AionSi capability.</p></div><div class="grid gap-4 md:grid-cols-3"><a href="/capabilities/design-verification" class="group border border-white/10 p-6 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)]"><div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">01</div><h3 class="mt-8 text-xl font-semibold">Accelerate Verification</h3><p class="mt-3 text-sm leading-6 text-white/60">Extend verification capacity without losing engineering discipline.</p><span class="mt-8 inline-block text-sm font-semibold">Explore DV →</span></a><a href="/solutions/dedicated-engineering" class="group border border-white/10 p-6 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)]"><div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">02</div><h3 class="mt-8 text-xl font-semibold">Scale Engineering</h3><p class="mt-3 text-sm leading-6 text-white/60">Add specialized RTL, DV, PD, DFT and protocol engineering capacity.</p><span class="mt-8 inline-block text-sm font-semibold">Build a Team →</span></a><a href="/solutions/odc" class="group border border-white/10 p-6 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)]"><div class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">03</div><h3 class="mt-8 text-xl font-semibold">Build an ODC</h3><p class="mt-3 text-sm leading-6 text-white/60">Create a dedicated engineering organization aligned to your program.</p><span class="mt-8 inline-block text-sm font-semibold">Explore ODC →</span></a></div></Container></Section>
 
-    <Section>
-      <Container>
-        <TechnicalLabel>Technology Depth</TechnicalLabel>
-        <div class="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
-          <div>
-            <h2 class="text-4xl font-semibold tracking-tight md:text-5xl">Technology depth for complex silicon.</h2>
-            <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">A focused set of technology domains backed by supplied AionSi technical capability evidence.</p>
-            <p class="mt-4 max-w-xl text-sm leading-6 text-slate-500">Each technology card now maps to an evidence-backed reference. Unsupported or lower-confidence technology claims are intentionally excluded from this section.</p>
-          </div>
-          <div class="grid gap-3 sm:grid-cols-2">
-            {technologyEvidence.map((item) => (
-              <a href={item.detailHref} class="group flex items-center justify-between border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]">
-                <div>
-                  <div class="flex items-center gap-2 text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]"><span>{item.number}</span><span class="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[10px] tracking-[.12em] text-emerald-700">EVIDENCE READY</span></div>
-                  <div class="mt-3 text-lg font-semibold">{item.title}</div>
-                  <p class="mt-2 text-sm leading-6 text-slate-600">{item.summary}</p>
-                </div>
-                <span class="ml-4 shrink-0 text-slate-400 transition group-hover:translate-x-1 group-hover:text-[var(--aionsi-blue)]">→</span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </Container>
-    </Section>
-
-    <Section class="bg-[var(--aionsi-navy)] text-white">
-      <Container class="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
-        <div><TechnicalLabel>AIV</TechnicalLabel><h2 class="text-4xl font-semibold tracking-tight md:text-5xl">AI-Accelerated Verification.</h2><p class="mt-5 max-w-xl text-lg leading-8 text-white/70">Engineering productivity accelerated with human validation, security-conscious workflows and controlled deployment models.</p><div class="mt-8"><Button href="/solutions/aiv">Explore AIV</Button></div></div>
-        <div class="relative border border-white/10 bg-white/[.025] p-8 sm:p-10">
-          <div class="mx-auto flex max-w-md flex-col items-center gap-4 text-center"><div class="flex h-28 w-28 items-center justify-center border border-[var(--aionsi-orange)]/70 text-2xl font-semibold tracking-[.12em] text-[var(--aionsi-orange)]">AIV</div><div class="h-10 w-px bg-[var(--aionsi-blue)]"></div><div class="grid w-full gap-3 sm:grid-cols-3"><div class="border border-white/10 p-4 text-xs uppercase tracking-[.14em] text-white/65">AI Assisted</div><div class="border border-white/10 p-4 text-xs uppercase tracking-[.14em] text-white/65">Human Validated</div><div class="border border-white/10 p-4 text-xs uppercase tracking-[.14em] text-white/65">Secure</div></div></div>
-        </div>
-      </Container>
-    </Section>
-
-    <Section class="bg-[var(--aionsi-surface-alt)]">
-      <Container class="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
-        <div><TechnicalLabel>Engineering Teams</TechnicalLabel><h2 class="text-4xl font-semibold tracking-tight md:text-5xl">Scale your silicon engineering team.</h2><p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">Dedicated engineering teams, extended engineering and project delivery models designed around semiconductor programs.</p><div class="mt-8"><Button href="/solutions/odc">Discuss an ODC</Button></div></div>
-        <div class="grid gap-4 sm:grid-cols-2"><a href="/solutions/dedicated-engineering" class="border border-slate-200 bg-white p-7 transition hover:border-[var(--aionsi-blue)]"><div class="text-xs tracking-[.18em] text-[var(--aionsi-blue)]">01</div><h3 class="mt-5 text-2xl font-semibold">Dedicated Engineering</h3></a><a href="/solutions/extended-engineering" class="border border-slate-200 bg-white p-7 transition hover:border-[var(--aionsi-blue)]"><div class="text-xs tracking-[.18em] text-[var(--aionsi-blue)]">02</div><h3 class="mt-5 text-2xl font-semibold">Extended Engineering</h3></a><a href="/solutions/odc" class="border border-slate-200 bg-white p-7 transition hover:border-[var(--aionsi-blue)]"><div class="text-xs tracking-[.18em] text-[var(--aionsi-blue)]">03</div><h3 class="mt-5 text-2xl font-semibold">ODC</h3></a><a href="/solutions/project-engineering" class="border border-slate-200 bg-white p-7 transition hover:border-[var(--aionsi-blue)]"><div class="text-xs tracking-[.18em] text-[var(--aionsi-blue)]">04</div><h3 class="mt-5 text-2xl font-semibold">Project Engineering</h3></a></div>
-      </Container>
-    </Section>
+    <Section><Container><TechnicalLabel>Technology Depth</TechnicalLabel><div class="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-start"><div><h2 class="text-4xl font-semibold tracking-tight md:text-5xl">Technology depth for complex silicon.</h2><p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">A focused set of technology domains backed by supplied AionSi technical capability evidence.</p><p class="mt-4 max-w-xl text-sm leading-6 text-slate-500">Each technology card maps to an evidence-backed reference.</p></div><div class="grid gap-3 sm:grid-cols-2">{technologyEvidence.map((item) => <a href={item.detailHref} class="group flex items-center justify-between border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><div><div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{item.number}</div><div class="mt-3 text-lg font-semibold">{item.title}</div><p class="mt-2 text-sm leading-6 text-slate-600">{item.summary}</p></div><span class="ml-4 shrink-0 text-slate-400 transition group-hover:translate-x-1 group-hover:text-[var(--aionsi-blue)]">→</span></a>)}</div></div></Container></Section>
 
     <CustomerProof />
 
-    <Section class="bg-white">
-      <Container>
-        <TechnicalLabel>Talent at AionSi</TechnicalLabel>
-        <div class="grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-end">
-          <h2 class="text-4xl font-semibold tracking-tight md:text-5xl">Build what's next. With us.</h2>
-          <p class="max-w-xl text-lg leading-8 text-slate-600">AionSi is building an engineering organization for complex silicon programs. Explore opportunities for early-career and experienced semiconductor engineers.</p>
-        </div>
-        <div class="mt-10 grid gap-5 md:grid-cols-2"><a href="/careers/early-careers" class="group border border-slate-200 p-8 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)]"><div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">EARLY CAREERS</div><h3 class="mt-5 text-2xl font-semibold">Start Your Silicon Journey</h3><p class="mt-3 max-w-lg text-slate-600">Build semiconductor fundamentals, learn engineering methodologies and grow with experienced teams.</p><div class="mt-8 text-sm font-semibold">Explore Early Careers →</div></a><a href="/careers/experienced-engineers" class="group border border-slate-200 p-8 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)]"><div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">EXPERIENCED ENGINEERS</div><h3 class="mt-5 text-2xl font-semibold">Bring Your Engineering Depth</h3><p class="mt-3 max-w-lg text-slate-600">Work on challenging semiconductor programs across verification, physical design, RTL, DFT and protocol engineering.</p><div class="mt-8 text-sm font-semibold">Explore Experienced Roles →</div></a></div>
-      </Container>
-    </Section>
+    <Section class="bg-white"><Container><TechnicalLabel>Talent at AionSi</TechnicalLabel><div class="grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-end"><h2 class="text-4xl font-semibold tracking-tight md:text-5xl">Build what's next. With us.</h2><p class="max-w-xl text-lg leading-8 text-slate-600">AionSi is building an engineering organization for complex silicon programs. Explore opportunities for early-career and experienced semiconductor engineers.</p></div><div class="mt-10 grid gap-5 md:grid-cols-2"><a href="/careers/early-careers" class="group border border-slate-200 p-8 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)]"><div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">EARLY CAREERS</div><h3 class="mt-5 text-2xl font-semibold">Start Your Silicon Journey</h3><p class="mt-3 max-w-lg text-slate-600">Build semiconductor fundamentals, learn engineering methodologies and grow with experienced teams.</p><div class="mt-8 text-sm font-semibold">Explore Early Careers →</div></a><a href="/careers/experienced-engineers" class="group border border-slate-200 p-8 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)]"><div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">EXPERIENCED ENGINEERS</div><h3 class="mt-5 text-2xl font-semibold">Bring Your Engineering Depth</h3><p class="mt-3 max-w-lg text-slate-600">Work on challenging semiconductor programs across verification, physical design, RTL, DFT and protocol engineering.</p><div class="mt-8 text-sm font-semibold">Explore Experienced Roles →</div></a></div></Container></Section>
 
-    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
-      <Container class="text-center"><TechnicalLabel>Engineering Excellence</TechnicalLabel><h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Have a silicon challenge?</h2><p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/70">Let's engineer it together.</p><div class="mt-9"><Button href="/contact">Talk to Our Engineering Team</Button></div></Container></Section>
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white"><Container class="text-center"><TechnicalLabel>Engineering Excellence</TechnicalLabel><h2 class="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Have a silicon challenge?</h2><p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/70">Let's engineer it together.</p><div class="mt-9"><Button href="/contact">Talk to Our Engineering Team</Button></div></Container></Section>
   </main>
   <Footer />
 </BaseLayout>
