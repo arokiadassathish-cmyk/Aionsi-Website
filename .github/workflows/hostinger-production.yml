@@ -1,0 +1,56 @@
+name: AionSi Hostinger Production Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hostinger-production
+  cancel-in-progress: false
+
+jobs:
+  build-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: QA and production build
+        run: npm run qa
+
+      - name: Create deployment package
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f dist/server/entry.mjs
+          tar -czf aionsi-hostinger-deploy.tar.gz dist package.json package-lock.json scripts/start-hostinger.mjs
+
+      - name: Upload deployment package
+        uses: actions/upload-artifact@v4
+        with:
+          name: aionsi-hostinger-deploy
+          path: aionsi-hostinger-deploy.tar.gz
+          retention-days: 7
+
+  verify-package:
+    needs: build-and-package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report deployment handoff
+        run: |
+          echo "Build and packaging completed successfully."
+          echo "Hostinger must consume the aionsi-hostinger-deploy artifact or have its Git deployment configured to the main branch."
+          echo "Production verification target: /api/health and /insights/when-a-display-becomes-a-computing-platform"
