@@ -18,35 +18,6 @@ import { technologyEvidence } from '../data/technologyEvidence';
   <main>
     <SiliconHero />
 
-    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-20">
-      <Container>
-        <TechnicalLabel>Featured Engineering Engagement</TechnicalLabel>
-        <div class="mt-5 grid gap-10 lg:grid-cols-[1.25fr_.75fr] lg:items-center">
-          <div>
-            <p class="text-sm font-semibold uppercase tracking-[.18em] text-[var(--aionsi-blue)]">ScioTeq</p>
-            <h2 class="mt-3 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Engineering capability for mission-critical platforms.</h2>
-            <p class="mt-6 max-w-4xl text-xl leading-9 text-slate-600 md:text-2xl">AionSi brings semiconductor, FPGA, verification and embedded engineering depth to complex platform programs — with a customer-focused path from a defined engineering requirement to scalable delivery.</p>
-            <div class="mt-8 flex flex-wrap gap-3"><Button href="/scioteq">Explore the ScioTeq engineering brief →</Button><a href="/scioteq#capabilities" class="inline-flex items-center border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-[var(--aionsi-navy)]">Explore engineering capabilities</a></div>
-          </div>
-          <div class="border border-slate-200 border-t-2 border-t-[var(--aionsi-blue)] bg-white p-6 shadow-sm">
-            <TechnicalLabel>ENGINEERING FOCUS</TechnicalLabel>
-            <div class="mt-4 space-y-4">
-              <div><div class="text-lg font-semibold text-[var(--aionsi-navy)]">FPGA & digital engineering</div><p class="mt-1 text-sm leading-6 text-slate-600">RTL, FPGA verification and disciplined implementation support.</p></div>
-              <div class="border-t border-slate-200 pt-4"><div class="text-lg font-semibold text-[var(--aionsi-navy)]">Verification & validation</div><p class="mt-1 text-sm leading-6 text-slate-600">SystemVerilog, UVM, regression, coverage and verification execution.</p></div>
-              <div class="border-t border-slate-200 pt-4"><div class="text-lg font-semibold text-[var(--aionsi-navy)]">High-speed & embedded</div><p class="mt-1 text-sm leading-6 text-slate-600">PCIe, protocol verification and FPGA-to-compute integration.</p></div>
-              <div class="border-t border-slate-200 pt-4"><div class="text-lg font-semibold text-[var(--aionsi-navy)]">Scalable engineering</div><p class="mt-1 text-sm leading-6 text-slate-600">Dedicated engineering capability aligned to program requirements.</p></div>
-            </div>
-          </div>
-        </div>
-      </Container>
-    </Section>
-
-    <section class="border-y border-slate-200 bg-white">
-      <Container class="grid gap-0 md:grid-cols-3">
-        {[['Engineering focus','FPGA · verification · high-speed interfaces · embedded engineering'],['Engagement model','Defined requirement → execution → scalable engineering capacity'],['Customer outcome','Focused technical contribution for complex mission-critical platforms']].map(([title,desc]) => <div class="border-x border-slate-200 px-5 py-5 first:border-l-0 last:border-r-0"><TechnicalLabel>{title}</TechnicalLabel><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></div>)}
-      </Container>
-    </section>
-
     <Section>
       <Container>
         <TechnicalLabel>AionSi Engineering Lifecycle</TechnicalLabel>
