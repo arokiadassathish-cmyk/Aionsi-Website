@@ -54,7 +54,11 @@ const practical = [
             <div class="absolute right-0 top-0 h-1 w-28 bg-[var(--aionsi-orange)]"></div>
             <div class="flex items-center justify-between"><TechnicalLabel>SYSTEM ARCHITECTURE</TechnicalLabel><span class="text-[10px] font-semibold tracking-[.18em] text-slate-400">BOUNDARIES MATTER</span></div>
             <div class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {path.map(([num,label,desc]) => <div class:list={["border bg-white p-4", label === 'FPGA' ? 'border-[var(--aionsi-orange)] bg-[var(--aionsi-deep-navy)] text-white' : 'border-slate-200']}><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">{num} · {label}</span><p class:list={["mt-3 text-sm font-semibold", label === 'FPGA' ? 'text-white' : 'text-[var(--aionsi-navy)]']}>{desc}</p></div>)}
+              {path.map(([num,label,desc]) => <div class:list={["border p-4", label === 'FPGA' ? 'border-[var(--aionsi-orange)] bg-[var(--aionsi-deep-navy)]' : 'border-slate-200 bg-white']}>
+                <span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">{num} · {label}</span>
+                <p class:list={["mt-3 text-sm font-semibold", label === 'FPGA' ? 'text-white' : 'text-[var(--aionsi-navy)]']}>{desc}</p>
+                {label === 'FPGA' && <p class="mt-2 text-xs leading-5 text-white/65">Low latency + data-path control</p>}
+              </div>)}
             </div>
             <div class="mt-5 flex items-start gap-3 border-t border-slate-200 pt-5"><span class="mt-1 h-2.5 w-2.5 shrink-0 bg-[var(--aionsi-orange)]"></span><p class="text-sm leading-7 text-slate-500"><strong class="text-[var(--aionsi-navy)]">The difficult engineering problems are often between the components.</strong></p></div>
           </div>
@@ -97,17 +101,13 @@ const practical = [
         <div class="mx-auto max-w-5xl">
           <div class="max-w-3xl"><TechnicalLabel>VERIFY THE SYSTEM</TechnicalLabel><h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Verification has to follow the system—not just the block.</h2><p class="mt-5 text-lg leading-8 text-slate-600">A block can pass simulation and still fail at a system boundary. The verification strategy has to follow the behavior the operator actually experiences.</p></div>
           <div class="mt-10 overflow-hidden border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5 md:p-7">
-            <div class="grid gap-3 md:grid-cols-4">
+            <div class="grid gap-3 md:grid-cols-[1fr_auto_1fr_1fr] md:items-stretch">
               <div class="border border-slate-200 bg-white p-5"><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">BLOCK</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">RTL intent</h3><p class="mt-2 text-sm leading-6 text-slate-500">Does the logic behave as specified?</p></div>
               <div class="hidden items-center justify-center text-2xl text-[var(--aionsi-blue)] md:flex">→</div>
               <div class="border border-[var(--aionsi-orange)] bg-[var(--aionsi-deep-navy)] p-5 text-white"><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">BOUNDARY</span><h3 class="mt-2 font-semibold">Interface behavior</h3><p class="mt-2 text-sm leading-6 text-white/65">Does the handoff remain correct?</p></div>
               <div class="border border-slate-200 bg-white p-5"><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">SYSTEM</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Operator outcome</h3><p class="mt-2 text-sm leading-6 text-slate-500">Does the complete path behave correctly?</p></div>
             </div>
-            <div class="mt-6 grid gap-3 sm:grid-cols-3">
-              <div class="border border-slate-200 bg-white p-4 text-center text-sm font-semibold text-[var(--aionsi-navy)]">Reusable environments</div>
-              <div class="border border-slate-200 bg-white p-4 text-center text-sm font-semibold text-[var(--aionsi-navy)]">Coverage + assertions</div>
-              <div class="border border-slate-200 bg-white p-4 text-center text-sm font-semibold text-[var(--aionsi-navy)]">Regression + closure</div>
-            </div>
+            <div class="mt-6 grid gap-3 sm:grid-cols-3"><div class="border border-slate-200 bg-white p-4 text-center text-sm font-semibold text-[var(--aionsi-navy)]">Reusable environments</div><div class="border border-slate-200 bg-white p-4 text-center text-sm font-semibold text-[var(--aionsi-navy)]">Coverage + assertions</div><div class="border border-slate-200 bg-white p-4 text-center text-sm font-semibold text-[var(--aionsi-navy)]">Regression + closure</div></div>
           </div>
         </div>
       </Container>
@@ -117,10 +117,13 @@ const practical = [
       <Container>
         <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
           <div><TechnicalLabel>COMPUTE CONVERGENCE</TechnicalLabel><h2 class="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">AI adds another compute domain.</h2><p class="mt-5 max-w-xl text-lg leading-8 text-white/70">The engineering challenge is the handoff between deterministic hardware, embedded compute and software—and proving that the combined system remains predictable, testable and maintainable.</p></div>
-          <div class="grid gap-4 sm:grid-cols-3">
-            <article class="border border-white/10 bg-white/5 p-5"><span class="text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">01</span><h3 class="mt-3 text-lg font-semibold">FPGA</h3><p class="mt-2 text-sm leading-6 text-white/60">Latency, determinism and data-path control.</p></article>
-            <article class="border border-white/10 bg-white/5 p-5"><span class="text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">02</span><h3 class="mt-3 text-lg font-semibold">CPU / GPU</h3><p class="mt-2 text-sm leading-6 text-white/60">Programmability, application flexibility and AI compute.</p></article>
-            <article class="border border-white/10 bg-white/5 p-5"><span class="text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">03</span><h3 class="mt-3 text-lg font-semibold">SOFTWARE</h3><p class="mt-2 text-sm leading-6 text-white/60">Control, orchestration and system integration.</p></article>
+          <div>
+            <div class="grid gap-4 sm:grid-cols-3">
+              <article class="border border-white/10 bg-white/5 p-5"><span class="text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">01</span><h3 class="mt-3 text-lg font-semibold">FPGA</h3><p class="mt-2 text-sm leading-6 text-white/60">Latency, determinism and data-path control.</p></article>
+              <article class="border border-white/10 bg-white/5 p-5"><span class="text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">02</span><h3 class="mt-3 text-lg font-semibold">CPU / GPU / AI</h3><p class="mt-2 text-sm leading-6 text-white/60">Programmability, application flexibility and intelligent compute.</p></article>
+              <article class="border border-white/10 bg-white/5 p-5"><span class="text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">03</span><h3 class="mt-3 text-lg font-semibold">SOFTWARE</h3><p class="mt-2 text-sm leading-6 text-white/60">Control, orchestration and system integration.</p></article>
+            </div>
+            <div class="mt-5 flex flex-wrap items-center gap-3 text-xs font-semibold tracking-[.15em] text-white/55"><span>FPGA</span><span class="text-[var(--aionsi-orange)]">→</span><span>CPU / GPU / AI</span><span class="text-[var(--aionsi-orange)]">→</span><span>SOFTWARE</span></div>
           </div>
         </div>
       </Container>
@@ -129,23 +132,21 @@ const practical = [
     <Section class="bg-white py-14 md:py-20">
       <Container>
         <div class="mx-auto max-w-5xl">
-          <div class="max-w-3xl"><TechnicalLabel>ENGINEERING OWNERSHIP</TechnicalLabel><h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">The better question is not “how many engineers?”</h2><p class="mt-5 text-lg leading-8 text-slate-600">It is “which technical problem needs clear ownership?” Complex programs can benefit from a focused work package, specialist engineering pod or dedicated engineering team.</p></div>
-          <div class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {practical.map(([num,title,desc]) => <article class="border border-slate-200 bg-white p-5 shadow-sm"><span class="text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-base font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
-          </div>
+          <div class="max-w-3xl"><TechnicalLabel>ENGINEERING OWNERSHIP</TechnicalLabel><h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">The better question is where the technical constraint sits.</h2><p class="mt-5 text-lg leading-8 text-slate-600">The right engineering model follows the problem: a focused work package, a specialist engineering pod or a dedicated team with clear ownership.</p></div>
+          <div class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{practical.map(([num,title,desc]) => <article class="border border-slate-200 bg-white p-5 shadow-sm"><span class="text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-base font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}</div>
         </div>
       </Container>
     </Section>
 
-    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-20">
+    <Section class="bg-[var(--aionsi-surface-alt)] py-10 md:py-12">
       <Container>
-        <div class="mx-auto max-w-4xl text-center"><TechnicalLabel>A THOUGHT FOR ENGINEERING LEADERS</TechnicalLabel><blockquote class="mt-6 text-3xl font-semibold leading-tight tracking-tight text-[var(--aionsi-navy)] md:text-5xl">“Are we designing better components—or designing better connections between them?”</blockquote><p class="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600">As visualization platforms evolve into integrated compute platforms, the advantage may increasingly come from how well the engineering disciplines connect.</p></div>
+        <div class="mx-auto max-w-4xl text-center"><TechnicalLabel>A THOUGHT FOR ENGINEERING LEADERS</TechnicalLabel><blockquote class="mt-5 text-3xl font-semibold leading-tight tracking-tight text-[var(--aionsi-navy)] md:text-5xl">“Are we designing better components—or designing better connections between them?”</blockquote><p class="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600">As visualization platforms evolve into integrated compute platforms, the advantage may increasingly come from how well the engineering disciplines connect.</p></div>
       </Container>
     </Section>
 
-    <Section class="bg-white py-12 md:py-16">
+    <Section class="bg-white py-10 md:py-12">
       <Container>
-        <div class="flex flex-col items-start justify-between gap-6 border-t border-slate-200 pt-10 md:flex-row md:items-center"><div><TechnicalLabel>CONTINUE THE CONVERSATION</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)]">Have an engineering boundary worth discussing?</h2><p class="mt-2 text-slate-600">Let’s discuss the architecture, verification or integration challenge.</p></div><Button href="/contact">Discuss the Engineering Challenge</Button></div>
+        <div class="flex flex-col items-start justify-between gap-5 border-t border-slate-200 pt-8 md:flex-row md:items-center"><div><TechnicalLabel>CONTINUE THE CONVERSATION</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)]">Have an engineering boundary worth discussing?</h2><p class="mt-2 text-slate-600">Let’s discuss the architecture, verification or integration challenge.</p></div><Button href="/contact">Discuss the Engineering Challenge</Button></div>
       </Container>
     </Section>
   </main>
