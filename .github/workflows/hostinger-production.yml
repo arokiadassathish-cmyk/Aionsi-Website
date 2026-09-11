@@ -35,14 +35,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -f dist/server/entry.mjs
-          test -f dist/client/manifest.json
+          echo "Checking generated Astro server output..."
+          test -f dist/server/entry.mjs || { echo "Missing dist/server/entry.mjs"; find dist -maxdepth 3 -type f | sort | head -200; exit 1; }
+          echo "Checking generated client manifest..."
+          test -f dist/client/manifest.json || { echo "Missing dist/client/manifest.json"; find dist -maxdepth 3 -type f | sort | head -200; exit 1; }
 
       - name: Create deployment package
         shell: bash
         run: |
           set -euo pipefail
           tar -czf aionsi-hostinger-deploy.tar.gz dist package.json package-lock.json scripts/start-hostinger.mjs
+          ls -lh aionsi-hostinger-deploy.tar.gz
 
       - name: Upload deployment package
         uses: actions/upload-artifact@v4
