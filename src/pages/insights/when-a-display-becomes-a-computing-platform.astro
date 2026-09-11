@@ -13,15 +13,6 @@ const questions = [
   ['03','VALIDATION','How do you verify the complete data path?','The important path is not one component in isolation. It is the chain from input and interface through FPGA, memory, compute, software and visualization.'],
 ];
 
-const practical = [
-  ['01','FPGA / RTL','Architecture, RTL implementation, deterministic data paths and hardware-oriented verification.'],
-  ['02','DESIGN VERIFICATION','UVM environments, assertions, coverage, regressions and closure across interfaces.'],
-  ['03','HIGH-SPEED INTERFACES','Interface verification, synchronization, data movement and system-level validation.'],
-  ['04','EMBEDDED COMPUTE','FPGA + CPU/GPU integration, software interaction and AI-ready compute paths.'],
-  ['05','SYSTEM VALIDATION','End-to-end behavior across hardware, interfaces, compute and software.'],
-  ['06','ENGINEERING ODC','A dedicated engineering pod for a clearly owned technical work package.'],
-];
-
 const path = [
   ['01','INPUT','Sensor / video'],
   ['02','INTERFACE','High-speed I/O'],
@@ -31,11 +22,25 @@ const path = [
   ['06','SOFTWARE','System logic'],
   ['07','OUTPUT','Visualization'],
 ];
+
+const boundaryCards = [
+  ['01','TIMING & SYNCHRONIZATION','Clock domains, buffering and latency have to remain predictable across the data path.'],
+  ['02','DATA MOVEMENT','Bandwidth and interface behavior can become system constraints long before an individual block fails.'],
+  ['03','HW / SW INTEGRATION','The final behavior emerges from the interaction between hardware, compute and software.'],
+];
+
+const practical = [
+  ['01','FPGA / RTL','Architecture, RTL implementation and deterministic data paths.'],
+  ['02','DESIGN VERIFICATION','UVM environments, assertions, coverage, regressions and closure.'],
+  ['03','HIGH-SPEED INTERFACES','Interface verification, synchronization, data movement and validation.'],
+  ['04','EMBEDDED COMPUTE','FPGA + CPU/GPU integration and software interaction.'],
+  ['05','SYSTEM VALIDATION','End-to-end behavior across hardware, interfaces, compute and software.'],
+  ['06','ENGINEERING ODC','A dedicated engineering pod for a clearly owned technical work package.'],
+];
 ---
 <BaseLayout title="When a Display Becomes a Computing Platform | AionSi" description="As mission-critical visualization platforms absorb FPGA processing, embedded compute, high-speed interfaces and AI, the engineering challenge increasingly sits at the boundaries between them.">
   <Header />
   <main>
-    <!-- HERO: architectural story rather than a generic blog hero -->
     <Section class="bg-[var(--aionsi-surface-alt)] py-10 md:py-16 lg:py-20">
       <Container>
         <div class="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
@@ -45,23 +50,11 @@ const path = [
             <p class="mt-6 max-w-2xl text-xl leading-9 text-slate-600 md:text-2xl">The engineering challenge behind next-generation visualization is no longer simply displaying information. It is engineering the boundaries between compute, FPGA, software and verification.</p>
             <div class="mt-7 flex flex-wrap gap-2 text-xs font-semibold tracking-wide text-slate-500"><span class="border border-slate-200 bg-white px-3 py-2">Mission-critical systems</span><span class="border border-slate-200 bg-white px-3 py-2">FPGA & RTL</span><span class="border border-slate-200 bg-white px-3 py-2">Embedded compute</span><span class="border border-slate-200 bg-white px-3 py-2">Verification</span></div>
           </div>
-
           <div class="relative overflow-hidden border border-slate-200 bg-white p-5 shadow-sm md:p-7">
             <div class="absolute right-0 top-0 h-1 w-28 bg-[var(--aionsi-orange)]"></div>
             <div class="flex items-center justify-between"><TechnicalLabel>SYSTEM ARCHITECTURE</TechnicalLabel><span class="text-[10px] font-semibold tracking-[.18em] text-slate-400">BOUNDARIES MATTER</span></div>
-            <div class="relative mt-7 overflow-hidden border border-slate-200 bg-[var(--aionsi-surface-alt)] p-4 md:p-6">
-              <div class="absolute left-10 right-10 top-1/2 hidden border-t border-dashed border-slate-300 md:block"></div>
-              <div class="relative grid gap-3 md:grid-cols-4">
-                <div class="border border-slate-200 bg-white p-4"><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">INPUT</span><p class="mt-2 text-sm font-semibold text-[var(--aionsi-navy)]">Sensor / Video</p><p class="mt-1 text-xs leading-5 text-slate-500">Feeds, cameras, mission data</p></div>
-                <div class="border border-slate-200 bg-white p-4"><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">INTERFACE</span><p class="mt-2 text-sm font-semibold text-[var(--aionsi-navy)]">High-speed I/O</p><p class="mt-1 text-xs leading-5 text-slate-500">Synchronization + transport</p></div>
-                <div class="border border-[var(--aionsi-orange)] bg-[var(--aionsi-deep-navy)] p-4 text-white shadow-sm"><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">DETERMINISTIC</span><p class="mt-2 text-sm font-semibold">FPGA Processing</p><p class="mt-1 text-xs leading-5 text-white/65">Low latency + data path control</p></div>
-                <div class="border border-slate-200 bg-white p-4"><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">DATA</span><p class="mt-2 text-sm font-semibold text-[var(--aionsi-navy)]">Memory / Movement</p><p class="mt-1 text-xs leading-5 text-slate-500">Bandwidth, buffering, timing</p></div>
-              </div>
-              <div class="relative mt-3 grid gap-3 md:grid-cols-3 md:px-12">
-                <div class="border border-slate-200 bg-white p-4"><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">FLEXIBLE</span><p class="mt-2 text-sm font-semibold text-[var(--aionsi-navy)]">CPU / GPU / AI</p><p class="mt-1 text-xs leading-5 text-slate-500">Application + intelligent compute</p></div>
-                <div class="border border-slate-200 bg-white p-4"><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">SYSTEM</span><p class="mt-2 text-sm font-semibold text-[var(--aionsi-navy)]">Software / Logic</p><p class="mt-1 text-xs leading-5 text-slate-500">Control, applications, integration</p></div>
-                <div class="border border-slate-200 bg-white p-4"><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">OUTCOME</span><p class="mt-2 text-sm font-semibold text-[var(--aionsi-navy)]">Visualization</p><p class="mt-1 text-xs leading-5 text-slate-500">What the operator experiences</p></div>
-              </div>
+            <div class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {path.map(([num,label,desc]) => <div class:list={["border bg-white p-4", label === 'FPGA' ? 'border-[var(--aionsi-orange)] bg-[var(--aionsi-deep-navy)] text-white' : 'border-slate-200']}><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">{num} · {label}</span><p class:list={["mt-3 text-sm font-semibold", label === 'FPGA' ? 'text-white' : 'text-[var(--aionsi-navy)]']}>{desc}</p></div>)}
             </div>
             <div class="mt-5 flex items-start gap-3 border-t border-slate-200 pt-5"><span class="mt-1 h-2.5 w-2.5 shrink-0 bg-[var(--aionsi-orange)]"></span><p class="text-sm leading-7 text-slate-500"><strong class="text-[var(--aionsi-navy)]">The difficult engineering problems are often between the components.</strong></p></div>
           </div>
@@ -69,8 +62,7 @@ const path = [
       </Container>
     </Section>
 
-    <!-- OPENING QUESTION -->
-    <Section class="bg-white py-12 md:py-16">
+    <Section class="bg-white py-14 md:py-18">
       <Container>
         <div class="mx-auto max-w-4xl text-center">
           <TechnicalLabel>THE QUESTION</TechnicalLabel>
@@ -83,136 +75,77 @@ const path = [
       </Container>
     </Section>
 
-    <!-- ARTICLE: COMPLETE CONTENT RESTORED -->
-    <section class="border-y border-slate-200 bg-white">
-      <Container>
-        <article class="mx-auto max-w-4xl py-12 md:py-16 lg:py-20 prose prose-slate max-w-none prose-headings:font-semibold prose-headings:text-[var(--aionsi-navy)] prose-p:text-slate-600 prose-p:leading-8 prose-strong:text-[var(--aionsi-navy)]">
-          <h2>A display is no longer just a display</h2>
-          <p>For decades, the engineering objective for a mission-critical display was relatively straightforward: receive information, render it reliably and make it visible to the operator.</p>
-          <p>That architecture is changing.</p>
-          <p>Modern avionics, defense and air-traffic-control systems increasingly bring together high-resolution video, multiple sensor feeds, embedded computing, real-time processing, networking and intelligent data analysis.</p>
-          <p>The display is becoming part of the computing architecture.</p>
-          <blockquote><strong>Where should the intelligence of the system live?</strong></blockquote>
-
-          <h2>The real challenge is not choosing FPGA or CPU</h2>
-          <p>It is deciding what belongs where.</p>
-          <p>FPGA logic can provide deterministic processing, low latency and flexible hardware-based data paths. Embedded processors provide programmability, application processing and increasingly sophisticated AI capabilities. Software adds another layer of flexibility.</p>
-          <p>The architecture becomes powerful when these elements work together. It also becomes much harder to verify.</p>
-          <p>A seemingly simple video path can cross multiple boundaries:</p>
-          <p><strong>Sensor → interface → FPGA → memory → processor → software → display</strong></p>
-          <p>Every boundary introduces another opportunity for latency, synchronization, data integrity or integration problems.</p>
-
-          <h2>The FPGA boundary is only the beginning</h2>
-          <p>It is tempting to treat the FPGA as the “hard” part of the architecture and everything around it as integration. In practice, the system risk often moves to the transitions.</p>
-          <p>A design can meet its RTL intent and still encounter issues caused by clock-domain crossings, buffering assumptions, interface timing, data movement, software sequencing or a mismatch between simulation and real operator behavior.</p>
-          <p>That is why verification strategy needs to extend beyond isolated block correctness.</p>
-          <p><strong>The difficult work often happens at the boundaries.</strong></p>
-
-          <h2>Verification has to follow the system behavior</h2>
-          <p>A block can pass simulation and still fail at a system boundary. The failure may not belong cleanly to one discipline. It can emerge from the interaction between hardware, interfaces, embedded software and compute.</p>
-          <p>For complex visualization and mission systems, verification therefore becomes less about “did the module pass?” and more about “does the complete path behave correctly under the conditions the system will actually encounter?”</p>
-          <p>That changes what good verification looks like: reusable environments, meaningful coverage, assertions and scoreboarding, interface-aware checking, regression discipline and a clear connection between verification evidence and system behavior.</p>
-
-          <h2>High-speed interfaces become engineering boundaries</h2>
-          <p>As video, networking and sensor bandwidth increase, interfaces are no longer passive plumbing. They become architectural boundaries with their own latency, synchronization, throughput and error-management behavior.</p>
-          <p>PCIe, Ethernet, high-speed video links and other data paths have to be considered together with the processing blocks that consume and produce the data.</p>
-          <p>The question is therefore not only whether an interface works. It is whether the end-to-end system remains deterministic, observable and verifiable when the interface is under the conditions that matter.</p>
-
-          <h2>AI adds another layer of complexity</h2>
-          <p>AI does not remove deterministic processing. It introduces another compute domain.</p>
-          <p>Some workloads naturally belong in FPGA logic because latency, determinism or data-path control matter. Others belong in CPU or GPU compute because programmability, application flexibility or inference performance matter more.</p>
-          <p>The engineering challenge is the handoff between them—and proving that the combined system remains predictable, testable and maintainable.</p>
-
-          <h2>The engineering model may need to change too</h2>
-          <p>As architectures become more interconnected, adding more people is not automatically the solution. The better question is which technical problem needs clear ownership.</p>
-          <p>Architecture, verification, interface integration and system validation can require different forms of engineering ownership. The right model depends on where the program is actually constrained.</p>
-          <p>That can mean a focused work package, a specialist engineering pod or a dedicated engineering team—not simply an open-ended request for additional capacity.</p>
-
-          <h2>A thought for engineering leaders</h2>
-          <p>As visualization platforms evolve into integrated compute platforms, the advantage may increasingly come from how well the engineering disciplines connect.</p>
-        </article>
-      </Container>
-    </section>
-
-    <!-- BOUNDARY VISUAL -->
     <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-20">
       <Container>
-        <div class="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-center">
-          <div>
-            <TechnicalLabel>THE ENGINEERING BOUNDARY</TechnicalLabel>
-            <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-6xl">The difficult work often happens at the boundaries.</h2>
-            <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">The highest-risk interactions are often where one engineering discipline hands a behavior to another.</p>
-          </div>
-          <div class="border border-slate-200 bg-white p-5 shadow-sm md:p-7">
-            <div class="grid gap-3 sm:grid-cols-5 sm:items-center">
-              <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-4 text-center"><div class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">01</div><p class="mt-2 text-sm font-semibold text-[var(--aionsi-navy)]">FPGA</p><p class="mt-1 text-xs text-slate-500">Deterministic logic</p></div>
-              <div class="hidden text-center text-xl text-[var(--aionsi-blue)] sm:block">→</div>
-              <div class="border-2 border-[var(--aionsi-orange)] bg-[var(--aionsi-deep-navy)] p-4 text-center text-white"><div class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">02</div><p class="mt-2 text-sm font-semibold">INTERFACE</p><p class="mt-1 text-xs text-white/65">Synchronization + data</p></div>
-              <div class="hidden text-center text-xl text-[var(--aionsi-blue)] sm:block">→</div>
-              <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-4 text-center"><div class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">03</div><p class="mt-2 text-sm font-semibold text-[var(--aionsi-navy)]">COMPUTE</p><p class="mt-1 text-xs text-slate-500">CPU / GPU / AI</p></div>
+        <div class="mx-auto max-w-5xl">
+          <div class="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-center">
+            <div>
+              <TechnicalLabel>THE ENGINEERING BOUNDARY</TechnicalLabel>
+              <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-6xl">The difficult work often happens at the boundaries.</h2>
+              <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">The highest-risk interactions are often where one engineering discipline hands a behavior to another.</p>
             </div>
-            <div class="mt-4 border-t border-slate-200 pt-5 text-center text-sm font-semibold text-[var(--aionsi-navy)]">The verification strategy should follow the handoffs—not just the blocks.</div>
+            <div class="grid gap-4">
+              {boundaryCards.map(([num,title,desc]) => <article class="border border-slate-200 bg-white p-5 shadow-sm"><div class="flex gap-4"><span class="shrink-0 text-xs font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">{num}</span><div><h3 class="text-lg font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-7 text-slate-600">{desc}</p></div></div></article>)}
+            </div>
           </div>
         </div>
       </Container>
     </Section>
 
-    <!-- AI / EMBEDDED -->
+    <Section class="bg-white py-14 md:py-20">
+      <Container>
+        <div class="mx-auto max-w-5xl">
+          <div class="max-w-3xl"><TechnicalLabel>VERIFY THE SYSTEM</TechnicalLabel><h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Verification has to follow the system—not just the block.</h2><p class="mt-5 text-lg leading-8 text-slate-600">A block can pass simulation and still fail at a system boundary. The verification strategy has to follow the behavior the operator actually experiences.</p></div>
+          <div class="mt-10 overflow-hidden border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5 md:p-7">
+            <div class="grid gap-3 md:grid-cols-4">
+              <div class="border border-slate-200 bg-white p-5"><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">BLOCK</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">RTL intent</h3><p class="mt-2 text-sm leading-6 text-slate-500">Does the logic behave as specified?</p></div>
+              <div class="hidden items-center justify-center text-2xl text-[var(--aionsi-blue)] md:flex">→</div>
+              <div class="border border-[var(--aionsi-orange)] bg-[var(--aionsi-deep-navy)] p-5 text-white"><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">BOUNDARY</span><h3 class="mt-2 font-semibold">Interface behavior</h3><p class="mt-2 text-sm leading-6 text-white/65">Does the handoff remain correct?</p></div>
+              <div class="border border-slate-200 bg-white p-5"><span class="text-[10px] font-semibold tracking-[.15em] text-[var(--aionsi-orange)]">SYSTEM</span><h3 class="mt-2 font-semibold text-[var(--aionsi-navy)]">Operator outcome</h3><p class="mt-2 text-sm leading-6 text-slate-500">Does the complete path behave correctly?</p></div>
+            </div>
+            <div class="mt-6 grid gap-3 sm:grid-cols-3">
+              <div class="border border-slate-200 bg-white p-4 text-center text-sm font-semibold text-[var(--aionsi-navy)]">Reusable environments</div>
+              <div class="border border-slate-200 bg-white p-4 text-center text-sm font-semibold text-[var(--aionsi-navy)]">Coverage + assertions</div>
+              <div class="border border-slate-200 bg-white p-4 text-center text-sm font-semibold text-[var(--aionsi-navy)]">Regression + closure</div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
     <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-20">
       <Container>
-        <div class="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:items-center">
-          <div><TechnicalLabel>FPGA + EMBEDDED + AI</TechnicalLabel><h2 class="mt-4 text-4xl font-semibold tracking-tight md:text-6xl">The architecture gets more interesting when AI enters the path.</h2><p class="mt-5 text-lg leading-8 text-white/70">Different compute domains have different strengths. The engineering problem is making the handoff between them explicit, testable and maintainable.</p></div>
-          <div class="grid gap-4 md:grid-cols-3">
-            <div class="border border-white/10 bg-white/5 p-6"><div class="text-[10px] font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">FPGA</div><p class="mt-3 text-xl font-semibold">Deterministic path</p><p class="mt-3 text-sm leading-7 text-white/65">Video processing, low-latency functions, interface handling and hardware acceleration.</p></div>
-            <div class="border border-white/10 bg-white/5 p-6"><div class="text-[10px] font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">CPU / GPU</div><p class="mt-3 text-xl font-semibold">Flexible compute</p><p class="mt-3 text-sm leading-7 text-white/65">Application processing, data fusion, AI inference and evolving workloads.</p></div>
-            <div class="border border-white/10 bg-white/5 p-6"><div class="text-[10px] font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">INTEGRATION</div><p class="mt-3 text-xl font-semibold">Where risk moves</p><p class="mt-3 text-sm leading-7 text-white/65">Synchronization, data movement, software interaction and system-level validation.</p></div>
+        <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
+          <div><TechnicalLabel>COMPUTE CONVERGENCE</TechnicalLabel><h2 class="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">AI adds another compute domain.</h2><p class="mt-5 max-w-xl text-lg leading-8 text-white/70">The engineering challenge is the handoff between deterministic hardware, embedded compute and software—and proving that the combined system remains predictable, testable and maintainable.</p></div>
+          <div class="grid gap-4 sm:grid-cols-3">
+            <article class="border border-white/10 bg-white/5 p-5"><span class="text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">01</span><h3 class="mt-3 text-lg font-semibold">FPGA</h3><p class="mt-2 text-sm leading-6 text-white/60">Latency, determinism and data-path control.</p></article>
+            <article class="border border-white/10 bg-white/5 p-5"><span class="text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">02</span><h3 class="mt-3 text-lg font-semibold">CPU / GPU</h3><p class="mt-2 text-sm leading-6 text-white/60">Programmability, application flexibility and AI compute.</p></article>
+            <article class="border border-white/10 bg-white/5 p-5"><span class="text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">03</span><h3 class="mt-3 text-lg font-semibold">SOFTWARE</h3><p class="mt-2 text-sm leading-6 text-white/60">Control, orchestration and system integration.</p></article>
           </div>
         </div>
       </Container>
     </Section>
 
-    <!-- PRACTICAL OWNERSHIP -->
-    <Section class="py-14 md:py-20">
+    <Section class="bg-white py-14 md:py-20">
       <Container>
-        <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
-          <div><TechnicalLabel>WHERE THIS BECOMES PRACTICAL</TechnicalLabel><h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-6xl">Start with the engineering constraint—not a predefined staffing model.</h2><p class="mt-5 text-lg leading-8 text-slate-600">A work package can be scoped, assigned clear technical ownership and expanded only when the model proves itself.</p></div>
-          <div class="grid gap-3 md:grid-cols-2">
-            {practical.map(([num,title,desc]) => <div class="border border-slate-200 bg-white p-6 shadow-sm"><div class="flex items-center justify-between"><span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">{num}</span><span class="text-[10px] font-semibold tracking-[.16em] text-slate-400">ENGINEERING</span></div><h3 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-7 text-slate-600">{desc}</p></div>)}
+        <div class="mx-auto max-w-5xl">
+          <div class="max-w-3xl"><TechnicalLabel>ENGINEERING OWNERSHIP</TechnicalLabel><h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">The better question is not “how many engineers?”</h2><p class="mt-5 text-lg leading-8 text-slate-600">It is “which technical problem needs clear ownership?” Complex programs can benefit from a focused work package, specialist engineering pod or dedicated engineering team.</p></div>
+          <div class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {practical.map(([num,title,desc]) => <article class="border border-slate-200 bg-white p-5 shadow-sm"><span class="text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-base font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
           </div>
         </div>
-        <div class="mt-10 border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6 md:p-8"><div class="grid gap-6 md:grid-cols-[1fr_auto_1fr] md:items-center"><div><span class="text-[10px] font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">01</span><p class="mt-2 text-lg font-semibold text-[var(--aionsi-navy)]">Define the technical work package</p></div><div class="hidden text-xl text-[var(--aionsi-blue)] md:block">→</div><div><span class="text-[10px] font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">02</span><p class="mt-2 text-lg font-semibold text-[var(--aionsi-navy)]">Give it clear engineering ownership</p></div></div><div class="mt-5 border-t border-slate-200 pt-5 text-center text-sm font-semibold text-[var(--aionsi-navy)]">Prove the model. Then scale the engineering team.</div></div>
       </Container>
     </Section>
 
-    <!-- END-TO-END PATH -->
     <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-20">
       <Container>
-        <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-center">
-          <div><TechnicalLabel>END-TO-END VALIDATION</TechnicalLabel><h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-6xl">Verify the system the way the operator experiences it.</h2><p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">A seemingly simple path can cross multiple timing, interface, compute and software boundaries. Verification should follow that behavior.</p></div>
-          <div class="border border-slate-200 bg-white p-5 shadow-sm md:p-7">
-            <div class="space-y-3">
-              {path.map(([num,label,value], index) => <div class="flex items-center gap-3"><span class="flex h-9 w-9 shrink-0 items-center justify-center border border-slate-200 text-[10px] font-semibold text-[var(--aionsi-blue)]">{num}</span><div class="flex-1 border border-slate-200 bg-[var(--aionsi-surface-alt)] px-4 py-3"><div class="text-[10px] font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{label}</div><div class="mt-1 text-sm font-semibold text-[var(--aionsi-navy)]">{value}</div></div>{index < path.length - 1 && <span class="hidden text-lg text-[var(--aionsi-blue)] sm:block">↓</span>}</div>)}
-            </div>
-            <p class="mt-6 border-t border-slate-200 pt-5 text-center text-sm font-semibold text-[var(--aionsi-navy)]">The verification boundary should follow the system behavior.</p>
-          </div>
-        </div>
+        <div class="mx-auto max-w-4xl text-center"><TechnicalLabel>A THOUGHT FOR ENGINEERING LEADERS</TechnicalLabel><blockquote class="mt-6 text-3xl font-semibold leading-tight tracking-tight text-[var(--aionsi-navy)] md:text-5xl">“Are we designing better components—or designing better connections between them?”</blockquote><p class="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600">As visualization platforms evolve into integrated compute platforms, the advantage may increasingly come from how well the engineering disciplines connect.</p></div>
       </Container>
     </Section>
 
-    <!-- SIGNATURE POV -->
-    <Section class="bg-white py-16 md:py-24">
-      <Container><div class="mx-auto max-w-5xl text-center"><TechnicalLabel>A THOUGHT FOR ENGINEERING LEADERS</TechnicalLabel><blockquote class="mt-6 text-4xl font-semibold leading-tight tracking-tight text-[var(--aionsi-navy)] md:text-6xl">“Are we designing better components—or designing better connections between them?”</blockquote><p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">As visualization platforms evolve into integrated compute platforms, engineering advantage may increasingly come from how well the disciplines connect.</p></div></Container>
-    </Section>
-
-    <!-- CTA -->
-    <Section class="bg-[var(--aionsi-surface-alt)] py-10 md:py-14">
+    <Section class="bg-white py-12 md:py-16">
       <Container>
-        <div class="border border-slate-200 bg-white p-7 shadow-sm md:p-9">
-          <div class="grid gap-6 md:grid-cols-[1.35fr_.65fr] md:items-center">
-            <div><TechnicalLabel>CONTINUE THE CONVERSATION</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Have an engineering challenge worth discussing?</h2><p class="mt-3 max-w-3xl text-base leading-7 text-slate-600">Architecture, FPGA, verification, interfaces or hardware/software integration—we can start with the problem.</p></div>
-            <div class="flex md:justify-end"><Button href="/contact">Discuss the Engineering Challenge</Button></div>
-          </div>
-        </div>
+        <div class="flex flex-col items-start justify-between gap-6 border-t border-slate-200 pt-10 md:flex-row md:items-center"><div><TechnicalLabel>CONTINUE THE CONVERSATION</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)]">Have an engineering boundary worth discussing?</h2><p class="mt-2 text-slate-600">Let’s discuss the architecture, verification or integration challenge.</p></div><Button href="/contact">Discuss the Engineering Challenge</Button></div>
       </Container>
     </Section>
   </main>
