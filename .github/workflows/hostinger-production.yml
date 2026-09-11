@@ -37,8 +37,10 @@ jobs:
           set -euo pipefail
           echo "Checking generated Astro server output..."
           test -f dist/server/entry.mjs || { echo "Missing dist/server/entry.mjs"; find dist -maxdepth 3 -type f | sort | head -200; exit 1; }
-          echo "Checking generated client manifest..."
-          test -f dist/client/manifest.json || { echo "Missing dist/client/manifest.json"; find dist -maxdepth 3 -type f | sort | head -200; exit 1; }
+          echo "Checking generated client assets..."
+          test -d dist/client || { echo "Missing dist/client"; find dist -maxdepth 3 -type f | sort | head -200; exit 1; }
+          test -d dist/client/_astro || { echo "Missing dist/client/_astro"; find dist/client -maxdepth 2 -type f | sort | head -100; exit 1; }
+          echo "Astro production output verified."
 
       - name: Create deployment package
         shell: bash
