@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+
+const capabilityCards = [
+  ['01', 'FPGA & Video Processing', 'RTL, FPGA acceleration, video pipelines, image processing and high-speed interfaces for low-latency mission systems.'],
+  ['02', 'SoC & Silicon Engineering', 'SoC architecture, RTL, IP integration, FPGA prototyping, performance optimization and hardware/software partitioning.'],
+  ['03', 'Design Verification', 'SystemVerilog, UVM, assertions, coverage, regressions, protocol verification and SoC-level verification.'],
+  ['04', 'Embedded Platform Engineering', 'Embedded Linux, BSP, drivers, middleware, board bring-up and hardware/software integration.'],
+  ['05', 'AI at the Edge', 'AI accelerator integration, FPGA preprocessing, computer vision pipelines and inference optimization.'],
+  ['06', 'Sustaining Engineering', 'Legacy RTL, FPGA redesign, IP migration, verification reuse, product variants and long-life platform support.'],
+];
+
+const entryPods = [
+  ['01', 'Verification Pod', '3–5 engineers', 'SystemVerilog • UVM • Regression • Coverage'],
+  ['02', 'FPGA Pod', '4–6 engineers', 'RTL • FPGA • Video • Interfaces'],
+  ['03', 'Embedded Pod', '4–6 engineers', 'BSP • Drivers • Linux • Middleware'],
+  ['04', 'Product ODC', '10–25+ engineers', 'Architecture → Design → Verification → Integration → Sustaining'],
+];
+
+const motion = [
+  ['01', 'Technical discovery', 'Identify one engineering bottleneck in a 20–30 minute engineering conversation.'],
+  ['02', 'NDA / technical review', 'Align on architecture context, tools, interfaces, constraints and deliverables.'],
+  ['03', 'Pilot workstream', 'Start with a bounded scope and measurable acceptance criteria.'],
+  ['04', 'Scale to ODC', 'Expand only after the first workstream demonstrates execution value.'],
+];
+---
+
+<BaseLayout title="AionSi × ScioTeq | Mission-Critical Semiconductor Engineering" description="AionSi engineering proposition for ScioTeq across FPGA, video processing, SoC, verification, embedded platforms, edge AI and scalable ODC delivery.">
+  <Header />
+  <main>
+    <section class="relative overflow-hidden bg-[var(--aionsi-deep-navy)] text-white">
+      <div class="absolute inset-0 opacity-30" aria-hidden="true">
+        <div class="h-full w-full bg-[radial-gradient(circle_at_75%_25%,rgba(38,151,255,.35),transparent_34%),radial-gradient(circle_at_20%_80%,rgba(255,111,33,.16),transparent_28%)]"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.035)_1px,transparent_1px)] bg-[size:56px_56px]"></div>
+      </div>
+      <Container class="relative py-20 md:py-28">
+        <TechnicalLabel>AIONSI × SCIOTEQ • ENGINEERING PARTNERSHIP</TechnicalLabel>
+        <div class="mt-6 grid gap-12 lg:grid-cols-[1.15fr_.85fr] lg:items-end">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[.18em] text-white/55">Mission-critical compute</p>
+            <h1 class="mt-4 max-w-5xl text-5xl font-semibold tracking-tight md:text-7xl">Engineering the Silicon Behind Mission-Critical Computing.</h1>
+            <p class="mt-7 max-w-3xl text-lg leading-8 text-white/70 md:text-xl">Extend your engineering bandwidth across SoC, FPGA, verification, video processing, embedded platforms and edge AI—without changing the ownership of your product architecture.</p>
+            <div class="mt-9 flex flex-wrap gap-3">
+              <Button href="/contact">Schedule a Technical Discussion</Button>
+              <a href="#capabilities" class="inline-flex items-center rounded-md border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/5">Explore Capabilities</a>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+            <div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-orange)]">Engineering stack</div>
+            <div class="mt-5 grid gap-2 text-sm font-medium text-white/85">
+              {['Mission Systems', 'Edge Compute', 'Video & Graphics', 'FPGA / SoC', 'Verification', 'Embedded Software'].map((item, i) => <div class="flex items-center justify-between border-b border-white/10 py-3 last:border-0"><span>{item}</span><span class="text-white/35">0{i + 1}</span></div>)}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <Section>
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.72fr_1.28fr]">
+          <div>
+            <TechnicalLabel>WHY AIONSI × SCIOTEQ</TechnicalLabel>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Add specialist engineering capacity where mission-critical products get technically constrained.</h2>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            {[
+              ['Product-level context', 'AionSi can work around display computing, video processing, open architectures and edge-compute workloads.'],
+              ['Specialist depth', 'Bring focused semiconductor and embedded expertise instead of a generic staff-augmentation pitch.'],
+              ['Low-risk entry', 'Start with one bounded workstream, prove execution and scale only when the value is visible.'],
+              ['ODC path', 'Convert successful specialist delivery into a governed dedicated engineering team when capacity grows.'],
+            ].map(([title, desc], i) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(i + 1).padStart(2, '0')}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section id="capabilities" class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <TechnicalLabel>WHERE AIONSI CAN HELP</TechnicalLabel>
+        <div class="mt-4 max-w-4xl">
+          <h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">From silicon design and verification to embedded product execution.</h2>
+          <p class="mt-4 text-lg leading-8 text-slate-600">The proposition is intentionally technical: solve a real engineering bottleneck first, then establish the delivery model around it.</p>
+        </div>
+        <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {capabilityCards.map(([num, title, desc]) => <article class="group border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{num}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-3 text-sm leading-7 text-slate-600">{desc}</p><div class="mt-5 text-sm font-semibold text-[var(--aionsi-navy)]">Discuss this workstream →</div></article>)}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container>
+        <TechnicalLabel>MISSION-SYSTEMS FIT</TechnicalLabel>
+        <div class="mt-4 grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+          <div>
+            <h2 class="text-3xl font-semibold md:text-5xl">Think in systems, not isolated services.</h2>
+            <p class="mt-5 text-lg leading-8 text-white/65">AionSi's role is to connect the engineering layers required to move a complex compute product toward a verified, integration-ready milestone.</p>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              ['01', 'Display', 'Visualization & HMI'],
+              ['02', 'Compute', 'Embedded processing'],
+              ['03', 'Video', 'FPGA / low-latency pipelines'],
+              ['04', 'Open Architecture', 'Modular platform engineering'],
+              ['05', 'AI', 'Edge inference & acceleration'],
+              ['06', 'Mission System', 'Integrated product execution'],
+            ].map(([num, title, desc]) => <div class="border border-white/10 bg-white/5 p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 font-semibold">{title}</h3><p class="mt-1 text-sm text-white/55">{desc}</p></div>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section>
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
+          <div>
+            <TechnicalLabel>ENGINEERING PODS</TechnicalLabel>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Start small. Scale with evidence.</h2>
+            <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600">A phased model lets ScioTeq validate technical fit before moving from specialist support to a dedicated engineering center.</p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            {entryPods.map(([num, title, size, detail]) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm font-semibold text-[var(--aionsi-blue)]">{size}</p><p class="mt-3 text-sm leading-6 text-slate-600">{detail}</p></article>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <TechnicalLabel>FROM FIRST CALL TO ODC</TechnicalLabel>
+        <h2 class="mt-3 max-w-4xl text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">A commercial motion built around technical proof.</h2>
+        <div class="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {motion.map(([num, title, desc]) => <article class="relative border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{num}</span><h3 class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-3 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+        </div>
+        <div class="mt-8 border-l-2 border-[var(--aionsi-orange)] bg-white px-5 py-4 text-sm leading-7 text-slate-600 shadow-sm"><strong class="text-[var(--aionsi-navy)]">The first conversation should be about the engineering bottleneck.</strong> Avoid generic manpower claims, unsupported customer attribution, or broad cost-saving promises.</div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="text-center">
+        <TechnicalLabel>TECHNICAL DISCOVERY</TechnicalLabel>
+        <h2 class="mx-auto mt-3 max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">Let's identify one engineering problem to solve together.</h2>
+        <p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-white/65">Bring one bottleneck—verification closure, FPGA throughput, embedded integration, AI acceleration or sustaining engineering—and let's define a measurable first workstream.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3"><Button href="/contact">Book Technical Discussion</Button><a href="/capabilities" class="inline-flex items-center rounded-md border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/5">View AionSi Capabilities</a></div>
+        <p class="mx-auto mt-6 max-w-2xl text-xs leading-6 text-white/35">This page is a targeted business-development proposition prepared for ScioTeq; it does not represent an existing customer relationship unless separately confirmed.</p>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
