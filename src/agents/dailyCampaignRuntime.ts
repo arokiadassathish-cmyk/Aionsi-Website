@@ -4,12 +4,7 @@ import { runResearchMatchRuntime, type ExternalResearchProvider as ResearchMatch
 import type { MatchAgentOutput } from '../data/matchAgent';
 import type { ResearchBrief } from './researchAgent';
 
-export type DailyCampaignItemStatus =
-  | 'blocked'
-  | 'ready_for_approval'
-  | 'approved'
-  | 'executed'
-  | 'stopped';
+export type DailyCampaignItemStatus = 'blocked' | 'ready_for_approval' | 'approved' | 'executed' | 'stopped';
 
 export interface DailyCampaignTarget extends TargetAccountCandidate {
   accountId: string;
@@ -35,27 +30,22 @@ export interface DailyCampaignRunResult {
   startedAt: string;
   completedAt: string;
   items: DailyCampaignItem[];
-  summary: {
-    targets: number;
-    eligible: number;
-    blocked: number;
-    readyForApproval: number;
-    executed: number;
-  };
+  summary: { targets: number; eligible: number; blocked: number; readyForApproval: number; executed: number };
 }
 
 export interface DailyCampaignRuntimeOptions {
   now?: () => Date;
   maxTargetsPerRun?: number;
+  /** Account IDs explicitly approved by a human for live execution. */
+  approvedAccountIds?: string[];
+  /** Adapter boundary supplied by the approved execution path (e.g. Apollo). */
   executeApproved?: (item: DailyCampaignItem) => Promise<void>;
 }
 
 /**
- * Daily operational control loop.
- *
- * This runtime deliberately stops at the human approval boundary unless the
- * caller explicitly supplies an execution function and asks for live mode.
- * It never enrolls or activates Apollo contacts by itself.
+ * Daily operational control loop. Dry-run is the default. Live execution is
+ * fail-closed: an account must be explicitly present in approvedAccountIds and
+ * an execution adapter must be supplied. Research itself never sends email.
  */
 export async function runDailyCampaign(
   hubspot: HubSpotAdapter,
@@ -68,23 +58,14 @@ export async function runDailyCampaign(
   const startedAt = now().toISOString();
   const runId = `daily-${startedAt.replace(/[^0-9]/g, '').slice(0, 14)}`;
   const maxTargets = Math.max(1, options.maxTargetsPerRun ?? 25);
-  const selected = [...targets]
-    .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0))
-    .slice(0, maxTargets);
-
+  const selected = [...targets].sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0)).slice(0, maxTargets);
+  const approved = new Set(options.approvedAccountIds ?? []);
   const items: DailyCampaignItem[] = [];
 
   for (const target of selected) {
     const targetCheck = evaluateOutboundTarget(target);
     if (!targetCheck.eligible) {
-      items.push({
-        accountId: target.accountId,
-        accountName: target.name,
-        slug: target.slug,
-        status: 'blocked',
-        blockers: targetCheck.blockers,
-        createdAt: now().toISOString(),
-      });
+      items.push({ accountId: target.accountId, accountName: target.name, slug: target.slug, status: 'blocked', blockers: targetCheck.blockers, createdAt: now().toISOString() });
       continue;
     }
 
@@ -94,7 +75,6 @@ export async function runDailyCampaign(
         contactIds: target.contactIds,
         targetSlug: target.slug,
       });
-
       const item: DailyCampaignItem = {
         accountId: target.accountId,
         accountName: target.name,
@@ -106,23 +86,20 @@ export async function runDailyCampaign(
         createdAt: now().toISOString(),
       };
 
-      if (mode === 'live' && item.status === 'ready_for_approval' && options.executeApproved) {
-        // Explicit approval is represented by the caller invoking this runtime
-        // with an already-approved execution function. No implicit approval.
-        await options.executeApproved(item);
-        item.status = 'executed';
+      if (mode === 'live' && item.status === 'ready_for_approval') {
+        if (!approved.has(item.accountId)) {
+          item.blockers.push('Live execution blocked: explicit human approval for this account was not supplied.');
+        } else if (!options.executeApproved) {
+          item.blockers.push('Live execution blocked: no execution adapter was supplied.');
+        } else {
+          item.status = 'approved';
+          await options.executeApproved(item);
+          item.status = 'executed';
+        }
       }
-
       items.push(item);
     } catch (error) {
-      items.push({
-        accountId: target.accountId,
-        accountName: target.name,
-        slug: target.slug,
-        status: 'blocked',
-        blockers: [error instanceof Error ? error.message : 'Campaign runtime failed for this target.'],
-        createdAt: now().toISOString(),
-      });
+      items.push({ accountId: target.accountId, accountName: target.name, slug: target.slug, status: 'blocked', blockers: [error instanceof Error ? error.message : 'Campaign runtime failed for this target.'], createdAt: now().toISOString() });
     }
   }
 
