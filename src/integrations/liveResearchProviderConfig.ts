@@ -1,13 +1,16 @@
 import type { ExternalResearchProvider } from './externalResearchProvider';
 import { createConfiguredLiveResearchProviderFromEnv } from './liveResearchSearchProvider';
+import { createConfiguredGoogleWebSearchProviderFromEnv } from './googleWebSearchProvider';
 
 /**
  * Runtime composition boundary for live research.
- * Returns undefined when credentials are not configured so dry-runs remain
- * deterministic and fail closed rather than silently using another service.
+ * Prefer an explicitly configured generic provider; otherwise use the
+ * configured Google Web Search Service adapter. Returns undefined when no
+ * provider credentials are present so dry-runs remain deterministic.
  */
 export function resolveLiveResearchProvider(
   env: Record<string, string | undefined> = process.env,
 ): ExternalResearchProvider | undefined {
-  return createConfiguredLiveResearchProviderFromEnv(env);
+  return createConfiguredLiveResearchProviderFromEnv(env)
+    ?? createConfiguredGoogleWebSearchProviderFromEnv(env);
 }
