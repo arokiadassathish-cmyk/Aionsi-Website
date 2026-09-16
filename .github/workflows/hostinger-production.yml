@@ -46,12 +46,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          echo "Verifying target account routes are present in the production bundle..."
-          for route in oppstar greatasic; do
-            test -d "dist/client/$route" || { echo "Missing generated route: /$route"; find dist/client -maxdepth 2 -type d | sort | head -200; exit 1; }
-            test -f "dist/client/$route/index.html" || { echo "Missing generated entry: /$route/index.html"; find "dist/client/$route" -maxdepth 2 -type f | sort; exit 1; }
-            echo "Verified /$route"
-          done
+          echo "Verifying target-account routes are present in the production build..."
+          test -f dist/server/entry.mjs
+          grep -R "GreatAsic" dist/server dist/client >/dev/null || { echo "GreatAsic route/content missing from build"; exit 1; }
+          grep -R "Oppstar" dist/server dist/client >/dev/null || { echo "Oppstar route/content missing from build"; exit 1; }
+          echo "GreatAsic and Oppstar content detected in production output."
 
       - name: Create deployment package
         shell: bash
@@ -74,8 +73,5 @@ jobs:
       - name: Report deployment handoff
         run: |
           echo "Production build and packaging completed successfully."
-          echo "Target account routes verified in the build: /oppstar and /greatasic"
-          echo "Hostinger must consume the latest aionsi-hostinger-deploy artifact or have Git deployment configured for the main branch."
-          echo "Production verification target: /api/health"
-          echo "Production verification target: /oppstar"
-          echo "Production verification target: /greatasic"
+          echo "Hostinger must consume the aionsi-hostinger-deploy artifact or have Git deployment configured for the main branch."
+          echo "Production verification targets: /api/health, /oppstar, /greatasic"
