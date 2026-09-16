@@ -9,6 +9,7 @@ export interface LiveSearchResult {
   url?: string;
   snippet?: string;
   content?: string;
+  publishedDate?: string;
 }
 
 export interface LiveSearchResponse {
@@ -20,11 +21,13 @@ export interface LiveSearchClientOptions {
   apiKey: string;
   fetchImpl?: typeof fetch;
   maxResultsPerQuery?: number;
+  queryParam?: string;
 }
 
 /**
- * Generic live-search adapter. The search service is deliberately injected so
- * credentials and vendor-specific transport remain outside the agent layer.
+ * Generic live-search adapter. Credentials and vendor-specific transport stay
+ * outside the agent layer. The provider receives a stable company identity and
+ * derives a search expression without mutating that identity.
  */
 export function createLiveResearchSearchProvider(
   options: LiveSearchClientOptions,
@@ -33,15 +36,18 @@ export function createLiveResearchSearchProvider(
   const apiKey = options.apiKey.trim();
   const fetchImpl = options.fetchImpl ?? fetch;
   const maxResults = Math.max(1, Math.min(options.maxResultsPerQuery ?? 6, 12));
+  const queryParam = options.queryParam?.trim() || 'q';
 
-  if (!endpoint) throw new Error('Live research search endpoint is required.');
+  if (!endpoint || !isHttpUrl(endpoint)) {
+    throw new Error('Live research search endpoint must be a valid HTTP(S) URL.');
+  }
   if (!apiKey) throw new Error('Live research search API key is required.');
 
   return {
     async search(query: ExternalResearchQuery): Promise<ExternalResearchDocument[]> {
       const searchQuery = buildSearchQuery(query);
       const url = new URL(endpoint);
-      url.searchParams.set('q', searchQuery);
+      url.searchParams.set(queryParam, searchQuery);
       url.searchParams.set('limit', String(maxResults));
 
       const response = await fetchImpl(url.toString(), {
@@ -70,7 +76,7 @@ export function createLiveResearchSearchProvider(
           excerpt: (result.content ?? result.snippet ?? '').trim() || undefined,
           sourceType: 'other' as const,
           confidence: 'medium' as const,
-          observedAt: new Date().toISOString(),
+          observedAt: result.publishedDate ?? new Date().toISOString(),
         }));
     },
   };
@@ -78,6 +84,7 @@ export function createLiveResearchSearchProvider(
 
 function buildSearchQuery(query: ExternalResearchQuery): string {
   const parts = [query.companyName.trim()];
+  if (query.domain?.trim()) parts.push(`site:${query.domain.trim()}`);
   if (query.contactNames?.length) parts.push(query.contactNames.slice(0, 3).join(' '));
   if (query.contactTitles?.length) parts.push(query.contactTitles.slice(0, 2).join(' '));
   return parts.filter(Boolean).join(' ');
