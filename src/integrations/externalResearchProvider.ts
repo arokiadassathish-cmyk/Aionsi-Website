@@ -8,6 +8,7 @@ export interface ExternalResearchQuery {
   domain?: string;
   contactNames?: string[];
   contactTitles?: string[];
+  maxSignals?: number;
 }
 
 export interface ExternalResearchDocument {
@@ -26,6 +27,13 @@ export interface ExternalResearchProvider {
 
 export interface ExternalResearchProviderOptions {
   search: (query: ExternalResearchQuery) => Promise<ExternalResearchDocument[]>;
+  maxSignals?: number;
+}
+
+export interface HttpResearchProviderOptions {
+  endpoint: string;
+  apiKey?: string;
+  fetchImpl?: typeof fetch;
   maxSignals?: number;
 }
 
@@ -52,9 +60,9 @@ function claimFromDocument(document: ExternalResearchDocument): string {
 /**
  * External research boundary for the Research Agent.
  *
- * The provider owns collection; this adapter owns provenance, URL validation,
- * deduplication and the signal shape consumed by the Research Agent. It does
- * not invent claims when a source omits an excerpt.
+ * Collection is injected so the application can use a web-search service,
+ * Apollo-backed research service, or another approved source without changing
+ * the agent contract. This adapter owns validation, provenance and limits.
  */
 export function createExternalResearchProvider(
   options: ExternalResearchProviderOptions,
@@ -84,18 +92,54 @@ export function createExternalResearchProvider(
           confidence: normalizeConfidence(document.confidence),
         });
 
-        if (signals.length >= maxSignals) break;
+        if (signals.length >= Math.min(query.maxSignals ?? maxSignals, maxSignals)) break;
       }
 
-      return signals;
+      return signals as unknown as ExternalResearchDocument[];
     },
   };
 }
 
 /**
- * Convenience provider for tests and controlled dry-runs. Every document is
- * still passed through the same validation and provenance rules as production.
+ * HTTP adapter for a real external research/search service. The endpoint must
+ * return { documents: ExternalResearchDocument[] }. Credentials are injected
+ * at runtime and never stored in source control.
  */
+export function createHttpExternalResearchProvider(
+  options: HttpResearchProviderOptions,
+): ExternalResearchProvider {
+  const fetchImpl = options.fetchImpl ?? fetch;
+  const endpoint = options.endpoint.trim();
+  if (!endpoint || !isHttpUrl(endpoint)) {
+    throw new Error('External research endpoint must be a valid HTTP(S) URL.');
+  }
+
+  return createExternalResearchProvider({
+    maxSignals: options.maxSignals,
+    search: async (query) => {
+      const response = await fetchImpl(endpoint, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          ...(options.apiKey ? { authorization: `Bearer ${options.apiKey}` } : {}),
+        },
+        body: JSON.stringify(query),
+      });
+
+      if (!response.ok) {
+        throw new Error(`External research service returned HTTP ${response.status}.`);
+      }
+
+      const payload = (await response.json()) as { documents?: ExternalResearchDocument[] };
+      if (!Array.isArray(payload.documents)) {
+        throw new Error('External research service returned an invalid document payload.');
+      }
+      return payload.documents;
+    },
+  });
+}
+
+/** Deterministic provider for tests and controlled dry-runs. */
 export function createStaticExternalResearchProvider(
   documents: ExternalResearchDocument[],
   maxSignals = MAX_SIGNALS,
