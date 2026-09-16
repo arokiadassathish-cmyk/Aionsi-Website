@@ -27,7 +27,8 @@ export function buildResearchQueryPlan(query: ExternalResearchQuery): ResearchQu
 
 /**
  * Runs a provider against the deterministic query plan and de-duplicates URLs.
- * The provider remains responsible for source retrieval and provenance.
+ * The provider receives stable company identity plus an explicit searchQuery so
+ * downstream providers can preserve provenance and query semantics.
  */
 export async function runExternalResearchEngine(
   provider: ExternalResearchProvider,
@@ -41,7 +42,7 @@ export async function runExternalResearchEngine(
   const seen = new Set<string>();
 
   for (const plannedQuery of plan.queries) {
-    const results = await provider.search({ ...query, companyName: plannedQuery });
+    const results = await provider.search({ ...query, searchQuery: plannedQuery });
     for (const document of results) {
       const url = document.url.trim();
       if (!url || seen.has(url)) continue;
