@@ -1,5 +1,6 @@
 import type { HubSpotAdapter } from '../integrations/hubspotAdapter';
 import { createHubSpotCampaignContextProvider } from '../integrations/crmCampaignContext';
+import type { ExternalResearchProvider } from '../integrations/externalResearchProvider';
 import { createResearchAgent, type ResearchAgent, type ResearchBrief, type ResearchSignal } from './researchAgent';
 
 export interface RunResearchRequest {
@@ -15,11 +16,10 @@ export interface RunResearchResult {
 
 /**
  * Runtime composition root for Research Agent v1.
- * HubSpot supplies CRM context; external evidence is injected by a trusted
- * research/search layer. No unsupported claims are generated here.
+ * HubSpot supplies CRM context; external evidence may be collected by an
+ * explicitly injected provider. No default provider is silently selected.
  */
 export function createHubSpotBackedResearchAgent(hubspot: HubSpotAdapter): ResearchAgent {
-  const provider = createHubSpotCampaignContextProvider(hubspot);
   const agent = createResearchAgent();
 
   return {
@@ -32,6 +32,7 @@ export function createHubSpotBackedResearchAgent(hubspot: HubSpotAdapter): Resea
 export async function runHubSpotResearch(
   hubspot: HubSpotAdapter,
   request: RunResearchRequest,
+  externalResearchProvider?: ExternalResearchProvider,
 ): Promise<RunResearchResult> {
   const provider = createHubSpotCampaignContextProvider(hubspot);
   const context = await provider.load({
@@ -39,11 +40,27 @@ export async function runHubSpotResearch(
     contactIds: request.contactIds,
   });
 
+  const selected = request.contactIds?.length
+    ? context.contacts.filter((contact) => request.contactIds?.includes(contact.id))
+    : context.contacts;
+
+  const collectedResearch = externalResearchProvider
+    ? await externalResearchProvider.search({
+        accountId: context.account.id,
+        companyName: context.account.name,
+        domain: context.account.domain,
+        contactNames: selected
+          .map((contact) => [contact.firstName, contact.lastName].filter(Boolean).join(' '))
+          .filter(Boolean),
+        contactTitles: selected.map((contact) => contact.jobTitle).filter(Boolean),
+      })
+    : request.externalResearch ?? [];
+
   const agent = createResearchAgent();
   const brief = await agent.run({
     context,
     contactIds: request.contactIds,
-    externalResearch: request.externalResearch,
+    externalResearch: collectedResearch,
   });
 
   return {
