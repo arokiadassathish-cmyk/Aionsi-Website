@@ -8,6 +8,7 @@ export interface ExternalResearchQuery {
   domain?: string;
   contactNames?: string[];
   contactTitles?: string[];
+  searchQuery?: string;
   maxSignals?: number;
 }
 
