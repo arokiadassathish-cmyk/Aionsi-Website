@@ -1,25 +1,25 @@
 import { runMatchAgent, validateMatchOutput } from './matchAgent';
 import { aionSiMatchCapabilities } from './matchAgentConfig';
 
-const skyeChipSignals = [
+const exampleSignals = [
   {
-    id: 'skyechip-asic',
-    claim: 'SkyeChip delivers advanced ASIC development and custom ASIC solutions.',
-    sourceUrl: 'https://skyechip.com/asic-solutions/',
+    id: 'example-asic',
+    claim: 'Example Semiconductor delivers advanced ASIC development and custom SoC solutions.',
+    sourceUrl: 'https://example.com/engineering',
     sourceType: 'company' as const,
     confidence: 'high' as const,
   },
   {
-    id: 'skyechip-hbm',
-    claim: 'SkyeChip highlights HBM, NoC and die-to-die interconnect IP and has reported HBM3E silicon success.',
-    sourceUrl: 'https://skyechip.com/',
+    id: 'example-interface',
+    claim: 'Example Semiconductor develops high-speed interface IP and subsystem integration for compute platforms.',
+    sourceUrl: 'https://example.com/technology',
     sourceType: 'technical' as const,
     confidence: 'high' as const,
   },
   {
-    id: 'skyechip-ai-hpc',
-    claim: 'SkyeChip focuses on AI and HPC and works across architecture, logic design, DFT and physical design.',
-    sourceUrl: 'https://skyechip.com/company/',
+    id: 'example-verification',
+    claim: 'Example Semiconductor has an engineering team spanning design verification, RTL and physical design.',
+    sourceUrl: 'https://example.com/company',
     sourceType: 'company' as const,
     confidence: 'high' as const,
   },
@@ -28,15 +28,15 @@ const skyeChipSignals = [
 describe('Match Agent v1', () => {
   it('preserves CRM identity and produces sourced matches', () => {
     const result = runMatchAgent({
-      accountId: 'skyechip-account',
-      companyName: 'SkyeChip',
-      researchSignals: skyeChipSignals,
+      accountId: 'example-account',
+      companyName: 'Example Semiconductor',
+      researchSignals: exampleSignals,
       capabilities: aionSiMatchCapabilities,
       personaTitle: 'VP Engineering',
     });
 
-    expect(result.accountId).toBe('skyechip-account');
-    expect(result.companyName).toBe('SkyeChip');
+    expect(result.accountId).toBe('example-account');
+    expect(result.companyName).toBe('Example Semiconductor');
     expect(result.matches.length).toBeGreaterThan(0);
     expect(result.matches.length).toBeLessThanOrEqual(3);
     expect(result.readyForOutreach).toBe(true);
