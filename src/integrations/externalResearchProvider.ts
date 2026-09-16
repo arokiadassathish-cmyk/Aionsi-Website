@@ -57,54 +57,51 @@ function claimFromDocument(document: ExternalResearchDocument): string {
   return detail ? `${document.title}: ${detail}` : document.title;
 }
 
-/**
- * External research boundary for the Research Agent.
- *
- * Collection is injected so the application can use a web-search service,
- * Apollo-backed research service, or another approved source without changing
- * the agent contract. This adapter owns validation, provenance and limits.
- */
+/** Converts trusted documents into the Research Agent's provenance-preserving signal contract. */
+export function documentsToResearchSignals(
+  documents: ExternalResearchDocument[],
+  maxSignals = MAX_SIGNALS,
+): ResearchSignal[] {
+  const limit = Math.max(1, Math.min(maxSignals, MAX_SIGNALS));
+  const seenUrls = new Set<string>();
+  const signals: ResearchSignal[] = [];
+
+  for (const document of documents) {
+    const url = document.url.trim();
+    if (!url || !isHttpUrl(url) || seenUrls.has(url)) continue;
+    seenUrls.add(url);
+    signals.push({
+      id: document.id.trim() || `external-${signals.length + 1}`,
+      claim: claimFromDocument(document),
+      sourceUrl: url,
+      sourceType: document.sourceType,
+      observedAt: document.observedAt,
+      confidence: normalizeConfidence(document.confidence),
+    });
+    if (signals.length >= limit) break;
+  }
+
+  return signals;
+}
+
 export function createExternalResearchProvider(
   options: ExternalResearchProviderOptions,
 ): ExternalResearchProvider {
   const maxSignals = Math.max(1, Math.min(options.maxSignals ?? MAX_SIGNALS, MAX_SIGNALS));
-
   return {
     async search(query) {
       if (!query.accountId.trim()) throw new Error('External research requires accountId.');
       if (!query.companyName.trim()) throw new Error('External research requires companyName.');
-
       const documents = await options.search(query);
-      const seenUrls = new Set<string>();
-      const signals: ResearchSignal[] = [];
-
-      for (const document of documents) {
-        const url = document.url.trim();
-        if (!url || !isHttpUrl(url) || seenUrls.has(url)) continue;
-        seenUrls.add(url);
-
-        signals.push({
-          id: document.id.trim() || `external-${signals.length + 1}`,
-          claim: claimFromDocument(document),
-          sourceUrl: url,
-          sourceType: document.sourceType,
-          observedAt: document.observedAt,
-          confidence: normalizeConfidence(document.confidence),
-        });
-
-        if (signals.length >= Math.min(query.maxSignals ?? maxSignals, maxSignals)) break;
-      }
-
-      return signals as unknown as ExternalResearchDocument[];
+      return documents
+        .filter((document) => isHttpUrl(document.url.trim()))
+        .filter((document, index, all) => all.findIndex((candidate) => candidate.url.trim() === document.url.trim()) === index)
+        .slice(0, Math.min(query.maxSignals ?? maxSignals, maxSignals));
     },
   };
 }
 
-/**
- * HTTP adapter for a real external research/search service. The endpoint must
- * return { documents: ExternalResearchDocument[] }. Credentials are injected
- * at runtime and never stored in source control.
- */
+/** HTTP adapter for an approved external research/search service. */
 export function createHttpExternalResearchProvider(
   options: HttpResearchProviderOptions,
 ): ExternalResearchProvider {
@@ -125,27 +122,17 @@ export function createHttpExternalResearchProvider(
         },
         body: JSON.stringify(query),
       });
-
-      if (!response.ok) {
-        throw new Error(`External research service returned HTTP ${response.status}.`);
-      }
-
+      if (!response.ok) throw new Error(`External research service returned HTTP ${response.status}.`);
       const payload = (await response.json()) as { documents?: ExternalResearchDocument[] };
-      if (!Array.isArray(payload.documents)) {
-        throw new Error('External research service returned an invalid document payload.');
-      }
+      if (!Array.isArray(payload.documents)) throw new Error('External research service returned an invalid document payload.');
       return payload.documents;
     },
   });
 }
 
-/** Deterministic provider for tests and controlled dry-runs. */
 export function createStaticExternalResearchProvider(
   documents: ExternalResearchDocument[],
   maxSignals = MAX_SIGNALS,
 ): ExternalResearchProvider {
-  return createExternalResearchProvider({
-    maxSignals,
-    search: async () => documents,
-  });
+  return createExternalResearchProvider({ maxSignals, search: async () => documents });
 }
