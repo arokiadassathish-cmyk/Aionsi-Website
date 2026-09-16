@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
-interface Props { title?: string; description?: string; canonical?: string; ogImage?: string; type?: string; }
-const { title = 'AionSi | Semiconductor Engineering', description = 'Semiconductor engineering from IP to Silicon.', canonical, ogImage = '/favicon.svg', type = 'website' } = Astro.props;
+interface Props { title?: string; description?: string; canonical?: string; ogImage?: string; type?: string; robots?: string; }
+const { title = 'AionSi | Semiconductor Engineering', description = 'Semiconductor engineering from IP to Silicon.', canonical, ogImage = '/favicon.svg', type = 'website', robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' } = Astro.props;
 const siteUrl = 'https://aionsi.com';
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
 const ogImageUrl = new URL(ogImage, siteUrl).toString();
@@ -30,7 +30,7 @@ const websiteSchema = {
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="robots" content={robots} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
