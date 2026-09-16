@@ -1,0 +1,25 @@
+name: AionSi Daily Campaign Preparation
+
+on:
+  schedule:
+    # 09:00 IST, Monday-Friday (03:30 UTC)
+    - cron: '30 3 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  prepare-campaign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run daily campaign preparation
+        env:
+          RUNNER_URL: ${{ secrets.AIONSI_AGENT_RUNNER_URL }}
+          RUNNER_KEY: ${{ secrets.AIONSI_AGENT_RUNNER_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$RUNNER_URL"
+          test -n "$RUNNER_KEY"
+          curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "content-type: application/json" \
+            --header "x-aionsi-agent-key: $RUNNER_KEY" \
+            "$RUNNER_URL"
