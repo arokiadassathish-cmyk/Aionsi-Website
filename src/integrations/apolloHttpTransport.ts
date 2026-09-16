@@ -24,7 +24,7 @@ export function createApolloHttpTransport(options: ApolloHttpTransportOptions): 
         headers: {
           accept: 'application/json',
           'content-type': 'application/json',
-          authorization: `Bearer ${options.apiKey}`,
+          'x-api-key': options.apiKey,
         },
         body: JSON.stringify({
           emailer_campaign_id: request.sequenceId,
@@ -41,7 +41,7 @@ export function createApolloHttpTransport(options: ApolloHttpTransportOptions): 
     async activate(request: Omit<ApolloActivationRequest, 'mode'>) {
       const response = await fetchImpl(`${endpoint}/emailer_campaigns/${request.sequenceId}/approve`, {
         method: 'POST',
-        headers: { accept: 'application/json', authorization: `Bearer ${options.apiKey}` },
+        headers: { accept: 'application/json', 'x-api-key': options.apiKey },
       });
       if (!response.ok) throw new Error(`Apollo activation failed (${response.status}).`);
     },
