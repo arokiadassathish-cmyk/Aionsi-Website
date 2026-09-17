@@ -1,0 +1,165 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+
+const engineeringAreas = [
+  ['01', 'IC / SoC Verification', 'UVM/SystemVerilog verification, IP and subsystem environments, regression, debug and coverage-oriented execution.'],
+  ['02', 'AI & Compute Silicon', 'Verification support for processor-based SoCs, accelerators, complex subsystems and high-throughput compute paths.'],
+  ['03', 'High-Speed & Connectivity', 'Protocol and interface verification across PCIe, USB, Ethernet and other high-speed subsystem boundaries.'],
+  ['04', 'Physical Design', 'Implementation, timing analysis, closure, PPA optimization, ECO support and signoff-oriented engineering.'],
+  ['05', 'DFT & Silicon Readiness', 'Scan, ATPG, MBIST, DFT verification, coverage and signoff support for production-oriented silicon programs.'],
+  ['06', 'Embedded & System Integration', 'Hardware/software integration, firmware-facing validation and structured subsystem debug.'],
+];
+
+const workstreams = [
+  ['IP / subsystem verification', 'Verification planning, UVM/SystemVerilog execution, stimulus, checking, assertions, regression and debug for defined IP or subsystem scope.'],
+  ['AI / compute SoC verification', 'Testbench development, scenario-based verification, regression health, failure triage and coverage-oriented closure for compute-heavy silicon.'],
+  ['High-speed interface verification', 'Protocol-aware environments, sequence development, scoreboard/checker implementation, negative testing and interoperability-oriented validation.'],
+  ['SoC integration & debug', 'Subsystem interactions, interface dependencies, firmware-facing behavior and structured root-cause analysis across design boundaries.'],
+  ['Physical implementation & timing', 'Implementation support, STA, timing closure, congestion analysis, PPA-oriented optimization and ECO execution.'],
+  ['Dedicated engineering capacity', 'A bounded specialist team aligned to a defined work package, with technical ownership, milestones and review checkpoints.'],
+];
+
+const delivery = [
+  ['01', 'Technical alignment', 'Understand the product context, engineering environment, interfaces, methodology, tools and the specific requirement.'],
+  ['02', 'Define the workstream', 'Agree a bounded engineering scope with clear deliverables, interfaces, ownership and acceptance criteria.'],
+  ['03', 'Execute to milestones', 'Operate against measurable checkpoints, quality expectations, technical reviews and closure criteria.'],
+  ['04', 'Scale where proven', 'Expand the engagement only where technical fit, delivery quality and ownership are demonstrated.'],
+];
+---
+
+<BaseLayout title="AionSi × Infinecs Malaysia | Semiconductor Engineering" description="A technical engineering brief for evaluating AionSi capabilities relevant to Infinecs Malaysia semiconductor programs." robots="noindex,nofollow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-16 lg:py-20">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:gap-14">
+          <div class="max-w-[760px]">
+            <TechnicalLabel>AIONSI × INFINECS MALAYSIA · ENGINEERING BRIEF</TechnicalLabel>
+            <h1 class="mt-5 max-w-[720px] text-[3rem] font-semibold leading-[1.06] tracking-[-0.035em] text-[var(--aionsi-navy)] sm:text-[3.45rem] lg:text-[3.9rem]">Engineering capacity for complex silicon programs.</h1>
+            <p class="mt-5 max-w-[690px] text-lg leading-8 text-slate-600 lg:text-[1.18rem]">AionSi supports semiconductor product teams with specialist engineering across Design Verification, Physical Design, DFT, SoC integration and embedded engineering — helping defined workstreams move with measurable milestones and technical ownership.</p>
+            <div class="mt-7 flex flex-wrap gap-3">
+              {['SoC & IP Verification', 'AI / Compute Silicon', 'High-Speed Interfaces', 'Physical Design', 'DFT', 'Embedded Integration'].map((tag) => <span class="border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)]">{tag}</span>)}
+            </div>
+          </div>
+          <div class="w-full max-w-[560px] justify-self-end border border-slate-200 bg-white p-6 shadow-sm md:p-7">
+            <div class="h-1 w-12 bg-[var(--aionsi-orange)]"></div>
+            <h2 class="mt-5 text-2xl font-semibold leading-tight text-[var(--aionsi-navy)] md:text-[1.8rem]">From specialist capacity to engineering ownership.</h2>
+            <p class="mt-3 text-base leading-7 text-slate-600">A focused AionSi engagement can start with one bounded technical workstream and establish delivery quality before expanding across adjacent engineering areas.</p>
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              {['Define one workstream', 'Align specialist engineers', 'Execute to milestones', 'Review evidence & closure'].map((item, index) => <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-4"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">0{index + 1}</span><p class="mt-2 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">{item}</p></div>)}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-12 md:py-16">
+      <Container>
+        <TechnicalLabel>ENGINEERING ALIGNMENT</TechnicalLabel>
+        <div class="mt-4 grid gap-8 lg:grid-cols-[.62fr_1.38fr] lg:items-start">
+          <div>
+            <h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Relevant semiconductor engineering depth.</h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600">AionSi's capability can be evaluated against defined Infinecs requirements across verification, compute, interfaces, implementation, DFT and system integration.</p>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            {engineeringAreas.map(([num, title, desc]) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{num}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[.68fr_1.32fr]">
+          <div>
+            <TechnicalLabel>VERIFICATION & CLOSURE</TechnicalLabel>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Engineering across the verification-to-silicon path.</h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600">For complex silicon, the work does not stop at testbench creation. AionSi teams can contribute across regression health, failure isolation, coverage, integration dependencies and downstream closure.</p>
+          </div>
+          <div class="border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+            <div class="grid gap-3 sm:grid-cols-2">
+              {[
+                ['01', 'Verification planning & architecture'],
+                ['02', 'UVM / SystemVerilog execution'],
+                ['03', 'Stimulus, checking & assertions'],
+                ['04', 'Regression & failure triage'],
+                ['05', 'Coverage analysis & closure'],
+                ['06', 'SoC integration & root-cause debug'],
+              ].map(([num, item]) => <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{num}</span><p class="mt-3 text-sm leading-6 text-[var(--aionsi-navy)]">{item}</p></div>)}
+            </div>
+            <div class="mt-5 grid gap-3 sm:grid-cols-3">
+              <div class="border border-slate-200 p-4"><span class="text-xs font-semibold tracking-[.12em] text-slate-500">METHOD</span><p class="mt-2 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">UVM / SystemVerilog</p></div>
+              <div class="border border-slate-200 p-4"><span class="text-xs font-semibold tracking-[.12em] text-slate-500">AUTOMATION</span><p class="mt-2 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">Python / Linux</p></div>
+              <div class="border border-slate-200 p-4"><span class="text-xs font-semibold tracking-[.12em] text-slate-500">OUTCOME</span><p class="mt-2 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">Coverage & closure</p></div>
+            </div>
+            <p class="mt-5 text-sm leading-6 text-slate-500">Representative capability language is intended for technical qualification and does not disclose confidential customer information.</p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18">
+      <Container>
+        <TechnicalLabel>POTENTIAL ENGINEERING WORKSTREAMS</TechnicalLabel>
+        <div class="mt-4 grid gap-8 lg:grid-cols-[.68fr_1.32fr]">
+          <div>
+            <h2 class="text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Concrete areas for technical discussion.</h2>
+            <p class="mt-4 text-lg leading-8 text-slate-600">The page is structured around bounded engineering packages so an opportunity can be evaluated on technical fit, ownership and measurable delivery.</p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            {workstreams.map(([title, desc], index) => <article class="border border-slate-200 bg-white p-6 shadow-sm"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{String(index + 1).padStart(2, '0')}</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-18">
+      <Container>
+        <TechnicalLabel>POTENTIAL MALAYSIA ENGAGEMENT</TechnicalLabel>
+        <div class="mt-4 grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
+          <div>
+            <h2 class="max-w-4xl text-3xl font-semibold md:text-5xl">Start with the requirement. Scale with the evidence.</h2>
+            <p class="mt-4 max-w-2xl text-lg leading-8 text-white/70">AionSi can align India-based specialist engineering capacity with a defined Malaysia workstream, milestone plan and review cadence.</p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {delivery.map(([num, title, desc]) => <article class="border border-white/10 bg-white/5 p-6"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">{num}</span><h3 class="mt-3 text-xl font-semibold">{title}</h3><p class="mt-2 text-sm leading-6 text-white/65">{desc}</p></article>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <TechnicalLabel>ENGINEERING EVIDENCE</TechnicalLabel>
+            <h2 class="mt-4 max-w-4xl text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">See the engineering evidence behind the capability.</h2>
+            <p class="mt-4 max-w-3xl text-lg leading-8 text-slate-600">Explore representative AionSi evidence across verification, high-speed interfaces, SoC integration, formal methods, physical design and DFT.</p>
+          </div>
+          <Button href="/evidence">Explore Engineering Evidence</Button>
+        </div>
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          <a href="/evidence/design-verification-engineering" class="group border border-slate-200 p-6 transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">01</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Design Verification</h3><p class="mt-2 text-sm leading-6 text-slate-600">Verification architecture, execution, regression, debug and closure-oriented engineering.</p><span class="mt-6 inline-block text-sm font-semibold text-[var(--aionsi-navy)]">View evidence →</span></a>
+          <a href="/evidence/advanced-node-physical-design-timing-congestion-signoff" class="group border border-slate-200 p-6 transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">02</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Physical Design & Signoff</h3><p class="mt-2 text-sm leading-6 text-slate-600">Timing closure, congestion, PPA, implementation and signoff-oriented workflows.</p><span class="mt-6 inline-block text-sm font-semibold text-[var(--aionsi-navy)]">View evidence →</span></a>
+          <a href="/evidence/opentitan-cryptography-secure-soc" class="group border border-slate-200 p-6 transition hover:-translate-y-0.5 hover:border-[var(--aionsi-blue)]"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">03</span><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Secure SoC Engineering</h3><p class="mt-2 text-sm leading-6 text-slate-600">System-level verification and integration context for security-focused silicon.</p><span class="mt-6 inline-block text-sm font-semibold text-[var(--aionsi-navy)]">View evidence →</span></a>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-16">
+      <Container class="text-center">
+        <TechnicalLabel>TECHNICAL DISCUSSION</TechnicalLabel>
+        <h2 class="mx-auto mt-3 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Have a defined semiconductor engineering requirement?</h2>
+        <p class="mx-auto mt-4 max-w-3xl text-lg leading-8 text-slate-600">Let's map the requirement to the right specialist capability, workstream and execution model.</p>
+        <div class="mt-7"><Button href="/contact">Talk to Our Engineering Team</Button></div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
