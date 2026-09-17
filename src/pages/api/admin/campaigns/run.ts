@@ -22,8 +22,6 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const body = await request.json().catch(() => ({}));
-    // Explicit request targets remain available for controlled testing, but the
-    // normal scheduled path always reads the configured AionSi registry-backed list.
     const targets = Array.isArray(body?.targets)
       ? parseConfiguredTargetAccounts(JSON.stringify(body.targets))
       : parseTargets();
