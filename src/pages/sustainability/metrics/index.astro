@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/global/Header.astro';
+import Footer from '../../../components/global/Footer.astro';
+import Container from '../../../components/global/Container.astro';
+import Section from '../../../components/global/Section.astro';
+import TechnicalLabel from '../../../components/global/TechnicalLabel.astro';
+import { esgMetrics } from '../../../data/esgMetrics';
+
+const groups = ['Environment', 'Social', 'Governance'];
+---
+
+<BaseLayout
+  title="ESG Metrics & Evidence | AionSi"
+  description="AionSi’s ESG metrics and evidence matrix covering environmental, social and governance controls, source evidence, ownership and review status."
+  canonical="https://aionsi.com/sustainability/metrics"
+>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-20 lg:py-24">
+      <Container>
+        <div class="max-w-4xl">
+          <TechnicalLabel>SUSTAINABILITY &amp; ESG / METRICS &amp; EVIDENCE</TechnicalLabel>
+          <h1 class="mt-5 text-4xl font-semibold tracking-tight md:text-6xl">From policy to evidence.</h1>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-white/75">
+            A structured evidence matrix connecting each ESG topic to the control, supporting records, internal owner and review status.
+          </p>
+          <p class="mt-5 max-w-3xl text-sm leading-7 text-white/55">
+            This page deliberately avoids unsupported quantitative claims. Metrics remain in progress until source records, boundaries and calculation methods are validated.
+          </p>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="space-y-16">
+          {groups.map((group) => (
+            <section>
+              <div class="mb-6 flex items-end justify-between gap-4 border-b border-slate-200 pb-4">
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--aionsi-blue)]">{group}</p>
+                  <h2 class="mt-2 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)]">{group} evidence register</h2>
+                </div>
+                <span class="text-xs text-slate-500">FY2026</span>
+              </div>
+
+              <div class="overflow-x-auto border border-slate-200">
+                <table class="min-w-[1100px] w-full border-collapse text-left">
+                  <thead>
+                    <tr class="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
+                      <th class="border-b border-slate-200 px-5 py-4">Requirement</th>
+                      <th class="border-b border-slate-200 px-5 py-4">AionSi control</th>
+                      <th class="border-b border-slate-200 px-5 py-4">Evidence</th>
+                      <th class="border-b border-slate-200 px-5 py-4">Owner</th>
+                      <th class="border-b border-slate-200 px-5 py-4">Status</th>
+                      <th class="border-b border-slate-200 px-5 py-4">Review</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {esgMetrics.filter((metric) => metric.area === group).map((metric) => (
+                      <tr class="align-top">
+                        <td class="border-b border-slate-200 px-5 py-5 text-sm font-semibold text-[var(--aionsi-navy)]">{metric.requirement}</td>
+                        <td class="border-b border-slate-200 px-5 py-5 text-sm leading-6 text-slate-600">{metric.control}</td>
+                        <td class="border-b border-slate-200 px-5 py-5 text-sm leading-6 text-slate-600">{metric.evidence}</td>
+                        <td class="border-b border-slate-200 px-5 py-5 text-sm text-slate-600">{metric.owner}</td>
+                        <td class="border-b border-slate-200 px-5 py-5 text-sm font-medium text-[var(--aionsi-navy)]">{metric.status}</td>
+                        <td class="border-b border-slate-200 px-5 py-5 text-sm text-slate-600">{metric.review}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {esgMetrics.filter((metric) => metric.area === group).some((metric) => metric.publicNote) && (
+                <div class="mt-4 grid gap-3">
+                  {esgMetrics.filter((metric) => metric.area === group && metric.publicNote).map((metric) => (
+                    <p class="border-l-2 border-[var(--aionsi-blue)] pl-4 text-sm leading-6 text-slate-500">{metric.publicNote}</p>
+                  ))}
+                </div>
+              )}
+            </section>
+          ))}
+        </div>
+
+        <div class="mt-16 border-t border-slate-200 pt-8">
+          <p class="text-sm leading-6 text-slate-500">
+            Evidence status reflects the current reporting maturity of the framework and should not be read as an assurance opinion or third-party certification. Customer-specific requirements may require additional records or controls.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-5 text-sm font-semibold">
+            <a href="/sustainability/documents" class="text-[var(--aionsi-blue)]">← ESG Document Center</a>
+            <a href="/sustainability" class="text-[var(--aionsi-blue)]">Sustainability &amp; ESG overview →</a>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
