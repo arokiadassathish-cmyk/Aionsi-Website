@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/global/Header.astro';
+import Footer from '../../../components/global/Footer.astro';
+import Container from '../../../components/global/Container.astro';
+import Section from '../../../components/global/Section.astro';
+import TechnicalLabel from '../../../components/global/TechnicalLabel.astro';
+import { esgDueDiligence } from '../../../data/esgDueDiligence';
+
+const categories = ['Environment', 'Social', 'Governance', 'Supply Chain', 'Information Security'];
+---
+
+<BaseLayout
+  title="ESG Due-Diligence Response System | AionSi"
+  description="AionSi reusable ESG due-diligence response matrix mapping customer requirements to policies, controls, evidence, response guidance, owners and review cadence."
+  canonical="https://aionsi.com/sustainability/due-diligence"
+>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-20 lg:py-24">
+      <Container>
+        <div class="max-w-4xl">
+          <TechnicalLabel>SUSTAINABILITY &amp; ESG / DUE DILIGENCE</TechnicalLabel>
+          <h1 class="mt-5 text-4xl font-semibold tracking-tight md:text-6xl">One evidence model for every customer questionnaire.</h1>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-white/75">
+            A reusable response matrix that maps customer ESG and responsible-business requirements to AionSi frameworks, controls, evidence, response guidance and accountable functions.
+          </p>
+          <p class="mt-5 max-w-3xl text-sm leading-7 text-white/55">
+            This is an internal operating framework made public for transparency. It is not a declaration that every customer requirement has already been fully satisfied.
+          </p>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            ['01', 'Requirement', 'What the customer is asking for'],
+            ['02', 'Framework', 'The AionSi policy or evidence layer'],
+            ['03', 'Evidence', 'The records available for substantiation'],
+            ['04', 'Response', 'How the requirement should be answered']
+          ].map(([number, title, text]) => (
+            <div class="border border-slate-200 p-6">
+              <div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{number}</div>
+              <h2 class="mt-2 text-lg font-semibold text-[var(--aionsi-navy)]">{title}</h2>
+              <p class="mt-2 text-sm leading-6 text-slate-600">{text}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-14 space-y-14">
+          {categories.map((category) => {
+            const items = esgDueDiligence.filter((item) => item.category === category);
+            return (
+              <section>
+                <div class="mb-6 flex items-end justify-between gap-4 border-b border-slate-200 pb-4">
+                  <div>
+                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--aionsi-blue)]">{category}</p>
+                    <h2 class="mt-2 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)]">{category} response map</h2>
+                  </div>
+                  <span class="text-xs text-slate-500">FY2026</span>
+                </div>
+
+                <div class="overflow-x-auto border border-slate-200">
+                  <table class="min-w-[1250px] w-full border-collapse text-left">
+                    <thead>
+                      <tr class="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
+                        <th class="border-b border-slate-200 px-5 py-4">Requirement</th>
+                        <th class="border-b border-slate-200 px-5 py-4">AionSi framework</th>
+                        <th class="border-b border-slate-200 px-5 py-4">Control</th>
+                        <th class="border-b border-slate-200 px-5 py-4">Evidence</th>
+                        <th class="border-b border-slate-200 px-5 py-4">Response guidance</th>
+                        <th class="border-b border-slate-200 px-5 py-4">Owner</th>
+                        <th class="border-b border-slate-200 px-5 py-4">Review</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {items.map((item) => (
+                        <tr class="align-top">
+                          <td class="border-b border-slate-200 px-5 py-5 text-sm font-semibold text-[var(--aionsi-navy)]">{item.requirement}</td>
+                          <td class="border-b border-slate-200 px-5 py-5 text-sm leading-6 text-slate-600">{item.framework}</td>
+                          <td class="border-b border-slate-200 px-5 py-5 text-sm leading-6 text-slate-600">{item.control}</td>
+                          <td class="border-b border-slate-200 px-5 py-5 text-sm leading-6 text-slate-600">{item.evidence}</td>
+                          <td class="border-b border-slate-200 px-5 py-5 text-sm leading-6 text-slate-600">{item.responseGuidance}</td>
+                          <td class="border-b border-slate-200 px-5 py-5 text-sm text-slate-600">{item.owner}</td>
+                          <td class="border-b border-slate-200 px-5 py-5 text-sm text-slate-600">{item.review}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            );
+          })}
+        </div>
+
+        <div class="mt-16 border-t border-slate-200 pt-8">
+          <p class="text-sm leading-6 text-slate-500">
+            Customer-specific questionnaires may contain requirements beyond this matrix. Responses should be reviewed against the latest approved policy, source evidence, contractual commitments and any applicable legal requirements before submission.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-5 text-sm font-semibold">
+            <a href="/sustainability/governance" class="text-[var(--aionsi-blue)]">← ESG Governance</a>
+            <a href="/sustainability/metrics" class="text-[var(--aionsi-blue)]">ESG Metrics &amp; Evidence →</a>
+            <a href="/sustainability/documents" class="text-[var(--aionsi-blue)]">ESG Document Center →</a>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
