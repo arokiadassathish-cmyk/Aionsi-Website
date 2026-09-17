@@ -7,6 +7,12 @@ import Section from '../../../components/global/Section.astro';
 import TechnicalLabel from '../../../components/global/TechnicalLabel.astro';
 import { esgDocuments } from '../../../data/esgDocuments';
 
+// The site runs in Astro server mode on Vercel. Explicitly prerender these
+// finite, known document routes so Astro passes getStaticPaths() props into
+// the generated pages instead of attempting to render the dynamic route on
+// demand without the static-path payload.
+export const prerender = true;
+
 export function getStaticPaths() {
   return esgDocuments.map((document) => ({
     params: { slug: document.slug },
