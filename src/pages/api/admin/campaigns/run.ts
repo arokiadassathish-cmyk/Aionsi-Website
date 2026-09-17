@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { runDailyCampaign, type DailyCampaignTarget } from '../../../../agents/dailyCampaignRuntime';
+import { parseConfiguredTargetAccounts } from '../../../../data/configuredTargetAccounts';
 import { createHubSpotFetchTransport, createHubSpotApiAdapter } from '../../../../integrations/hubspotRuntime';
 import { resolveLiveResearchProvider } from '../../../../integrations/liveResearchProviderConfig';
 import { createDailyCampaignResearchProvider } from '../../../../integrations/dailyCampaignResearchProvider';
@@ -13,11 +14,7 @@ function authorized(request: Request): boolean {
 }
 
 function parseTargets(): DailyCampaignTarget[] {
-  const raw = process.env.AIONSI_DAILY_TARGETS_JSON;
-  if (!raw) return [];
-  const parsed = JSON.parse(raw);
-  if (!Array.isArray(parsed)) throw new Error('AIONSI_DAILY_TARGETS_JSON must be a JSON array.');
-  return parsed as DailyCampaignTarget[];
+  return parseConfiguredTargetAccounts(process.env.AIONSI_DAILY_TARGETS_JSON);
 }
 
 export const POST: APIRoute = async ({ request }) => {
@@ -25,8 +22,12 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const body = await request.json().catch(() => ({}));
-    const targets = Array.isArray(body?.targets) ? body.targets as DailyCampaignTarget[] : parseTargets();
-    if (!targets.length) throw new Error('No daily campaign targets configured.');
+    // Explicit request targets remain available for controlled testing, but the
+    // normal scheduled path always reads the configured AionSi registry-backed list.
+    const targets = Array.isArray(body?.targets)
+      ? parseConfiguredTargetAccounts(JSON.stringify(body.targets))
+      : parseTargets();
+    if (!targets.length) throw new Error('No AionSi target accounts are configured.');
 
     const accessToken = process.env.HUBSPOT_ACCESS_TOKEN;
     if (!accessToken) throw new Error('HUBSPOT_ACCESS_TOKEN is not configured.');
