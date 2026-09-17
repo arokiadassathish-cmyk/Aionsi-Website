@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/global/Header.astro';
+import Footer from '../../../components/global/Footer.astro';
+import Container from '../../../components/global/Container.astro';
+import Section from '../../../components/global/Section.astro';
+import TechnicalLabel from '../../../components/global/TechnicalLabel.astro';
+import { esgQuestionnaire } from '../../../data/esgQuestionnaire';
+
+const categories = ['Environment', 'Social', 'Governance', 'Supply Chain', 'Information Security'] as const;
+---
+
+<BaseLayout
+  title="ESG Questionnaire Engine | AionSi"
+  description="AionSi structured ESG questionnaire response library mapping common customer questions to frameworks, controls, evidence and response guidance."
+  canonical="https://aionsi.com/sustainability/questionnaire"
+>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-20 lg:py-24">
+      <Container>
+        <div class="max-w-4xl">
+          <TechnicalLabel>SUSTAINABILITY &amp; ESG / QUESTIONNAIRE ENGINE</TechnicalLabel>
+          <h1 class="mt-5 text-4xl font-semibold tracking-tight md:text-6xl">A reusable answer model for ESG due diligence.</h1>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-white/75">
+            Common customer questions are mapped to the relevant AionSi framework, control, evidence and response language so teams can prepare consistent answers without recreating the analysis for every questionnaire.
+          </p>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-4 md:grid-cols-4">
+          {[
+            ['01', 'Classify', 'Identify the ESG question and topic.'],
+            ['02', 'Map', 'Connect it to the relevant AionSi framework and control.'],
+            ['03', 'Validate', 'Confirm the evidence, period, scope and approval status.'],
+            ['04', 'Respond', 'Use approved response language and attach evidence as permitted.']
+          ].map(([number, title, text]) => (
+            <div class="border border-slate-200 p-6">
+              <div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{number}</div>
+              <h2 class="mt-2 text-lg font-semibold text-[var(--aionsi-navy)]">{title}</h2>
+              <p class="mt-2 text-sm leading-6 text-slate-600">{text}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-14 overflow-hidden border border-slate-200">
+          <div class="overflow-x-auto">
+            <table class="min-w-[1450px] w-full border-collapse text-left">
+              <thead>
+                <tr class="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
+                  <th class="border-b border-slate-200 px-5 py-4">ID</th>
+                  <th class="border-b border-slate-200 px-5 py-4">Category</th>
+                  <th class="border-b border-slate-200 px-5 py-4">Customer question</th>
+                  <th class="border-b border-slate-200 px-5 py-4">Response mode</th>
+                  <th class="border-b border-slate-200 px-5 py-4">AionSi framework</th>
+                  <th class="border-b border-slate-200 px-5 py-4">Control</th>
+                  <th class="border-b border-slate-200 px-5 py-4">Evidence</th>
+                  <th class="border-b border-slate-200 px-5 py-4">Approved response guidance</th>
+                  <th class="border-b border-slate-200 px-5 py-4">Owner</th>
+                  <th class="border-b border-slate-200 px-5 py-4">Review</th>
+                </tr>
+              </thead>
+              <tbody>
+                {categories.map((category) => (
+                  esgQuestionnaire.filter((item) => item.category === category).map((item) => (
+                    <tr class="align-top">
+                      <td class="border-b border-slate-200 px-5 py-5 text-sm font-mono text-[var(--aionsi-blue)]">{item.id}</td>
+                      <td class="border-b border-slate-200 px-5 py-5 text-sm font-semibold text-[var(--aionsi-navy)]">{item.category}</td>
+                      <td class="border-b border-slate-200 px-5 py-5 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">{item.question}</td>
+                      <td class="border-b border-slate-200 px-5 py-5 text-sm text-slate-600">{item.responseMode}</td>
+                      <td class="border-b border-slate-200 px-5 py-5 text-sm leading-6 text-slate-600">{item.framework}</td>
+                      <td class="border-b border-slate-200 px-5 py-5 text-sm leading-6 text-slate-600">{item.control}</td>
+                      <td class="border-b border-slate-200 px-5 py-5 text-sm leading-6 text-slate-600">{item.evidence}</td>
+                      <td class="border-b border-slate-200 px-5 py-5 text-sm leading-6 text-slate-600">{item.responseTemplate}</td>
+                      <td class="border-b border-slate-200 px-5 py-5 text-sm text-slate-600">{item.owner}</td>
+                      <td class="border-b border-slate-200 px-5 py-5 text-sm text-slate-600">{item.review}</td>
+                    </tr>
+                  ))
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="mt-12 grid gap-6 lg:grid-cols-2">
+          <div class="border border-slate-200 bg-slate-50 p-7">
+            <TechnicalLabel>RESPONSE CONTROL</TechnicalLabel>
+            <h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">Never answer from memory alone.</h2>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Before an external response is submitted, validate the latest approved policy, evidence period, reporting boundary, customer wording and any contractual or legal requirements.</p>
+          </div>
+          <div class="border border-slate-200 p-7">
+            <TechnicalLabel>EVIDENCE DISCIPLINE</TechnicalLabel>
+            <h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">Framework language is not certification.</h2>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Do not convert a policy, process or framework statement into an ISO certification, audit opinion, assurance statement or quantitative claim unless separately supported.</p>
+          </div>
+        </div>
+
+        <div class="mt-12 flex flex-wrap gap-5 text-sm font-semibold">
+          <a href="/sustainability/due-diligence" class="text-[var(--aionsi-blue)]">← ESG Due-Diligence Matrix</a>
+          <a href="/sustainability/governance" class="text-[var(--aionsi-blue)]">ESG Governance →</a>
+          <a href="/sustainability/metrics" class="text-[var(--aionsi-blue)]">ESG Metrics &amp; Evidence →</a>
+          <a href="/sustainability/documents" class="text-[var(--aionsi-blue)]">ESG Document Center →</a>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
