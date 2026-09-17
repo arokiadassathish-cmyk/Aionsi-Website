@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/global/Header.astro';
+import Footer from '../components/global/Footer.astro';
+import Container from '../components/global/Container.astro';
+import Section from '../components/global/Section.astro';
+import TechnicalLabel from '../components/global/TechnicalLabel.astro';
+
+const pillars = [
+  {
+    number: '01',
+    title: 'Environmental Responsibility',
+    text: 'We seek to reduce the environmental impact of our operations through responsible resource use, digital-first workflows, energy-conscious workplace practices, and appropriate handling and disposal of electronic equipment.',
+    points: ['Resource and energy awareness', 'Digital-first document workflows', 'Responsible e-waste handling', 'Continuous environmental improvement'],
+  },
+  {
+    number: '02',
+    title: 'People & Workplace',
+    text: 'We are committed to a respectful, inclusive and safe workplace where people can develop their skills, contribute meaningfully and work without discrimination or harassment.',
+    points: ['Equal opportunity', 'Respectful workplace', 'Learning and development', 'Health, safety and well-being'],
+  },
+  {
+    number: '03',
+    title: 'Human Rights & Labor',
+    text: 'AionSi respects applicable human-rights and fair-labor principles and does not tolerate forced labor, child labor, human trafficking, discrimination, harassment or abusive workplace practices.',
+    points: ['No forced or bonded labor', 'No child labor', 'No human trafficking', 'No discrimination or harassment'],
+  },
+  {
+    number: '04',
+    title: 'Business Ethics & Governance',
+    text: 'We conduct business with integrity and expect employees and business partners to comply with applicable laws, contractual requirements and ethical standards.',
+    points: ['Anti-bribery and anti-corruption', 'Conflict-of-interest awareness', 'Confidentiality and responsible conduct', 'Speak-up and grievance channels'],
+  },
+  {
+    number: '05',
+    title: 'Responsible Supply Chain',
+    text: 'We expect suppliers and business partners to operate responsibly across relevant environmental, labor, human-rights, health and safety, sourcing and ethical requirements.',
+    points: ['Supplier expectations', 'Responsible sourcing', 'Compliance alignment', 'Risk-based supplier review'],
+  },
+  {
+    number: '06',
+    title: 'Information Security & Privacy',
+    text: 'Responsible engineering includes protecting customer information, intellectual property and personal data through appropriate security, access-control and confidentiality practices.',
+    points: ['Customer confidentiality', 'Information security controls', 'Need-to-know access', 'Privacy and data protection'],
+  },
+];
+
+const documents = [
+  { name: 'Sustainability & ESG Statement', status: 'Public disclosure', href: '#esg-statement' },
+  { name: 'Code of Business Conduct & Ethics', status: 'Policy framework', href: '#governance' },
+  { name: 'Human Rights & Labor Commitment', status: 'Policy framework', href: '#human-rights' },
+  { name: 'Environmental Responsibility Statement', status: 'Policy framework', href: '#environment' },
+  { name: 'Responsible Supply Chain Statement', status: 'Supplier expectations', href: '#supply-chain' },
+  { name: 'ESG Disclosure — FY2026', status: 'In development', href: '#disclosure' },
+];
+---
+
+<BaseLayout
+  title="Sustainability & ESG | AionSi"
+  description="AionSi sustainability and ESG disclosure covering environmental responsibility, people, human rights, business ethics, responsible supply chain, information security and governance."
+  canonical="https://aionsi.com/sustainability"
+>
+  <Header />
+  <main>
+    <Section class="overflow-hidden bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-20 lg:py-24">
+      <Container>
+        <div class="max-w-5xl">
+          <TechnicalLabel>SUSTAINABILITY &amp; ESG</TechnicalLabel>
+          <h1 class="mt-5 text-5xl font-semibold tracking-tight md:text-7xl">Engineering responsibly. Operating with integrity.</h1>
+          <p class="mt-7 max-w-3xl text-xl leading-9 text-white/75">At AionSi, responsible semiconductor engineering extends beyond technology. Our ESG approach brings together how we operate, how we support our people, how we engage with suppliers and customers, and how we continuously improve our environmental and governance practices.</p>
+          <div class="mt-10 flex flex-wrap gap-3 text-sm font-semibold">
+            <span class="rounded-full border border-white/15 bg-white/5 px-4 py-2">People</span>
+            <span class="rounded-full border border-white/15 bg-white/5 px-4 py-2">Ethics</span>
+            <span class="rounded-full border border-white/15 bg-white/5 px-4 py-2">Environment</span>
+            <span class="rounded-full border border-white/15 bg-white/5 px-4 py-2">Responsible Supply Chain</span>
+            <span class="rounded-full border border-white/15 bg-white/5 px-4 py-2">Governance</span>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section id="esg-statement" class="py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-start">
+          <div>
+            <TechnicalLabel>OUR COMMITMENT</TechnicalLabel>
+            <h2 class="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">A practical ESG framework for a semiconductor engineering business.</h2>
+          </div>
+          <div class="border-l-2 border-[var(--aionsi-orange)] pl-6 text-base leading-8 text-slate-600">
+            <p>AionSi is committed to improving its environmental, social and governance practices in line with applicable laws, customer expectations and relevant responsible-business principles.</p>
+            <p class="mt-4">We aim to make progress through clear policies, responsible operating practices, employee awareness, supplier expectations and periodic review of our ESG priorities.</p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="mb-10 max-w-3xl">
+          <TechnicalLabel>ESG PILLARS</TechnicalLabel>
+          <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Six areas of responsible operation</h2>
+          <p class="mt-4 text-lg leading-8 text-slate-600">The framework is designed to remain consistent across customer and supplier assessments while allowing evidence and disclosures to mature over time.</p>
+        </div>
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {pillars.map((pillar) => (
+            <article id={pillar.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')} class="border border-slate-200 bg-white p-7">
+              <div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{pillar.number}</div>
+              <h3 class="mt-4 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">{pillar.title}</h3>
+              <p class="mt-4 text-sm leading-7 text-slate-600">{pillar.text}</p>
+              <ul class="mt-6 space-y-2 text-sm leading-6 text-slate-700">
+                {pillar.points.map((point) => <li class="flex gap-2"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--aionsi-orange)]"></span><span>{point}</span></li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section id="environment" class="py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.9fr_1.1fr]">
+          <div>
+            <TechnicalLabel>ENVIRONMENT</TechnicalLabel>
+            <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)]">Environmental responsibility</h2>
+          </div>
+          <div class="space-y-5 text-base leading-8 text-slate-600">
+            <p>AionSi operates primarily as a semiconductor engineering services organization. Our direct environmental footprint is therefore driven predominantly by office operations, energy consumption, digital infrastructure, travel and electronic equipment rather than semiconductor fabrication.</p>
+            <p>We seek to reduce avoidable consumption through digital-first workflows, efficient use of resources, responsible IT asset handling and appropriate recycling or disposal through authorized channels where applicable.</p>
+            <p>As our operations and reporting maturity develop, we intend to improve the consistency and traceability of relevant environmental metrics.</p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section id="human-rights" class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-2">
+          <div>
+            <TechnicalLabel>PEOPLE &amp; HUMAN RIGHTS</TechnicalLabel>
+            <h2 class="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">A workplace built on dignity, respect and equal opportunity.</h2>
+          </div>
+          <div class="space-y-5 text-base leading-8 text-white/75">
+            <p>AionSi supports a workplace where people are treated with dignity and respect. We do not tolerate forced labor, child labor, human trafficking, discrimination or harassment.</p>
+            <p>We support professional development and aim to provide a safe and respectful environment where employees can raise concerns through appropriate channels.</p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section id="governance" class="py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-start">
+          <div>
+            <TechnicalLabel>ETHICS &amp; GOVERNANCE</TechnicalLabel>
+            <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Integrity is part of the engineering contract.</h2>
+            <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">AionSi expects employees and business partners to act lawfully, honestly and transparently. Our responsible-business framework addresses anti-bribery, anti-corruption, conflicts of interest, confidentiality, responsible use of information and appropriate escalation of concerns.</p>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {['Anti-bribery & anti-corruption', 'Conflict-of-interest awareness', 'Confidentiality & IP protection', 'Speak-up & grievance mechanisms'].map((item) => (
+              <div class="border border-slate-200 p-5 text-sm font-semibold leading-6 text-[var(--aionsi-navy)]">{item}</div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section id="supply-chain" class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="max-w-4xl">
+          <TechnicalLabel>RESPONSIBLE SUPPLY CHAIN</TechnicalLabel>
+          <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Responsible business extends to our partners.</h2>
+          <p class="mt-5 text-lg leading-8 text-slate-600">We expect relevant suppliers, subcontractors and business partners to comply with applicable legal, ethical, labor, environmental, health and safety requirements. Supplier relationships may be evaluated using business, quality, compliance and responsible-business considerations.</p>
+        </div>
+        <div class="mt-10 grid gap-4 md:grid-cols-3">
+          <div class="border border-slate-200 bg-white p-6"><div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">01</div><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Supplier expectations</h3><p class="mt-3 text-sm leading-7 text-slate-600">Responsible conduct is part of how we frame supplier and partner relationships.</p></div>
+          <div class="border border-slate-200 bg-white p-6"><div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">02</div><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Responsible sourcing</h3><p class="mt-3 text-sm leading-7 text-slate-600">Where relevant, we support responsible sourcing information and due diligence expectations across our supply network.</p></div>
+          <div class="border border-slate-200 bg-white p-6"><div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">03</div><h3 class="mt-3 text-xl font-semibold text-[var(--aionsi-navy)]">Customer alignment</h3><p class="mt-3 text-sm leading-7 text-slate-600">Our framework can be mapped to customer supplier codes, questionnaires and ESG due-diligence requirements.</p></div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section id="disclosure" class="py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
+          <div>
+            <TechnicalLabel>DISCLOSURE CENTER</TechnicalLabel>
+            <h2 class="mt-4 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)]">Policies, statements and disclosure</h2>
+            <p class="mt-5 text-base leading-7 text-slate-600">AionSi is building a standardized document set so customer procurement, ESG, legal and supplier-quality teams can access consistent evidence.</p>
+          </div>
+          <div class="divide-y divide-slate-200 border-y border-slate-200">
+            {documents.map((document) => (
+              <a href={document.href} class="group flex flex-col gap-2 py-5 sm:flex-row sm:items-center sm:justify-between">
+                <span class="font-semibold text-[var(--aionsi-navy)] group-hover:text-[var(--aionsi-blue)]">{document.name}</span>
+                <span class="text-sm text-slate-500">{document.status} ↗</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <TechnicalLabel>CONTINUOUS IMPROVEMENT</TechnicalLabel>
+            <h2 class="mt-4 max-w-4xl text-4xl font-semibold tracking-tight md:text-5xl">From disclosure to evidence.</h2>
+            <p class="mt-5 max-w-3xl text-lg leading-8 text-white/70">We will continue to mature our ESG framework through defined policies, measurable objectives, documented practices and periodic review. Customer-specific requirements can be mapped to the same underlying control areas.</p>
+          </div>
+          <a href="/contact" class="inline-flex shrink-0 items-center justify-center rounded-full bg-[var(--aionsi-orange)] px-6 py-3.5 text-sm font-semibold text-white">ESG / Supplier Enquiries →</a>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
