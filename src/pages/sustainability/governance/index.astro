@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/global/Header.astro';
+import Footer from '../../../components/global/Footer.astro';
+import Container from '../../../components/global/Container.astro';
+import Section from '../../../components/global/Section.astro';
+import TechnicalLabel from '../../../components/global/TechnicalLabel.astro';
+import { esgGovernance } from '../../../data/esgGovernance';
+
+const groups = ['Environment', 'Social', 'Governance', 'Supply Chain', 'Customer Due Diligence'];
+const statusLabel = (status: string) => status.replace('Ownership to be confirmed', 'Ownership to be confirmed');
+---
+
+<BaseLayout
+  title="ESG Governance & Ownership | AionSi"
+  description="AionSi ESG governance and ownership framework connecting responsible functions, evidence owners, review cadence, escalation and status."
+  canonical="https://aionsi.com/sustainability/governance"
+>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-20 lg:py-24">
+      <Container>
+        <div class="max-w-4xl">
+          <TechnicalLabel>SUSTAINABILITY &amp; ESG / GOVERNANCE</TechnicalLabel>
+          <h1 class="mt-5 text-4xl font-semibold tracking-tight md:text-6xl">Clear ownership. Defined review. Documented escalation.</h1>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-white/75">
+            A governance layer connecting each ESG topic to a responsible function, evidence owner, review cadence and escalation path.
+          </p>
+          <p class="mt-5 max-w-3xl text-sm leading-7 text-white/55">
+            Functional roles shown here are framework assignments. Formal internal ownership should be confirmed by AionSi leadership before being treated as an organizational representation.
+          </p>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="grid gap-4 md:grid-cols-5">
+          {[
+            ['01', 'ESG topic'],
+            ['02', 'Responsible function'],
+            ['03', 'Evidence owner'],
+            ['04', 'Review cadence'],
+            ['05', 'Escalation']
+          ].map(([number, label]) => (
+            <div class="border border-slate-200 p-5">
+              <div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-blue)]">{number}</div>
+              <div class="mt-2 text-sm font-semibold text-[var(--aionsi-navy)]">{label}</div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-14 space-y-14">
+          {groups.map((group) => {
+            const items = esgGovernance.filter((item) => item.area === group);
+            return (
+              <section>
+                <div class="mb-6 flex items-end justify-between gap-4 border-b border-slate-200 pb-4">
+                  <div>
+                    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--aionsi-blue)]">{group}</p>
+                    <h2 class="mt-2 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)]">{group} governance</h2>
+                  </div>
+                  <span class="text-xs text-slate-500">FY2026</span>
+                </div>
+
+                <div class="overflow-x-auto border border-slate-200">
+                  <table class="min-w-[1180px] w-full border-collapse text-left">
+                    <thead>
+                      <tr class="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
+                        <th class="border-b border-slate-200 px-5 py-4">Topic</th>
+                        <th class="border-b border-slate-200 px-5 py-4">Responsible function</th>
+                        <th class="border-b border-slate-200 px-5 py-4">Evidence owner</th>
+                        <th class="border-b border-slate-200 px-5 py-4">Review cadence</th>
+                        <th class="border-b border-slate-200 px-5 py-4">Escalation</th>
+                        <th class="border-b border-slate-200 px-5 py-4">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {items.map((item) => (
+                        <tr class="align-top">
+                          <td class="border-b border-slate-200 px-5 py-5 text-sm font-semibold text-[var(--aionsi-navy)]">{item.topic}</td>
+                          <td class="border-b border-slate-200 px-5 py-5 text-sm text-slate-600">{item.responsibleFunction}</td>
+                          <td class="border-b border-slate-200 px-5 py-5 text-sm text-slate-600">{item.evidenceOwner}</td>
+                          <td class="border-b border-slate-200 px-5 py-5 text-sm leading-6 text-slate-600">{item.reviewCadence}</td>
+                          <td class="border-b border-slate-200 px-5 py-5 text-sm leading-6 text-slate-600">{item.escalation}</td>
+                          <td class="border-b border-slate-200 px-5 py-5 text-sm font-medium text-[var(--aionsi-navy)]">{statusLabel(item.status)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {items.some((item) => item.publicNote) && (
+                  <div class="mt-4 grid gap-3">
+                    {items.filter((item) => item.publicNote).map((item) => (
+                      <p class="border-l-2 border-[var(--aionsi-blue)] pl-4 text-sm leading-6 text-slate-500">{item.publicNote}</p>
+                    ))}
+                  </div>
+                )}
+              </section>
+            );
+          })}
+        </div>
+
+        <div class="mt-16 border-t border-slate-200 pt-8">
+          <p class="text-sm leading-6 text-slate-500">
+            This governance page describes an operating framework, not a claim of independent assurance, certification or a formally constituted ESG committee. Customer-specific governance and evidence requirements may require additional controls.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-5 text-sm font-semibold">
+            <a href="/sustainability/metrics" class="text-[var(--aionsi-blue)]">← ESG Metrics &amp; Evidence</a>
+            <a href="/sustainability/documents" class="text-[var(--aionsi-blue)]">ESG Document Center →</a>
+            <a href="/sustainability" class="text-[var(--aionsi-blue)]">Sustainability &amp; ESG overview →</a>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
