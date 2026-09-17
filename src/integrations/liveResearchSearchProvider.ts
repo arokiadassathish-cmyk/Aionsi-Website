@@ -43,43 +43,53 @@ export function createLiveResearchSearchProvider(
   }
   if (!apiKey) throw new Error('Live research search API key is required.');
 
-  return {
-    async search(query: ExternalResearchQuery): Promise<ExternalResearchDocument[]> {
-      const searchQuery = buildSearchQuery(query);
-      const url = new URL(endpoint);
-      url.searchParams.set(queryParam, searchQuery);
-      url.searchParams.set('limit', String(maxResults));
+  const search = async (query: ExternalResearchQuery): Promise<ExternalResearchDocument[]> => {
+    const searchQuery = buildSearchQuery(query);
+    const url = new URL(endpoint);
+    url.searchParams.set(queryParam, searchQuery);
+    url.searchParams.set('limit', String(maxResults));
 
-      const response = await fetchImpl(url.toString(), {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          authorization: `Bearer ${apiKey}`,
-        },
-      });
+    const response = await fetchImpl(url.toString(), {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        authorization: `Bearer ${apiKey}`,
+      },
+    });
 
-      if (!response.ok) {
-        throw new Error(`Live research search returned HTTP ${response.status}.`);
-      }
+    if (!response.ok) {
+      throw new Error(`Live research search returned HTTP ${response.status}.`);
+    }
 
-      const payload = (await response.json()) as LiveSearchResponse;
-      if (!Array.isArray(payload.results)) {
-        throw new Error('Live research search returned an invalid results payload.');
-      }
+    const payload = (await response.json()) as LiveSearchResponse;
+    if (!Array.isArray(payload.results)) {
+      throw new Error('Live research search returned an invalid results payload.');
+    }
 
-      return payload.results
-        .filter((result) => typeof result.url === 'string' && isHttpUrl(result.url))
-        .map((result, index) => ({
-          id: `${query.accountId}-live-${index + 1}`,
-          title: result.title?.trim() || 'External research source',
-          url: result.url!.trim(),
-          excerpt: (result.content ?? result.snippet ?? '').trim() || undefined,
-          sourceType: 'other' as const,
-          confidence: 'medium' as const,
-          observedAt: result.publishedDate ?? new Date().toISOString(),
-        }));
-    },
+    return payload.results
+      .filter((result) => typeof result.url === 'string' && isHttpUrl(result.url))
+      .map((result, index) => ({
+        id: `${query.accountId}-live-${index + 1}`,
+        title: result.title?.trim() || 'External research source',
+        url: result.url!.trim(),
+        excerpt: (result.content ?? result.snippet ?? '').trim() || undefined,
+        sourceType: 'other' as const,
+        confidence: 'medium' as const,
+        observedAt: result.publishedDate ?? new Date().toISOString(),
+      }));
   };
+
+  return { search, collect: async (query) => {
+    const documents = await search(query);
+    return documents.map((document) => ({
+      id: document.id,
+      claim: document.excerpt?.trim() || document.title.trim(),
+      sourceUrl: document.url,
+      sourceType: document.sourceType,
+      confidence: document.confidence,
+      observedAt: document.observedAt,
+    }));
+  }};
 }
 
 function buildSearchQuery(query: ExternalResearchQuery): string {
@@ -87,6 +97,7 @@ function buildSearchQuery(query: ExternalResearchQuery): string {
   if (query.domain?.trim()) parts.push(`site:${query.domain.trim()}`);
   if (query.contactNames?.length) parts.push(query.contactNames.slice(0, 3).join(' '));
   if (query.contactTitles?.length) parts.push(query.contactTitles.slice(0, 2).join(' '));
+  if (query.geography?.trim()) parts.push(query.geography.trim());
   return parts.filter(Boolean).join(' ');
 }
 
