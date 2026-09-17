@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+
+const returnTo = Astro.url.searchParams.get('returnTo') || '/sustainability/workspace';
+---
+
+<BaseLayout title="ESG Workspace Login | AionSi" description="Secure access to the AionSi ESG due-diligence workspace." canonical="https://aionsi.com/sustainability/login">
+  <Header />
+  <main>
+    <Section class="min-h-[70vh] bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-20 lg:py-24">
+      <Container>
+        <div class="mx-auto max-w-lg rounded-2xl border border-white/10 bg-white p-8 text-[var(--aionsi-navy)] shadow-xl md:p-10">
+          <TechnicalLabel>ESG &amp; DUE DILIGENCE / SECURE ACCESS</TechnicalLabel>
+          <h1 class="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">ESG Workspace</h1>
+          <p class="mt-4 text-sm leading-7 text-slate-600">Sign in to access internal questionnaire work queues, evidence mappings and response workflow information.</p>
+
+          <form id="login-form" class="mt-8 space-y-5">
+            <input type="hidden" name="returnTo" value={returnTo} />
+            <div>
+              <label for="username" class="text-sm font-semibold">Username</label>
+              <input id="username" name="username" autocomplete="username" required class="mt-2 w-full rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none focus:border-[var(--aionsi-blue)]" />
+            </div>
+            <div>
+              <label for="password" class="text-sm font-semibold">Password</label>
+              <input id="password" name="password" type="password" autocomplete="current-password" required class="mt-2 w-full rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none focus:border-[var(--aionsi-blue)]" />
+            </div>
+            <p id="login-error" class="hidden text-sm font-medium text-red-600" role="alert"></p>
+            <button type="submit" class="w-full rounded-full bg-[var(--aionsi-orange)] px-5 py-3.5 text-sm font-semibold text-white">Sign in</button>
+          </form>
+
+          <div class="mt-6 flex flex-wrap gap-4 text-sm font-semibold">
+            <a href="/sustainability" class="text-[var(--aionsi-blue)]">← Sustainability &amp; ESG</a>
+          </div>
+
+          <p class="mt-8 border-t border-slate-200 pt-6 text-xs leading-6 text-slate-500">Access credentials are deployment secrets. Do not place passwords or password hashes in the source repository.</p>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script is:inline define:vars={{ returnTo }}>
+  const form = document.querySelector('#login-form');
+  const error = document.querySelector('#login-error');
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    error?.classList.add('hidden');
+    const data = new FormData(form);
+    const response = await fetch('/api/esg-auth/login', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ username: data.get('username'), password: data.get('password') })
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      if (error) {
+        error.textContent = result.error || 'Login failed.';
+        error.classList.remove('hidden');
+      }
+      return;
+    }
+    window.location.assign(returnTo || '/sustainability/workspace');
+  });
+</script>
