@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/global/Header.astro';
+import Footer from '../../../components/global/Footer.astro';
+import Container from '../../../components/global/Container.astro';
+import Section from '../../../components/global/Section.astro';
+import TechnicalLabel from '../../../components/global/TechnicalLabel.astro';
+import { esgDueDiligence } from '../../../data/esgDueDiligence';
+import { esgQuestionnaire } from '../../../data/esgQuestionnaire';
+import { workspaceQuestionTemplate, workspaceStatusOrder } from '../../../data/esgWorkspace';
+
+const questionnaireMap = new Map(esgQuestionnaire.map((item) => [item.id, item]));
+const workspaceQuestions = workspaceQuestionTemplate.map((item) => ({
+  ...item,
+  mapping: item.mappingId ? questionnaireMap.get(item.mappingId) : undefined
+}));
+const counts = workspaceStatusOrder.map((status) => ({ status, count: workspaceQuestions.filter((item) => item.status === status).length }));
+const missingEvidence = workspaceQuestions.filter((item) => item.status === 'Needs evidence').length;
+---
+
+<BaseLayout
+  title="ESG Due-Diligence Workspace | AionSi"
+  description="AionSi internal ESG due-diligence workspace for organizing customer questionnaire questions, mappings, evidence, response drafts, owners and approval readiness."
+  canonical="https://aionsi.com/sustainability/workspace"
+>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-20 lg:py-24">
+      <Container>
+        <div class="max-w-4xl">
+          <TechnicalLabel>SUSTAINABILITY &amp; ESG / INTERNAL WORKSPACE</TechnicalLabel>
+          <h1 class="mt-5 text-4xl font-semibold tracking-tight md:text-6xl">Turn a customer questionnaire into a controlled work queue.</h1>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-white/75">
+            Start from the standardized AionSi response library, see which questions need evidence, draft responses from the mapped framework and move each item toward internal approval.
+          </p>
+          <p class="mt-5 max-w-3xl text-sm leading-7 text-white/55">This workspace is a workflow foundation. It does not submit customer responses or certify compliance automatically.</p>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-12 md:py-16 lg:py-20">
+      <Container>
+        <div class="grid gap-4 md:grid-cols-5">
+          {counts.map(({ status, count }) => (
+            <div class="border border-slate-200 p-5">
+              <div class="text-xs font-semibold uppercase tracking-[.12em] text-slate-500">{status}</div>
+              <div class="mt-2 text-3xl font-semibold text-[var(--aionsi-navy)]">{count}</div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-10 grid gap-6 lg:grid-cols-[1.3fr_.7fr]">
+          <div class="border border-slate-200 bg-white p-7">
+            <TechnicalLabel>QUESTION QUEUE</TechnicalLabel>
+            <h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">Standardized customer questions</h2>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Use the seeded question set as a starting point, then replace or extend it with the exact customer questionnaire wording.</p>
+            <div class="mt-6 space-y-3">
+              {workspaceQuestions.map((item) => (
+                <article class="border border-slate-200 p-5">
+                  <div class="flex flex-wrap items-center justify-between gap-3">
+                    <span class="font-mono text-xs font-semibold text-[var(--aionsi-blue)]">{item.id}</span>
+                    <span class="text-xs font-semibold text-slate-500">{item.status}</span>
+                  </div>
+                  <h3 class="mt-3 text-base font-semibold leading-6 text-[var(--aionsi-navy)]">{item.question}</h3>
+                  <div class="mt-4 grid gap-4 md:grid-cols-2">
+                    <div>
+                      <div class="text-xs font-semibold uppercase tracking-[.12em] text-slate-500">Framework</div>
+                      <p class="mt-1 text-sm leading-6 text-slate-600">{item.mapping?.framework ?? 'Map required'}</p>
+                    </div>
+                    <div>
+                      <div class="text-xs font-semibold uppercase tracking-[.12em] text-slate-500">Evidence</div>
+                      <p class="mt-1 text-sm leading-6 text-slate-600">{item.mapping?.evidence ?? 'Identify supporting records'}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <aside class="space-y-6">
+            <div class="border border-slate-200 bg-slate-50 p-7">
+              <TechnicalLabel>CONTROL VIEW</TechnicalLabel>
+              <h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">Evidence first</h2>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{missingEvidence} seeded questions are marked <strong>Needs evidence</strong>. Use the evidence register to locate validated source records before drafting externally shareable figures or attestations.</p>
+              <a href="/sustainability/metrics" class="mt-5 inline-flex text-sm font-semibold text-[var(--aionsi-blue)]">Open ESG Metrics &amp; Evidence →</a>
+            </div>
+
+            <div class="border border-slate-200 p-7">
+              <TechnicalLabel>RESPONSE LIBRARY</TechnicalLabel>
+              <h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">Start from mapped guidance</h2>
+              <p class="mt-3 text-sm leading-7 text-slate-600">The response library keeps policy language, evidence expectations and validation notes in one place.</p>
+              <a href="/sustainability/questionnaire" class="mt-5 inline-flex text-sm font-semibold text-[var(--aionsi-blue)]">Open Questionnaire Engine →</a>
+            </div>
+
+            <div class="border border-slate-200 p-7">
+              <TechnicalLabel>APPROVAL</TechnicalLabel>
+              <h2 class="mt-3 text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)]">Prepare a submission pack</h2>
+              <p class="mt-3 text-sm leading-7 text-slate-600">Before release, retain the source questionnaire, evidence references, approvals, submission date and refresh trigger.</p>
+              <a href="/sustainability/questionnaire-pack" class="mt-5 inline-flex text-sm font-semibold text-[var(--aionsi-blue)]">Open Submission Pack →</a>
+            </div>
+          </aside>
+        </div>
+
+        <div class="mt-10 border-l-2 border-[var(--aionsi-orange)] pl-6 text-sm leading-7 text-slate-600">
+          <strong class="text-[var(--aionsi-navy)]">Workflow boundary:</strong> this page is intentionally a review workspace rather than an automatic customer submission system. Any external response containing quantitative data, legal interpretation, contractual commitment or certification language requires appropriate internal validation.
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
