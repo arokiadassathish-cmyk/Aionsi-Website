@@ -7,10 +7,13 @@ import { createResearchAgent, type ResearchBrief, type ResearchSignal } from './
 
 export interface ExternalResearchProvider {
   collect(input: {
+    accountId: string;
     companyName: string;
     domain?: string;
     geography?: string;
     contactIds: string[];
+    contactNames?: string[];
+    contactTitles?: string[];
   }): Promise<ResearchSignal[]>;
 }
 
@@ -34,7 +37,7 @@ export interface ResearchMatchRuntimeResult {
  * Order is intentional:
  * 1. Net-new target gate
  * 2. HubSpot CRM context
- * 3. External evidence collection
+ * 3. External evidence collection using stable account identity
  * 4. Research brief composition
  * 5. Deterministic AionSi capability matching
  * 6. Output validation
@@ -65,11 +68,18 @@ export async function runResearchMatchRuntime(
     ? input.contactIds
     : context.contacts.map((contact) => contact.id);
 
+  const selectedContacts = context.contacts.filter((contact) => selectedContactIds.includes(contact.id));
+
   const externalResearch = await researchProvider.collect({
+    accountId: input.accountId,
     companyName: context.account.name,
     domain: context.account.domain,
     geography: [context.account.city, context.account.state, context.account.country].filter(Boolean).join(', ') || undefined,
     contactIds: selectedContactIds,
+    contactNames: selectedContacts
+      .map((contact) => [contact.firstName, contact.lastName].filter(Boolean).join(' ').trim())
+      .filter(Boolean),
+    contactTitles: selectedContacts.map((contact) => contact.jobTitle).filter((title): title is string => Boolean(title?.trim())),
   });
 
   const research = await createResearchAgent().run({
@@ -93,7 +103,7 @@ export async function runResearchMatchRuntime(
       confidence: signal.confidence,
     })),
     capabilities: input.capabilities ?? aionSiMatchCapabilities,
-    personaTitle: context.contacts[0]?.jobTitle,
+    personaTitle: selectedContacts[0]?.jobTitle ?? context.contacts[0]?.jobTitle,
   });
 
   const validationErrors = validateMatchOutput(match);

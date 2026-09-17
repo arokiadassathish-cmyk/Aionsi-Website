@@ -2,17 +2,20 @@ import type { ExternalResearchProvider as CanonicalResearchProvider } from './ex
 import type { ExternalResearchProvider as RuntimeResearchProvider } from '../agents/researchMatchRuntime';
 import type { ResearchSignal } from '../agents/researchAgent';
 
-/** Bridges the canonical search-based provider to the Research→Match runtime contract. */
+/** Bridges the canonical search provider to the Research→Match runtime contract. */
 export function createDailyCampaignResearchProvider(
   provider: CanonicalResearchProvider,
 ): RuntimeResearchProvider {
   return {
-    async collect({ companyName, domain, contactIds }): Promise<ResearchSignal[]> {
+    async collect({ accountId, companyName, domain, contactIds, contactNames, contactTitles, geography }): Promise<ResearchSignal[]> {
       const documents = await provider.search({
-        accountId: companyName,
+        accountId,
         companyName,
         domain,
-        contactNames: contactIds,
+        geography,
+        contactIds,
+        contactNames,
+        contactTitles,
         maxSignals: 12,
       });
 
@@ -20,8 +23,9 @@ export function createDailyCampaignResearchProvider(
         id: document.id,
         claim: document.excerpt || document.title,
         sourceUrl: document.url,
-        sourceType: document.sourceType === 'company' ? 'company-site' : 'public-web',
-        confidence: document.confidence ?? 'medium',
+        sourceType: document.sourceType,
+        confidence: document.confidence,
+        observedAt: document.observedAt,
       }));
     },
   };
