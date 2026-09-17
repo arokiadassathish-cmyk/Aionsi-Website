@@ -44,48 +44,58 @@ export function createGoogleWebSearchProvider(
   if (!userIpAddress) throw new Error('Google Web Search user IP address is required.');
   if (!isHttpUrl(endpoint)) throw new Error('Google Web Search endpoint must be a valid HTTP(S) URL.');
 
-  return {
-    async search(query: ExternalResearchQuery): Promise<ExternalResearchDocument[]> {
-      const searchExpression = buildSearchQuery(query);
-      const url = new URL(endpoint);
-      url.searchParams.set('searchQuery.query', searchExpression);
-      url.searchParams.set('clientContext.clientId', clientId);
-      url.searchParams.set('userContext.ipAddress', userIpAddress);
-      if (options.regionCode?.trim()) {
-        url.searchParams.set('userContext.regionCode', options.regionCode.trim());
-      }
-      url.searchParams.set('pageSize', String(maxResults));
+  const search = async (query: ExternalResearchQuery): Promise<ExternalResearchDocument[]> => {
+    const searchExpression = buildSearchQuery(query);
+    const url = new URL(endpoint);
+    url.searchParams.set('searchQuery.query', searchExpression);
+    url.searchParams.set('clientContext.clientId', clientId);
+    url.searchParams.set('userContext.ipAddress', userIpAddress);
+    if (options.regionCode?.trim()) {
+      url.searchParams.set('userContext.regionCode', options.regionCode.trim());
+    }
+    url.searchParams.set('pageSize', String(maxResults));
 
-      const response = await fetchImpl(url.toString(), {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          'x-goog-api-key': apiKey,
-        },
-      });
+    const response = await fetchImpl(url.toString(), {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        'x-goog-api-key': apiKey,
+      },
+    });
 
-      if (!response.ok) {
-        throw new Error(`Google Web Search returned HTTP ${response.status}.`);
-      }
+    if (!response.ok) {
+      throw new Error(`Google Web Search returned HTTP ${response.status}.`);
+    }
 
-      const payload = (await response.json()) as GoogleSearchResponse;
-      if (!Array.isArray(payload.searchResults)) {
-        throw new Error('Google Web Search returned an invalid searchResults payload.');
-      }
+    const payload = (await response.json()) as GoogleSearchResponse;
+    if (!Array.isArray(payload.searchResults)) {
+      throw new Error('Google Web Search returned an invalid searchResults payload.');
+    }
 
-      return payload.searchResults
-        .filter((result) => typeof result.displayUrl === 'string' && isHttpUrl(result.displayUrl))
-        .map((result, index) => ({
-          id: `${query.accountId}-google-${index + 1}`,
-          title: result.title?.trim() || 'Google Search result',
-          url: result.displayUrl!.trim(),
-          excerpt: result.snippet?.trim() || undefined,
-          sourceType: 'other' as const,
-          confidence: 'medium' as const,
-          observedAt: new Date().toISOString(),
-        }));
-    },
+    return payload.searchResults
+      .filter((result) => typeof result.displayUrl === 'string' && isHttpUrl(result.displayUrl))
+      .map((result, index) => ({
+        id: `${query.accountId}-google-${index + 1}`,
+        title: result.title?.trim() || 'Google Search result',
+        url: result.displayUrl!.trim(),
+        excerpt: result.snippet?.trim() || undefined,
+        sourceType: 'other' as const,
+        confidence: 'medium' as const,
+        observedAt: new Date().toISOString(),
+      }));
   };
+
+  return { search, collect: async (query) => {
+    const documents = await search(query);
+    return documents.map((document) => ({
+      id: document.id,
+      claim: document.excerpt?.trim() || document.title.trim(),
+      sourceUrl: document.url,
+      sourceType: document.sourceType,
+      confidence: document.confidence,
+      observedAt: document.observedAt,
+    }));
+  }};
 }
 
 function buildSearchQuery(query: ExternalResearchQuery): string {
@@ -93,6 +103,7 @@ function buildSearchQuery(query: ExternalResearchQuery): string {
   if (query.domain?.trim()) parts.push(`site:${query.domain.trim()}`);
   if (query.contactNames?.length) parts.push(query.contactNames.slice(0, 3).join(' '));
   if (query.contactTitles?.length) parts.push(query.contactTitles.slice(0, 2).join(' '));
+  if (query.geography?.trim()) parts.push(query.geography.trim());
   return parts.filter(Boolean).join(' ');
 }
 
