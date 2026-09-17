@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { runDailyCampaign, type DailyCampaignTarget } from '../../../../agents/dailyCampaignRuntime';
 import { createHubSpotFetchTransport, createHubSpotApiAdapter } from '../../../../integrations/hubspotRuntime';
-import { createConfiguredLiveResearchProviderFromEnv } from '../../../../integrations/liveResearchProviderConfig';
+import { resolveLiveResearchProvider } from '../../../../integrations/liveResearchProviderConfig';
 import { createDailyCampaignResearchProvider } from '../../../../integrations/dailyCampaignResearchProvider';
 import { saveDailyCampaignRun } from '../../../../data/dailyCampaignRunStore';
 
@@ -32,7 +32,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (!accessToken) throw new Error('HUBSPOT_ACCESS_TOKEN is not configured.');
 
     const hubspot = createHubSpotApiAdapter(createHubSpotFetchTransport({ accessToken }));
-    const canonicalProvider = createConfiguredLiveResearchProviderFromEnv();
+    const canonicalProvider = resolveLiveResearchProvider();
     if (!canonicalProvider) throw new Error('Live research provider is not configured.');
 
     const result = await runDailyCampaign(
