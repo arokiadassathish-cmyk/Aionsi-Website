@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/global/Header.astro';
+import Footer from '../../../components/global/Footer.astro';
+import Container from '../../../components/global/Container.astro';
+import Section from '../../../components/global/Section.astro';
+import TechnicalLabel from '../../../components/global/TechnicalLabel.astro';
+import { esgDocuments } from '../../../data/esgDocuments';
+
+export function getStaticPaths() {
+  return esgDocuments.map((document) => ({
+    params: { slug: document.slug },
+    props: { document },
+  }));
+}
+
+const { document } = Astro.props;
+---
+
+<BaseLayout
+  title={`${document.title} | AionSi`}
+  description={document.summary}
+  canonical={`https://aionsi.com/sustainability/documents/${document.slug}`}
+>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-20 lg:py-24">
+      <Container>
+        <div class="max-w-4xl">
+          <TechnicalLabel>SUSTAINABILITY &amp; ESG / {document.category.toUpperCase()}</TechnicalLabel>
+          <h1 class="mt-5 text-4xl font-semibold tracking-tight md:text-6xl">{document.title}</h1>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-white/75">{document.summary}</p>
+          <p class="mt-6 text-sm text-white/55">{document.effective}</p>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18 lg:py-20">
+      <Container>
+        <article class="mx-auto max-w-4xl">
+          <div class="space-y-12">
+            {document.sections.map((section) => (
+              <section>
+                <h2 class="text-2xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-3xl">{section.heading}</h2>
+                <p class="mt-4 text-base leading-8 text-slate-600">{section.body}</p>
+              </section>
+            ))}
+          </div>
+
+          <div class="mt-16 border-t border-slate-200 pt-8">
+            <p class="text-sm leading-6 text-slate-500">This document describes AionSi’s current responsible-business framework. It is not a representation of third-party certification or assurance unless separately stated. Requirements may be supplemented by applicable law, customer contracts and approved internal policies.</p>
+            <a href="/sustainability" class="mt-6 inline-flex items-center text-sm font-semibold text-[var(--aionsi-blue)]">← Back to Sustainability &amp; ESG</a>
+          </div>
+        </article>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
