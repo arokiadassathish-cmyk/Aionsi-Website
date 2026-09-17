@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/global/Header.astro';
+import Footer from '../../../components/global/Footer.astro';
+import Container from '../../../components/global/Container.astro';
+import Section from '../../../components/global/Section.astro';
+import TechnicalLabel from '../../../components/global/TechnicalLabel.astro';
+import { esgQuestionnairePack } from '../../../data/esgQuestionnairePack';
+---
+
+<BaseLayout title="ESG Questionnaire Submission Pack | AionSi" description="AionSi checklist for preparing, validating, approving and retaining customer ESG questionnaire responses." canonical="https://aionsi.com/sustainability/questionnaire-pack">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-20 lg:py-24">
+      <Container>
+        <div class="max-w-4xl">
+          <TechnicalLabel>SUSTAINABILITY &amp; ESG / SUBMISSION PACK</TechnicalLabel>
+          <h1 class="mt-5 text-4xl font-semibold tracking-tight md:text-6xl">A controlled workflow before any ESG answer leaves AionSi.</h1>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-white/75">Use this checklist alongside the questionnaire engine to preserve source evidence, approvals, submission history and future refresh points.</p>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18 lg:py-20">
+      <Container>
+        <div class="overflow-x-auto border border-slate-200">
+          <table class="min-w-[950px] w-full border-collapse text-left">
+            <thead>
+              <tr class="bg-slate-50 text-xs uppercase tracking-[0.12em] text-slate-500">
+                <th class="border-b border-slate-200 px-5 py-4">Field</th>
+                <th class="border-b border-slate-200 px-5 py-4">Instruction</th>
+                <th class="border-b border-slate-200 px-5 py-4">Required</th>
+              </tr>
+            </thead>
+            <tbody>
+              {esgQuestionnairePack.map((item) => (
+                <tr class="align-top">
+                  <td class="border-b border-slate-200 px-5 py-5 text-sm font-semibold text-[var(--aionsi-navy)]">{item.field}</td>
+                  <td class="border-b border-slate-200 px-5 py-5 text-sm leading-7 text-slate-600">{item.instruction}</td>
+                  <td class="border-b border-slate-200 px-5 py-5 text-sm font-semibold text-[var(--aionsi-navy)]">{item.required ? 'Yes' : 'Recommended'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-12 border-l-2 border-[var(--aionsi-orange)] pl-6 text-sm leading-7 text-slate-600">
+          <p><strong class="text-[var(--aionsi-navy)]">Control principle:</strong> policy language, evidence availability and formal approval are separate checks. A response should not be represented as a certification, audit opinion or completed metric unless the supporting basis exists.</p>
+        </div>
+
+        <div class="mt-10 flex flex-wrap gap-5 text-sm font-semibold">
+          <a href="/sustainability/questionnaire" class="text-[var(--aionsi-blue)]">← Questionnaire Engine</a>
+          <a href="/sustainability/due-diligence" class="text-[var(--aionsi-blue)]">ESG Due-Diligence Matrix →</a>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
