@@ -282,4 +282,12 @@ export const targetAccounts: TargetAccount[] = [
     discoveryPath: ['Problem definition', 'Capability mapping', 'Technical workshop', 'Pilot', 'Scale'],
     disclosure: 'This page describes capability relevance only and does not imply a HrdWyr customer relationship.',
   },
+  {
+    slug: 'micron', name: 'Micron Technology', category: 'Memory, storage and semiconductor engineering',
+    headline: 'Engineering support for memory, storage and complex silicon verification programs.',
+    description: 'AionSi can be evaluated for defined engineering work across design verification, high-speed interfaces, SoC integration, physical implementation and engineering automation.',
+    focusAreas: ['Design verification', 'Memory subsystem verification', 'PCIe/NVMe and high-speed interfaces', 'Engineering automation'],
+    discoveryPath: ['Engineering requirement', 'Capability mapping', 'Technical evidence', 'Bounded work package', 'Scale decision'],
+    disclosure: 'This page describes capability relevance only and does not imply a Micron customer relationship, approved association or active program engagement.',
+  },
 ];

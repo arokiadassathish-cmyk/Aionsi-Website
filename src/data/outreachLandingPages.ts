@@ -21,6 +21,38 @@ export interface OutreachLandingPage {
 
 export const outreachLandingPages: OutreachLandingPage[] = [
   {
+    slug: 'micron',
+    company: 'Micron Technology',
+    region: 'United States / India',
+    eyebrow: 'MICRON × AIONSI',
+    headline: 'Engineering capacity for memory, storage and complex silicon programs.',
+    heroHeadline: "Engineering support for Micron's complex silicon engineering workstreams.",
+    contextTag: 'Engineering leadership discussion',
+    intro: 'A focused collaboration model across design verification, memory subsystem verification, high-speed interfaces and engineering automation — structured around defined work packages and measurable milestones.',
+    conversationContext: 'AionSi can complement an existing semiconductor engineering organization with focused execution capacity for defined verification, interface or automation workstreams while keeping program ownership and engineering interfaces with the core team.',
+    relevance: 'The campaign research package is centered on engineering signals around RTL/IP verification, memory and storage systems, PCIe/NVMe and engineering automation. The page therefore focuses on bounded engineering work rather than assuming a specific Micron program or requirement.',
+    capabilities: [
+      { title: 'Design Verification', detail: 'SystemVerilog/UVM verification, regression, coverage closure and subsystem-level verification for defined IP or SoC work packages.' },
+      { title: 'Memory & Storage Verification', detail: 'Verification support for memory subsystems and storage-oriented silicon interfaces, with structured regression and coverage workflows.' },
+      { title: 'PCIe / NVMe & High-Speed Interfaces', detail: 'Protocol and interface verification support for high-speed connectivity and storage-related engineering workstreams.' },
+      { title: 'Engineering Automation', detail: 'Python and workflow automation for regression, analysis and engineering execution.' },
+    ],
+    pilot: {
+      title: 'Start with one defined engineering work package',
+      detail: 'Begin with a bounded verification, interface or automation scope with clear ownership, deliverables and milestone-based review before considering broader capacity.',
+      scope: ['Defined technical scope and deliverables', 'Clear engineering ownership and interfaces', 'Milestone-based delivery and review', 'Evidence-based decision to continue or scale'],
+    },
+    engagementModel: ['Project Engineering', 'Extended Engineering', 'Dedicated Team', 'ODC / Long-term Engineering Capacity'],
+    evidence: [
+      { title: 'Multi-Subsystem SoC Verification', href: '/insights/end-to-end-verification-of-multi-subsystem-iot-socs', detail: 'Representative verification approach across interconnected SoC subsystems and integration boundaries.' },
+      { title: 'PCIe Data Link Layer Verification', href: '/insights/pcie-5-data-link-layer-verification', detail: 'Representative verification methodology for high-speed PCIe interface work.' },
+      { title: 'Reusable UVM Verification Architecture', href: '/insights/reusable-uvm-verification-architecture', detail: 'Reusable SystemVerilog/UVM architecture for scalable verification environments.' },
+    ],
+    meetingLabel: 'DISCUSS THE ENGINEERING REQUIREMENT',
+    meetingDetail: 'We can use a 30-minute engineering discussion to understand the relevant workstream and determine whether a bounded engineering package makes sense.',
+    disclosure: 'This page is intended to provide context for an engineering discussion. It does not imply a Micron customer relationship, approved association or active program engagement.',
+  },
+  {
     slug: 'axiado',
     company: 'Axiado',
     region: 'United States / India',
