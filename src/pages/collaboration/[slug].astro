@@ -24,16 +24,41 @@ const { page } = Astro.props;
   <main>
     <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-16 lg:py-20">
       <Container>
-        <div class="max-w-5xl">
+        <div class="max-w-6xl">
           <TechnicalLabel>{page.eyebrow}</TechnicalLabel>
           <div class="mt-4 text-sm font-semibold uppercase tracking-[.16em] text-slate-400">Engineering collaboration brief</div>
-          <h1 class="mt-4 max-w-4xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">{page.headline}</h1>
-          <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">{page.intro}</p>
+          <h1 class="mt-4 max-w-5xl text-5xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-7xl">{page.heroHeadline ?? page.headline}</h1>
+          <p class="mt-6 max-w-4xl text-xl leading-9 text-slate-600">{page.intro}</p>
+          <div class="mt-8 inline-flex flex-wrap items-center gap-2 border border-slate-200 bg-white px-4 py-3 text-xs font-semibold uppercase tracking-[.14em] text-slate-500">
+            <span>{page.region}</span>
+            <span class="text-slate-300">•</span>
+            <span>{page.contextTag ?? 'Engineering leadership discussion'}</span>
+          </div>
+          {page.availability ? (
+            <div class="mt-4 max-w-4xl border-l-2 border-[var(--aionsi-orange)] bg-white/70 px-5 py-4">
+              <div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-orange)]">{page.availability.label}</div>
+              <p class="mt-2 text-base leading-7 text-slate-600">{page.availability.detail}</p>
+            </div>
+          ) : null}
         </div>
       </Container>
     </Section>
 
     <Section>
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.72fr_1.28fr]">
+          <div>
+            <TechnicalLabel>WHY THIS CONVERSATION</TechnicalLabel>
+            <h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Extend engineering capacity without changing core ownership.</h2>
+          </div>
+          <div>
+            <p class="text-lg leading-8 text-slate-600">{page.conversationContext ?? page.relevance}</p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)]">
       <Container class="grid gap-10 lg:grid-cols-[.72fr_1.28fr]">
         <div>
           <TechnicalLabel>WHERE AIONSI MAY FIT</TechnicalLabel>
@@ -102,7 +127,7 @@ const { page } = Astro.props;
             <a href={item.href} class="border border-slate-200 bg-white p-7 transition hover:-translate-y-1 hover:border-[var(--aionsi-blue)]">
               <h3 class="text-xl font-semibold text-[var(--aionsi-navy)]">{item.title}</h3>
               <p class="mt-3 text-sm leading-7 text-slate-600">{item.detail}</p>
-              <span class="mt-6 inline-flex text-sm font-semibold text-[var(--aionsi-blue)]">Review →</span>
+              <span class="mt-6 inline-flex text-sm font-semibold text-[var(--aionsi-blue)]">{item.cta ?? 'View technical brief →'}</span>
             </a>
           ))}
         </div>

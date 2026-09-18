@@ -4,6 +4,8 @@ export interface OutreachLandingPage {
   region: string;
   eyebrow: string;
   headline: string;
+  heroHeadline?: string;
+  contextTag?: string;
   intro: string;
   relevance: string;
   capabilities: Array<{ title: string; detail: string }>;
@@ -12,7 +14,10 @@ export interface OutreachLandingPage {
   evidence: Array<{ title: string; href: string; detail: string }>;
   meetingLabel: string;
   meetingDetail: string;
+  meetingDetail: string;
   disclosure: string;
+  conversationContext?: string;
+  availability?: { label: string; detail: string };
 }
 
 export const outreachLandingPages: OutreachLandingPage[] = [
@@ -50,11 +55,18 @@ export const outreachLandingPages: OutreachLandingPage[] = [
     region: 'Malaysia',
     eyebrow: 'OPPSTAR × AIONSI',
     headline: 'Engineering capacity for complex semiconductor programs.',
-    intro: 'A focused collaboration model designed to complement an existing semiconductor engineering organization with additional execution capacity, specialist expertise and defined work-package ownership.',
+    heroHeadline: "Engineering capacity for Oppstar's next semiconductor program.",
+    contextTag: 'Engineering leadership discussion',
+    intro: 'A focused collaboration model across RTL & SoC, design verification, physical design, DFT and engineering automation — structured around defined work packages and measurable milestones.',
+    conversationContext: "Semiconductor programs often need additional execution capacity without changing core program ownership. AionSi's model is built around defined work packages, engineering ownership and milestone-based delivery, allowing an existing team to extend execution capacity while keeping its core structure.",
+    availability: {
+      label: 'IN MALAYSIA · 20 SEP – 5 OCT 2026',
+      detail: 'AionSi management will be available for engineering discussions during this period.'
+    },
     relevance: 'The potential fit is complementary rather than duplicative: AionSi can support defined RTL and SoC, design verification, physical design, DFT, system and embedded engineering, and engineering automation workstreams where additional capacity or technical ownership is useful.',
     capabilities: [
       { title: 'RTL & SoC Engineering', detail: 'Front-end RTL and SoC engineering support for defined blocks, subsystems or parallel execution workstreams.' },
-      { title: 'Design Verification', detail: 'SystemVerilog/UVM verification, regression, coverage closure and subsystem-level verification support.' },
+      { title: 'Design Verification', detail: 'SystemVerilog/UVM environments, regression automation, coverage closure and subsystem-level verification for defined IP or SoC work packages.' },
       { title: 'Physical Design & DFT', detail: 'Focused physical design and DFT engineering capacity for defined implementation, sign-off or test work packages.' },
       { title: 'Engineering Automation', detail: 'Python and workflow automation to improve regression, analysis and engineering execution across programs.' },
     ],
@@ -71,7 +83,7 @@ export const outreachLandingPages: OutreachLandingPage[] = [
       { title: 'Formal Verification', href: '/insights/formal-verification-with-cadence-jaspergold', detail: 'Formal verification methodology for targeted design properties and sign-off support.' },
     ],
     meetingLabel: 'DISCUSS THE ENGINEERING REQUIREMENT',
-    meetingDetail: 'AionSi management will be in Malaysia from 20 September to 5 October 2026. We can use a 30-minute engineering discussion at your office to understand where additional capacity or technical ownership could support the next semiconductor program.',
+    meetingDetail: 'We can use a 30-minute engineering discussion to understand where additional capacity or technical ownership could support the next semiconductor program. In person in Malaysia or virtually — whichever is convenient.',
     disclosure: 'This page is intended to provide context for an engineering discussion. It does not imply an Oppstar customer relationship, approved association or active program engagement.',
   },
 ];
