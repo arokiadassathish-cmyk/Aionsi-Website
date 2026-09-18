@@ -28,7 +28,9 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     httpOnly: true,
     secure: import.meta.env.PROD,
     sameSite: 'strict',
-    path: '/admin/campaigns',
+    // The session is used by both /admin/campaigns and its /api endpoints.
+    // /admin/campaigns would not match /api/admin/campaigns/run.
+    path: '/',
     maxAge: 60 * 60 * 12,
   });
 
