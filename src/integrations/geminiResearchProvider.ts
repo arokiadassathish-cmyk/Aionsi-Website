@@ -190,7 +190,7 @@ function buildResearchPrompt(query: ExternalResearchQuery): string {
     'Do not infer an undisclosed project, customer relationship, purchase intent, or active requirement.',
     'Do not invent facts. Only make claims that are directly supported by the grounded web sources.',
     'Return concise factual statements; the application will attach source citations from Gemini grounding metadata.',
-  ].filter(Boolean).join('\\n');
+  ].filter(Boolean).join('\n');
 }
 
 function classifySource(url: string, domain?: string): ExternalResearchDocument['sourceType'] {
