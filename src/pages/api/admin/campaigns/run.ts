@@ -45,6 +45,16 @@ export const POST: APIRoute = async ({ request }) => {
     await saveDailyCampaignRun(result);
     return new Response(JSON.stringify(result), { status: 200, headers: { 'content-type': 'application/json' } });
   } catch (error) {
-    return new Response(JSON.stringify({ error: error instanceof Error ? error.message : 'Daily campaign run failed.' }), { status: 500, headers: { 'content-type': 'application/json' } });
+    const message = error instanceof Error ? error.message : 'Daily campaign run failed.';
+    const configurationError =
+      message.includes('not configured') ||
+      message.includes('No AionSi target accounts') ||
+      message.includes('must contain valid JSON') ||
+      message.includes('must be a JSON array') ||
+      message.includes('missing a HubSpot accountId');
+    return new Response(JSON.stringify({ error: message }), {
+      status: configurationError ? 503 : 500,
+      headers: { 'content-type': 'application/json' },
+    });
   }
 };
