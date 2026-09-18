@@ -8,12 +8,7 @@ if (!isCampaignSessionValid(Astro.cookies.get(CAMPAIGN_SESSION_COOKIE)?.value)) 
 const latestRun = await loadLatestDailyCampaignRun();
 const collaborationSlugs = new Set(outreachLandingPages.map((page) => page.slug));
 
-const fallbackQueue = [
-  { id: 'axiado-prabhat', company: 'Axiado', person: 'Prabhat Arora', title: 'Senior Director of Engineering', stage: 'Approval required', confidence: 'High', capability: 'SoC Design Verification', signal: 'Secure AI infrastructure / SoC engineering signal', landingSlug: 'axiado', blockers: [] },
-  { id: 'oppstar-dv', company: 'Oppstar', person: 'Engineering decision-maker', title: 'Verification / SoC Engineering', stage: 'Research ready', confidence: 'Medium', capability: 'Verification Engineering', signal: 'ASIC / SoC engineering delivery opportunity', landingSlug: 'oppstar', blockers: [] },
-  { id: 'infinecs-pd', company: 'Infinecs', person: 'Engineering decision-maker', title: 'Design / Verification Leadership', stage: 'Researching', confidence: 'Medium', capability: 'Physical Design & DFT', signal: 'Semiconductor engineering requirement requires evidence', landingSlug: 'infinecs', blockers: [] },
-];
-
+const fallbackQueue: typeof latestRun extends null ? never[] : never[] = [];
 const summary = latestRun?.summary ?? { targets: 0, eligible: 0, blocked: 0, readyForApproval: 0, executed: 0 };
 const queue = latestRun?.items.length
   ? latestRun.items.map((item) => ({
@@ -28,7 +23,7 @@ const queue = latestRun?.items.length
       landingSlug: item.slug,
       blockers: item.blockers,
     }))
-  : fallbackQueue;
+  : [];
 
 const metrics = [
   { label: 'Accounts in run', value: String(summary.targets), detail: latestRun ? `Last run · ${latestRun.mode.replace('_', ' ')}` : 'Awaiting first run' },
@@ -97,6 +92,17 @@ const runDate = latestRun ? new Date(latestRun.completedAt).toLocaleString('en-I
           </div>
 
           <div class="queue" id="queue">
+            {!latestRun ? (
+              <div class="empty-state">
+                <strong>No run recorded yet.</strong>
+                <p>Run the research agent to populate the approval queue. No campaign package is shown before an actual run.</p>
+              </div>
+            ) : queue.length === 0 ? (
+              <div class="empty-state">
+                <strong>No approval items in the latest run.</strong>
+                <p>Review the Research filter or resolve any blocked targets before approval.</p>
+              </div>
+            ) : null}
             {queue.map((item) => (
               <article class="queue-card" data-stage={item.stage} data-id={item.id}>
                 <div class="company-mark">{item.company.slice(0, 1)}</div>
@@ -307,6 +313,10 @@ const runDate = latestRun ? new Date(latestRun.completedAt).toLocaleString('en-I
       .current-dot { background: #e5ca81; }
       .events b { font-size: 11px; }
       .events p { font-size: 11px; margin-top: 2px; }
+      .empty-state { border: 1px dashed #263846; border-radius: 10px; padding: 22px; background: #09151f; }
+      .empty-state strong { display: block; font-size: 13px; color: #c9d5df; margin-bottom: 5px; }
+      .empty-state p { font-size: 11px; }
+      .activity-empty { margin: 0; }
       footer { color: #465665; text-align: center; font-size: 10px; padding-top: 24px; }
       footer a { color: #6ee7d2; text-decoration: none; }
       @media (max-width: 980px) { .workspace { grid-template-columns: 1fr; } .metrics { grid-template-columns: 1fr 1fr; } .topbar { flex-direction: column; } }
