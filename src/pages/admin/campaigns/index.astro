@@ -1,4 +1,8 @@
 ---
+import { outreachLandingPages } from '../../../data/outreachLandingPages';
+
+const collaborationSlugs = new Set(outreachLandingPages.map((page) => page.slug));
+
 const metrics = [
   { label: 'Accounts in run', value: '12', detail: '3 awaiting review' },
   { label: 'Research ready', value: '9', detail: '75% of target set' },
@@ -16,7 +20,7 @@ const queue = [
     confidence: 'High',
     capability: 'SoC Design Verification',
     signal: 'Secure AI infrastructure / SoC engineering signal',
-    landing: '/collaboration/axiado',
+    landingSlug: 'axiado',
   },
   {
     id: 'oppstar-dv',
@@ -27,7 +31,7 @@ const queue = [
     confidence: 'Medium',
     capability: 'Verification Engineering',
     signal: 'ASIC / SoC engineering delivery opportunity',
-    landing: '/collaboration/oppstar',
+    landingSlug: 'oppstar',
   },
   {
     id: 'infinecs-pd',
@@ -38,7 +42,7 @@ const queue = [
     confidence: 'Medium',
     capability: 'Physical Design & DFT',
     signal: 'Semiconductor engineering requirement requires evidence',
-    landing: '/collaboration/infinecs',
+    landingSlug: 'infinecs',
   },
 ];
 ---
@@ -115,7 +119,11 @@ const queue = [
                     <span>{item.signal}</span>
                   </div>
                   <div class="card-actions">
-                    <a href={item.landing} target="_blank" rel="noreferrer">Landing page ↗</a>
+                    {collaborationSlugs.has(item.landingSlug) ? (
+                      <a href={`/collaboration/${item.landingSlug}`} target="_blank" rel="noreferrer">Landing page ↗</a>
+                    ) : (
+                      <span class="landing-pending">Landing page pending</span>
+                    )}
                     <button class="secondary" data-action="review">Review package</button>
                     {item.stage === 'Approval required' && <button class="approve" data-action="approve">Approve for execution</button>}
                   </div>
