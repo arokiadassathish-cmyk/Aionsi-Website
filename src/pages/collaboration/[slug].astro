@@ -21,6 +21,18 @@ const { page } = Astro.props;
   description={`${page.headline} A focused AionSi engineering collaboration path for ${page.company}.`}
   robots="noindex,nofollow,noarchive"
 >
+    <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
+      <Container class="flex h-16 items-center justify-between">
+        <a href="/" class="inline-flex items-center gap-3" aria-label="AionSi home">
+          <span class="text-lg font-semibold tracking-[-0.03em] text-[var(--aionsi-navy)]">AionSi</span>
+          <span class="hidden text-[10px] font-semibold uppercase tracking-[.16em] text-slate-400 sm:inline">Semiconductor Engineering</span>
+        </a>
+        <nav class="flex items-center gap-3" aria-label="Collaboration page navigation">
+          <a href="/capabilities" class="hidden rounded-full px-4 py-2 text-sm font-semibold text-[var(--aionsi-navy)] transition hover:bg-slate-100 sm:inline-flex">Capabilities</a>
+          <a href="/contact" class="inline-flex rounded-full bg-[var(--aionsi-orange)] px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90">Contact →</a>
+        </nav>
+      </Container>
+    </header>
   <main>
     <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-16 lg:py-20">
       <Container>
