@@ -213,7 +213,10 @@ const runDate = latestRun ? new Date(latestRun.completedAt).toLocaleString('en-I
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({}),
           });
-          if (!response.ok) throw new Error(`Dry run failed (HTTP ${response.status})`);
+          if (!response.ok) {
+            const data = await response.json().catch(() => null);
+            throw new Error(data?.error ? `Dry run failed: ${data.error}` : `Dry run failed (HTTP ${response.status})`);
+          }
           window.location.reload();
         } catch (error) {
           runButton.removeAttribute('disabled');
