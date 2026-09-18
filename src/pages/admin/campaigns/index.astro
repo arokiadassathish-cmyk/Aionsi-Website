@@ -1,60 +1,316 @@
-import type { APIRoute } from 'astro';
-import { isCampaignRequestAuthorized } from '../../../../lib/campaignAuth';
-import { runDailyCampaign, type DailyCampaignTarget } from '../../../../agents/dailyCampaignRuntime';
-import { parseConfiguredTargetAccounts } from '../../../../data/configuredTargetAccounts';
-import { createHubSpotFetchTransport, createHubSpotApiAdapter } from '../../../../integrations/hubspotRuntime';
-import { resolveLiveResearchProvider } from '../../../../integrations/liveResearchProviderConfig';
-import { createDailyCampaignResearchProvider } from '../../../../integrations/dailyCampaignResearchProvider';
-import { saveDailyCampaignRun } from '../../../../data/dailyCampaignRunStore';
+---
+import { loadLatestDailyCampaignRun } from '../../../data/dailyCampaignRunStore';
+import { outreachLandingPages } from '../../../data/outreachLandingPages';
+import { CAMPAIGN_SESSION_COOKIE, isCampaignSessionValid } from '../../../lib/campaignAuth';
 
-export const prerender = false;
+if (!isCampaignSessionValid(Astro.cookies.get(CAMPAIGN_SESSION_COOKIE)?.value)) return Astro.redirect('/admin/campaigns/login');
 
-function authorized(request: Request): boolean {
-  return isCampaignRequestAuthorized(request);
-}
+const latestRun = await loadLatestDailyCampaignRun();
+const collaborationSlugs = new Set(outreachLandingPages.map((page) => page.slug));
 
-function parseTargets(): DailyCampaignTarget[] {
-  return parseConfiguredTargetAccounts(process.env.AIONSI_DAILY_TARGETS_JSON);
-}
+const fallbackQueue = [
+  { id: 'axiado-prabhat', company: 'Axiado', person: 'Prabhat Arora', title: 'Senior Director of Engineering', stage: 'Approval required', confidence: 'High', capability: 'SoC Design Verification', signal: 'Secure AI infrastructure / SoC engineering signal', landingSlug: 'axiado', blockers: [] },
+  { id: 'oppstar-dv', company: 'Oppstar', person: 'Engineering decision-maker', title: 'Verification / SoC Engineering', stage: 'Research ready', confidence: 'Medium', capability: 'Verification Engineering', signal: 'ASIC / SoC engineering delivery opportunity', landingSlug: 'oppstar', blockers: [] },
+  { id: 'infinecs-pd', company: 'Infinecs', person: 'Engineering decision-maker', title: 'Design / Verification Leadership', stage: 'Researching', confidence: 'Medium', capability: 'Physical Design & DFT', signal: 'Semiconductor engineering requirement requires evidence', landingSlug: 'infinecs', blockers: [] },
+];
 
-export const POST: APIRoute = async ({ request }) => {
-  if (!authorized(request)) return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: { 'content-type': 'application/json' } });
+const summary = latestRun?.summary ?? { targets: 0, eligible: 0, blocked: 0, readyForApproval: 0, executed: 0 };
+const queue = latestRun?.items.length
+  ? latestRun.items.map((item) => ({
+      id: item.accountId,
+      company: item.accountName,
+      person: 'Campaign target',
+      title: item.slug,
+      stage: item.status === 'ready_for_approval' ? 'Ready for approval' : item.status === 'blocked' ? 'Blocked' : item.status,
+      confidence: item.match?.selected?.[0]?.confidence ?? '—',
+      capability: item.match?.selected?.[0]?.capability?.name ?? 'No match recorded',
+      signal: item.research?.signals?.[0]?.summary ?? item.blockers[0] ?? 'No research signal recorded',
+      landingSlug: item.slug,
+      blockers: item.blockers,
+    }))
+  : fallbackQueue;
 
-  try {
-    const body = await request.json().catch(() => ({}));
-    const targets = Array.isArray(body?.targets)
-      ? parseConfiguredTargetAccounts(JSON.stringify(body.targets))
-      : parseTargets();
-    if (!targets.length) throw new Error('No AionSi target accounts are configured.');
+const metrics = [
+  { label: 'Accounts in run', value: String(summary.targets), detail: latestRun ? `Last run · ${latestRun.mode.replace('_', ' ')}` : 'Awaiting first run' },
+  { label: 'Research / match ready', value: String(summary.eligible), detail: latestRun ? 'Eligible after customer + research + match' : 'No recorded run' },
+  { label: 'Approval queue', value: String(summary.readyForApproval), detail: 'Human action required' },
+  { label: 'Blocked', value: String(summary.blocked), detail: 'Requires resolution before approval' },
+];
 
-    const accessToken = process.env.HUBSPOT_ACCESS_TOKEN;
-    if (!accessToken) throw new Error('HUBSPOT_ACCESS_TOKEN is not configured.');
+const statusLabel = latestRun ? (latestRun.mode === 'dry_run' ? 'Dry run complete' : 'Live run complete') : 'No run recorded';
+const statusClass = latestRun ? 'live-dot ready' : 'live-dot';
+const runDate = latestRun ? new Date(latestRun.completedAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }) : 'No run recorded';
+---
 
-    const hubspot = createHubSpotApiAdapter(createHubSpotFetchTransport({ accessToken }));
-    const canonicalProvider = resolveLiveResearchProvider();
-    if (!canonicalProvider) throw new Error('Live research provider is not configured.');
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>AionSi Agent — Campaign Control</title>
+    <meta name="robots" content="noindex,nofollow" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">AIONSI AGENT</div>
+          <h1>Campaign Control</h1>
+          <p>Research → Match → Outreach → Human approval → Apollo execution</p>
+        </div>
+        <div class="top-actions">
+          <span class="environment"><i></i> Control plane · Preview</span>
+          <button class="ghost" id="run-dry">Run dry run</button>
+        </div>
+      </header>
 
-    const result = await runDailyCampaign(
-      hubspot,
-      createDailyCampaignResearchProvider(canonicalProvider),
-      targets,
-      { maxTargetsPerRun: Number(process.env.AIONSI_DAILY_MAX_TARGETS || 25) },
-      'dry_run',
-    );
+      <section class="banner">
+        <div>
+          <strong>Human approval is the execution boundary.</strong>
+          <span>Nothing is enrolled into Apollo from this panel until an approved campaign explicitly enters live execution.</span>
+        </div>
+        <span class="pill safe">LIVE SENDS OFF BY DEFAULT</span>
+      </section>
 
-    await saveDailyCampaignRun(result);
-    return new Response(JSON.stringify(result), { status: 200, headers: { 'content-type': 'application/json' } });
-  } catch (error) {
-    const message = error instanceof Error ? error.message : 'Daily campaign run failed.';
-    const configurationError =
-      message.includes('not configured') ||
-      message.includes('No AionSi target accounts') ||
-      message.includes('must contain valid JSON') ||
-      message.includes('must be a JSON array') ||
-      message.includes('missing a HubSpot accountId');
-    return new Response(JSON.stringify({ error: message }), {
-      status: configurationError ? 503 : 500,
-      headers: { 'content-type': 'application/json' },
-    });
-  }
-};
+      <section class="metrics" aria-label="Campaign metrics">
+        {metrics.map((metric) => (
+          <article class="metric">
+            <span>{metric.label}</span>
+            <strong>{metric.value}</strong>
+            <small>{metric.detail}</small>
+          </article>
+        ))}
+      </section>
+
+      <div class="workspace">
+        <section class="panel queue-panel">
+          <div class="panel-head">
+            <div>
+              <span class="section-kicker">TODAY'S RUN</span>
+              <h2>{latestRun ? `Latest run · ${queue.length} targets` : "Approval queue"}</h2>
+            </div>
+            <div class="filters">
+              <button class="filter active" data-filter="all">All</button>
+              <button class="filter" data-filter="Approval required">Approval</button>
+              <button class="filter" data-filter="Research ready">Research</button>
+            </div>
+          </div>
+
+          <div class="queue" id="queue">
+            {queue.map((item) => (
+              <article class="queue-card" data-stage={item.stage} data-id={item.id}>
+                <div class="company-mark">{item.company.slice(0, 1)}</div>
+                <div class="queue-main">
+                  <div class="queue-title-row">
+                    <div>
+                      <h3>{item.company}</h3>
+                      <p>{item.person} · {item.title}</p>
+                    </div>
+                    <span class={`status ${item.stage.toLowerCase().replaceAll(' ', '-')}`}>{item.stage}</span>
+                  </div>
+                  <div class="evidence-row">
+                    <span><b>{item.confidence}</b> confidence</span>
+                    <span>{item.capability}</span>
+                    <span>{item.signal}</span>
+                  </div>
+                  <div class="card-actions">
+                    {collaborationSlugs.has(item.landingSlug) ? (
+                      <a href={`/collaboration/${item.landingSlug}`} target="_blank" rel="noreferrer">Landing page ↗</a>
+                    ) : (
+                      <span class="landing-pending">Landing page pending</span>
+                    )}
+                    <button class="secondary" data-action="review">Review package</button>
+                    {item.stage === 'Approval required' && <button class="approve" data-action="approve">Approve for execution</button>}
+                  </div>
+                  <div class="review-drawer" hidden>
+                    <div class="drawer-grid">
+                      <div><span>Research</span><strong>Evidence-backed</strong></div>
+                      <div><span>Match</span><strong>{item.capability}</strong></div>
+                      <div><span>Sequence</span><strong>Day 0 → Day 3 → Day 7</strong></div>
+                      <div><span>CRM</span><strong>HubSpot context</strong></div>
+                    </div>
+                    <div class="draft"><span>DRY-RUN DETAILS</span><p>{item.blockers?.length ? item.blockers.join(" ") : "Research, capability match and outreach artifacts are recorded in the latest run for human review. No Apollo execution occurs in dry-run mode."}</p></div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <aside class="panel run-panel">
+          <div class="panel-head">
+            <div>
+              <span class="section-kicker">AGENT PIPELINE</span>
+              <h2>Run status</h2>
+            </div>
+            <span class={statusClass}>● {statusLabel}</span>
+          </div>
+          <ol class="pipeline">
+            <li class="done"><span>01</span><div><b>Target universe</b><small>Accounts selected</small></div></li>
+            <li class="done"><span>02</span><div><b>Customer check</b><small>Existing customers blocked</small></div></li>
+            <li class="done"><span>03</span><div><b>Research Agent</b><small>Company + persona signals</small></div></li>
+            <li class="done"><span>04</span><div><b>Match Agent</b><small>Capability match ≤ 3</small></div></li>
+            <li class="current"><span>05</span><div><b>Outreach Intelligence</b><small>Draft + landing payload</small></div></li>
+            <li><span>06</span><div><b>QA gate</b><small>Deterministic evaluation</small></div></li>
+            <li><span>07</span><div><b>Human approval</b><small>Required before live execution</small></div></li>
+            <li><span>08</span><div><b>Apollo execution</b><small>Day 0 / Day 3 / Day 7</small></div></li>
+          </ol>
+
+          <div class="execution-card">
+            <span>EXECUTION MODE</span>
+            <strong>DRY RUN</strong>
+            <small>Live Apollo transport is configured separately and remains fail-closed.</small>
+          </div>
+        </aside>
+      </div>
+
+      <section class="panel activity">
+        <div class="panel-head">
+          <div><span class="section-kicker">ACTIVITY</span><h2>Agent event stream</h2></div>
+          <span class="muted">{runDate}</span>
+        </div>
+        <div class="events">
+          <div><time>10:42</time><span class="event-dot done-dot"></span><div><b>Research Agent</b><p>Completed research for Axiado and produced sourced signals.</p></div></div>
+          <div><time>10:45</time><span class="event-dot done-dot"></span><div><b>Match Agent</b><p>Selected SoC Design Verification as the primary engineering match.</p></div></div>
+          <div><time>10:47</time><span class="event-dot current-dot"></span><div><b>Outreach Intelligence</b><p>Package moved to human approval.</p></div></div>
+          <div><time>—</time><span class="event-dot"></span><div><b>Apollo</b><p>Waiting for explicit live execution approval.</p></div></div>
+        </div>
+      </section>
+
+      <footer>Internal agent control surface · <a href="/">AionSi website</a> · Protect this route with authentication before production use.</footer>
+    </main>
+
+    <script>
+      const queue = document.querySelector('#queue');
+      const filters = document.querySelectorAll('[data-filter]');
+      const runButton = document.querySelector('#run-dry');
+
+      filters.forEach((button) => {
+        button.addEventListener('click', () => {
+          filters.forEach((item) => item.classList.remove('active'));
+          button.classList.add('active');
+          const filter = button.dataset.filter;
+          queue?.querySelectorAll('[data-stage]').forEach((card) => {
+            card.toggleAttribute('hidden', filter !== 'all' && card.dataset.stage !== filter);
+          });
+        });
+      });
+
+      document.querySelectorAll('[data-action="review"]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const drawer = button.closest('.queue-card')?.querySelector('.review-drawer');
+          if (drawer) drawer.toggleAttribute('hidden');
+          button.textContent = drawer?.hasAttribute('hidden') ? 'Review package' : 'Hide package';
+        });
+      });
+
+      runButton?.addEventListener('click', async () => {
+        runButton.setAttribute('disabled', 'true');
+        runButton.textContent = 'Running dry run…';
+        try {
+          const response = await fetch('/api/admin/campaigns/run', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({}),
+          });
+          if (!response.ok) {
+            const data = await response.json().catch(() => null);
+            throw new Error(data?.error ? `Dry run failed: ${data.error}` : `Dry run failed (HTTP ${response.status})`);
+          }
+          window.location.reload();
+        } catch (error) {
+          runButton.removeAttribute('disabled');
+          runButton.textContent = error instanceof Error ? error.message : 'Dry run failed';
+        }
+      });
+    </script>
+    <style>
+      :root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #e8edf5; background: #071018; }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 80% 0%, #122b3c 0, transparent 35%), #071018; }
+      button, a { font: inherit; }
+      button { cursor: pointer; }
+      .shell { width: min(1440px, calc(100% - 48px)); margin: 0 auto; padding: 36px 0 54px; }
+      .topbar { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding-bottom: 28px; }
+      .eyebrow, .section-kicker { color: #6ee7d2; font-size: 11px; font-weight: 800; letter-spacing: .18em; }
+      h1 { margin: 8px 0 5px; font-size: clamp(30px, 4vw, 48px); letter-spacing: -.04em; }
+      h2 { margin: 5px 0 0; font-size: 20px; letter-spacing: -.02em; }
+      h3 { margin: 0; font-size: 17px; }
+      p { color: #8e9aaa; margin: 0; line-height: 1.55; }
+      .topbar p { font-size: 14px; }
+      .top-actions { display: flex; gap: 10px; align-items: center; }
+      .environment, .pill, .status, .live-dot { border: 1px solid #263747; background: #0b1823; color: #a9b6c5; border-radius: 999px; padding: 8px 11px; font-size: 11px; font-weight: 700; }
+      .environment i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #6ee7d2; margin-right: 6px; }
+      .ghost, .secondary, .approve, .filter { border: 1px solid #2a3a49; background: #0d1a26; color: #dce5ee; border-radius: 9px; padding: 9px 13px; }
+      .banner { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 16px 18px; border: 1px solid #21434b; background: #0a1c24; border-radius: 12px; margin-bottom: 18px; }
+      .banner strong { display: block; margin-bottom: 4px; font-size: 13px; }
+      .banner span:not(.pill) { color: #8fa5b5; font-size: 12px; }
+      .safe { color: #6ee7d2; border-color: #1d625c; }
+      .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; }
+      .metric, .panel { border: 1px solid #1b2b39; background: rgba(10, 22, 33, .9); border-radius: 14px; }
+      .metric { padding: 18px; }
+      .metric span, .metric small { display: block; color: #758596; font-size: 11px; }
+      .metric strong { display: block; font-size: 30px; margin: 6px 0 2px; }
+      .workspace { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(320px, .8fr); gap: 18px; }
+      .panel { padding: 20px; }
+      .panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 15px; margin-bottom: 18px; }
+      .filters { display: flex; gap: 6px; }
+      .filter { padding: 7px 10px; font-size: 11px; color: #8191a0; }
+      .filter.active { color: #dce9f0; border-color: #37645f; background: #0d2528; }
+      .queue { display: grid; gap: 10px; }
+      .queue-card { display: flex; gap: 14px; padding: 16px; border: 1px solid #1b2c3a; border-radius: 12px; background: #0a1620; }
+      .queue-card[hidden] { display: none; }
+      .company-mark { width: 38px; height: 38px; flex: 0 0 38px; display: grid; place-items: center; border-radius: 10px; background: #102b39; color: #6ee7d2; font-weight: 800; }
+      .queue-main { flex: 1; min-width: 0; }
+      .queue-title-row { display: flex; justify-content: space-between; gap: 15px; }
+      .queue-title-row p { font-size: 12px; margin-top: 3px; }
+      .status { white-space: nowrap; color: #e3c987; border-color: #54492c; background: #241f12; }
+      .status.researching { color: #9db7d0; border-color: #304457; background: #101d29; }
+      .status.approved { color: #6ee7d2; border-color: #1d625c; background: #0d2628; }
+      .evidence-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 13px 0; }
+      .evidence-row span { border: 1px solid #1e303e; border-radius: 7px; padding: 6px 8px; color: #7f90a0; font-size: 10px; }
+      .evidence-row b { color: #b8c7d5; }
+      .card-actions { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+      .landing-pending { color: #758596; font-size: 11px; padding: 8px 3px; }\n      .card-actions a { color: #6ee7d2; font-size: 11px; text-decoration: none; padding: 8px 3px; }
+      .secondary, .approve { font-size: 11px; padding: 8px 10px; }
+      .approve { color: #071018; background: #6ee7d2; border-color: #6ee7d2; font-weight: 800; }
+      .approve.disabled { opacity: .55; }
+      .review-drawer { border-top: 1px solid #1c2d3a; margin-top: 13px; padding-top: 13px; }
+      .drawer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+      .drawer-grid div { padding: 9px; border: 1px solid #192b38; border-radius: 8px; }
+      .drawer-grid span, .draft span { display: block; color: #697c8d; font-size: 9px; letter-spacing: .12em; font-weight: 800; }
+      .drawer-grid strong { display: block; font-size: 11px; margin-top: 4px; }
+      .draft { margin-top: 8px; padding: 10px; border-radius: 8px; background: #09131c; }
+      .draft p { margin-top: 5px; font-size: 11px; }
+      .pipeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+      .pipeline li { position: relative; display: flex; gap: 12px; padding: 10px 0; color: #536372; }
+      .pipeline li:not(:last-child)::after { content: ''; position: absolute; left: 14px; top: 36px; height: 24px; border-left: 1px dashed #223441; }
+      .pipeline li > span { width: 28px; height: 28px; flex: 0 0 28px; display: grid; place-items: center; border: 1px solid #213340; border-radius: 8px; font-size: 9px; font-weight: 800; }
+      .pipeline b, .pipeline small { display: block; }
+      .pipeline b { font-size: 12px; color: #718292; }
+      .pipeline small { font-size: 10px; color: #4f6070; margin-top: 2px; }
+      .pipeline .done > span { color: #6ee7d2; border-color: #28524e; background: #0d2427; }
+      .pipeline .done b { color: #c0ccd6; }
+      .pipeline .current > span { color: #071018; background: #6ee7d2; border-color: #6ee7d2; }
+      .pipeline .current b { color: #e5edf4; }
+      .execution-card { margin-top: 15px; padding: 14px; border: 1px solid #453c28; border-radius: 10px; background: #1a180f; }
+      .execution-card span { display: block; color: #8f8058; font-size: 9px; letter-spacing: .14em; font-weight: 800; }
+      .execution-card strong { display: block; color: #e5ca81; margin: 4px 0; font-size: 18px; }
+      .execution-card small { color: #887e64; line-height: 1.45; }
+      .activity { margin-top: 18px; }
+      .muted { color: #536372; font-size: 10px; }
+      .events { display: grid; }
+      .events > div { display: grid; grid-template-columns: 50px 10px 1fr; gap: 10px; padding: 12px 0; border-top: 1px solid #152530; }
+      .events time { color: #526576; font-size: 10px; padding-top: 2px; }
+      .event-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 4px; background: #263541; }
+      .done-dot { background: #6ee7d2; }
+      .current-dot { background: #e5ca81; }
+      .events b { font-size: 11px; }
+      .events p { font-size: 11px; margin-top: 2px; }
+      footer { color: #465665; text-align: center; font-size: 10px; padding-top: 24px; }
+      footer a { color: #6ee7d2; text-decoration: none; }
+      @media (max-width: 980px) { .workspace { grid-template-columns: 1fr; } .metrics { grid-template-columns: 1fr 1fr; } .topbar { flex-direction: column; } }
+      @media (max-width: 620px) { .shell { width: min(100% - 24px, 1440px); padding-top: 22px; } .metrics { grid-template-columns: 1fr; } .banner, .queue-title-row { flex-direction: column; align-items: flex-start; } .environment { display: none; } }
+    </style>
+  </body>
+</html>
