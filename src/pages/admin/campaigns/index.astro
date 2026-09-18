@@ -8,7 +8,7 @@ if (!isCampaignSessionValid(Astro.cookies.get(CAMPAIGN_SESSION_COOKIE)?.value)) 
 const latestRun = await loadLatestDailyCampaignRun();
 const collaborationSlugs = new Set(outreachLandingPages.map((page) => page.slug));
 
-const fallbackQueue: typeof latestRun extends null ? never[] : never[] = [];
+const fallbackQueue: never[] = [];
 const summary = latestRun?.summary ?? { targets: 0, eligible: 0, blocked: 0, readyForApproval: 0, executed: 0 };
 const queue = latestRun?.items.length
   ? latestRun.items.map((item) => ({
