@@ -43,9 +43,9 @@ export const outreachLandingPages: OutreachLandingPage[] = [
     },
     engagementModel: ['Project Engineering', 'Extended Verification Team', 'Dedicated Team', 'Long-term Engineering Capacity'],
     evidence: [
-      { title: 'Multi-Subsystem SoC Verification', href: '/insights/end-to-end-verification-of-multi-subsystem-iot-socs', detail: 'Verification approach across interconnected SoC subsystems and integration boundaries.' },
-      { title: 'Reusable UVM Verification Architecture', href: '/insights/reusable-uvm-verification-architecture', detail: 'Reusable verification architecture for scalable SystemVerilog/UVM environments.' },
-      { title: 'Formal Verification', href: '/insights/formal-verification-with-cadence-jaspergold', detail: 'Formal verification methodology for targeted design properties and sign-off support.' },
+      { title: 'Multi-Subsystem SoC Verification', href: '/insights', detail: 'Verification approach across interconnected SoC subsystems and integration boundaries.' },
+      { title: 'Reusable UVM Verification Architecture', href: '/insights', detail: 'Reusable verification architecture for scalable SystemVerilog/UVM environments.' },
+      { title: 'Formal Verification', href: '/insights', detail: 'Formal verification methodology for targeted design properties and sign-off support.' },
     ],
     meetingLabel: 'DISCUSS THE ENGINEERING REQUIREMENT',
     meetingDetail: 'We can use a 30-minute engineering discussion to understand the relevant verification workstream and determine whether a bounded engineering package makes sense.',
@@ -80,7 +80,7 @@ export const outreachLandingPages: OutreachLandingPage[] = [
     engagementModel: ['Project Engineering', 'Extended Engineering', 'Dedicated Team', 'ODC / Long-term Engineering Capacity'],
     evidence: [
       { title: 'Physical Design & Sign-off', href: '/capabilities/physical-design', detail: 'AionSi physical-design capability context for implementation and sign-off discussions.' },
-      { title: 'DFT Engineering', href: '/capabilities/dft', detail: 'AionSi DFT capability context for test architecture and sign-off work.' },
+      { title: 'DFT Engineering', href: '/capabilities', detail: 'AionSi DFT capability context for test architecture and sign-off work.' },
       { title: 'Multi-Subsystem SoC Verification', href: '/insights/end-to-end-verification-of-multi-subsystem-iot-socs', detail: 'Verification approach across interconnected SoC subsystems and integration boundaries.' },
     ],
     meetingLabel: 'DISCUSS THE ENGINEERING REQUIREMENT',
@@ -143,8 +143,8 @@ export const outreachLandingPages: OutreachLandingPage[] = [
     },
     engagementModel: ['Project Engineering', 'Extended Engineering', 'Dedicated Team', 'ODC / Long-term Engineering Capacity'],
     evidence: [
-      { title: 'High-Speed Interface Verification', href: '/insights/pcie-5-data-link-layer-verification', detail: 'Representative verification methodology for complex high-speed interface work.' },
-      { title: 'Memory Subsystem Verification', href: '/insights/hbm4e-memory-subsystem-verification', detail: 'Engineering approach for verification of high-bandwidth memory subsystem behavior.' },
+      { title: 'High-Speed Interface Verification', href: '/insights', detail: 'Representative verification methodology for complex high-speed interface work.' },
+      { title: 'Memory Subsystem Verification', href: '/insights', detail: 'Engineering approach for verification of high-bandwidth memory subsystem behavior.' },
       { title: 'Multi-Subsystem SoC Verification', href: '/insights/end-to-end-verification-of-multi-subsystem-iot-socs', detail: 'Verification approach across interconnected SoC subsystems and integration boundaries.' },
       { title: 'Formal Verification', href: '/insights/formal-verification-with-cadence-jaspergold', detail: 'Formal verification methodology for targeted design properties and sign-off support.' },
     ],
