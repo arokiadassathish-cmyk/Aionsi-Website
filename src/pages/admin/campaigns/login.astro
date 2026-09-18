@@ -10,13 +10,48 @@ export const prerender = false;
     <div class="eyebrow">AIONSI AGENT</div>
     <h1>Campaign Control</h1>
     <p>Sign in once to run and review campaign dry runs. Your runner key stays server-side.</p>
-    <form method="post" action="/api/admin/campaigns/auth">
+    <form id="campaign-login">
       <label for="key">Agent runner key</label>
       <input id="key" name="key" type="password" autocomplete="current-password" required />
-      <button type="submit">Sign in</button>
+      <button id="submit" type="submit">Sign in</button>
+      <p id="error" class="error" role="alert" hidden></p>
     </form>
     <small>Use the <code>AIONSI_AGENT_RUNNER_KEY</code> configured in the Hostinger environment.</small>
   </main>
+  <script>
+    const form = document.querySelector('#campaign-login');
+    const input = document.querySelector('#key');
+    const button = document.querySelector('#submit');
+    const error = document.querySelector('#error');
+
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      error.hidden = true;
+      button.disabled = true;
+      button.textContent = 'Signing in…';
+
+      try {
+        const response = await fetch('/api/admin/campaigns/auth', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({ key: input.value }),
+        });
+        const data = await response.json().catch(() => null);
+
+        if (!response.ok || !data?.ok) {
+          throw new Error(data?.error || 'Sign-in failed.');
+        }
+
+        window.location.assign(data.redirect || '/admin/campaigns');
+      } catch (err) {
+        error.textContent = err instanceof Error ? err.message : 'Sign-in failed.';
+        error.hidden = false;
+        button.disabled = false;
+        button.textContent = 'Sign in';
+      }
+    });
+  </script>
   <style>
     :root { font-family: Inter, ui-sans-serif, system-ui, sans-serif; color: #e8edf5; background: #071018; }
     body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: radial-gradient(circle at 70% 0%, #122b3c 0, transparent 40%), #071018; }
@@ -25,6 +60,7 @@ export const prerender = false;
     h1 { margin: 8px 0; font-size: 30px; } p, small { color: #8191a0; line-height: 1.55; }
     form { display: grid; gap: 9px; margin-top: 22px; } label { font-size: 12px; font-weight: 700; }
     input, button { font: inherit; border-radius: 9px; padding: 11px 12px; } input { border: 1px solid #2a3a49; background: #071018; color: #e8edf5; }
-    button { border: 1px solid #6ee7d2; background: #6ee7d2; color: #071018; font-weight: 800; cursor: pointer; margin-top: 5px; } code { color: #b8c7d5; }
+    button { border: 1px solid #6ee7d2; background: #6ee7d2; color: #071018; font-weight: 800; cursor: pointer; margin-top: 5px; } button:disabled { opacity: .6; cursor: wait; }
+    code { color: #b8c7d5; } .error { color: #ff8b8b; font-size: 13px; margin: 4px 0 0; }
   </style>
 </body></html>
