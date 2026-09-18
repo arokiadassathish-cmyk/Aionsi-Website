@@ -1,50 +1,42 @@
 ---
+import { loadLatestDailyCampaignRun } from '../../../data/dailyCampaignRunStore';
 import { outreachLandingPages } from '../../../data/outreachLandingPages';
 
+const latestRun = await loadLatestDailyCampaignRun();
 const collaborationSlugs = new Set(outreachLandingPages.map((page) => page.slug));
 
-const metrics = [
-  { label: 'Accounts in run', value: '12', detail: '3 awaiting review' },
-  { label: 'Research ready', value: '9', detail: '75% of target set' },
-  { label: 'Approval queue', value: '3', detail: 'Human action required' },
-  { label: 'Apollo enrolled', value: '6', detail: 'Live execution gated' },
+const fallbackQueue = [
+  { id: 'axiado-prabhat', company: 'Axiado', person: 'Prabhat Arora', title: 'Senior Director of Engineering', stage: 'Approval required', confidence: 'High', capability: 'SoC Design Verification', signal: 'Secure AI infrastructure / SoC engineering signal', landingSlug: 'axiado', blockers: [] },
+  { id: 'oppstar-dv', company: 'Oppstar', person: 'Engineering decision-maker', title: 'Verification / SoC Engineering', stage: 'Research ready', confidence: 'Medium', capability: 'Verification Engineering', signal: 'ASIC / SoC engineering delivery opportunity', landingSlug: 'oppstar', blockers: [] },
+  { id: 'infinecs-pd', company: 'Infinecs', person: 'Engineering decision-maker', title: 'Design / Verification Leadership', stage: 'Researching', confidence: 'Medium', capability: 'Physical Design & DFT', signal: 'Semiconductor engineering requirement requires evidence', landingSlug: 'infinecs', blockers: [] },
 ];
 
-const queue = [
-  {
-    id: 'axiado-prabhat',
-    company: 'Axiado',
-    person: 'Prabhat Arora',
-    title: 'Senior Director of Engineering',
-    stage: 'Approval required',
-    confidence: 'High',
-    capability: 'SoC Design Verification',
-    signal: 'Secure AI infrastructure / SoC engineering signal',
-    landingSlug: 'axiado',
-  },
-  {
-    id: 'oppstar-dv',
-    company: 'Oppstar',
-    person: 'Engineering decision-maker',
-    title: 'Verification / SoC Engineering',
-    stage: 'Research ready',
-    confidence: 'Medium',
-    capability: 'Verification Engineering',
-    signal: 'ASIC / SoC engineering delivery opportunity',
-    landingSlug: 'oppstar',
-  },
-  {
-    id: 'infinecs-pd',
-    company: 'Infinecs',
-    person: 'Engineering decision-maker',
-    title: 'Design / Verification Leadership',
-    stage: 'Researching',
-    confidence: 'Medium',
-    capability: 'Physical Design & DFT',
-    signal: 'Semiconductor engineering requirement requires evidence',
-    landingSlug: 'infinecs',
-  },
+const summary = latestRun?.summary ?? { targets: 0, eligible: 0, blocked: 0, readyForApproval: 0, executed: 0 };
+const queue = latestRun?.items.length
+  ? latestRun.items.map((item) => ({
+      id: item.accountId,
+      company: item.accountName,
+      person: 'Campaign target',
+      title: item.slug,
+      stage: item.status === 'ready_for_approval' ? 'Ready for approval' : item.status === 'blocked' ? 'Blocked' : item.status,
+      confidence: item.match?.selected?.[0]?.confidence ?? '—',
+      capability: item.match?.selected?.[0]?.capability?.name ?? 'No match recorded',
+      signal: item.research?.signals?.[0]?.summary ?? item.blockers[0] ?? 'No research signal recorded',
+      landingSlug: item.slug,
+      blockers: item.blockers,
+    }))
+  : fallbackQueue;
+
+const metrics = [
+  { label: 'Accounts in run', value: String(summary.targets), detail: latestRun ? `Last run · ${latestRun.mode.replace('_', ' ')}` : 'Awaiting first run' },
+  { label: 'Research / match ready', value: String(summary.eligible), detail: latestRun ? 'Eligible after customer + research + match' : 'No recorded run' },
+  { label: 'Approval queue', value: String(summary.readyForApproval), detail: 'Human action required' },
+  { label: 'Blocked', value: String(summary.blocked), detail: 'Requires resolution before approval' },
 ];
+
+const statusLabel = latestRun ? (latestRun.mode === 'dry_run' ? 'Dry run complete' : 'Live run complete') : 'No run recorded';
+const statusClass = latestRun ? 'live-dot ready' : 'live-dot';
+const runDate = latestRun ? new Date(latestRun.completedAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }) : 'No run recorded';
 ---
 
 <!doctype html>
@@ -92,7 +84,7 @@ const queue = [
           <div class="panel-head">
             <div>
               <span class="section-kicker">TODAY'S RUN</span>
-              <h2>Approval queue</h2>
+              <h2>{latestRun ? `Latest run · ${queue.length} targets` : "Approval queue"}</h2>
             </div>
             <div class="filters">
               <button class="filter active" data-filter="all">All</button>
@@ -134,7 +126,7 @@ const queue = [
                       <div><span>Sequence</span><strong>Day 0 → Day 3 → Day 7</strong></div>
                       <div><span>CRM</span><strong>HubSpot context</strong></div>
                     </div>
-                    <div class="draft"><span>EMAIL DRAFT</span><p>Personalized outreach is generated from the verified company signal, engineering requirement and selected AionSi capability. The final copy is held here for human review.</p></div>
+                    <div class="draft"><span>DRY-RUN DETAILS</span><p>{item.blockers?.length ? item.blockers.join(" ") : "Research, capability match and outreach artifacts are recorded in the latest run for human review. No Apollo execution occurs in dry-run mode."}</p></div>
                   </div>
                 </div>
               </article>
@@ -148,7 +140,7 @@ const queue = [
               <span class="section-kicker">AGENT PIPELINE</span>
               <h2>Run status</h2>
             </div>
-            <span class="live-dot">● idle</span>
+            <span class={statusClass}>● {statusLabel}</span>
           </div>
           <ol class="pipeline">
             <li class="done"><span>01</span><div><b>Target universe</b><small>Accounts selected</small></div></li>
@@ -172,7 +164,7 @@ const queue = [
       <section class="panel activity">
         <div class="panel-head">
           <div><span class="section-kicker">ACTIVITY</span><h2>Agent event stream</h2></div>
-          <span class="muted">Today · 16 Sep 2026</span>
+          <span class="muted">{runDate}</span>
         </div>
         <div class="events">
           <div><time>10:42</time><span class="event-dot done-dot"></span><div><b>Research Agent</b><p>Completed research for Axiado and produced sourced signals.</p></div></div>
@@ -188,6 +180,7 @@ const queue = [
     <script>
       const queue = document.querySelector('#queue');
       const filters = document.querySelectorAll('[data-filter]');
+      const runButton = document.querySelector('#run-dry');
 
       filters.forEach((button) => {
         button.addEventListener('click', () => {
@@ -208,30 +201,23 @@ const queue = [
         });
       });
 
-      document.querySelectorAll('[data-action="approve"]').forEach((button) => {
-        button.addEventListener('click', () => {
-          const card = button.closest('.queue-card');
-          const status = card?.querySelector('.status');
-          if (!card || !status) return;
-          status.textContent = 'Approved — execution gated';
-          status.className = 'status approved';
-          button.textContent = 'Approved';
-          button.disabled = true;
-          button.classList.add('disabled');
-        });
-      });
-
-      document.querySelector('#run-dry')?.addEventListener('click', (event) => {
-        const button = event.currentTarget;
-        button.textContent = 'Dry run queued';
-        button.setAttribute('disabled', 'true');
-        setTimeout(() => {
-          button.textContent = 'Run dry run';
-          button.removeAttribute('disabled');
-        }, 1800);
+      runButton?.addEventListener('click', async () => {
+        runButton.setAttribute('disabled', 'true');
+        runButton.textContent = 'Running dry run…';
+        try {
+          const response = await fetch('/api/admin/campaigns/run', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json', 'x-aionsi-agent-key': window.prompt('Enter agent runner key') || '' },
+            body: JSON.stringify({}),
+          });
+          if (!response.ok) throw new Error(`Dry run failed (HTTP ${response.status})`);
+          window.location.reload();
+        } catch (error) {
+          runButton.removeAttribute('disabled');
+          runButton.textContent = error instanceof Error ? error.message : 'Dry run failed';
+        }
       });
     </script>
-
     <style>
       :root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #e8edf5; background: #071018; }
       * { box-sizing: border-box; }
