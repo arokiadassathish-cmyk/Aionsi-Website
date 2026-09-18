@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { isCampaignRequestAuthorized } from '../../../../lib/campaignAuth';
 import { runDailyCampaign, type DailyCampaignTarget } from '../../../../agents/dailyCampaignRuntime';
 import { parseConfiguredTargetAccounts } from '../../../../data/configuredTargetAccounts';
 import { createHubSpotFetchTransport, createHubSpotApiAdapter } from '../../../../integrations/hubspotRuntime';
@@ -9,8 +10,7 @@ import { saveDailyCampaignRun } from '../../../../data/dailyCampaignRunStore';
 export const prerender = false;
 
 function authorized(request: Request): boolean {
-  const expected = process.env.AIONSI_AGENT_RUNNER_KEY;
-  return Boolean(expected && request.headers.get('x-aionsi-agent-key') === expected);
+  return isCampaignRequestAuthorized(request);
 }
 
 function parseTargets(): DailyCampaignTarget[] {
