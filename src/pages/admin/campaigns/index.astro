@@ -1,6 +1,9 @@
 ---
 import { loadLatestDailyCampaignRun } from '../../../data/dailyCampaignRunStore';
 import { outreachLandingPages } from '../../../data/outreachLandingPages';
+import { CAMPAIGN_SESSION_COOKIE, isCampaignSessionValid } from '../../../lib/campaignAuth';
+
+if (!isCampaignSessionValid(Astro.cookies.get(CAMPAIGN_SESSION_COOKIE)?.value)) return Astro.redirect('/admin/campaigns/login');
 
 const latestRun = await loadLatestDailyCampaignRun();
 const collaborationSlugs = new Set(outreachLandingPages.map((page) => page.slug));
@@ -207,7 +210,7 @@ const runDate = latestRun ? new Date(latestRun.completedAt).toLocaleString('en-I
         try {
           const response = await fetch('/api/admin/campaigns/run', {
             method: 'POST',
-            headers: { 'content-type': 'application/json', 'x-aionsi-agent-key': window.prompt('Enter agent runner key') || '' },
+            headers: { 'content-type': 'application/json' },
             body: JSON.stringify({}),
           });
           if (!response.ok) throw new Error(`Dry run failed (HTTP ${response.status})`);
