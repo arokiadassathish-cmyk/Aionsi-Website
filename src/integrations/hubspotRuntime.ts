@@ -143,7 +143,7 @@ export function createHubSpotFetchTransport(config: {
   // Never log or expose the token itself.
   const accessToken = config.accessToken
     .trim()
-    .replace(/^Bearer\\s+/i, '')
+    .replace(/^Bearer\s+/i, '')
     .replace(/^(['"])(.*)\\1$/, '$2')
     .trim();
 
