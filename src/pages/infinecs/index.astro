@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+
+const alignment = [
+  ['01','RTL / SoC','RTL implementation, IP integration and subsystem execution aligned to defined design requirements.'],
+  ['02','Design Verification','UVM/SystemVerilog verification, regression, debug and coverage-oriented closure for IP, subsystem and SoC workstreams.'],
+  ['03','Physical Design','Synthesis, floorplanning, place & route, timing analysis, ECO and signoff-oriented execution.'],
+  ['04','DFT / DFX','DFT implementation support, scan/test flows, coverage, timing and closure around defined work packages.'],
+  ['05','Post-Silicon','Bring-up, validation, characterization, debug and failure-analysis support across the silicon-to-system boundary.'],
+  ['06','Engineering Automation','Python/Linux automation, regression infrastructure and repeatable engineering workflows.'],
+];
+
+const delivery = [
+  ['01','Understand','Clarify the program stage, block or subsystem, tools, interfaces, constraints and milestone.'],
+  ['02','Define','Agree scope, skills, deliverables, ownership boundaries, tools and acceptance criteria.'],
+  ['03','Execute','Deliver against engineering milestones, reviews, quality gates and agreed technical KPIs.'],
+  ['04','Validate & Expand','Review the work package, close open items and expand only where the working model is proven.'],
+];
+---
+
+<BaseLayout
+  title="Infinecs × AionSi | Semiconductor Engineering Capacity"
+  description="AionSi engineering alignment for Infinecs across RTL, Design Verification, Physical Design, DFT/DFX, post-silicon validation and engineering automation."
+>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-20 lg:py-24">
+      <Container>
+        <div class="grid gap-12 lg:grid-cols-[1.08fr_.72fr] lg:items-center">
+          <div>
+            <TechnicalLabel>INFINECS × AIONSI · ENGINEERING CAPACITY ALIGNMENT</TechnicalLabel>
+            <h1 class="mt-4 max-w-5xl text-5xl font-semibold leading-[1.02] tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Engineering capacity for silicon-to-systems execution.</h1>
+            <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">Complement Infinecs' semiconductor engineering organization with focused AionSi teams aligned to defined work packages, milestones and technical ownership.</p>
+            <div class="mt-9 flex flex-wrap gap-4">
+              <Button href="/contact">Discuss an Engineering Requirement</Button>
+              <a href="/capabilities" class="inline-flex items-center justify-center border border-slate-300 px-6 py-3 text-sm font-semibold text-[var(--aionsi-navy)] transition hover:border-[var(--aionsi-blue)]">Explore Capabilities</a>
+            </div>
+          </div>
+          <div class="border border-slate-200 bg-white p-7 shadow-sm">
+            <TechnicalLabel>ENGINEERING ALIGNMENT</TechnicalLabel>
+            <h2 class="mt-4 text-2xl font-semibold text-[var(--aionsi-navy)]">Add focused execution capacity without changing technical ownership.</h2>
+            <p class="mt-4 text-base leading-7 text-slate-600">Start with a defined engineering requirement, align the right specialists and scale only when delivery and collaboration are proven.</p>
+            <div class="mt-7 grid grid-cols-2 gap-3 text-sm font-semibold text-[var(--aionsi-navy)]">
+              <div class="border border-slate-200 p-4">Defined scope</div>
+              <div class="border border-slate-200 p-4">Technical ownership</div>
+              <div class="border border-slate-200 p-4">Milestone driven</div>
+              <div class="border border-slate-200 p-4">Scalable capacity</div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-12 md:py-18">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:items-start">
+          <div>
+            <TechnicalLabel>INFINECS ENGINEERING CONTEXT</TechnicalLabel>
+            <h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">A broad silicon-to-systems engineering environment.</h2>
+          </div>
+          <div class="space-y-5 text-base leading-8 text-slate-600">
+            <p>Infinecs publicly describes end-to-end engineering across IC, SoC, embedded software and system platforms, including architecture, RTL implementation, physical design, silicon validation and embedded software.</p>
+            <p>Its published IC/SoC scope includes RTL development and functional verification, IP integration, synthesis and timing optimization, physical design through GDSII, sign-off checks and tape-out support. Its post-silicon scope includes bring-up, validation, characterization, test development and failure analysis.</p>
+            <p class="font-semibold text-[var(--aionsi-navy)]">The opportunity for AionSi is to complement that breadth with focused execution around clearly defined engineering work packages.</p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-white py-12 md:py-18">
+      <Container>
+        <TechnicalLabel>POTENTIAL ENGINEERING ALIGNMENT</TechnicalLabel>
+        <p class="mt-3 max-w-3xl text-base leading-7 text-slate-600">Potential areas where AionSi can operate as an extension of an existing engineering organization while Infinecs retains program and technical ownership.</p>
+        <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {alignment.map(([num,title,desc]) => (
+            <article class="border border-slate-200 p-7">
+              <div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">{num}</div>
+              <h3 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3>
+              <p class="mt-3 text-sm leading-6 text-slate-600">{desc}</p>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-18">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+          <div>
+            <TechnicalLabel>WHY A FOCUSED ENGINEERING MODEL</TechnicalLabel>
+            <h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Create another execution lane without duplicating the core organization.</h2>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="border border-slate-200 bg-white p-6"><h3 class="text-xl font-semibold text-[var(--aionsi-navy)]">Parallel execution</h3><p class="mt-3 text-sm leading-6 text-slate-600">Create an additional execution lane around a defined block, subsystem or milestone while the core program remains under Infinecs ownership.</p></div>
+            <div class="border border-slate-200 bg-white p-6"><h3 class="text-xl font-semibold text-[var(--aionsi-navy)]">Specialist capacity</h3><p class="mt-3 text-sm leading-6 text-slate-600">Deploy focused semiconductor expertise where a specific technical workstream requires additional bandwidth.</p></div>
+            <div class="border border-slate-200 bg-white p-6"><h3 class="text-xl font-semibold text-[var(--aionsi-navy)]">Milestone support</h3><p class="mt-3 text-sm leading-6 text-slate-600">Build an execution lane around verification closure, physical-design milestones, DFT/DFX activities or silicon-validation deliverables.</p></div>
+            <div class="border border-slate-200 bg-white p-6"><h3 class="text-xl font-semibold text-[var(--aionsi-navy)]">Scale after validation</h3><p class="mt-3 text-sm leading-6 text-slate-600">Expand from a focused team to dedicated engineering capacity when technical delivery and collaboration are proven.</p></div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-12 md:py-18">
+      <Container>
+        <TechnicalLabel>TECHNICAL WORKSTREAMS</TechnicalLabel>
+        <p class="mt-3 max-w-3xl text-base leading-7 text-slate-600">A practical mapping of AionSi disciplines to potential Infinecs work packages.</p>
+        <div class="mt-6 grid gap-4 md:grid-cols-2">
+          <div class="border border-slate-200 p-7">
+            <div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">FRONT END</div>
+            <h3 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">RTL / SoC / Verification</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">RTL implementation, IP integration, subsystem verification, UVM/SystemVerilog, assertions, regression, debug and coverage-oriented closure.</p>
+          </div>
+          <div class="border border-slate-200 p-7">
+            <div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">BACK END</div>
+            <h3 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">Physical Design / Timing</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">Synthesis, floorplanning, placement, CTS, routing, STA, ECO, timing closure and physical signoff-oriented execution.</p>
+          </div>
+          <div class="border border-slate-200 p-7">
+            <div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">DFT / DFX</div>
+            <h3 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">Test & Signoff Support</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">DFT/DFX implementation support, scan/test flows, coverage, timing and closure around defined SoC work packages.</p>
+          </div>
+          <div class="border border-slate-200 p-7">
+            <div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">SILICON</div>
+            <h3 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">Post-Silicon Validation</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">Bring-up, validation, characterization, debug, test support and structured failure analysis across the silicon-to-system boundary.</p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-18">
+      <Container>
+        <TechnicalLabel>POTENTIAL FIRST WORK PACKAGE</TechnicalLabel>
+        <h2 class="mt-4 max-w-5xl text-4xl font-semibold tracking-tight md:text-5xl">Start with one bounded engineering requirement.</h2>
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-white/70">The first step can be a focused work package in RTL/SoC, verification, physical design, DFT/DFX or post-silicon engineering — with clear deliverables, interfaces and acceptance criteria.</p>
+        <div class="mt-8 grid gap-3 md:grid-cols-4">
+          <div class="border border-white/10 bg-white/5 p-5"><span class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">01</span><p class="mt-3 font-semibold">Requirement</p></div>
+          <div class="border border-white/10 bg-white/5 p-5"><span class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">02</span><p class="mt-3 font-semibold">Focused Team</p></div>
+          <div class="border border-white/10 bg-white/5 p-5"><span class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">03</span><p class="mt-3 font-semibold">Milestone Delivery</p></div>
+          <div class="border border-white/10 bg-white/5 p-5"><span class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">04</span><p class="mt-3 font-semibold">Review & Expand</p></div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-14 md:py-18">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.75fr_1.25fr]">
+          <div><TechnicalLabel>DELIVERY MODEL</TechnicalLabel><h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">From engineering requirement to delivered work package.</h2></div>
+          <div class="grid gap-3">
+            {delivery.map(([num,title,desc]) => (
+              <div class="grid grid-cols-[64px_1fr] gap-5 border-b border-slate-200 py-5">
+                <div class="text-sm font-semibold text-[var(--aionsi-orange)]">{num}</div>
+                <div><h3 class="font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-1 text-sm leading-6 text-slate-600">{desc}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-14 md:py-18">
+      <Container>
+        <TechnicalLabel>ENGAGEMENT PROGRESSION</TechnicalLabel>
+        <h2 class="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Project engineering → extended team → dedicated capacity.</h2>
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          <div class="border border-slate-200 bg-white p-6"><div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">START</div><h3 class="mt-4 text-lg font-semibold text-[var(--aionsi-navy)]">Project Engineering</h3><p class="mt-2 text-sm leading-6 text-slate-600">AionSi owns a defined engineering work package with agreed deliverables.</p></div>
+          <div class="border border-slate-200 bg-white p-6"><div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">EXTEND</div><h3 class="mt-4 text-lg font-semibold text-[var(--aionsi-navy)]">Extended Engineering</h3><p class="mt-2 text-sm leading-6 text-slate-600">Add specialist capacity to an existing Infinecs engineering team.</p></div>
+          <div class="border border-slate-200 bg-white p-6"><div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">SCALE</div><h3 class="mt-4 text-lg font-semibold text-[var(--aionsi-navy)]">Dedicated Team / ODC</h3><p class="mt-2 text-sm leading-6 text-slate-600">Build scalable engineering capacity around a longer-running roadmap when the working model is proven.</p></div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-navy)] py-14 text-white md:py-20">
+      <Container>
+        <div class="max-w-4xl">
+          <TechnicalLabel>INFINECS × AIONSI</TechnicalLabel>
+          <h2 class="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">Let’s identify the engineering workstream where additional capacity could help.</h2>
+          <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-300">AionSi can bring together the relevant semiconductor engineering capability, establish ownership and work through a focused technical scope before considering broader dedicated capacity.</p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <Button href="/contact">Discuss an Engineering Requirement</Button>
+            <a href="mailto:info@aionsi.com" class="inline-flex items-center justify-center border border-slate-600 px-6 py-3 text-sm font-semibold text-white transition hover:border-white">Email AionSi</a>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
