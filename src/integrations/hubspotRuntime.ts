@@ -139,6 +139,16 @@ export function createHubSpotFetchTransport(config: {
   const baseUrl = config.baseUrl ?? 'https://api.hubapi.com';
   const fetchImpl = config.fetchImpl ?? fetch;
 
+  // Normalize harmless formatting variants from environment-variable entry.
+  // Never log or expose the token itself.
+  const accessToken = config.accessToken
+    .trim()
+    .replace(/^Bearer\\s+/i, '')
+    .replace(/^(['"])(.*)\\1$/, '$2')
+    .trim();
+
+  if (!accessToken) throw new Error('HUBSPOT_ACCESS_TOKEN is empty.');
+
   return {
     async get<T>(path, query) {
       const url = new URL(`${baseUrl}${path}`);
@@ -149,11 +159,15 @@ export function createHubSpotFetchTransport(config: {
 
       const response = await fetchImpl(url, {
         headers: {
-          Authorization: `Bearer ${config.accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
           Accept: 'application/json',
         },
       });
-      if (!response.ok) throw new Error(`HubSpot GET ${path} failed with ${response.status}.`);
+      if (!response.ok) {
+        const detail = await response.text().catch(() => '');
+        const suffix = detail ? ' ' + detail.slice(0, 300) : '';
+        throw new Error(`HubSpot GET ${path} failed with ${response.status}.${suffix}`);
+      }
       return (await response.json()) as T;
     },
 
@@ -161,13 +175,17 @@ export function createHubSpotFetchTransport(config: {
       const response = await fetchImpl(`${baseUrl}${path}`, {
         method: 'PATCH',
         headers: {
-          Authorization: `Bearer ${config.accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
       });
-      if (!response.ok) throw new Error(`HubSpot PATCH ${path} failed with ${response.status}.`);
+      if (!response.ok) {
+        const detail = await response.text().catch(() => '');
+        const suffix = detail ? ' ' + detail.slice(0, 300) : '';
+        throw new Error(`HubSpot PATCH ${path} failed with ${response.status}.${suffix}`);
+      }
       return (await response.json()) as T;
     },
   };
