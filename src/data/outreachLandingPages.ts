@@ -184,4 +184,37 @@ export const outreachLandingPages: OutreachLandingPage[] = [
     meetingDetail: 'We can use a 30-minute engineering discussion to understand where additional capacity or technical ownership could support the next semiconductor program. In person in Malaysia or virtually — whichever is convenient.',
     disclosure: 'This page is intended to provide context for an engineering discussion. It does not imply an Oppstar customer relationship, approved association or active program engagement.',
   },
+
+  {
+    slug: 'samsung-semiconductor',
+    company: 'Samsung Semiconductor India Research',
+    region: 'India / Global',
+    eyebrow: 'SAMSUNG SEMICONDUCTOR × AIONSI',
+    headline: 'Engineering capacity for complex semiconductor, memory and AI silicon workstreams.',
+    heroHeadline: "Engineering support for Samsung Semiconductor's complex silicon engineering workstreams.",
+    contextTag: 'Engineering leadership discussion',
+    intro: 'A focused collaboration model across design verification, SoC/IP integration, memory and high-speed interfaces, physical implementation, DFT and engineering automation — structured around defined work packages and measurable milestones.',
+    conversationContext: 'AionSi can complement an established semiconductor engineering organization with focused execution capacity for defined verification, interface, implementation or automation workstreams while keeping program ownership and engineering interfaces with the core team.',
+    relevance: 'Public Samsung Semiconductor India Research material identifies work across System LSI, Memory and Foundry, including Foundation IP Design, Serial Interfaces, Multimedia IPs, Mobile SoCs, Storage Solutions, 4G/5G Solutions, Neural Processors and AI/ML. The page therefore focuses on capability relevance across verification, interfaces, SoC integration, implementation and automation without assuming a specific Samsung program or requirement.',
+    capabilities: [
+      { title: 'SoC & IP Design Verification', detail: 'SystemVerilog/UVM verification, regression, coverage closure and subsystem-level verification for defined IP, SoC or interface work packages.' },
+      { title: 'Memory & High-Speed Interface Verification', detail: 'Verification support for memory-oriented systems and high-speed interfaces, with structured protocol, regression and coverage workflows.' },
+      { title: 'Physical Design & DFT', detail: 'Focused implementation, timing, sign-off and DFT engineering capacity for defined silicon work packages.' },
+      { title: 'Engineering Automation', detail: 'Python and workflow automation for regression, analysis and repeatable engineering execution.' },
+    ],
+    pilot: {
+      title: 'Start with one defined engineering work package',
+      detail: 'Begin with a bounded verification, interface, implementation or automation scope with clear ownership, deliverables and milestone-based review before considering broader capacity.',
+      scope: ['Defined technical scope and deliverables', 'Clear engineering ownership and interfaces', 'Milestone-based delivery and review', 'Evidence-based decision to continue or scale'],
+    },
+    engagementModel: ['Project Engineering', 'Extended Engineering', 'Dedicated Team', 'ODC / Long-term Engineering Capacity'],
+    evidence: [
+      { title: 'Multi-Subsystem SoC Verification', href: '/insights/end-to-end-verification-of-multi-subsystem-iot-socs', detail: 'Representative verification approach across interconnected SoC subsystems and integration boundaries.' },
+      { title: 'PCIe Data Link Layer Verification', href: '/insights/pcie-5-data-link-layer-verification', detail: 'Representative verification methodology for high-speed PCIe interface work.' },
+      { title: 'Reusable UVM Verification Architecture', href: '/insights/reusable-uvm-verification-architecture', detail: 'Reusable SystemVerilog/UVM architecture for scalable verification environments.' },
+    ],
+    meetingLabel: 'DISCUSS THE ENGINEERING REQUIREMENT',
+    meetingDetail: 'We can use a 30-minute engineering discussion to understand the relevant workstream and determine whether a bounded engineering package makes sense.',
+    disclosure: 'This page is intended to provide context for an engineering discussion. It does not imply a Samsung customer relationship, approved association or active program engagement.',
+  },
 ];
