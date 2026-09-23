@@ -290,4 +290,13 @@ export const targetAccounts: TargetAccount[] = [
     discoveryPath: ['Engineering requirement', 'Capability mapping', 'Technical evidence', 'Bounded work package', 'Scale decision'],
     disclosure: 'This page describes capability relevance only and does not imply a Micron customer relationship, approved association or active program engagement.',
   },
+
+  {
+    slug: 'samsung-semiconductor', name: 'Samsung Semiconductor India Research', category: 'System LSI, memory, foundry and semiconductor R&D',
+    headline: 'Engineering capabilities relevant to complex semiconductor, memory and AI silicon programs.',
+    description: 'AionSi can be evaluated for defined engineering work across design verification, high-speed interfaces, SoC integration, physical implementation, DFT and engineering automation.',
+    focusAreas: ['SoC and IP verification', 'Memory and high-speed interface verification', 'Physical design and DFT', 'Engineering automation'],
+    discoveryPath: ['Engineering requirement', 'Capability mapping', 'Technical evidence', 'Bounded work package', 'Scale decision'],
+    disclosure: 'This page describes capability relevance only and does not imply a Samsung customer relationship, approved association or active program engagement.',
+  },
 ];
