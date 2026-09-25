@@ -1,0 +1,239 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+
+const alignment = [
+  ['01','Embedded & Edge Engineering','Firmware, BSP, drivers, board bring-up and system-level engineering around connected compute and IoT products.'],
+  ['02','SoC / Platform Integration','RTL/SoC, interface integration and verification support where product programs include custom silicon, FPGA or silicon-adjacent development.'],
+  ['03','Hardware Validation','Structured validation, debug, test automation and engineering support from prototype through product readiness.'],
+  ['04','Verification & Automation','SystemVerilog/UVM, regression automation and engineering automation for defined silicon or programmable-logic workstreams.'],
+  ['05','Product Engineering Support','Engineering bandwidth across prototype, integration, qualification and sustaining phases without changing Panache product ownership.'],
+  ['06','Engineering Scale','Specialist engineering teams that can begin with a bounded work package and expand after delivery is demonstrated.'],
+];
+
+const portfolio = [
+  ['Smart Compute','AI servers, AI laptops, desktops, mini PCs and embedded compute platforms.'],
+  ['Telecom','Routers, switches, SD-WAN and 4G/5G connectivity products.'],
+  ['Retail / IoT','IoT gateways, POS, asset tracking and connected edge systems.'],
+  ['Surveillance','AI CCTV, NVRs and edge analytics platforms.'],
+  ['EdTech / Medical','Interactive displays, tablets, rugged devices and healthcare-oriented smart devices.'],
+];
+
+const fit = [
+  ['Product architecture → prototype','Engineering support around defined hardware/software integration and prototype milestones.'],
+  ['Edge AI / compute','Embedded software, platform integration, validation and silicon-adjacent engineering support.'],
+  ['Connected devices','Firmware, drivers, connectivity validation and engineering automation around device platforms.'],
+  ['Custom silicon / FPGA programs','RTL, verification and integration support where a program includes programmable or custom silicon elements.'],
+  ['Production readiness','Validation, debug, test automation and closure support before manufacturing handoff.'],
+];
+
+const delivery = [
+  ['01','Understand','Map the product, architecture, interfaces, engineering stage, tools and measurable milestone.'],
+  ['02','Define','Create a bounded work package with ownership boundaries, deliverables and acceptance criteria.'],
+  ['03','Execute','Deploy the relevant engineering pod with technical reviews, issue tracking and milestone governance.'],
+  ['04','Validate & Scale','Measure the outcome, close gaps and expand only where the engineering case is proven.'],
+];
+
+const evidence = [
+  ['SEMICONDUCTOR','RTL / SoC','Digital RTL, IP integration and SoC engineering across defined workstreams.'],
+  ['VERIFICATION','IP → SoC DV','SystemVerilog, UVM, assertions, coverage, regression and debug.'],
+  ['IMPLEMENTATION','Physical Design','Synthesis, floorplan, P&R, CTS, STA, ECO and signoff-oriented execution.'],
+  ['AUTOMATION','Engineering Productivity','Regression, verification and flow automation around repeatable engineering workflows.'],
+  ['EMBEDDED','System Engineering','Embedded engineering capability for silicon-to-system integration and product execution.'],
+];
+
+const engagement = [
+  ['Engineering Work Package','Defined technical scope','Start with one measurable engineering problem.'],
+  ['Extended Engineering','Specialist capacity','Add focused engineers to an existing Panache team.'],
+  ['Dedicated Team','Recurring workstream','Build a stable engineering pod around a continuing roadmap.'],
+  ['Engineering ODC','Scaled execution','Move to a governed engineering organization after proof.'],
+];
+---
+
+<BaseLayout
+  title="Panache DigiLife × AionSi | Engineering Partnership"
+  description="AionSi engineering support for Panache DigiLife across embedded systems, edge AI, SoC integration, verification, validation and product engineering workstreams."
+>
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] pt-32 pb-14 md:pt-36 md:pb-20 lg:pt-40 lg:pb-24">
+      <Container>
+        <div class="grid gap-12 lg:grid-cols-[1.12fr_.68fr] lg:items-center">
+          <div>
+            <TechnicalLabel>AIONSI × PANACHE DIGILIFE · ENGINEERING PARTNERSHIP BRIEF</TechnicalLabel>
+            <h1 class="mt-4 max-w-5xl text-5xl font-semibold leading-[1.02] tracking-tight text-[var(--aionsi-navy)] md:text-7xl">Engineering depth between silicon, embedded systems and product execution.</h1>
+            <p class="mt-7 max-w-3xl text-xl leading-9 text-slate-600 md:text-2xl">AionSi can complement Panache's design-to-manufacturing organization with focused engineering capacity across embedded platforms, SoC / FPGA integration, verification, validation and product engineering.</p>
+            <div class="mt-9 flex flex-wrap gap-4">
+              <Button href="/contact">Discuss an Engineering Requirement</Button>
+              <a href="/capabilities" class="inline-flex items-center justify-center border border-slate-300 px-6 py-3 text-sm font-semibold text-[var(--aionsi-navy)] transition hover:border-[var(--aionsi-blue)]">Explore AionSi Capabilities</a>
+            </div>
+          </div>
+          <div class="border border-slate-200 bg-white p-7 shadow-sm">
+            <TechnicalLabel>THE POTENTIAL FIT</TechnicalLabel>
+            <h2 class="mt-4 text-2xl font-semibold text-[var(--aionsi-navy)]">Extend engineering execution without changing Panache's product ownership.</h2>
+            <p class="mt-4 text-base leading-7 text-slate-600">Panache publicly describes a design-to-manufacturing model spanning product ideation, design, prototyping, production, quality and lifecycle support. AionSi's role is to complement that chain at defined engineering layers—not replace Panache's manufacturing or product ownership.</p>
+            <div class="mt-7 grid grid-cols-2 gap-3 text-sm font-semibold text-[var(--aionsi-navy)]">
+              <div class="border border-slate-200 p-4">Technical scope</div>
+              <div class="border border-slate-200 p-4">Engineering ownership</div>
+              <div class="border border-slate-200 p-4">Milestone delivery</div>
+              <div class="border border-slate-200 p-4">Scale after proof</div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-12 md:py-18">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+          <div>
+            <TechnicalLabel>UNDERSTANDING PANACHE</TechnicalLabel>
+            <h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">A design-to-manufacturing organization built around connected products.</h2>
+          </div>
+          <div class="space-y-5 text-base leading-8 text-slate-600">
+            <p>Panache DigiLife describes itself as an ICT and IoT devices design, manufacturing, distribution and services company. Its public portfolio spans smart compute, telecom, retail IoT, surveillance, education, AV/display and medical solutions. citeturn0search0turn0view0</p>
+            <p>Its current public positioning also highlights AI servers, AI laptops, AI desktops and mini PCs, routers and switches, 4G/5G devices, SD-WAN, IoT gateways, AI CCTV and other connected products. citeturn0view0</p>
+            <p>Panache also describes an ODM flow from product ideation through industrial design, prototype, production, quality, logistics and after-sales support, supported by its Bhiwandi manufacturing facility. citeturn0view0turn0search2</p>
+            <p class="font-semibold text-[var(--aionsi-navy)]">The AionSi proposition is therefore focused on the engineering layers that can sit between product architecture, silicon / programmable logic and system validation—where additional specialist execution can be measured against a product milestone.</p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-white py-12 md:py-18">
+      <Container>
+        <TechnicalLabel>AIONSI ENGINEERING ALIGNMENT</TechnicalLabel>
+        <p class="mt-3 max-w-3xl text-base leading-7 text-slate-600">The strongest discussion areas are those where Panache's connected compute and IoT products intersect with embedded, silicon-adjacent or product-validation engineering.</p>
+        <div class="mt-7 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {alignment.map(([num,title,desc]) => (
+            <article class="border border-slate-200 p-7">
+              <div class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">{num}</div>
+              <h3 class="mt-4 text-xl font-semibold text-[var(--aionsi-navy)]">{title}</h3>
+              <p class="mt-3 text-sm leading-6 text-slate-600">{desc}</p>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-18">
+      <Container>
+        <TechnicalLabel>PANACHE PRODUCT LANDSCAPE → ENGINEERING LAYERS</TechnicalLabel>
+        <div class="mt-8 grid gap-3 lg:grid-cols-[1fr_auto_1fr] lg:items-stretch">
+          <div class="border border-slate-200 bg-white p-7">
+            <div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">PANACHE PRODUCT DOMAINS</div>
+            <div class="mt-5 space-y-4">
+              {portfolio.map(([title,desc]) => (
+                <div class="border-b border-slate-100 pb-4 last:border-b-0 last:pb-0">
+                  <h3 class="font-semibold text-[var(--aionsi-navy)]">{title}</h3>
+                  <p class="mt-1 text-sm leading-6 text-slate-600">{desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="hidden items-center justify-center lg:flex">
+            <div class="text-3xl text-[var(--aionsi-blue)]">→</div>
+          </div>
+          <div class="border border-slate-200 bg-white p-7">
+            <div class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">AIONSI ENGINEERING LAYERS</div>
+            <div class="mt-5 grid gap-3">
+              {['Embedded / BSP / Drivers','SoC / FPGA Integration','RTL / Design Verification','Hardware & System Validation','Test / Automation','Product Engineering Support'].map((item) => (
+                <div class="border border-slate-200 px-4 py-4 font-semibold text-[var(--aionsi-navy)]">{item}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <p class="mt-5 text-xs leading-5 text-slate-500">This is a capability-alignment map based on Panache's publicly described product portfolio; it is not an assumption about current internal resource gaps or specific Panache programs.</p>
+      </Container>
+    </Section>
+
+    <Section class="py-12 md:py-18">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.68fr_1.32fr] lg:items-start">
+          <div>
+            <TechnicalLabel>ENGINEERING EVIDENCE</TechnicalLabel>
+            <h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Show the technical capability before proposing the commercial model.</h2>
+            <p class="mt-5 text-base leading-7 text-slate-600">AionSi's engineering discussion can be anchored in semiconductor and embedded execution rather than generic staffing.</p>
+          </div>
+          <div class="grid gap-3">
+            {evidence.map(([discipline,title,desc]) => (
+              <div class="grid gap-4 border-b border-slate-200 py-5 md:grid-cols-[120px_1fr]">
+                <div class="text-xs font-semibold tracking-[.14em] text-[var(--aionsi-orange)]">{discipline}</div>
+                <div><h3 class="font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-1 text-sm leading-6 text-slate-600">{desc}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-18">
+      <Container>
+        <TechnicalLabel>POTENTIAL FIRST WORK PACKAGE</TechnicalLabel>
+        <h2 class="mt-4 max-w-5xl text-4xl font-semibold tracking-tight md:text-5xl">Start with an engineering milestone that can be measured.</h2>
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-white/70">Potential starting points include embedded bring-up, device-driver work, SoC/FPGA integration, verification automation, hardware validation or a defined product-engineering workstream. The exact scope should be determined with Panache's engineering team.</p>
+        <div class="mt-8 grid gap-3 md:grid-cols-4">
+          <div class="border border-white/10 bg-white/5 p-5"><span class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">01</span><p class="mt-3 font-semibold">Requirement</p></div>
+          <div class="border border-white/10 bg-white/5 p-5"><span class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">02</span><p class="mt-3 font-semibold">Work Package</p></div>
+          <div class="border border-white/10 bg-white/5 p-5"><span class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">03</span><p class="mt-3 font-semibold">Milestone Delivery</p></div>
+          <div class="border border-white/10 bg-white/5 p-5"><span class="text-xs tracking-[.18em] text-[var(--aionsi-orange)]">04</span><p class="mt-3 font-semibold">Review & Scale</p></div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-12 md:py-18">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[.72fr_1.28fr]">
+          <div>
+            <TechnicalLabel>DELIVERY MODEL</TechnicalLabel>
+            <h2 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">A controlled path from requirement to engineering ownership.</h2>
+          </div>
+          <div class="grid gap-2">
+            {delivery.map(([num,title,desc]) => (
+              <div class="grid grid-cols-[64px_1fr] gap-5 border-b border-slate-200 py-5">
+                <div class="text-sm font-semibold text-[var(--aionsi-orange)]">{num}</div>
+                <div><h3 class="font-semibold text-[var(--aionsi-navy)]">{title}</h3><p class="mt-1 text-sm leading-6 text-slate-600">{desc}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-18">
+      <Container>
+        <TechnicalLabel>ENGAGEMENT OPTIONS</TechnicalLabel>
+        <h2 class="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Choose the operating model after the technical need is clear.</h2>
+        <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {engagement.map(([title,subtitle,desc]) => (
+            <div class="border border-slate-200 bg-white p-6">
+              <div class="text-xs tracking-[.16em] text-[var(--aionsi-orange)]">{subtitle}</div>
+              <h3 class="mt-4 text-lg font-semibold text-[var(--aionsi-navy)]">{title}</h3>
+              <p class="mt-2 text-sm leading-6 text-slate-600">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-navy)] py-14 text-white md:py-20">
+      <Container>
+        <div class="max-w-4xl">
+          <TechnicalLabel>AIONSI × PANACHE DIGILIFE · ENGINEERING DISCUSSION</TechnicalLabel>
+          <h2 class="mt-4 text-4xl font-semibold tracking-tight md:text-6xl">Where could additional engineering depth accelerate the next product milestone?</h2>
+          <p class="mt-6 text-lg leading-8 text-white/70">We would start by understanding one engineering requirement, defining a bounded work package and agreeing how success will be measured.</p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <Button href="/contact">Start an Engineering Discussion</Button>
+            <a href="https://www.panachedigilife.com/" class="inline-flex items-center justify-center border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/50">Visit Panache DigiLife</a>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
