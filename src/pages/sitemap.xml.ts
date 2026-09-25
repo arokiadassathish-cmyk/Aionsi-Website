@@ -25,10 +25,11 @@ const routes = [
   '/oppstar',
   '/greatasic',
   '/infinecs',
+  '/panache',
   '/target-accounts',
 ];
 
-const normalizePath = (route) => route === '/' ? '/' : `${route.replace(/\\/+$/, '')}/`;
+const normalizePath = (route) => route === '/' ? '/' : `${route.replace(/\/+$/, '')}/`;
 
 export const GET = () => {
   const urls = routes
