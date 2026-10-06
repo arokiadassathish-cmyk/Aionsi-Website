@@ -35,6 +35,37 @@ const seoTitles: Record<string, string> = {
 };
 const routePath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, '');
 const seoTitle = seoTitles[routePath] ?? title;
+const seoDescriptions: Record<string, string> = {
+  '/': 'Semiconductor engineering from IP to Silicon across RTL design, Design Verification, Physical Design, DFT, protocol verification and SoC engineering.',
+  '/capabilities': 'Explore AionSi semiconductor engineering capabilities across RTL design, Design Verification, Physical Design, DFT, protocol verification and SoC/IP engineering.',
+  '/capabilities/rtl-design': 'RTL design and SoC engineering support from microarchitecture through integration, verification readiness and signoff-focused execution.',
+  '/capabilities/design-verification': 'Design Verification engineering using SystemVerilog, UVM, assertions, coverage, regression, debug and IP, subsystem and SoC verification.',
+  '/capabilities/physical-design': 'Physical Design engineering across synthesis, floorplanning, placement, CTS, routing, timing closure, ECOs and physical signoff.',
+  '/capabilities/dft': 'DFT and semiconductor test engineering covering design-for-test implementation, verification, test readiness and signoff support.',
+  '/capabilities/analog-layout': 'Analog and custom layout engineering support across layout implementation, physical verification and signoff-oriented execution.',
+  '/capabilities/protocol-verification': 'Protocol verification engineering for PCIe, DDR, USB and other high-speed interfaces across IP, subsystem and SoC environments.',
+  '/capabilities/soc-ip-engineering': 'SoC and IP engineering support across integration, verification, interfaces, memory, security and complex subsystem execution.',
+  '/solutions/dedicated-engineering': 'Dedicated semiconductor engineering teams aligned to defined work packages, technical ownership, milestones and measurable delivery outcomes.',
+  '/solutions/extended-engineering': 'Extend semiconductor engineering teams with focused AionSi capacity across verification, RTL, physical design, DFT and SoC engineering.',
+  '/solutions/odc': 'Semiconductor engineering ODC model for building dedicated engineering capacity with technical ownership, governance, quality and scalable delivery.',
+  '/solutions/project-engineering': 'Project-based semiconductor engineering for defined work packages with clear scope, milestones, technical ownership and acceptance criteria.',
+  '/solutions/aiv': 'AI-accelerated verification engineering combining verification expertise, automation and repeatable execution to improve engineering productivity.',
+  '/contact': 'Contact AionSi to discuss semiconductor engineering requirements across RTL, Design Verification, Physical Design, DFT, protocols and SoC/IP.',
+  '/careers': 'Explore semiconductor engineering careers at AionSi across Design Verification, RTL, Physical Design, DFT and related engineering disciplines.',
+  '/insights': 'Technical insights from AionSi on semiconductor engineering, verification, SoC architecture, interfaces, implementation and silicon execution.',
+  '/insights/when-a-display-becomes-a-computing-platform': 'A technical perspective on how modern display platforms evolve into computing systems and the engineering implications across silicon and software.',
+  '/news': 'AionSi news and updates covering semiconductor engineering, technology, partnerships, events and company developments.',
+  '/blogs': 'Semiconductor engineering articles covering verification, protocols, SoC/IP, physical design, DFT and practical engineering execution.',
+  '/experience': 'Representative AionSi semiconductor engineering experience across Design Verification, RTL, Physical Design, DFT, protocols and SoC engineering.',
+  '/evidence': 'Engineering evidence from AionSi covering representative semiconductor projects, technologies, protocols and verification or implementation workstreams.',
+  '/cadence': 'AionSi engineering capability across verification, SoC engineering, implementation and signoff for semiconductor engineering collaboration with Cadence.',
+  '/oppstar': 'AionSi engineering capacity aligned to Oppstar across RTL, Design Verification, Physical Design, DFT, SoC integration and engineering automation.',
+  '/greatasic': 'AionSi engineering capacity for advanced SoC programs across RTL, Design Verification, Physical Design, DFT, FPGA and engineering automation.',
+  '/infinecs': 'AionSi semiconductor engineering capabilities aligned to Infinecs across Design Verification, RTL/SoC, Physical Design, STA/Synthesis and DFT.',
+  '/panache': 'AionSi semiconductor engineering capability aligned to Panache across verification, RTL, physical design, DFT and SoC engineering.',
+  '/target-accounts': 'AionSi semiconductor target accounts and engineering focus areas across product companies and opportunities for technical collaboration.',
+};
+const seoDescription = seoDescriptions[routePath] ?? description;
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
 const ogImageUrl = new URL(ogImage, siteUrl).toString();
@@ -62,13 +93,13 @@ const websiteSchema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{seoTitle}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={seoDescription} />
     <meta name="robots" content={robots} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
     <meta property="og:title" content={seoTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={seoDescription} />
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="AionSi" />
@@ -76,7 +107,7 @@ const websiteSchema = {
     <meta property="og:image:alt" content={seoTitle} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={seoTitle} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={seoDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)}></script>
