@@ -97,6 +97,7 @@ const segmentLabels: Record<string, string> = {
   'project-engineering': 'Project Engineering',
   'aiv': 'AI-Accelerated Verification',
 };
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
 const breadcrumbItems = [{ name: 'Home', url: siteUrl }];
 if (routePath !== '/') {
   const segments = routePath.split('/').filter(Boolean);
@@ -128,7 +129,6 @@ const breadcrumbSchema = {
   })),
 };
 
-const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
 const ogImageUrl = new URL(ogImage, siteUrl).toString();
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const organizationSchema = {
