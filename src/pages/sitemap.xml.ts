@@ -1,3 +1,14 @@
+const technologyEvidenceRoutes = [
+  '/evidence/pcie-gen6-data-link-layer',
+  '/evidence/usb-3x-usb4-controllers',
+  '/evidence/ddr4-ddr5-memory-controllers',
+  '/evidence/hbm2e-hbm3-memory-controllers',
+  '/evidence/amba-chi-axi-interconnect-fabrics',
+  '/evidence/risc-v-processor-core-family',
+  '/evidence/tarang-soc-engineering-experience',
+  '/evidence/opentitan-cryptography-secure-soc',
+];
+
 const routes = [
   '/',
   '/capabilities',
@@ -27,6 +38,7 @@ const routes = [
   '/infinecs',
   '/panache',
   '/target-accounts',
+  ...technologyEvidenceRoutes,
 ];
 
 const normalizePath = (route) => route === '/' ? '/' : `${route.replace(/\/+$/, '')}/`;
