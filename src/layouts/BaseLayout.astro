@@ -5,6 +5,12 @@ const { title = 'AionSi | Semiconductor Engineering', description = 'Semiconduct
 const siteUrl = 'https://aionsi.com';
 const seoTitles: Record<string, string> = {
   '/': 'Semiconductor Engineering from IP to Silicon | AionSi',
+  '/evidence/risc-v-processor-core-family': 'RISC-V Processor Core Engineering | AionSi',
+  '/evidence/amba-chi-axi-interconnect-fabrics': 'AMBA CHI & AXI Interconnect Engineering | AionSi',
+  '/evidence/hbm2e-hbm3-memory-controllers': 'HBM2e & HBM3 Memory Controllers | AionSi',
+  '/evidence/ddr4-ddr5-memory-controllers': 'DDR4 & DDR5 Memory Controller Engineering | AionSi',
+  '/evidence/usb-3x-usb4-controllers': 'USB 3.x & USB4 Controller Engineering | AionSi',
+  '/evidence/pcie-gen6-data-link-layer': 'PCIe Gen6 Data Link Layer Verification | AionSi',
   '/capabilities': 'Semiconductor Engineering Capabilities | AionSi',
   '/capabilities/rtl-design': 'RTL Design & SoC Engineering Services | AionSi',
   '/capabilities/design-verification': 'Design Verification Services | UVM, SoC & IP | AionSi',
@@ -15,7 +21,7 @@ const seoTitles: Record<string, string> = {
   '/capabilities/soc-ip-engineering': 'SoC & IP Engineering Services | AionSi',
   '/solutions/dedicated-engineering': 'Dedicated Semiconductor Engineering Teams | AionSi',
   '/solutions/extended-engineering': 'Extended Semiconductor Engineering Teams | AionSi',
-  '/solutions/odc': 'Semiconductor Engineering ODC | Offshore Development Center | AionSi',
+  '/solutions/odc': 'Semiconductor ODC | Dedicated Engineering Center | AionSi',
   '/solutions/project-engineering': 'Project-Based Semiconductor Engineering | AionSi',
   '/solutions/aiv': 'AI-Accelerated Verification Engineering | AionSi',
   '/contact': 'Contact AionSi | Semiconductor Engineering',
@@ -37,6 +43,12 @@ const routePath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(
 const seoTitle = seoTitles[routePath] ?? title;
 const seoDescriptions: Record<string, string> = {
   '/': 'Semiconductor engineering from IP to Silicon across RTL design, Design Verification, Physical Design, DFT, protocol verification and SoC engineering.',
+  '/evidence/risc-v-processor-core-family': 'RISC-V processor-core engineering across embedded, edge-AI and multi-core configurations with formal and dynamic verification.',
+  '/evidence/amba-chi-axi-interconnect-fabrics': 'AMBA CHI and AXI interconnect engineering for heterogeneous SoCs, coherency, QoS, topology and scalable integration.',
+  '/evidence/hbm2e-hbm3-memory-controllers': 'HBM2e and HBM3 memory-controller engineering for AI, GPU and HPC systems, including scheduling, contention and integration.',
+  '/evidence/ddr4-ddr5-memory-controllers': 'DDR4 and DDR5 memory-controller engineering across scheduling, refresh, ECC/RAS, timing and SoC integration.',
+  '/evidence/usb-3x-usb4-controllers': 'USB 3.x and USB4 controller engineering across PHY, link, protocol, power delivery, error recovery and host or device integration.',
+  '/evidence/pcie-gen6-data-link-layer': 'PCIe Gen6 Data Link Layer engineering covering link training, flow control, error recovery, power management and SoC integration.',
   '/capabilities': 'Explore AionSi semiconductor engineering capabilities across RTL design, Design Verification, Physical Design, DFT, protocol verification and SoC/IP engineering.',
   '/capabilities/rtl-design': 'RTL design and SoC engineering support from microarchitecture through integration, verification readiness and signoff-focused execution.',
   '/capabilities/design-verification': 'Design Verification engineering using SystemVerilog, UVM, assertions, coverage, regression, debug and IP, subsystem and SoC verification.',
@@ -47,7 +59,7 @@ const seoDescriptions: Record<string, string> = {
   '/capabilities/soc-ip-engineering': 'SoC and IP engineering support across integration, verification, interfaces, memory, security and complex subsystem execution.',
   '/solutions/dedicated-engineering': 'Dedicated semiconductor engineering teams aligned to defined work packages, technical ownership, milestones and measurable delivery outcomes.',
   '/solutions/extended-engineering': 'Extend semiconductor engineering teams with focused AionSi capacity across verification, RTL, physical design, DFT and SoC engineering.',
-  '/solutions/odc': 'Semiconductor engineering ODC model for building dedicated engineering capacity with technical ownership, governance, quality and scalable delivery.',
+  '/solutions/odc': 'Semiconductor ODC for dedicated engineering capacity, technical ownership, governance and scalable delivery.',
   '/solutions/project-engineering': 'Project-based semiconductor engineering for defined work packages with clear scope, milestones, technical ownership and acceptance criteria.',
   '/solutions/aiv': 'AI-accelerated verification engineering combining verification expertise, automation and repeatable execution to improve engineering productivity.',
   '/contact': 'Contact AionSi to discuss semiconductor engineering requirements across RTL, Design Verification, Physical Design, DFT, protocols and SoC/IP.',
