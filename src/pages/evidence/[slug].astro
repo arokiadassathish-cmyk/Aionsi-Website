@@ -45,6 +45,40 @@ const architectureImage = '/images/evidence/reusable-uvm-verification-architectu
 const isUvmArchitecture = evidence.href === '/evidence/reusable-uvm-verification-architecture';
 const isPhysicalDesign = evidence.capability.title === 'Physical Design';
 const isProfileDerivedPhysicalDesign = evidence.href === '/evidence/physical-design-profile-derived-experience';
+
+const technicalFocusMap: Record<string, { title: string; summary: string; points: string[]; related: { href: string; label: string }[] }> = {
+  '/evidence/hbm2e-hbm3-memory-controllers': {
+    title: 'HBM controller engineering focus',
+    summary: 'High-bandwidth memory engineering requires attention to controller scheduling, contention, bandwidth utilization, thermal behavior and integration with the surrounding SoC fabric.',
+    points: ['QoS-aware scheduling and contention scenarios', 'AXI / CHI client integration and traffic behavior', 'High-bandwidth and thermal-transient verification', 'Memory-subsystem regression and closure'],
+    related: [{ href: '/evidence/ddr4-ddr5-memory-controllers', label: 'DDR4 / DDR5 Memory Controllers' }, { href: '/capabilities/protocol-verification', label: 'Protocol Verification' }, { href: '/capabilities/design-verification', label: 'Design Verification' }],
+  },
+  '/evidence/ddr4-ddr5-memory-controllers': {
+    title: 'DDR controller engineering focus',
+    summary: 'DDR4 and DDR5 controller engineering spans command scheduling, refresh, ECC/RAS, timing behavior, power states and integration with SoC interconnects.',
+    points: ['Command scheduling and traffic patterns', 'Refresh, timing and low-power behavior', 'ECC / RAS scenarios and error handling', 'UVM-based memory-subsystem verification'],
+    related: [{ href: '/evidence/hbm2e-hbm3-memory-controllers', label: 'HBM2e / HBM3 Memory Controllers' }, { href: '/capabilities/design-verification', label: 'Design Verification' }, { href: '/capabilities/soc-ip-engineering', label: 'SoC & IP Engineering' }],
+  },
+  '/evidence/pcie-gen6-data-link-layer': {
+    title: 'PCIe Gen6 verification focus',
+    summary: 'PCIe Gen6 Data Link Layer engineering involves link training, flow control, error recovery, power-management behavior and integration with the wider SoC or subsystem environment.',
+    points: ['Data Link Layer state and transaction behavior', 'Flow control and credit handling', 'Error detection and recovery scenarios', 'Regression, coverage and protocol-closure discipline'],
+    related: [{ href: '/capabilities/protocol-verification', label: 'Protocol Verification' }, { href: '/capabilities/design-verification', label: 'Design Verification' }, { href: '/evidence/amba-chi-axi-interconnect-fabrics', label: 'AMBA CHI / AXI Interconnect' }],
+  },
+  '/capabilities/design-verification': {
+    title: 'Design Verification engineering focus',
+    summary: 'AionSi positions verification around reusable UVM/SystemVerilog environments, IP-to-SoC scope, assertions, coverage, regression and debug rather than testbench generation alone.',
+    points: ['IP, subsystem and SoC verification', 'UVM agents, sequences, monitors and scoreboards', 'Assertions, coverage and regression closure', 'Debug automation and repeatable verification flows'],
+    related: [{ href: '/capabilities/protocol-verification', label: 'Protocol Verification' }, { href: '/evidence/pcie-gen6-data-link-layer', label: 'PCIe Gen6 Data Link Layer' }, { href: '/evidence/hbm2e-hbm3-memory-controllers', label: 'HBM2e / HBM3' }],
+  },
+  '/capabilities/protocol-verification': {
+    title: 'Protocol verification engineering focus',
+    summary: 'Protocol verification connects interface-level correctness to subsystem and SoC behavior, with emphasis on legal and negative scenarios, integration, coverage and debug.',
+    points: ['PCIe, DDR, USB and interface-level scenarios', 'Protocol compliance and negative testing', 'Subsystem integration and cross-interface behavior', 'Coverage closure and regression analysis'],
+    related: [{ href: '/evidence/pcie-gen6-data-link-layer', label: 'PCIe Gen6 Data Link Layer' }, { href: '/evidence/ddr4-ddr5-memory-controllers', label: 'DDR4 / DDR5' }, { href: '/capabilities/design-verification', label: 'Design Verification' }],
+  },
+};
+const technicalFocus = technicalFocusMap[evidence.href ?? ''];
 const physicalDesignSources = [
   {
     title: 'Janardhan Reddy V — Physical Design Profile',
@@ -80,6 +114,8 @@ const physicalDesignSources = [
     {isUvmArchitecture && <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-16 lg:py-20"><Container><div class="grid gap-8 lg:grid-cols-[.4fr_1.6fr] lg:items-center"><div class="max-w-xl"><TechnicalLabel>Technical Architecture</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Reference UVM architecture.</h2><p class="mt-4 text-lg leading-8 text-white/70">A technical reference showing reusable test, environment, agent, DUT, checking, coverage, assertion and analysis relationships.</p><div class="mt-5 grid gap-2 text-sm text-white/70 sm:grid-cols-2"><div class="border border-white/10 bg-white/5 px-4 py-3">Stimulus → DUT interaction</div><div class="border border-white/10 bg-white/5 px-4 py-3">Agents → monitors → checking</div><div class="border border-white/10 bg-white/5 px-4 py-3">Coverage + assertions</div><div class="border border-white/10 bg-white/5 px-4 py-3">Regression + analysis</div></div><p class="mt-5 text-xs leading-6 text-white/45">Reference architecture derived from approved AionSi engineering material.</p></div><figure class="overflow-hidden border border-white/15 bg-white p-2 shadow-2xl shadow-black/10"><div class="flex min-h-64 items-center justify-center bg-slate-50 md:min-h-80"><img src={architectureImage} alt="Reusable UVM verification architecture" class="block h-auto max-h-[820px] w-full object-contain" loading="lazy" decoding="async" /></div><figcaption class="flex items-center justify-between gap-4 px-2 pb-1 pt-3 text-xs leading-5 text-slate-500"><span>Approved architecture reference</span><a href={architectureImage} target="_blank" rel="noreferrer" class="font-semibold text-[var(--aionsi-blue)] hover:underline">Open full-size →</a></figcaption></figure></div></Container></Section>}
 
     {isProfileDerivedPhysicalDesign && <Section class="bg-[var(--aionsi-deep-navy)] py-12 text-white md:py-14"><Container><div class="grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-start"><div class="max-w-2xl"><TechnicalLabel>Profile-Derived Evidence</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Representative engineering experience, not a customer reference.</h2><p class="mt-4 text-lg leading-8 text-white/70">This evidence consolidates the supplied Physical Design profiles into a customer-safe technical reference. It describes engineering experience and scope reported in the profiles; it does not imply that the named organizations are AionSi customers.</p><div class="mt-5 grid gap-2 sm:grid-cols-2"><div class="border border-white/10 bg-white/5 px-4 py-3 text-sm">Advanced-node implementation</div><div class="border border-white/10 bg-white/5 px-4 py-3 text-sm">Timing & congestion closure</div><div class="border border-white/10 bg-white/5 px-4 py-3 text-sm">Physical verification</div><div class="border border-white/10 bg-white/5 px-4 py-3 text-sm">Sign-off & ECO closure</div></div></div><div class="grid gap-3">{physicalDesignSources.map((source) => <div class="border border-white/10 bg-white/5 p-5"><h3 class="font-semibold">{source.title}</h3><p class="mt-2 text-sm leading-6 text-white/70">{source.description}</p><div class="mt-3 text-[10px] font-semibold uppercase tracking-[.15em] text-white/45">{source.fileLabel}</div></div>)}</div></div></Container></Section>}
+
+    {technicalFocus && <Section class="bg-[var(--aionsi-surface-alt)] py-10 md:py-12 lg:py-14"><Container><div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start"><div><TechnicalLabel>Technical Focus</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">{technicalFocus.title}</h2><p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">{technicalFocus.summary}</p></div><div class="grid gap-3 sm:grid-cols-2">{technicalFocus.points.map((point) => <div class="border border-slate-200 bg-white p-5 text-sm font-medium leading-6 text-[var(--aionsi-navy)]">{point}</div>)}</div></div><div class="mt-8 border-t border-slate-200 pt-8"><TechnicalLabel>Related Engineering Paths</TechnicalLabel><div class="mt-4 grid gap-3 md:grid-cols-3">{technicalFocus.related.map((item) => <a href={item.href} class="border border-slate-200 bg-white p-5 transition hover:border-[var(--aionsi-blue)]"><span class="text-sm font-semibold text-[var(--aionsi-navy)]">{item.label} →</span></a>)}</div></div></Container></Section>}
 
     <Section class="bg-[var(--aionsi-surface-alt)] py-10 md:py-12 lg:py-14"><Container><div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start"><div><TechnicalLabel>Architecture Summary</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">{isPhysicalDesign ? 'Physical Design closure is an iterative engineering problem.' : 'What the architecture enables.'}</h2><p class="mt-4 max-w-xl text-lg leading-8 text-slate-600">{presentation.architectureSummary}</p></div><div class="grid gap-3 sm:grid-cols-2">{presentation.architectureBenefits.map((item) => <div class="border border-slate-200 bg-white p-6"><h3 class="font-semibold text-[var(--aionsi-navy)]">{item.title}</h3><p class="mt-2 text-sm leading-6 text-slate-600">{item.description}</p></div>)}</div></div></Container></Section>
 
