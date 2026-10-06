@@ -104,7 +104,7 @@ if (routePath !== '/') {
   segments.forEach((segment) => {
     currentPath += '/' + segment;
     breadcrumbItems.push({
-      name: breadcrumbLabels[currentPath] ?? segmentLabels[segment] ?? segment.replace(/-/g, ' ').replace(/\\b\\w/g, (letter) => letter.toUpperCase()),
+      name: breadcrumbLabels[currentPath] ?? segmentLabels[segment] ?? segment.replace(/-/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase()),
       url: new URL(currentPath, siteUrl).toString(),
     });
   });
