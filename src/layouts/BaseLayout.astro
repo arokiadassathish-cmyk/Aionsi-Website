@@ -66,6 +66,67 @@ const seoDescriptions: Record<string, string> = {
   '/target-accounts': 'AionSi semiconductor target accounts and engineering focus areas across product companies and opportunities for technical collaboration.',
 };
 const seoDescription = seoDescriptions[routePath] ?? description;
+const breadcrumbLabels: Record<string, string> = {
+  '/capabilities': 'Capabilities',
+  '/solutions': 'Solutions',
+  '/contact': 'Contact',
+  '/careers': 'Careers',
+  '/insights': 'Insights',
+  '/news': 'News',
+  '/blogs': 'Blogs',
+  '/experience': 'Experience',
+  '/evidence': 'Evidence',
+  '/cadence': 'Cadence',
+  '/oppstar': 'Oppstar',
+  '/greatasic': 'GreatAsic',
+  '/infinecs': 'Infinecs',
+  '/panache': 'Panache',
+  '/target-accounts': 'Target Accounts',
+};
+const segmentLabels: Record<string, string> = {
+  'rtl-design': 'RTL Design',
+  'design-verification': 'Design Verification',
+  'physical-design': 'Physical Design',
+  'dft': 'DFT',
+  'analog-layout': 'Analog Layout',
+  'protocol-verification': 'Protocol Verification',
+  'soc-ip-engineering': 'SoC & IP Engineering',
+  'dedicated-engineering': 'Dedicated Engineering',
+  'extended-engineering': 'Extended Engineering',
+  'odc': 'Engineering ODC',
+  'project-engineering': 'Project Engineering',
+  'aiv': 'AI-Accelerated Verification',
+};
+const breadcrumbItems = [{ name: 'Home', url: siteUrl }];
+if (routePath !== '/') {
+  const segments = routePath.split('/').filter(Boolean);
+  let currentPath = '';
+  segments.forEach((segment) => {
+    currentPath += '/' + segment;
+    breadcrumbItems.push({
+      name: breadcrumbLabels[currentPath] ?? segmentLabels[segment] ?? segment.replace(/-/g, ' ').replace(/\\b\\w/g, (letter) => letter.toUpperCase()),
+      url: new URL(currentPath, siteUrl).toString(),
+    });
+  });
+}
+const webpageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: seoTitle,
+  description: seoDescription,
+  url: canonicalUrl,
+  isPartOf: { '@type': 'WebSite', name: 'AionSi', url: siteUrl },
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    item: item.url,
+  })),
+};
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
 const ogImageUrl = new URL(ogImage, siteUrl).toString();
@@ -110,7 +171,7 @@ const websiteSchema = {
     <meta name="twitter:description" content={seoDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)}></script>
-    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)}></script>\n    <script type="application/ld+json" set:html={JSON.stringify(webpageSchema)}></script>\n    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
     {gaMeasurementId && (
       <>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
