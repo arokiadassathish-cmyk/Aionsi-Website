@@ -3,6 +3,39 @@ import '../styles/global.css';
 interface Props { title?: string; description?: string; canonical?: string; ogImage?: string; type?: string; robots?: string; }
 const { title = 'AionSi | Semiconductor Engineering', description = 'Semiconductor engineering from IP to Silicon.', canonical, ogImage = '/favicon.svg', type = 'website', robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' } = Astro.props;
 const siteUrl = 'https://aionsi.com';
+const seoTitles: Record<string, string> = {
+  '/': 'Semiconductor Engineering from IP to Silicon | AionSi',
+  '/capabilities': 'Semiconductor Engineering Capabilities | AionSi',
+  '/capabilities/rtl-design': 'RTL Design & SoC Engineering Services | AionSi',
+  '/capabilities/design-verification': 'Design Verification Services | UVM, SoC & IP | AionSi',
+  '/capabilities/physical-design': 'Physical Design & Signoff Services | AionSi',
+  '/capabilities/dft': 'DFT & Semiconductor Test Engineering | AionSi',
+  '/capabilities/analog-layout': 'Analog & Custom Layout Engineering | AionSi',
+  '/capabilities/protocol-verification': 'Protocol Verification Services | PCIe, DDR, USB | AionSi',
+  '/capabilities/soc-ip-engineering': 'SoC & IP Engineering Services | AionSi',
+  '/solutions/dedicated-engineering': 'Dedicated Semiconductor Engineering Teams | AionSi',
+  '/solutions/extended-engineering': 'Extended Semiconductor Engineering Teams | AionSi',
+  '/solutions/odc': 'Semiconductor Engineering ODC | Offshore Development Center | AionSi',
+  '/solutions/project-engineering': 'Project-Based Semiconductor Engineering | AionSi',
+  '/solutions/aiv': 'AI-Accelerated Verification Engineering | AionSi',
+  '/contact': 'Contact AionSi | Semiconductor Engineering',
+  '/careers': 'Semiconductor Engineering Careers | AionSi',
+  '/insights': 'Semiconductor Engineering Insights | AionSi',
+  '/insights/when-a-display-becomes-a-computing-platform': 'When a Display Becomes a Computing Platform | AionSi',
+  '/news': 'AionSi News | Semiconductor Engineering',
+  '/blogs': 'Semiconductor Engineering Blogs | AionSi',
+  '/experience': 'Semiconductor Engineering Experience | AionSi',
+  '/evidence': 'Semiconductor Engineering Evidence | AionSi',
+  '/cadence': 'AionSi × Cadence | Semiconductor Engineering Capability',
+  '/oppstar': 'AionSi × Oppstar | Semiconductor Engineering Capacity',
+  '/greatasic': 'AionSi × GreatAsic | SoC Engineering Capacity',
+  '/infinecs': 'AionSi × Infinecs | Semiconductor Engineering',
+  '/panache': 'AionSi × Panache | Semiconductor Engineering',
+  '/target-accounts': 'Semiconductor Target Accounts | AionSi',
+};
+const routePath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, '');
+const seoTitle = seoTitles[routePath] ?? title;
+
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
 const ogImageUrl = new URL(ogImage, siteUrl).toString();
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
@@ -28,21 +61,21 @@ const websiteSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>{title}</title>
+    <title>{seoTitle}</title>
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={seoTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="AionSi" />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:image:alt" content={title} />
+    <meta property="og:image:alt" content={seoTitle} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={seoTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)}></script>
