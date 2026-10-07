@@ -38,6 +38,12 @@ const seoTitles: Record<string, string> = {
   '/infinecs': 'AionSi × Infinecs | Semiconductor Engineering',
   '/panache': 'AionSi × Panache | Semiconductor Engineering',
   '/target-accounts': 'Semiconductor Target Accounts | AionSi',
+  '/customers': 'Semiconductor Engineering Customers | AionSi',
+  '/industries': 'Semiconductor Industry Engineering | AionSi',
+  '/industries/semiconductor': 'Semiconductor Engineering Industry | AionSi',
+  '/leadership': 'AionSi Leadership | Semiconductor Engineering',
+  '/gallery': 'AionSi Events & Engineering Moments | Semiconductor',
+  '/careers/apply': 'Apply to AionSi | Semiconductor Engineering Careers',
 };
 const routePath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, '');
 const seoTitle = seoTitles[routePath] ?? title;
@@ -76,6 +82,12 @@ const seoDescriptions: Record<string, string> = {
   '/infinecs': 'AionSi semiconductor engineering capabilities aligned to Infinecs across Design Verification, RTL/SoC, Physical Design, STA/Synthesis and DFT.',
   '/panache': 'AionSi semiconductor engineering capability aligned to Panache across verification, RTL, physical design, DFT and SoC engineering.',
   '/target-accounts': 'AionSi semiconductor target accounts and engineering focus areas across product companies and opportunities for technical collaboration.',
+  '/customers': 'Semiconductor and technology organizations supported through AionSi engineering engagements, capabilities and delivery models.',
+  '/industries': 'Explore AionSi engineering capabilities across semiconductor and technology industry programs.',
+  '/industries/semiconductor': 'Semiconductor engineering capabilities across RTL, verification, physical design, DFT, protocols and SoC execution.',
+  '/leadership': 'Meet the AionSi leadership team guiding semiconductor engineering, delivery and technical growth.',
+  '/gallery': 'AionSi events, engineering engagements and company moments across the semiconductor ecosystem.',
+  '/careers/apply': 'Apply for semiconductor engineering opportunities at AionSi across verification, RTL, physical design, DFT and related disciplines.',
 };
 const seoDescription = seoDescriptions[routePath] ?? description;
 const breadcrumbLabels: Record<string, string> = {
