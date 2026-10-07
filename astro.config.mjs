@@ -12,6 +12,8 @@ export default defineConfig({
   redirects: {
     '/contact-us': '/contact',
     '/case-study/layout-and-design-case-study-1-': '/evidence/advanced-node-physical-design-timing-congestion-signoff',
+    '/service/design-verification': '/capabilities/design-verification',
+    '/service/ams-verification': '/capabilities/analog-layout',
   },
   adapter: isVercel ? vercel() : node({ mode: 'standalone' }),
   integrations: [react()],
