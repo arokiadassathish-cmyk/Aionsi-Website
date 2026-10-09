@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import CookieConsent from '../components/global/CookieConsent.astro';
 interface Props { title?: string; description?: string; canonical?: string; ogImage?: string; type?: string; robots?: string; }
 const { title = 'AionSi | Semiconductor Engineering', description = 'Semiconductor engineering from IP to Silicon.', canonical, ogImage = '/favicon.svg', type = 'website', robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1' } = Astro.props;
 const siteUrl = 'https://aionsi.com';
@@ -196,39 +197,10 @@ const websiteSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(webpageSchema)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
-    {gaMeasurementId && (
-      <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
-        <script is:inline define:vars={{ gaMeasurementId }}>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', gaMeasurementId, { anonymize_ip: true });
-          window.addEventListener('aionsi:analytics', (event) => {
-            const detail = event?.detail || {};
-            if (detail.name) gtag('event', detail.name, detail.params || {});
-          });
-          document.addEventListener('click', (event) => {
-            const target = event.target instanceof Element ? event.target.closest('a') : null;
-            if (!target) return;
-            const href = target.getAttribute('href') || '';
-            const text = (target.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120);
-            if (href.startsWith('mailto:')) gtag('event', 'contact_email_click', { link_text: text });
-            else if (href.startsWith('tel:')) gtag('event', 'contact_phone_click', { link_text: text });
-            else if (/\/contact\/?$/.test(href)) gtag('event', 'contact_page_click', { link_text: text });
-            else if (/\/capabilities\//.test(href)) gtag('event', 'capability_click', { destination: href, link_text: text });
-            else if (/\/evidence\//.test(href) || /\/experience\//.test(href)) gtag('event', 'engineering_evidence_click', { destination: href, link_text: text });
-            else if (/\/insights\//.test(href) || /\/blogs\//.test(href)) gtag('event', 'content_click', { destination: href, link_text: text });
-          });
-          document.addEventListener('submit', (event) => {
-            const form = event.target instanceof HTMLFormElement ? event.target : null;
-            if (form) gtag('event', 'engineering_requirement_submit', { form_id: form.id || 'unknown' });
-          });
-        </script>
-      </>
-    )}
+
   </head>
   <body>
     <slot />
+    <CookieConsent measurementId={gaMeasurementId ?? ''} />
   </body>
 </html>

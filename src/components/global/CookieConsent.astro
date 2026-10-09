@@ -1,0 +1,153 @@
+---
+interface Props { measurementId?: string; }
+const { measurementId = '' } = Astro.props;
+---
+<div
+  id="aionsi-cookie-consent"
+  class="fixed inset-x-4 bottom-4 z-[100] mx-auto hidden max-w-3xl rounded-2xl border border-slate-200 bg-white p-5 text-slate-800 shadow-2xl md:p-6"
+  role="dialog"
+  aria-labelledby="aionsi-cookie-title"
+  aria-describedby="aionsi-cookie-description"
+  data-measurement-id={measurementId}
+>
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+    <div class="max-w-xl">
+      <h2 id="aionsi-cookie-title" class="text-lg font-semibold text-[var(--aionsi-navy)]">Your privacy choices</h2>
+      <p id="aionsi-cookie-description" class="mt-2 text-sm leading-6 text-slate-600">AionSi uses essential technologies to operate this website. With your permission, we use Google Analytics to understand website usage. Optional analytics remain off until you accept, and you can change your choice at any time.</p>
+      <a href="/privacy-policy" class="mt-2 inline-flex text-sm font-semibold text-[var(--aionsi-blue)] underline">Read our Privacy Policy</a>
+      <p id="aionsi-cookie-no-analytics" class="mt-2 hidden text-xs text-slate-500">Optional analytics are not currently configured on this page.</p>
+      <p id="aionsi-cookie-status" class="mt-2 hidden text-xs text-slate-500" role="status" aria-live="polite"></p>
+    </div>
+    <div class="flex shrink-0 flex-wrap gap-2 sm:max-w-[250px] sm:justify-end">
+      <button type="button" id="aionsi-cookie-reject" class="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Reject optional</button>
+      <button type="button" id="aionsi-cookie-accept" class="rounded-full bg-[var(--aionsi-blue)] px-4 py-2 text-sm font-semibold text-white hover:bg-[var(--aionsi-navy)]">Accept analytics</button>
+      <button type="button" id="aionsi-cookie-close" class="hidden rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Close</button>
+    </div>
+  </div>
+</div>
+<script is:inline>
+(() => {
+  const panel = document.getElementById('aionsi-cookie-consent');
+  if (!panel || panel.dataset.initialized === 'true') return;
+  panel.dataset.initialized = 'true';
+  const measurementId = panel.dataset.measurementId || '';
+  const storageKey = 'aionsi-privacy-consent';
+  const consentVersion = 1;
+  const accept = document.getElementById('aionsi-cookie-accept');
+  const reject = document.getElementById('aionsi-cookie-reject');
+  const close = document.getElementById('aionsi-cookie-close');
+  const status = document.getElementById('aionsi-cookie-status');
+  const noAnalytics = document.getElementById('aionsi-cookie-no-analytics');
+  let analyticsLoaded = false;
+
+  function readChoice() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+      return saved && saved.version === consentVersion ? saved.analytics : null;
+    } catch { return null; }
+  }
+
+  function showPanel(preferences = false) {
+    panel.classList.remove('hidden');
+    close?.classList.toggle('hidden', !preferences);
+    if (!measurementId) {
+      noAnalytics?.classList.remove('hidden');
+      accept?.setAttribute('disabled', 'disabled');
+      accept?.classList.add('cursor-not-allowed', 'opacity-50');
+      if (status) {
+        status.textContent = 'There is no configured optional analytics service to enable right now.';
+        status.classList.remove('hidden');
+      }
+    } else {
+      noAnalytics?.classList.add('hidden');
+      accept?.removeAttribute('disabled');
+      accept?.classList.remove('cursor-not-allowed', 'opacity-50');
+    }
+  }
+
+  function disableAnalytics() {
+    if (!measurementId) return;
+    window['ga-disable-' + measurementId] = true;
+    // Best-effort removal of Google Analytics cookies for the current host.
+    for (const cookie of document.cookie.split(';')) {
+      const name = cookie.split('=')[0]?.trim();
+      if (!name || !/^(_ga|_gid|_gat|_gac_)/.test(name)) continue;
+      document.cookie = name + '=; Max-Age=0; path=/; SameSite=Lax';
+      const host = window.location.hostname;
+      if (host.includes('.')) document.cookie = name + '=; Max-Age=0; path=/; domain=.' + host + '; SameSite=Lax';
+    }
+  }
+
+  function loadAnalytics() {
+    if (!measurementId || analyticsLoaded || readChoice() !== 'accepted') return;
+    window['ga-disable-' + measurementId] = false;
+    analyticsLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', measurementId, { anonymize_ip: true });
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId);
+    script.onload = () => {
+      window.dispatchEvent(new CustomEvent('aionsi:analytics-ready'));
+    };
+    document.head.appendChild(script);
+
+    window.addEventListener('aionsi:analytics', (event) => {
+      const detail = event?.detail || {};
+      if (detail.name && readChoice() === 'accepted' && typeof window.gtag === 'function') {
+        window.gtag('event', detail.name, detail.params || {});
+      }
+    });
+    document.addEventListener('click', (event) => {
+      if (readChoice() !== 'accepted') return;
+      const target = event.target instanceof Element ? event.target.closest('a') : null;
+      if (!target) return;
+      const href = target.getAttribute('href') || '';
+      const text = (target.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120);
+      if (href.startsWith('mailto:')) window.gtag('event', 'contact_email_click', { link_text: text });
+      else if (href.startsWith('tel:')) window.gtag('event', 'contact_phone_click', { link_text: text });
+      else if (/\/contact\/?$/.test(href)) window.gtag('event', 'contact_page_click', { link_text: text });
+      else if (/\/capabilities\//.test(href)) window.gtag('event', 'capability_click', { destination: href, link_text: text });
+      else if (/\/evidence\//.test(href) || /\/experience\//.test(href)) window.gtag('event', 'engineering_evidence_click', { destination: href, link_text: text });
+      else if (/\/insights\//.test(href) || /\/blogs\//.test(href)) window.gtag('event', 'content_click', { destination: href, link_text: text });
+    });
+    document.addEventListener('submit', (event) => {
+      if (readChoice() !== 'accepted') return;
+      const form = event.target instanceof HTMLFormElement ? event.target : null;
+      if (form && form.id === 'engineering-discovery-form-inner') {
+        window.gtag('event', 'engineering_requirement_submit', { form_id: form.id });
+      }
+    });
+  }
+
+  function saveChoice(choice) {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify({
+        version: consentVersion,
+        analytics: choice,
+        updatedAt: new Date().toISOString()
+      }));
+    } catch {}
+    if (choice === 'accepted') loadAnalytics();
+    else disableAnalytics();
+    panel.classList.add('hidden');
+  }
+
+  accept?.addEventListener('click', () => saveChoice('accepted'));
+  reject?.addEventListener('click', () => saveChoice('rejected'));
+  close?.addEventListener('click', () => panel.classList.add('hidden'));
+  document.addEventListener('click', (event) => {
+    const trigger = event.target instanceof Element ? event.target.closest('[data-cookie-preferences]') : null;
+    if (trigger) {
+      event.preventDefault();
+      showPanel(true);
+    }
+  });
+
+  const choice = readChoice();
+  if (choice === 'accepted') loadAnalytics();
+  else if (!choice && measurementId) showPanel(false);
+})();
+</script>
