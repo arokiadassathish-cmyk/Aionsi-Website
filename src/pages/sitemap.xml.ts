@@ -23,6 +23,7 @@ const routes = [
   '/solutions/project-engineering',
   '/solutions/aiv',
   '/contact',
+  '/privacy-policy',
   '/careers',
   '/insights',
   '/insights/when-a-display-becomes-a-computing-platform',
