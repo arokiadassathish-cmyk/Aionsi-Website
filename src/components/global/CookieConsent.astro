@@ -65,8 +65,22 @@ const { measurementId = '' } = Astro.props;
     }
   }
 
+  function disableAnalytics() {
+    if (!measurementId) return;
+    window['ga-disable-' + measurementId] = true;
+    // Best-effort removal of Google Analytics cookies for the current host.
+    for (const cookie of document.cookie.split(';')) {
+      const name = cookie.split('=')[0]?.trim();
+      if (!name || !/^(_ga|_gid|_gat|_gac_)/.test(name)) continue;
+      document.cookie = name + '=; Max-Age=0; path=/; SameSite=Lax';
+      const host = window.location.hostname;
+      if (host.includes('.')) document.cookie = name + '=; Max-Age=0; path=/; domain=.' + host + '; SameSite=Lax';
+    }
+  }
+
   function loadAnalytics() {
     if (!measurementId || analyticsLoaded || readChoice() !== 'accepted') return;
+    window['ga-disable-' + measurementId] = false;
     analyticsLoaded = true;
     window.dataLayer = window.dataLayer || [];
     window.gtag = function(){ window.dataLayer.push(arguments); };
@@ -117,6 +131,7 @@ const { measurementId = '' } = Astro.props;
       }));
     } catch {}
     if (choice === 'accepted') loadAnalytics();
+    else disableAnalytics();
     panel.classList.add('hidden');
   }
 
