@@ -197,10 +197,10 @@ const websiteSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(webpageSchema)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
-    <CookieConsent measurementId={gaMeasurementId ?? ''} />
 
   </head>
   <body>
     <slot />
+    <CookieConsent measurementId={gaMeasurementId ?? ''} />
   </body>
 </html>
