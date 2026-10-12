@@ -148,6 +148,6 @@ const { measurementId = '' } = Astro.props;
 
   const choice = readChoice();
   if (choice === 'accepted') loadAnalytics();
-  else if (!choice && measurementId) showPanel(false);
+  else if (!choice) showPanel(false);
 })();
 </script>
