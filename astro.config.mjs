@@ -16,6 +16,8 @@ export default defineConfig({
     '/service/ams-verification': '/capabilities',
     '/capabilities/analog-layout': '/capabilities',
     '/capabilities/soc-ip-engineering': '/capabilities',
+    '/capabilities/analog-layout/': '/capabilities',
+    '/capabilities/soc-ip-engineering/': '/capabilities',
   },
   adapter: isVercel ? vercel() : node({ mode: 'standalone' }),
   integrations: [react()],
