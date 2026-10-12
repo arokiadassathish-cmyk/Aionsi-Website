@@ -14,6 +14,8 @@ export default defineConfig({
     '/case-study/layout-and-design-case-study-1-': '/evidence/advanced-node-physical-design-timing-congestion-signoff',
     '/service/design-verification': '/capabilities/design-verification',
     '/service/ams-verification': '/capabilities',
+    '/capabilities/analog-layout': '/capabilities',
+    '/capabilities/soc-ip-engineering': '/capabilities',
   },
   adapter: isVercel ? vercel() : node({ mode: 'standalone' }),
   integrations: [react()],
