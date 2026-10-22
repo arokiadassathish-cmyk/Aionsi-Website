@@ -29,6 +29,7 @@ const routes = [
   '/insights/when-a-display-becomes-a-computing-platform',
   '/news',
   '/blogs',
+  '/blogs/gate-level-simulation-gls-asic-verification',
   '/experience',
   '/evidence',
   '/cadence',
@@ -40,12 +41,12 @@ const routes = [
   ...technologyEvidenceRoutes,
 ];
 
-const normalizePath = (route) => route === '/' ? '/' : `${route.replace(/\/+$/, '')}/`;
+const normalizePath = (route) => route === '/' ? '/' : `${route.replace(/\\/+$/, '')}/`;
 
 export const GET = () => {
   const urls = routes
     .map((route) => `  <url><loc>https://aionsi.com${normalizePath(route)}</loc></url>`)
-    .join('\n');
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;
+    .join('\\n');
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\\n${urls}\\n</urlset>`;
   return new Response(xml, { headers: { 'Content-Type': 'application/xml; charset=utf-8' } });
 };
