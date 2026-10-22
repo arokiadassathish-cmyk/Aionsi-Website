@@ -29,6 +29,7 @@ const routes = [
   '/insights/when-a-display-becomes-a-computing-platform',
   '/news',
   '/blogs',
+  '/blogs/gate-level-simulation-gls-asic-verification',
   '/experience',
   '/evidence',
   '/cadence',

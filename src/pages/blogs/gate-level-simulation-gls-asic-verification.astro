@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+
+const title = 'Gate-Level Simulation (GLS) in ASIC Verification: A Practical Sign-Off Guide';
+const description = 'A practical guide to gate-level simulation in ASIC verification, covering SDF annotation, X-propagation, reset behavior, timing checks, debug and sign-off boundaries.';
+const canonical = 'https://aionsi.com/blogs/gate-level-simulation-gls-asic-verification/';
+const publishedDate = '2026-10-22';
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: publishedDate,
+  dateModified: publishedDate,
+  author: { '@type': 'Organization', name: 'AionSi' },
+  publisher: { '@type': 'Organization', name: 'AionSi', url: 'https://aionsi.com' },
+  mainEntityOfPage: canonical,
+};
+const contents = [
+  ['What GLS can—and cannot—tell you', 'gls-role'],
+  ['RTL simulation vs. GLS', 'rtl-vs-gls'],
+  ['The main technical challenges', 'challenges'],
+  ['A practical workflow', 'workflow'],
+  ['Sign-off checklist', 'checklist'],
+  ['How GLS fits with STA and formal', 'signoff'],
+];
+---
+<BaseLayout title={title} description={description} canonical={canonical} type="article">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-deep-navy)] py-14 text-white md:py-20">
+      <Container>
+        <div class="max-w-4xl">
+          <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[.18em] text-white/60"><span>Design Verification</span><span>•</span><span>Technical Guide</span><span>•</span><span>8–10 min read</span></div>
+          <h1 class="mt-5 text-4xl font-semibold tracking-tight md:text-6xl">Gate-Level Simulation (GLS) in ASIC Verification: A Practical Sign-Off Guide</h1>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-white/75 md:text-xl">How to use gate-level simulation to investigate implementation-aware behavior, debug timing-sensitive failures and strengthen a broader ASIC sign-off strategy—without confusing GLS with static timing analysis.</p>
+          <div class="mt-8 flex flex-wrap gap-2">{['GLS','SDF Annotation','X-Propagation','Reset Verification','ASIC Sign-Off'].map((tag) => <span class="border border-white/15 bg-white/5 px-3 py-2 text-xs font-medium text-white/80">{tag}</span>)}</div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="py-10 md:py-14">
+      <Container>
+        <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
+          <article class="min-w-0">
+            <p class="text-lg leading-8 text-slate-700">RTL simulation is the foundation of functional verification, but it does not reproduce every behavior introduced by synthesis, technology-specific cell models and implementation timing. Gate-Level Simulation (GLS) allows engineers to simulate a synthesized netlist and, when configured for timing-aware analysis, investigate selected behaviors with cell and interconnect delays.</p>
+            <p class="mt-5 text-base leading-8 text-slate-600">GLS is most useful when its objective is explicit: investigate a timing-sensitive scenario, validate reset assumptions against the implemented netlist, understand unknown-state propagation, or debug a failure that appears after synthesis or implementation. It is not a replacement for RTL verification, formal methods or Static Timing Analysis (STA).</p>
+
+            <div class="my-8 grid gap-3 sm:grid-cols-3">
+              {[['RTL','Functional intent','Fast, broad functional exploration'],['Netlist','Implementation model','Technology-mapped cells and connectivity'],['SDF + GLS','Timing-aware simulation','Selected delay-dependent behavior']].map(([step,heading,detail]) => <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5"><div class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">{step}</div><h2 class="mt-2 font-semibold text-[var(--aionsi-navy)]">{heading}</h2><p class="mt-2 text-sm leading-6 text-slate-600">{detail}</p></div>)}
+            </div>
+
+            <h2 id="gls-role" class="mt-12 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)]">1. What GLS can—and cannot—tell you</h2>
+            <p class="mt-4 text-base leading-8 text-slate-600">GLS simulates a gate-level netlist using functional or timing-capable cell models. Post-synthesis GLS commonly focuses on netlist behavior, while post-placement or post-route GLS may use SDF data representing delays available at that implementation stage. The exact value depends on the flow, libraries, extraction stage and simulation configuration.</p>
+            <p class="mt-4 text-base leading-8 text-slate-600">When SDF is annotated, the simulator can model supported cell and interconnect delays and timing checks. This can expose behavior associated with reset release, event ordering, timing-check violations and unknown values that is not represented in the same way by an idealized RTL run.</p>
+            <div class="my-6 border-l-4 border-[var(--aionsi-orange)] bg-[var(--aionsi-surface-alt)] p-5">
+              <p class="font-semibold text-[var(--aionsi-navy)]">Engineering distinction</p>
+              <p class="mt-2 text-sm leading-7 text-slate-600">A passing GLS regression is evidence for the scenarios and configuration exercised—not proof that every timing path is clean or that all silicon behavior has been validated. STA, constraints review and other sign-off checks remain essential.</p>
+            </div>
+
+            <h2 id="rtl-vs-gls" class="mt-12 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)]">2. RTL simulation vs. gate-level simulation</h2>
+            <div class="mt-5 overflow-x-auto border border-slate-200">
+              <table class="w-full min-w-[560px] border-collapse text-left text-sm">
+                <thead class="bg-[var(--aionsi-surface-alt)] text-[var(--aionsi-navy)]"><tr><th class="p-4 font-semibold">Dimension</th><th class="p-4 font-semibold">RTL simulation</th><th class="p-4 font-semibold">GLS</th></tr></thead>
+                <tbody class="divide-y divide-slate-200 text-slate-600">
+                  <tr><td class="p-4 font-medium text-slate-800">Representation</td><td class="p-4">RTL constructs and behavioral models</td><td class="p-4">Technology-mapped gate-level netlist</td></tr>
+                  <tr><td class="p-4 font-medium text-slate-800">Timing</td><td class="p-4">Usually abstracted or modeled at RTL level</td><td class="p-4">Can include annotated delays and timing checks</td></tr>
+                  <tr><td class="p-4 font-medium text-slate-800">Unknown states</td><td class="p-4">Affected by RTL semantics and simulator settings</td><td class="p-4">Also affected by cell models, initialization and timing notifiers</td></tr>
+                  <tr><td class="p-4 font-medium text-slate-800">Debug</td><td class="p-4">Typically closer to design intent</td><td class="p-4">May require mapping netlist signals back to RTL and implementation data</td></tr>
+                  <tr><td class="p-4 font-medium text-slate-800">Best fit</td><td class="p-4">Broad functional exploration and coverage</td><td class="p-4">Targeted implementation-aware investigations</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="mt-4 text-base leading-8 text-slate-600">A mismatch between RTL and GLS is a prompt to investigate—not an automatic indication of a silicon defect. The cause may be a design issue, a testbench assumption, an annotation problem, a model difference or a genuine timing violation.</p>
+
+            <h2 id="challenges" class="mt-12 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)]">3. The main technical challenges</h2>
+            <h3 class="mt-7 text-xl font-semibold text-[var(--aionsi-navy)]">SDF annotation integrity</h3>
+            <p class="mt-3 text-base leading-8 text-slate-600">SDF annotation depends on consistent hierarchy, instance paths, supported timing arcs and the intended delay corner. Annotation warnings should be reviewed, especially when they indicate missing or unmatched timing data. A clean log is a useful checkpoint, but teams should still confirm that the expected instances and timing information were annotated.</p>
+            <ul class="mt-3 list-disc space-y-2 pl-6 text-base leading-7 text-slate-600">
+              <li>Confirm the netlist and SDF correspond to the same implementation snapshot.</li>
+              <li>Check the intended min, typical or max delay selection for the test objective.</li>
+              <li>Investigate unmatched instances, unannotated arcs and unsupported constructs.</li>
+              <li>Record any accepted exclusions and their rationale.</li>
+            </ul>
+
+            <h3 class="mt-7 text-xl font-semibold text-[var(--aionsi-navy)]">X-propagation and initialization</h3>
+            <p class="mt-3 text-base leading-8 text-slate-600">An unknown value can originate from an uninitialized register, incomplete reset, conflicting drivers, a timing-check notifier or a cell-model effect. Once propagated through combinational logic, it can create many downstream symptoms. The fastest route to root cause is usually to find the earliest meaningful X source and correlate it with reset events, timing messages and the relevant cell model.</p>
+            <p class="mt-3 text-base leading-8 text-slate-600">Avoid suppressing X values simply to obtain a passing test. First determine whether the unknown represents a real design risk, an expected unconstrained state or a simulation-configuration issue.</p>
+
+            <h3 class="mt-7 text-xl font-semibold text-[var(--aionsi-navy)]">Reset sequencing and timing checks</h3>
+            <p class="mt-3 text-base leading-8 text-slate-600">Asynchronous reset deassertion, multiple reset domains and release near active clock edges deserve attention. Depending on the library model and simulation setup, recovery/removal or setup/hold violations may trigger warnings or timing notifiers that affect simulated values.</p>
+            <p class="mt-3 text-base leading-8 text-slate-600">Test reset assertion and release sequences deliberately, including relevant clock-domain interactions. When a timing check fires, correlate the event with the waveform, SDF setup, cell model and STA evidence before deciding whether the cause is design-related or simulation-related.</p>
+
+            <h3 class="mt-7 text-xl font-semibold text-[var(--aionsi-navy)]">DFT modes and testbench assumptions</h3>
+            <p class="mt-3 text-base leading-8 text-slate-600">Where scan or other DFT logic is present, the test plan should define whether each scenario exercises functional mode, test mode or a transition between them. Scan enable, test clocks, reset behavior and mode controls must be driven consistently with the intended use case. The required depth of DFT-related GLS depends on the program's sign-off plan.</p>
+
+            <h3 class="mt-7 text-xl font-semibold text-[var(--aionsi-navy)]">Runtime and debug cost</h3>
+            <p class="mt-3 text-base leading-8 text-slate-600">Gate-level regressions can be slower and more difficult to debug than RTL regressions. Running every RTL test at gate level is not always the best return on engineering time. Select scenarios based on risk, known failure modes and the questions that only the implemented netlist and timing-aware model can answer.</p>
+
+            <h2 id="workflow" class="mt-12 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)]">4. A practical GLS workflow</h2>
+            <div class="mt-6 space-y-4">
+              {[
+                ['01','Validate the inputs','Confirm the netlist, cell libraries, simulation options, hierarchy and intended implementation snapshot.'],
+                ['02','Check annotation','For timing-aware runs, review the SDF source, delay corner, annotation report and material omissions.'],
+                ['03','Choose targeted tests','Prioritize reset, initialization, timing-sensitive and DFT-related scenarios according to the project sign-off plan.'],
+                ['04','Classify the failure','Separate functional mismatches, X-propagation, timing-check events, annotation problems and testbench issues.'],
+                ['05','Correlate evidence','Use waveforms, cell models, SDF data, netlist connectivity and STA reports to identify the likely root cause.'],
+                ['06','Retest and document','Re-run affected scenarios and relevant regressions; record the root cause, correction, evidence and remaining limitations.'],
+              ].map(([num,heading,detail]) => <div class="grid gap-3 border border-slate-200 p-5 sm:grid-cols-[52px_1fr]"><div class="text-sm font-semibold tracking-[.12em] text-[var(--aionsi-blue)]">{num}</div><div><h3 class="font-semibold text-[var(--aionsi-navy)]">{heading}</h3><p class="mt-2 text-sm leading-7 text-slate-600">{detail}</p></div></div>)}
+            </div>
+
+            <h2 id="checklist" class="mt-12 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)]">5. GLS sign-off checklist</h2>
+            <p class="mt-4 text-base leading-8 text-slate-600">Use a project-specific checklist rather than treating GLS completion as a universal pass/fail gate. At minimum, review whether the following have been addressed:</p>
+            <ul class="mt-4 list-disc space-y-2 pl-6 text-base leading-7 text-slate-600">
+              <li>The correct netlist and cell models are loaded.</li>
+              <li>The intended SDF and delay corner are selected where timing annotation is required.</li>
+              <li>Material annotation warnings and omissions are resolved or explicitly justified.</li>
+              <li>Reset, initialization and selected timing-sensitive scenarios have been executed.</li>
+              <li>Significant X-propagation and timing-check events have been investigated.</li>
+              <li>Relevant DFT or mode-transition scenarios are covered when in scope.</li>
+              <li>Failures have been correlated with implementation or STA evidence where appropriate.</li>
+              <li>Results, accepted limitations and closure status are documented.</li>
+            </ul>
+
+            <h2 id="signoff" class="mt-12 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)]">6. How GLS fits with STA and formal verification</h2>
+            <p class="mt-4 text-base leading-8 text-slate-600">GLS, STA, formal verification and RTL simulation address different classes of risk. STA analyzes constrained timing paths systematically across required scenarios; GLS simulates selected scenarios using a netlist and, where configured, annotated delays; formal verification reasons about specified properties under stated assumptions; RTL simulation explores functional behavior and coverage across test scenarios.</p>
+            <p class="mt-4 text-base leading-8 text-slate-600">When GLS reports a timing-check violation, STA and implementation data help determine whether the design violates its timing constraints. When an unknown appears, engineers may need to examine initialization, reset behavior, timing notifiers and cell models. When a functional mismatch occurs, tracing the netlist behavior back to RTL and synthesis transformations may be necessary.</p>
+            <p class="mt-4 text-base leading-8 text-slate-600">The strongest sign-off strategy uses each method for its intended purpose and correlates evidence across verification, implementation, STA and DFT teams.</p>
+
+            <div class="mt-12 border-t border-slate-200 pt-6 text-sm leading-7 text-slate-500">
+              <p><strong class="text-slate-700">Technical note:</strong> GLS behavior depends on the simulator, cell models, SDF content, timing-check configuration and the stage of implementation. The workflow above is a general engineering guide; project acceptance criteria and sign-off decisions should follow the applicable design methodology.</p>
+            </div>
+          </article>
+
+          <aside class="lg:sticky lg:top-8">
+            <div class="border border-slate-200 bg-white p-5 shadow-sm">
+              <TechnicalLabel>In This Article</TechnicalLabel>
+              <nav class="mt-4 space-y-3">{contents.map(([label,href]) => <a href={`#${href}`} class="block text-sm leading-6 text-slate-600 hover:text-[var(--aionsi-blue)]">{label}</a>)}</nav>
+            </div>
+            <div class="mt-5 border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5">
+              <TechnicalLabel>Related Capability</TechnicalLabel>
+              <h2 class="mt-3 text-lg font-semibold text-[var(--aionsi-navy)]">Design Verification Engineering</h2>
+              <p class="mt-3 text-sm leading-6 text-slate-600">Explore AionSi’s verification scope across IP, subsystem and SoC programs.</p>
+              <a href="/capabilities/design-verification" class="mt-4 inline-flex text-sm font-semibold text-[var(--aionsi-navy)]">View capability →</a>
+              <a href="/capabilities/physical-design" class="mt-3 block text-sm font-semibold text-[var(--aionsi-navy)]">Physical Design →</a>
+              <a href="/capabilities/protocol-verification" class="mt-3 block text-sm font-semibold text-[var(--aionsi-navy)]">Protocol Verification →</a>
+            </div>
+          </aside>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-16">
+      <Container>
+        <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div><TechnicalLabel>AionSi Engineering</TechnicalLabel><h2 class="mt-3 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-4xl">Discuss a verification or sign-off workstream.</h2><p class="mt-4 max-w-2xl text-base leading-8 text-slate-600">If your team is investigating gate-level failures or planning implementation-aware verification, share the design stage, failure category and sign-off objective with our engineering team.</p></div>
+          <Button href="/contact">Discuss Your Requirements</Button>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)}></script>
+</BaseLayout>
