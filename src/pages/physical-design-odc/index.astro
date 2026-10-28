@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const pageTitle = 'Physical Design Engineering ODC | AionSi';
+const pageDescription = 'Physical Design engineering capacity for ASIC and SoC programs. Discuss an AionSi ODC engagement across implementation, timing closure and sign-off.';
+const campaignImage = '/images/physical-design-odc-team.png';
+---
+<BaseLayout title={pageTitle} description={pageDescription} canonical="https://aionsi.com/physical-design-odc" ogImage={campaignImage}>
+  <main class="min-h-screen bg-white text-slate-900">
+    <header class="border-b border-slate-200 bg-white">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-8">
+        <a href="https://aionsi.com" aria-label="AionSi home" class="inline-flex flex-col leading-none">
+          <span class="text-3xl font-extrabold tracking-tight text-[#124b91] md:text-4xl">AionSi</span>
+          <span class="mt-1 text-xs font-bold tracking-wide text-[#f04b16] md:text-sm">Driven by Commitment</span>
+        </a>
+        <a href="#lead-form" class="rounded-md bg-[#f04b16] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#d83c0d]">Discuss your requirement <span aria-hidden="true">→</span></a>
+      </div>
+    </header>
+
+    <section class="relative isolate overflow-hidden bg-[#071d3b] text-white">
+      <div class="absolute inset-0 -z-10 opacity-40" aria-hidden="true" style="background:radial-gradient(circle at 82% 25%,#2d81c5 0,transparent 32%),radial-gradient(circle at 8% 92%,#f04b16 0,transparent 28%),linear-gradient(120deg,#071d3b,#103b6d)"></div>
+      <div class="mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[1.1fr_.9fr] lg:py-24">
+        <div>
+          <p class="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[.2em] text-blue-200"><span class="h-1 w-8 bg-[#f04b16]"></span> Semiconductor Engineering ODC</p>
+          <h1 class="mt-6 max-w-3xl text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">Physical Design capacity aligned to your ASIC / SoC roadmap.</h1>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-blue-50/80 md:text-xl">AionSi works with engineering leaders to extend Physical Design execution with domain-aligned engineers, integration into existing flows, and a delivery model structured around defined workstreams.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#lead-form" class="rounded-md bg-[#f04b16] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#d83c0d]">Discuss an ODC requirement <span aria-hidden="true">→</span></a>
+            <a href="#capabilities" class="rounded-md border border-white/25 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-white/70">Review capability areas</a>
+          </div>
+          <div class="mt-9 flex flex-wrap gap-x-6 gap-y-2 text-sm text-blue-100/80">
+            <span>ASIC &amp; SoC programs</span><span aria-hidden="true">·</span><span>Team extension / dedicated ODC</span><span aria-hidden="true">·</span><span>Implementation through sign-off</span>
+          </div>
+        </div>
+
+        <aside class="rounded-2xl border border-white/15 bg-white/5 p-5 shadow-2xl backdrop-blur-sm md:p-7">
+          <div class="mb-5 flex items-center justify-between">
+            <div><p class="text-xs font-bold uppercase tracking-[.16em] text-blue-200">Engineering focus</p><h2 class="mt-2 text-xl font-semibold md:text-2xl">Physical Design workstreams</h2></div>
+            <span class="rounded-full border border-orange-300/40 px-3 py-1 text-xs font-semibold text-orange-200">ODC-ready</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            {[
+              ['01','Floorplanning & power planning'],
+              ['02','Placement & optimization'],
+              ['03','Clock tree synthesis (CTS)'],
+              ['04','Routing & physical optimization'],
+              ['05','Static timing analysis (STA)'],
+              ['06','Physical verification & sign-off'],
+            ].map(([n, label]) => <div class="min-h-24 rounded-lg border border-white/10 bg-[#0d2b51]/80 p-4"><span class="text-xs font-bold text-[#ff7847]">{n}</span><p class="mt-2 text-sm font-semibold leading-5 text-white">{label}</p></div>)}
+          </div>
+          <p class="mt-5 text-xs leading-5 text-blue-100/65">Scope, tool access, milestones and staffing are agreed against the specific program requirement.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="capabilities" class="bg-slate-50 py-14 md:py-20">
+      <div class="mx-auto max-w-7xl px-5 md:px-8">
+        <div class="max-w-3xl">
+          <p class="text-xs font-bold uppercase tracking-[.18em] text-[#15559a]">Delivery model</p>
+          <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[#0b2245] md:text-4xl">Engineering that fits the way your team works.</h2>
+          <p class="mt-4 text-base leading-7 text-slate-600">The objective is to add execution capacity without separating the work from your design methodology, review cadence or sign-off criteria.</p>
+        </div>
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          {[
+            ['Capacity aligned to scope','Discuss the skills, seniority and team size required for a defined implementation phase or ongoing program.'],
+            ['Integration with existing flows','Align deliverables with your tools, methodology, design handoffs and engineering reviews.'],
+            ['Defined work packages','Agree scope, ownership, reporting, milestones and acceptance criteria before ramp-up.'],
+          ].map(([title, desc]) => <article class="rounded-xl border border-slate-200 bg-white p-6"><div class="mb-5 h-1 w-9 bg-[#f04b16]"></div><h3 class="text-lg font-semibold text-[#0b2245]">{title}</h3><p class="mt-3 text-sm leading-6 text-slate-600">{desc}</p></article>)}
+        </div>
+      </div>
+    </section>
+
+    <section id="lead-form" class="py-14 md:py-20">
+      <div class="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[.85fr_1.15fr] lg:gap-16">
+        <div class="lg:pt-5">
+          <p class="text-xs font-bold uppercase tracking-[.18em] text-[#15559a]">Engineering discussion</p>
+          <h2 class="mt-3 text-3xl font-semibold leading-tight tracking-tight text-[#0b2245] md:text-4xl">Share your Physical Design requirement.</h2>
+          <p class="mt-5 text-base leading-7 text-slate-600">Tell us where you need engineering capacity. The AionSi team can follow up to understand program context, scope and the most suitable engagement model.</p>
+          <div class="mt-8 space-y-4 border-t border-slate-200 pt-6">
+            <div><p class="text-sm font-semibold text-[#0b2245]">Typical discussion points</p><p class="mt-1 text-sm leading-6 text-slate-600">Program stage, scope, tool environment, timing targets, team size and ramp expectations.</p></div>
+            <div><p class="text-sm font-semibold text-[#0b2245]">Engagement options</p><p class="mt-1 text-sm leading-6 text-slate-600">Dedicated ODC team, team extension or a defined Physical Design work package.</p></div>
+          </div>
+        </div>
+
+        <form id="pd-lead-form" class="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_16px_60px_rgba(6,28,60,.09)] md:p-8" novalidate>
+          <div class="mb-6"><h3 class="text-xl font-semibold text-[#0b2245]">Discuss your requirement</h3><p class="mt-2 text-sm text-slate-500">Fields marked * are required.</p></div>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <label class="block"><span class="text-sm font-semibold text-slate-700">First name *</span><input required name="firstname" autocomplete="given-name" maxlength="80" class="mt-2 w-full rounded-md border border-slate-300 px-3.5 py-3 text-sm outline-none transition focus:border-blue-700 focus:ring-2 focus:ring-blue-100" /></label>
+            <label class="block"><span class="text-sm font-semibold text-slate-700">Last name *</span><input required name="lastname" autocomplete="family-name" maxlength="80" class="mt-2 w-full rounded-md border border-slate-300 px-3.5 py-3 text-sm outline-none transition focus:border-blue-700 focus:ring-2 focus:ring-blue-100" /></label>
+            <label class="block sm:col-span-2"><span class="text-sm font-semibold text-slate-700">Business email *</span><input type="email" required name="email" autocomplete="email" maxlength="254" class="mt-2 w-full rounded-md border border-slate-300 px-3.5 py-3 text-sm outline-none transition focus:border-blue-700 focus:ring-2 focus:ring-blue-100" /></label>
+            <label class="block"><span class="text-sm font-semibold text-slate-700">Company *</span><input required name="company" autocomplete="organization" maxlength="120" class="mt-2 w-full rounded-md border border-slate-300 px-3.5 py-3 text-sm outline-none transition focus:border-blue-700 focus:ring-2 focus:ring-blue-100" /></label>
+            <label class="block"><span class="text-sm font-semibold text-slate-700">Role / designation *</span><input required name="jobtitle" autocomplete="organization-title" maxlength="120" placeholder="VP Engineering, ASIC Director..." class="mt-2 w-full rounded-md border border-slate-300 px-3.5 py-3 text-sm outline-none transition focus:border-blue-700 focus:ring-2 focus:ring-blue-100" /></label>
+            <label class="block"><span class="text-sm font-semibold text-slate-700">Workstream of interest</span><select name="pd_workstream" class="mt-2 w-full rounded-md border border-slate-300 bg-white px-3.5 py-3 text-sm outline-none focus:border-blue-700"><option value="">Select a workstream</option><option>Full Physical Design</option><option>Floorplanning / Power Planning</option><option>Placement &amp; Optimization</option><option>CTS</option><option>Routing</option><option>STA / Timing Closure</option><option>Physical Verification / Sign-off</option></select></label>
+            <label class="block"><span class="text-sm font-semibold text-slate-700">Expected team size</span><select name="pd_team_size" class="mt-2 w-full rounded-md border border-slate-300 bg-white px-3.5 py-3 text-sm outline-none focus:border-blue-700"><option value="">Select size</option><option>1–2 engineers</option><option>3–5 engineers</option><option>6–10 engineers</option><option>10+ engineers</option><option>To be determined</option></select></label>
+            <label class="block"><span class="text-sm font-semibold text-slate-700">Expected start</span><select name="pd_start_timeline" class="mt-2 w-full rounded-md border border-slate-300 bg-white px-3.5 py-3 text-sm outline-none focus:border-blue-700"><option value="">Select timeline</option><option>Immediate</option><option>Within 1 month</option><option>1–3 months</option><option>3–6 months</option><option>6+ months</option></select></label>
+            <label class="block sm:col-span-2"><span class="text-sm font-semibold text-slate-700">Program context (optional)</span><textarea name="message" rows="3" maxlength="2000" placeholder="Share the implementation stage, process node if appropriate, scope or timing objective." class="mt-2 w-full rounded-md border border-slate-300 px-3.5 py-3 text-sm outline-none transition focus:border-blue-700 focus:ring-2 focus:ring-blue-100"></textarea></label>
+          </div>
+          <div class="mt-5">
+            <label class="flex items-start gap-3 text-xs leading-5 text-slate-600"><input type="checkbox" required name="consent" value="yes" class="mt-1"><span>I agree that AionSi may use these details to respond to my engineering enquiry. See the <a href="/privacy-policy" class="font-semibold text-[#15559a] underline">Privacy Policy</a>.</span></label>
+          </div>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="absolute -left-[9999px] h-px w-px overflow-hidden" />
+          <input type="hidden" name="page_url" id="pd-page-url" />
+          <input type="hidden" name="utm_source" />
+          <input type="hidden" name="utm_medium" />
+          <input type="hidden" name="utm_campaign" />
+          <input type="hidden" name="utm_content" />
+          <input type="hidden" name="utm_term" />
+          <input type="hidden" name="li_fat_id" />
+          <div class="mt-6">
+            <button id="pd-submit" type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#15559a] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#0b2245] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">Submit engineering enquiry <span aria-hidden="true">→</span></button>
+            <p id="pd-status" role="status" aria-live="polite" class="mt-4 hidden text-sm leading-6"></p>
+            <p class="mt-4 text-center text-xs leading-5 text-slate-500">No sensitive design files are requested through this form.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="bg-[#071d3b] py-7 text-white">
+      <div class="mx-auto flex max-w-7xl flex-col gap-3 px-5 text-sm text-white/75 md:flex-row md:items-center md:justify-between md:px-8">
+        <span><strong class="text-white">AionSi</strong> · Driven by Commitment</span>
+        <span>Physical Design Engineering · ODC / Workstream Delivery</span>
+        <a href="/privacy-policy" class="underline underline-offset-4 hover:text-white">Privacy Policy</a>
+      </div>
+    </footer>
+  </main>
+</BaseLayout>
+
+<script>
+  const form = document.querySelector('#pd-lead-form');
+  const status = document.querySelector('#pd-status');
+  const submit = document.querySelector('#pd-submit');
+
+  if (form instanceof HTMLFormElement) {
+    const params = new URLSearchParams(window.location.search);
+    const fields = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','li_fat_id'];
+    fields.forEach((key) => {
+      const field = form.querySelector<HTMLInputElement>(`[name="${key}"]`);
+      if (field) field.value = params.get(key) || '';
+    });
+    const pageUrl = form.querySelector<HTMLInputElement>('[name="page_url"]');
+    if (pageUrl) pageUrl.value = window.location.href;
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!(status instanceof HTMLElement) || !(submit instanceof HTMLButtonElement)) return;
+      status.className = 'mt-4 text-sm leading-6 text-slate-600';
+      status.textContent = '';
+      if (!form.reportValidity()) return;
+      const originalLabel = submit.innerHTML;
+      submit.disabled = true;
+      submit.textContent = 'Submitting...';
+      try {
+        const values = Object.fromEntries(new FormData(form).entries());
+        const response = await fetch('/api/linkedin-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(values),
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result?.message || 'Submission failed.');
+        status.className = 'mt-4 text-sm leading-6 text-emerald-700';
+        status.textContent = 'Thank you. Your enquiry has been received. The AionSi team will follow up.';
+        form.reset();
+        fields.forEach((key) => {
+          const field = form.querySelector<HTMLInputElement>(`[name="${key}"]`);
+          if (field) field.value = params.get(key) || '';
+        });
+        if (pageUrl) pageUrl.value = window.location.href;
+      } catch (error) {
+        status.className = 'mt-4 text-sm leading-6 text-red-700';
+        status.textContent = error instanceof Error ? error.message : 'We could not submit your enquiry. Please try again or email dass.kishore@aionsi.com.';
+      } finally {
+        submit.disabled = false;
+        submit.innerHTML = originalLabel;
+      }
+    });
+  }
+</script>
