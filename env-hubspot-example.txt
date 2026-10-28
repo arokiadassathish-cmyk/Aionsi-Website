@@ -1,0 +1,4 @@
+
+# HubSpot lead capture for LinkedIn campaign landing pages
+# Create a HubSpot Private App with CRM contacts read/write permissions; keep token server-side only.
+HUBSPOT_PRIVATE_APP_TOKEN=
