@@ -11,6 +11,7 @@ const technologyEvidenceRoutes = [
 
 const routes = [
   '/',
+  '/physical-design-odc',
   '/capabilities',
   '/capabilities/rtl-design',
   '/capabilities/design-verification',
