@@ -8,9 +8,8 @@ const campaignImage = '/images/physical-design-odc-team.png';
   <main class="min-h-screen bg-white text-slate-900">
     <header class="border-b border-slate-200 bg-white">
       <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-8">
-        <a href="https://aionsi.com" aria-label="AionSi home" class="inline-flex flex-col leading-none">
-          <span class="text-3xl font-extrabold tracking-tight text-[#124b91] md:text-4xl">AionSi</span>
-          <span class="mt-1 text-xs font-bold tracking-wide text-[#f04b16] md:text-sm">Driven by Commitment</span>
+        <a href="https://aionsi.com" aria-label="AionSi — Driven by Commitment home" class="inline-flex items-center rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-4">
+          <img src="/images/logo.png" alt="AionSi — Driven by Commitment" width="1000" height="330" fetchpriority="high" class="h-12 w-auto max-w-[220px] object-contain md:h-14 md:max-w-[260px]" />
         </a>
         <a href="#lead-form" class="rounded-md bg-[#f04b16] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#d83c0d]">Discuss your requirement <span aria-hidden="true">→</span></a>
       </div>
@@ -21,7 +20,7 @@ const campaignImage = '/images/physical-design-odc-team.png';
       <div class="mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[1.1fr_.9fr] lg:py-24">
         <div>
           <p class="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[.2em] text-blue-200"><span class="h-1 w-8 bg-[#f04b16]"></span> Semiconductor Engineering ODC</p>
-          <h1 class="mt-6 max-w-3xl text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">Physical Design capacity aligned to your ASIC / SoC roadmap.</h1>
+          <h1 class="mt-6 max-w-3xl text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">Physical Design engineering for your ASIC / SoC roadmap.</h1>
           <p class="mt-6 max-w-2xl text-lg leading-8 text-blue-50/80 md:text-xl">AionSi works with engineering leaders to extend Physical Design execution with domain-aligned engineers, integration into existing flows, and a delivery model structured around defined workstreams.</p>
           <div class="mt-8 flex flex-wrap gap-3">
             <a href="#lead-form" class="rounded-md bg-[#f04b16] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#d83c0d]">Discuss an ODC requirement <span aria-hidden="true">→</span></a>
@@ -57,7 +56,7 @@ const campaignImage = '/images/physical-design-odc-team.png';
         <div class="max-w-3xl">
           <p class="text-xs font-bold uppercase tracking-[.18em] text-[#15559a]">Delivery model</p>
           <h2 class="mt-3 text-3xl font-semibold tracking-tight text-[#0b2245] md:text-4xl">Engineering that fits the way your team works.</h2>
-          <p class="mt-4 text-base leading-7 text-slate-600">The objective is to add execution capacity without separating the work from your design methodology, review cadence or sign-off criteria.</p>
+          <p class="mt-4 text-base leading-7 text-slate-600">Add specialist execution capacity while keeping work aligned to your design methodology, review cadence, timing targets and sign-off criteria.</p>
         </div>
         <div class="mt-8 grid gap-4 md:grid-cols-3">
           {[
@@ -66,6 +65,22 @@ const campaignImage = '/images/physical-design-odc-team.png';
             ['Defined work packages','Agree scope, ownership, reporting, milestones and acceptance criteria before ramp-up.'],
           ].map(([title, desc]) => <article class="rounded-xl border border-slate-200 bg-white p-6"><div class="mb-5 h-1 w-9 bg-[#f04b16]"></div><h3 class="text-lg font-semibold text-[#0b2245]">{title}</h3><p class="mt-3 text-sm leading-6 text-slate-600">{desc}</p></article>)}
         </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-14 md:py-18" aria-labelledby="execution-title">
+      <div class="mx-auto max-w-7xl px-5 md:px-8">
+        <div class="max-w-3xl">
+          <p class="text-xs font-bold uppercase tracking-[.18em] text-[#15559a]">Engineering execution</p>
+          <h2 id="execution-title" class="mt-3 text-3xl font-semibold tracking-tight text-[#0b2245] md:text-4xl">Clear ownership from implementation to sign-off.</h2>
+          <p class="mt-4 text-base leading-7 text-slate-600">Start with a defined workstream. Align responsibilities, technical handoffs and acceptance criteria with your team before execution begins.</p>
+        </div>
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          <article class="rounded-xl border border-slate-200 bg-slate-50 p-6"><div class="mb-5 h-1 w-9 bg-[#f04b16]"></div><h3 class="text-lg font-semibold text-[#0b2245]">Implementation workstreams</h3><p class="mt-3 text-sm leading-6 text-slate-600">Synthesis, floorplanning, placement, clock tree synthesis and routing, scoped to the program's needs.</p></article>
+          <article class="rounded-xl border border-slate-200 bg-slate-50 p-6"><div class="mb-5 h-1 w-9 bg-[#f04b16]"></div><h3 class="text-lg font-semibold text-[#0b2245]">Timing closure</h3><p class="mt-3 text-sm leading-6 text-slate-600">STA, constraint review and optimization activities aligned to agreed timing targets and engineering reviews.</p></article>
+          <article class="rounded-xl border border-slate-200 bg-slate-50 p-6"><div class="mb-5 h-1 w-9 bg-[#f04b16]"></div><h3 class="text-lg font-semibold text-[#0b2245]">Physical verification & sign-off</h3><p class="mt-3 text-sm leading-6 text-slate-600">Clarify tool-flow integration, deliverable ownership and sign-off acceptance criteria during technical scoping.</p></article>
+        </div>
+        <p class="mt-4 text-xs leading-5 text-slate-500">Exact scope, tool environment, milestones and acceptance criteria are confirmed during technical discovery; no customer-sensitive design information is needed on this page.</p>
       </div>
     </section>
 
@@ -88,7 +103,7 @@ const campaignImage = '/images/physical-design-odc-team.png';
             <label class="block"><span class="text-sm font-semibold text-slate-700">Last name *</span><input required name="lastname" autocomplete="family-name" maxlength="80" class="mt-2 w-full rounded-md border border-slate-300 px-3.5 py-3 text-sm outline-none transition focus:border-blue-700 focus:ring-2 focus:ring-blue-100" /></label>
             <label class="block sm:col-span-2"><span class="text-sm font-semibold text-slate-700">Business email *</span><input type="email" required name="email" autocomplete="email" maxlength="254" class="mt-2 w-full rounded-md border border-slate-300 px-3.5 py-3 text-sm outline-none transition focus:border-blue-700 focus:ring-2 focus:ring-blue-100" /></label>
             <label class="block"><span class="text-sm font-semibold text-slate-700">Company *</span><input required name="company" autocomplete="organization" maxlength="120" class="mt-2 w-full rounded-md border border-slate-300 px-3.5 py-3 text-sm outline-none transition focus:border-blue-700 focus:ring-2 focus:ring-blue-100" /></label>
-            <label class="block"><span class="text-sm font-semibold text-slate-700">Role / designation *</span><input required name="jobtitle" autocomplete="organization-title" maxlength="120" placeholder="VP Engineering, ASIC Director..." class="mt-2 w-full rounded-md border border-slate-300 px-3.5 py-3 text-sm outline-none transition focus:border-blue-700 focus:ring-2 focus:ring-blue-100" /></label>
+            <label class="block"><span class="text-sm font-semibold text-slate-700">Role / designation *</span><select required name="jobtitle" autocomplete="organization-title" class="mt-2 w-full rounded-md border border-slate-300 bg-white px-3.5 py-3 text-sm outline-none transition focus:border-blue-700 focus:ring-2 focus:ring-blue-100"><option value="">Select your role</option><option>VP Engineering / VP Silicon Engineering</option><option>Director of ASIC / SoC Engineering</option><option>Physical Design Director / Manager</option><option>Design Engineering Manager</option><option>Engineering Program / Delivery Manager</option><option>Procurement / Vendor Management</option><option>Other</option></select></label>
             <label class="block"><span class="text-sm font-semibold text-slate-700">Workstream of interest</span><select name="pd_workstream" class="mt-2 w-full rounded-md border border-slate-300 bg-white px-3.5 py-3 text-sm outline-none focus:border-blue-700"><option value="">Select a workstream</option><option>Full Physical Design</option><option>Floorplanning / Power Planning</option><option>Placement &amp; Optimization</option><option>CTS</option><option>Routing</option><option>STA / Timing Closure</option><option>Physical Verification / Sign-off</option></select></label>
             <label class="block"><span class="text-sm font-semibold text-slate-700">Expected team size</span><select name="pd_team_size" class="mt-2 w-full rounded-md border border-slate-300 bg-white px-3.5 py-3 text-sm outline-none focus:border-blue-700"><option value="">Select size</option><option>1–2 engineers</option><option>3–5 engineers</option><option>6–10 engineers</option><option>10+ engineers</option><option>To be determined</option></select></label>
             <label class="block"><span class="text-sm font-semibold text-slate-700">Expected start</span><select name="pd_start_timeline" class="mt-2 w-full rounded-md border border-slate-300 bg-white px-3.5 py-3 text-sm outline-none focus:border-blue-700"><option value="">Select timeline</option><option>Immediate</option><option>Within 1 month</option><option>1–3 months</option><option>3–6 months</option><option>6+ months</option></select></label>
