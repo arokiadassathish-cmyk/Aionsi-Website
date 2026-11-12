@@ -26,7 +26,7 @@ const resources = {
 };
 
 async function handlePost(request) {
-  const token = import.meta.env.HUBSPOT_PRIVATE_APP_TOKEN;
+  const token = process.env.HUBSPOT_PRIVATE_APP_TOKEN;
   if (!token) {
     return json({
       ok: false,
@@ -144,7 +144,7 @@ export const GET: APIRoute = async () => {
   return json({
     ok: true,
     service: 'resource-lead-capture',
-    configured: Boolean(import.meta.env.HUBSPOT_PRIVATE_APP_TOKEN),
+    configured: Boolean(process.env.HUBSPOT_PRIVATE_APP_TOKEN),
   });
 };
 
