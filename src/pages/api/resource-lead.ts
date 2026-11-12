@@ -136,18 +136,16 @@ async function handlePost(request) {
   }
 }
 
-export default {
-  async fetch(request) {
-    if (request.method === 'GET') {
-      return json({
-        ok: true,
-        service: 'resource-lead-capture',
-        configured: Boolean(process.env.HUBSPOT_PRIVATE_APP_TOKEN),
-      });
-    }
-    if (request.method !== 'POST') {
-      return json({ ok: false, message: 'Method not allowed.' }, 405);
-    }
-    return handlePost(request);
-  },
+import type { APIRoute } from 'astro';
+
+export const prerender = false;
+
+export const GET: APIRoute = async () => {
+  return json({
+    ok: true,
+    service: 'resource-lead-capture',
+    configured: Boolean(process.env.HUBSPOT_PRIVATE_APP_TOKEN),
+  });
 };
+
+export const POST: APIRoute = async ({ request }) => handlePost(request);
