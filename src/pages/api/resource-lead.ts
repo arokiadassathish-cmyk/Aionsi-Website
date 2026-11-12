@@ -7,8 +7,20 @@ const clean = (value: unknown, max = 500): string =>
 const json = (body: Record<string, unknown>, status = 200) =>
   new Response(JSON.stringify(body), {
     status,
-    headers: { 'content-type': 'application/json; charset=utf-8' },
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+      'cache-control': 'no-store',
+    },
   });
+
+// Lightweight route probe for deployment diagnostics. Never expose the secret itself.
+export async function GET() {
+  return json({
+    ok: true,
+    service: 'resource-lead-capture',
+    configured: Boolean(process.env.HUBSPOT_PRIVATE_APP_TOKEN),
+  });
+}
 
 const resources: Record<string, { label: string; source: string }> = {
   'presilicon-checklist': {
