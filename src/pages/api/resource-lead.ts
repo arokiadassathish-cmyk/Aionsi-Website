@@ -10,6 +10,15 @@ function json(body, status = 200) {
   });
 }
 
+function getHubSpotToken() {
+  // Vercel Node functions expose project secrets at runtime through process.env.
+  // The import.meta.env fallback also supports Astro/Vite-injected server variables.
+  const runtimeToken =
+    typeof process !== 'undefined' ? process.env?.HUBSPOT_PRIVATE_APP_TOKEN : undefined;
+  const astroToken = import.meta.env.HUBSPOT_PRIVATE_APP_TOKEN;
+  return (runtimeToken || astroToken || '').trim();
+}
+
 function clean(value, max = 500) {
   return typeof value === 'string' ? value.trim().slice(0, max) : '';
 }
@@ -26,7 +35,7 @@ const resources = {
 };
 
 async function handlePost(request) {
-  const token = process.env.HUBSPOT_PRIVATE_APP_TOKEN;
+  const token = getHubSpotToken();
   if (!token) {
     return json({
       ok: false,
@@ -144,7 +153,7 @@ export const GET: APIRoute = async () => {
   return json({
     ok: true,
     service: 'resource-lead-capture',
-    configured: Boolean(process.env.HUBSPOT_PRIVATE_APP_TOKEN),
+    configured: Boolean(getHubSpotToken()),
   });
 };
 
