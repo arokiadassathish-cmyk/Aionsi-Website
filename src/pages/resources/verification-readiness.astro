@@ -1,0 +1,257 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+
+const resources = [
+  {
+    id: 'presilicon-checklist',
+    number: '01',
+    category: 'SIGN-OFF READINESS',
+    title: 'Pre-Silicon Verification Sign-off Checklist',
+    description: 'A practical review aid for assessing verification closure before sign-off.',
+    points: ['Functional coverage closure and traceability', 'Regression readiness and failure triage', 'Assertions, protocol checks and corner cases', 'Bug closure and sign-off evidence'],
+    audience: 'DV Managers · Verification Leads · VP Engineering',
+    file: '/AionSi_PreSilicon_Verification_Signoff_Checklist_v2.pdf',
+    fileName: 'AionSi_PreSilicon_Verification_Signoff_Checklist.pdf',
+  },
+  {
+    id: 'pcie-readiness-guide',
+    number: '02',
+    category: 'PROTOCOL VERIFICATION',
+    title: 'PCIe Verification Readiness Guide',
+    description: 'A technical guide to verification planning across PCIe generations and key protocol layers.',
+    points: ['LTSSM and link-management behaviour', 'Transaction and Data Link Layer checks', 'Replay, error handling and recovery scenarios', 'UVM, assertions, coverage and regression closure'],
+    audience: 'Protocol Verification Managers · SoC Architects · DV Leads',
+    file: '/AionSi_PCIe_Verification_Creative_Ebook.pdf',
+    fileName: 'AionSi_PCIe_Verification_Readiness_Guide.pdf',
+  },
+];
+---
+<BaseLayout title="Verification Readiness Resources | AionSi" description="Download AionSi's practical pre-silicon verification sign-off checklist and PCIe verification readiness guide for semiconductor engineering teams." canonical="https://aionsi.com/resources/verification-readiness" ogImage="/images/hero/aionsi-semiconductor-hero.jpg">
+  <Header />
+  <main>
+    <section class="relative overflow-hidden bg-[var(--aionsi-deep-navy)] pb-20 pt-32 text-white md:pb-28 md:pt-40">
+      <div class="pointer-events-none absolute -right-28 -top-28 h-96 w-96 rounded-full bg-[var(--aionsi-blue)]/20 blur-3xl"></div>
+      <Container class="relative">
+        <TechnicalLabel>ENGINEERING RESOURCES · AIONSI</TechnicalLabel>
+        <div class="mt-6 grid gap-10 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
+          <div>
+            <h1 class="max-w-4xl text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl lg:text-7xl">Build verification confidence <span class="text-[var(--aionsi-orange)]">before silicon.</span></h1>
+            <p class="mt-7 max-w-2xl text-lg leading-8 text-white/75 md:text-xl">Practical resources for semiconductor engineering teams working towards robust pre-silicon verification, protocol coverage and sign-off readiness.</p>
+          </div>
+          <div class="border-l border-white/20 pl-6">
+            <p class="text-xs font-semibold uppercase tracking-[.18em] text-[var(--aionsi-orange)]">Inside these resources</p>
+            <p class="mt-4 text-2xl font-medium leading-snug">A clearer view of what to verify, what to measure and what to close.</p>
+            <a href="#resources" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-[var(--aionsi-orange)]">Explore the guides <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <Section id="resources" class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <div class="max-w-3xl">
+          <TechnicalLabel>DOWNLOADABLE ENGINEERING GUIDES</TechnicalLabel>
+          <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Choose the resource for your current verification challenge.</h2>
+          <p class="mt-5 text-lg leading-8 text-slate-600">Use these guides as planning and review aids alongside your project requirements, verification plan and applicable specifications.</p>
+        </div>
+        <div class="mt-10 grid gap-6 lg:grid-cols-2">
+          {resources.map((resource) => (
+            <article class="flex h-full flex-col overflow-hidden border border-slate-200 bg-white shadow-sm">
+              <div class="relative min-h-48 overflow-hidden bg-[var(--aionsi-deep-navy)] p-7 text-white">
+                <div class="absolute -right-12 -top-16 h-48 w-48 rounded-full border-[24px] border-white/5"></div>
+                <div class="relative flex items-center justify-between gap-4">
+                  <span class="text-xs font-semibold tracking-[.18em] text-[var(--aionsi-orange)]">{resource.category}</span>
+                  <span class="text-4xl font-light text-white/30">{resource.number}</span>
+                </div>
+                <div class="relative mt-8 max-w-md">
+                  <div class="text-xs uppercase tracking-[.2em] text-white/50">AionSi · Technical resource</div>
+                  <h3 class="mt-3 text-2xl font-semibold leading-tight md:text-3xl">{resource.title}</h3>
+                </div>
+              </div>
+              <div class="flex flex-1 flex-col p-7 md:p-8">
+                <p class="text-base leading-7 text-slate-600">{resource.description}</p>
+                <ul class="mt-6 grid gap-3">
+                  {resource.points.map((point) => <li class="flex gap-3 text-sm leading-6 text-slate-700"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--aionsi-orange)]"></span>{point}</li>)}
+                </ul>
+                <div class="mt-7 border-t border-slate-100 pt-5">
+                  <p class="text-xs font-semibold uppercase tracking-[.14em] text-slate-400">Designed for</p>
+                  <p class="mt-2 text-sm leading-6 text-slate-600">{resource.audience}</p>
+                </div>
+                <button type="button" data-resource-select={resource.id} class="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--aionsi-orange)] px-6 py-4 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105">Get this resource <span aria-hidden="true">→</span></button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </Section>
+
+    <Section id="download-form" class="bg-white">
+      <Container class="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
+        <div class="lg:sticky lg:top-10">
+          <TechnicalLabel>ACCESS THE RESOURCES</TechnicalLabel>
+          <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Get the guide your team needs.</h2>
+          <p class="mt-5 text-lg leading-8 text-slate-600">Tell us a little about your engineering role. After submitting, you can access your selected resource directly.</p>
+          <div class="mt-8 border-l-2 border-[var(--aionsi-orange)] pl-5">
+            <p class="text-sm leading-7 text-slate-600">Your details help us understand the engineering topics relevant to the semiconductor community. We will use them to respond to your request and, where you opt in, share relevant AionSi updates.</p>
+          </div>
+        </div>
+        <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-6 md:p-9">
+          <form id="resource-lead-form" class="grid gap-5" novalidate>
+            <input type="hidden" name="resource_id" value="pcie-readiness-guide" />
+            <input type="hidden" name="page_url" />
+            <input type="hidden" name="utm_source" />
+            <input type="hidden" name="utm_medium" />
+            <input type="hidden" name="utm_campaign" />
+            <input type="hidden" name="utm_content" />
+            <input type="hidden" name="utm_term" />
+            <div class="absolute -left-[10000px]" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off" /></label></div>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="grid gap-2 text-sm font-medium text-[var(--aionsi-navy)]">First name <span class="text-[var(--aionsi-orange)]">*</span><input name="firstname" required autocomplete="given-name" class="min-h-12 rounded border border-slate-300 bg-white px-4 font-normal outline-none transition focus:border-[var(--aionsi-blue)] focus:ring-2 focus:ring-blue-100" /></label>
+              <label class="grid gap-2 text-sm font-medium text-[var(--aionsi-navy)]">Last name <span class="text-[var(--aionsi-orange)]">*</span><input name="lastname" required autocomplete="family-name" class="min-h-12 rounded border border-slate-300 bg-white px-4 font-normal outline-none transition focus:border-[var(--aionsi-blue)] focus:ring-2 focus:ring-blue-100" /></label>
+            </div>
+            <label class="grid gap-2 text-sm font-medium text-[var(--aionsi-navy)]">Business email <span class="text-[var(--aionsi-orange)]">*</span><input type="email" name="email" required autocomplete="email" class="min-h-12 rounded border border-slate-300 bg-white px-4 font-normal outline-none transition focus:border-[var(--aionsi-blue)] focus:ring-2 focus:ring-blue-100" /></label>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="grid gap-2 text-sm font-medium text-[var(--aionsi-navy)]">Company <span class="text-[var(--aionsi-orange)]">*</span><input name="company" required autocomplete="organization" class="min-h-12 rounded border border-slate-300 bg-white px-4 font-normal outline-none transition focus:border-[var(--aionsi-blue)] focus:ring-2 focus:ring-blue-100" /></label>
+              <label class="grid gap-2 text-sm font-medium text-[var(--aionsi-navy)]">Job title <span class="text-[var(--aionsi-orange)]">*</span><input name="jobtitle" required autocomplete="organization-title" class="min-h-12 rounded border border-slate-300 bg-white px-4 font-normal outline-none transition focus:border-[var(--aionsi-blue)] focus:ring-2 focus:ring-blue-100" /></label>
+            </div>
+            <label class="grid gap-2 text-sm font-medium text-[var(--aionsi-navy)]">Which resource would you like? <span class="text-[var(--aionsi-orange)]">*</span>
+              <select name="resource_id_select" required class="min-h-12 rounded border border-slate-300 bg-white px-4 font-normal outline-none transition focus:border-[var(--aionsi-blue)] focus:ring-2 focus:ring-blue-100">
+                <option value="pcie-readiness-guide">PCIe Verification Readiness Guide</option>
+                <option value="presilicon-checklist">Pre-Silicon Verification Sign-off Checklist</option>
+              </select>
+            </label>
+            <label class="flex items-start gap-3 text-sm leading-6 text-slate-600"><input type="checkbox" name="consent" value="yes" required class="mt-1 h-4 w-4 accent-[var(--aionsi-blue)]" /><span>I agree that AionSi may use my details to fulfil this resource request. <span class="text-[var(--aionsi-orange)]">*</span> See the <a href="/privacy-policy" class="font-semibold text-[var(--aionsi-blue)] underline">Privacy Policy</a>.</span></label>
+            <label class="flex items-start gap-3 text-sm leading-6 text-slate-600"><input type="checkbox" name="marketing_consent" value="yes" class="mt-1 h-4 w-4 accent-[var(--aionsi-blue)]" /><span>I'd also like to receive occasional technical updates and engineering insights from AionSi (optional).</span></label>
+            <button type="submit" class="inline-flex min-h-13 items-center justify-center rounded-full bg-[var(--aionsi-navy)] px-7 py-4 text-sm font-semibold text-white transition hover:bg-[var(--aionsi-blue)] disabled:cursor-not-allowed disabled:opacity-60">Submit and access resource <span aria-hidden="true" class="ml-2">→</span></button>
+            <p id="resource-form-status" class="hidden text-sm leading-6" role="status" aria-live="polite"></p>
+            <div id="resource-download-result" class="hidden border border-emerald-200 bg-emerald-50 p-5">
+              <p class="font-semibold text-emerald-900">Your resource is ready.</p>
+              <a id="resource-download-link" href="#" download class="mt-3 inline-flex font-semibold text-emerald-800 underline">Download your guide →</a>
+            </div>
+            <p class="text-xs leading-5 text-slate-500">Fields marked * are required. We do not sell your contact information.</p>
+          </form>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
+        <div><TechnicalLabel>ENGINEERING DISCOVERY</TechnicalLabel><h2 class="mt-4 max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">Have a verification workstream to discuss?</h2><p class="mt-4 max-w-2xl text-base leading-7 text-white/70">Talk with AionSi about Design Verification, protocol verification and focused engineering support.</p></div>
+        <a href="/contact" class="inline-flex items-center justify-center rounded-full border border-white/30 px-7 py-4 text-sm font-semibold text-white transition hover:border-[var(--aionsi-orange)] hover:text-[var(--aionsi-orange)]">Talk to our team →</a>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#resource-lead-form');
+  const status = document.querySelector<HTMLElement>('#resource-form-status');
+  const resourceSelect = form?.querySelector<HTMLSelectElement>('[name="resource_id_select"]');
+  const resourceHidden = form?.querySelector<HTMLInputElement>('[name="resource_id"]');
+  const downloadResult = document.querySelector<HTMLElement>('#resource-download-result');
+  const downloadLink = document.querySelector<HTMLAnchorElement>('#resource-download-link');
+
+  const resourceFiles: Record<string, { href: string; name: string }> = {
+    'presilicon-checklist': {
+      href: '/AionSi_PreSilicon_Verification_Signoff_Checklist_v2.pdf',
+      name: 'Pre-Silicon Verification Sign-off Checklist',
+    },
+    'pcie-readiness-guide': {
+      href: '/AionSi_PCIe_Verification_Creative_Ebook.pdf',
+      name: 'PCIe Verification Readiness Guide',
+    },
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
+    const field = form?.querySelector<HTMLInputElement>(`[name="${key}"]`);
+    if (field) field.value = params.get(key) || '';
+  }
+  const pageUrl = form?.querySelector<HTMLInputElement>('[name="page_url"]');
+  if (pageUrl) pageUrl.value = window.location.href;
+
+  document.querySelectorAll<HTMLButtonElement>('[data-resource-select]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const id = button.dataset.resourceSelect || '';
+      if (resourceSelect && resourceFiles[id]) resourceSelect.value = id;
+      if (resourceHidden) resourceHidden.value = id;
+      document.querySelector('#download-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      resourceSelect?.focus({ preventScroll: true });
+    });
+  });
+
+  resourceSelect?.addEventListener('change', () => {
+    if (resourceHidden) resourceHidden.value = resourceSelect.value;
+    if (downloadResult) downloadResult.classList.add('hidden');
+  });
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (!submit || !status || !resourceSelect || !downloadResult || !downloadLink) return;
+
+    const data = new FormData(form);
+    data.set('resource_id', resourceSelect.value);
+    data.set('consent', form.querySelector<HTMLInputElement>('[name="consent"]')?.checked ? 'yes' : 'no');
+    data.set('marketing_consent', form.querySelector<HTMLInputElement>('[name="marketing_consent"]')?.checked ? 'yes' : 'no');
+
+    submit.disabled = true;
+    submit.textContent = 'Submitting…';
+    status.className = 'text-sm leading-6 text-slate-600';
+    status.textContent = 'Submitting your details securely…';
+    downloadResult.classList.add('hidden');
+
+    try {
+      const response = await fetch('/api/resource-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(data.entries())),
+      });
+      const responseText = await response.text();
+      const contentType = response.headers.get('content-type') || '';
+      let result: { ok?: boolean; message?: string } = {};
+
+      if (contentType.toLowerCase().includes('application/json')) {
+        try {
+          result = JSON.parse(responseText) as { ok?: boolean; message?: string };
+        } catch {
+          throw new Error('The lead service returned an unreadable response. Please try again later.');
+        }
+      } else {
+        // Hosting platforms can return plain-text/HTML 404 or error pages.
+        // Show a useful message instead of leaking a JSON parsing exception.
+        console.error('Resource lead API returned a non-JSON response', response.status, responseText.slice(0, 300));
+        throw new Error(
+          response.status === 404
+            ? 'The resource request service is not available on this deployment yet. Please contact AionSi.'
+            : 'The resource service is temporarily unavailable. Please try again later.'
+        );
+      }
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || 'We could not process your request. Please try again.');
+      }
+
+      const selected = resourceFiles[resourceSelect.value];
+      downloadLink.href = selected.href;
+      downloadLink.textContent = `Download ${selected.name} →`;
+      downloadResult.classList.remove('hidden');
+      status.className = 'text-sm leading-6 text-emerald-800';
+      status.textContent = 'Thank you. Your details have been submitted successfully.';
+      downloadResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } catch (error) {
+      status.className = 'text-sm leading-6 text-red-700';
+      status.textContent = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+    } finally {
+      submit.disabled = false;
+      submit.innerHTML = 'Submit and access resource <span aria-hidden="true" class="ml-2">→</span>';
+    }
+  });
+</script>
