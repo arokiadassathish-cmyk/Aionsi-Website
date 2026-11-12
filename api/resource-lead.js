@@ -52,7 +52,10 @@ async function handlePost(request) {
   const resource = resources[resourceId];
   const consent = input.consent === 'yes';
 
-  if (!firstname || !lastname || !email || !company || !jobtitle || !resource || !consent || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+  // Validate email with literal regex escapes (whitespace and dot).
+  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  if (!firstname || !lastname || !email || !company || !jobtitle || !resource || !consent || !validEmail) {
     return json({
       ok: false,
       message: 'Please complete all required fields and confirm the resource-request consent.',
