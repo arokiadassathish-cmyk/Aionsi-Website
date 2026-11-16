@@ -15,7 +15,7 @@ function getHubSpotToken() {
   // The import.meta.env fallback also supports Astro/Vite-injected server variables.
   const runtimeToken =
     typeof process !== 'undefined' ? process.env?.HUBSPOT_PRIVATE_APP_TOKEN : undefined;
-  const astroToken = import.meta.env.HUBSPOT_PRIVATE_APP_TOKEN;
+  const astroToken = import.meta.env?.HUBSPOT_PRIVATE_APP_TOKEN;
   return (runtimeToken || astroToken || '').trim();
 }
 
@@ -145,16 +145,18 @@ async function handlePost(request) {
   }
 }
 
-import type { APIRoute } from 'astro';
-
 export const prerender = false;
 
-export const GET: APIRoute = async () => {
-  return json({
-    ok: true,
-    service: 'resource-lead-capture',
-    configured: Boolean(getHubSpotToken()),
-  });
+export default {
+  async fetch(request) {
+    if (request.method === 'GET') {
+      return json({
+        ok: true,
+        service: 'resource-lead-capture',
+        configured: Boolean(getHubSpotToken()),
+      });
+    }
+    if (request.method === 'POST') return handlePost(request);
+    return json({ ok: false, message: 'Method not allowed.' }, 405);
+  },
 };
-
-export const POST: APIRoute = async ({ request }) => handlePost(request);
