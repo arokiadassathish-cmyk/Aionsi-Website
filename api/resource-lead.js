@@ -15,7 +15,7 @@ function getHubSpotToken() {
   // The import.meta.env fallback also supports Astro/Vite-injected server variables.
   const runtimeToken =
     typeof process !== 'undefined' ? process.env?.HUBSPOT_PRIVATE_APP_TOKEN : undefined;
-  const astroToken = import.meta.env.HUBSPOT_PRIVATE_APP_TOKEN;
+  const astroToken = import.meta.env?.HUBSPOT_PRIVATE_APP_TOKEN;
   return (runtimeToken || astroToken || '').trim();
 }
 
