@@ -82,7 +82,7 @@ async function sendNotification(lead: Record<string, unknown>) {
   return { status: 'sent' as const, messageId: result.id || null };
 }
 
-async function updateNotificationStatus(id: string, status: 'sent' | 'failed', messageId?: string | null) {
+async function updateNotificationStatus(id: string, status: 'sent' | 'failed') {
   const url = process.env.SUPABASE_URL?.replace(/\/$/, '');
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) return;
@@ -91,7 +91,6 @@ async function updateNotificationStatus(id: string, status: 'sent' | 'failed', m
     notification_attempts: 1,
     email_sent_at: status === 'sent' ? new Date().toISOString() : null,
     email_last_error: status === 'failed' ? 'Resend delivery failed; retry required.' : null,
-    metadata: messageId ? { resend_message_id: messageId } : {},
   };
   const response = await fetch(`${url}/rest/v1/${LEADS_TABLE}?id=eq.${encodeURIComponent(id)}`, {
     method: 'PATCH',
@@ -200,7 +199,7 @@ export async function captureLead(request: Request, input: LeadInput, defaults: 
   try {
     const notification = await sendNotification(notificationLead);
     if (notification.status !== 'pending') {
-      await updateNotificationStatus(saved.id, notification.status, notification.status === 'sent' ? notification.messageId : null);
+      await updateNotificationStatus(saved.id, notification.status);
     }
     return json({
       ok: true,
