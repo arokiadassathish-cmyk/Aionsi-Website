@@ -1,5 +1,6 @@
 const technologyEvidenceRoutes = [
   '/evidence/pcie-gen6-data-link-layer',
+  '/evidence/pcie-5-data-link-layer-verification',
   '/evidence/usb-3x-usb4-controllers',
   '/evidence/ddr4-ddr5-memory-controllers',
   '/evidence/hbm2e-hbm3-memory-controllers',
@@ -39,6 +40,7 @@ const routes = [
   '/infinecs',
   '/panache',
   '/target-accounts',
+  '/resources/verification-readiness',
   ...technologyEvidenceRoutes,
 ];
 
