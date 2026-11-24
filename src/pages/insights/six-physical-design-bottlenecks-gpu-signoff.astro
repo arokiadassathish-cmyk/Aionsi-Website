@@ -64,19 +64,19 @@ const signoffChecks = [
 <BaseLayout title="Six Physical Design Bottlenecks That Can Delay GPU Sign-off | AionSi" description="A practical engineering review of six GPU physical-design bottlenecks: compute floorplanning and congestion, HBM and advanced packaging, timing and clock distribution, multi-voltage implementation, power integrity and thermal sign-off convergence." canonical="https://aionsi.com/insights/six-physical-design-bottlenecks-gpu-signoff">
   <Header />
   <main>
-    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-16 lg:py-20">
+    <Section class="bg-[var(--aionsi-deep-navy)] py-12 text-white md:py-16 lg:py-20">
       <Container>
-        <nav class="mb-7 text-xs font-medium text-slate-500" aria-label="Breadcrumb"><a href="/" class="hover:text-[var(--aionsi-blue)]">AionSi</a><span class="mx-2">/</span><a href="/resources" class="hover:text-[var(--aionsi-blue)]">Resources</a><span class="mx-2">/</span><a href="/insights" class="hover:text-[var(--aionsi-blue)]">Insights</a><span class="mx-2">/</span><span>GPU Physical Design</span></nav>
+        <nav class="mb-7 text-xs font-medium text-white/65" aria-label="Breadcrumb"><a href="/" class="hover:text-[var(--aionsi-orange)]">AionSi</a><span class="mx-2">/</span><a href="/resources" class="hover:text-[var(--aionsi-blue)]">Resources</a><span class="mx-2">/</span><a href="/insights" class="hover:text-[var(--aionsi-blue)]">Insights</a><span class="mx-2">/</span><span>GPU Physical Design</span></nav>
         <div class="grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
           <div>
-            <TechnicalLabel>FEATURED ENGINEERING RESOURCE · GPU · PHYSICAL DESIGN</TechnicalLabel>
-            <h1 class="mt-5 max-w-4xl text-4xl font-semibold leading-[1.06] tracking-tight text-[var(--aionsi-navy)] md:text-6xl">Six Physical Design Bottlenecks That Can Delay <span class="text-[var(--aionsi-blue)]">GPU Sign-off.</span></h1>
-            <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">As GPU architectures scale across compute, HBM and advanced packaging, physical-design closure becomes a system-level coordination challenge. These six bottlenecks deserve attention well before final sign-off.</p>
-            <div class="mt-7 flex flex-wrap gap-2 text-xs font-semibold tracking-wide text-slate-500"><span class="border border-slate-200 bg-white px-3 py-2">Floorplanning</span><span class="border border-slate-200 bg-white px-3 py-2">HBM & packaging</span><span class="border border-slate-200 bg-white px-3 py-2">Timing & CTS</span><span class="border border-slate-200 bg-white px-3 py-2">Power integrity</span><span class="border border-slate-200 bg-white px-3 py-2">Thermal sign-off</span></div>
-            <p class="mt-6 text-sm leading-6 text-slate-500">An engineering perspective from AionSi. The discussion is a general technical framework, not a claim of work performed for any named GPU company or a guarantee of implementation outcomes.</p>
+            <TechnicalLabel tone="dark">FEATURED ENGINEERING RESOURCE · GPU · PHYSICAL DESIGN</TechnicalLabel>
+            <h1 class="mt-5 max-w-4xl text-4xl font-semibold leading-[1.06] tracking-tight text-white md:text-6xl">Six Physical Design Bottlenecks That Can Delay <span class="text-[var(--aionsi-orange)]">GPU Sign-off.</span></h1>
+            <p class="mt-6 max-w-3xl text-xl leading-9 text-white/75">As GPU architectures scale across compute, HBM and advanced packaging, physical-design closure becomes a system-level coordination challenge. These six bottlenecks deserve attention well before final sign-off.</p>
+            <div class="mt-7 flex flex-wrap gap-2 text-xs font-semibold tracking-wide text-white/75"><span class="border border-white/20 bg-white/5 px-3 py-2">Floorplanning</span><span class="border border-white/20 bg-white/5 px-3 py-2">HBM & packaging</span><span class="border border-white/20 bg-white/5 px-3 py-2">Timing & CTS</span><span class="border border-white/20 bg-white/5 px-3 py-2">Power integrity</span><span class="border border-white/20 bg-white/5 px-3 py-2">Thermal sign-off</span></div>
+            <p class="mt-6 text-sm leading-6 text-white/60">An engineering perspective from AionSi. The discussion is a general technical framework, not a claim of work performed for any named GPU company or a guarantee of implementation outcomes.</p>
           </div>
-          <div class="border border-slate-200 bg-[var(--aionsi-deep-navy)] p-6 text-white shadow-sm md:p-8">
-            <TechnicalLabel>THE SIX BOTTLENECKS</TechnicalLabel>
+          <div class="border border-slate-200 bg-white/5 border-white/15 p-6 text-white shadow-sm md:p-8">
+            <TechnicalLabel tone="dark">THE SIX BOTTLENECKS</TechnicalLabel>
             <div class="mt-5 grid gap-0">
               {bottlenecks.map((item) => <a href={'#bottleneck-' + item.number} class="flex items-center gap-4 border-b border-white/15 py-4 last:border-0 hover:text-[var(--aionsi-orange)]"><span class="text-xs font-semibold text-[var(--aionsi-orange)]">{item.number}</span><span class="text-sm font-semibold leading-6">{item.title}</span><span class="ml-auto text-white/50">↘</span></a>)}
             </div>
@@ -136,7 +136,7 @@ const signoffChecks = [
 
     <Section class="bg-[var(--aionsi-deep-navy)] text-white">
       <Container class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-        <div><TechnicalLabel>FROM TECHNICAL INSIGHT TO ENGINEERING EXECUTION</TechnicalLabel><h2 class="mt-4 max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">Planning a complex GPU or advanced-SoC implementation?</h2><p class="mt-5 max-w-2xl text-base leading-7 text-white/70">Discuss physical-design capacity, timing closure, power integrity or a focused engineering work package with AionSi.</p></div>
+        <div><TechnicalLabel tone="dark">FROM TECHNICAL INSIGHT TO ENGINEERING EXECUTION</TechnicalLabel><h2 class="mt-4 max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">Planning a complex GPU or advanced-SoC implementation?</h2><p class="mt-5 max-w-2xl text-base leading-7 text-white/70">Discuss physical-design capacity, timing closure, power integrity or a focused engineering work package with AionSi.</p></div>
         <div class="flex flex-wrap gap-3"><Button href="/contact">Discuss an Engineering Requirement</Button><Button href="/resources" variant="technical">Explore All Resources</Button></div>
       </Container>
     </Section>
