@@ -1,4 +1,4 @@
-import { captureLead, jsonError } from '../src/lib/lead-capture.ts';
+import { captureLead, jsonError } from './_lib/lead-capture.js';
 
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), {
