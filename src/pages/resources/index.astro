@@ -18,21 +18,21 @@ const collections = [
   },
   {
     number: '02',
-    eyebrow: 'ENGINEERING INSIGHTS',
-    title: 'Perspectives on complex silicon programs',
-    description: 'Technical viewpoints on architecture, implementation, verification and the engineering decisions behind silicon outcomes.',
-    items: ['GPU and AI-system bottlenecks', 'SoC architecture and high-speed interfaces'],
+    eyebrow: 'TECHNICAL INSIGHTS',
+    title: 'Engineering perspectives on silicon design',
+    description: 'Technical articles examining architecture, design challenges, implementation and verification.',
+    items: ['Physical design challenges in GPU and AI systems', 'SoC architecture and high-speed interfaces'],
     href: '/insights',
-    action: 'Explore engineering insights',
+    action: 'Read technical articles',
   },
   {
     number: '03',
-    eyebrow: 'ENGINEERING EVIDENCE',
-    title: 'Explore representative engineering work',
-    description: 'Review representative technologies, protocols and engineering workstreams across IP, subsystem and SoC programs.',
+    eyebrow: 'ENGINEERING CAPABILITIES',
+    title: 'Design and implementation domains',
+    description: 'An overview of semiconductor engineering disciplines, technologies and development workflows.',
     items: ['Protocol and interface engineering', 'Design, verification and implementation'],
     href: '/evidence',
-    action: 'Explore engineering evidence',
+    action: 'View engineering capabilities',
   },
 ];
 
@@ -52,16 +52,16 @@ const focusAreas = [
       <div class="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[var(--aionsi-blue)]/20 blur-3xl"></div>
       <div class="pointer-events-none absolute -bottom-32 left-1/3 h-80 w-80 rounded-full bg-[var(--aionsi-orange)]/10 blur-3xl"></div>
       <Container class="relative">
-        <TechnicalLabel>THE AIONSI RESOURCE CENTRE</TechnicalLabel>
+        <TechnicalLabel>AIONSI · SEMICONDUCTOR ENGINEERING</TechnicalLabel>
         <div class="mt-7 grid gap-10 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
           <div>
-            <h1 class="max-w-4xl text-5xl font-semibold leading-[1.04] tracking-tight md:text-7xl">Engineering insight for the next generation of <span class="text-[var(--aionsi-orange)]">silicon.</span></h1>
-            <p class="mt-7 max-w-2xl text-lg leading-8 text-white/75 md:text-xl">Technical resources for engineering leaders and teams navigating verification complexity, advanced interfaces, SoC integration and silicon execution.</p>
+            <h1 class="max-w-4xl text-5xl font-semibold leading-[1.04] tracking-tight md:text-7xl">Semiconductor Engineering Resources</h1>
+            <p class="mt-7 max-w-2xl text-lg leading-8 text-white/75 md:text-xl">Technical guides, engineering insights and reference material covering design, verification and implementation of complex silicon systems.</p>
           </div>
           <div class="border-l border-white/20 pl-6">
-            <p class="text-xs font-semibold uppercase tracking-[.18em] text-[var(--aionsi-orange)]">Built for engineering decisions</p>
-            <p class="mt-4 text-2xl font-medium leading-snug">Useful perspectives, practical checklists and evidence-led engineering content.</p>
-            <a href="#resource-collections" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-[var(--aionsi-orange)]">Explore resources <span aria-hidden="true">↓</span></a>
+            <p class="text-xs font-semibold uppercase tracking-[.18em] text-[var(--aionsi-orange)]">RESOURCE COLLECTIONS</p>
+            <p class="mt-4 text-2xl font-medium leading-snug">Guides, technical articles and engineering reference material.</p>
+            <a href="#resource-collections" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-[var(--aionsi-orange)]">Browse resources <span aria-hidden="true">↓</span></a>
           </div>
         </div>
       </Container>
@@ -71,13 +71,13 @@ const focusAreas = [
       <Container>
         <a href="/insights/six-physical-design-bottlenecks-gpu-signoff" class="group grid gap-7 overflow-hidden border border-slate-200 bg-[var(--aionsi-deep-navy)] p-7 text-white transition hover:border-[var(--aionsi-orange)] md:grid-cols-[.85fr_1.15fr] md:items-center md:p-10">
           <div>
-            <TechnicalLabel>FEATURED ENGINEERING INSIGHT · GPU PHYSICAL DESIGN</TechnicalLabel>
-            <div class="mt-5 text-4xl font-semibold tracking-tight md:text-5xl">Six bottlenecks.<br/><span class="text-[var(--aionsi-orange)]">One sign-off challenge.</span></div>
+            <TechnicalLabel>TECHNICAL ARTICLE · GPU PHYSICAL DESIGN</TechnicalLabel>
+            <div class="mt-5 text-4xl font-semibold tracking-tight md:text-5xl">GPU Physical Design</div>
           </div>
           <div>
             <h2 class="text-2xl font-semibold leading-tight md:text-3xl">Six Physical Design Bottlenecks That Can Delay GPU Sign-off</h2>
-            <p class="mt-4 text-sm leading-7 text-white/70">Explore floorplanning and congestion, HBM and advanced packaging, timing and clock distribution, multi-voltage implementation, power integrity and thermal sign-off convergence.</p>
-            <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--aionsi-orange)]">Read the featured resource <span aria-hidden="true" class="transition group-hover:translate-x-1">→</span></span>
+            <p class="mt-4 text-sm leading-7 text-white/70">A technical review of floorplanning and congestion, HBM and advanced packaging, timing and clock distribution, multi-voltage implementation, power integrity and thermal sign-off convergence.</p>
+            <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--aionsi-orange)]">Read technical article <span aria-hidden="true" class="transition group-hover:translate-x-1">→</span></span>
           </div>
         </a>
       </Container>
@@ -86,9 +86,9 @@ const focusAreas = [
     <Section id="resource-collections" class="bg-[var(--aionsi-surface-alt)]">
       <Container>
         <div class="max-w-3xl">
-          <TechnicalLabel>EXPLORE THE LIBRARY</TechnicalLabel>
-          <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Resources that move engineering conversations forward.</h2>
-          <p class="mt-5 text-lg leading-8 text-slate-600">Start with a practical guide, explore a technical perspective or review representative engineering evidence.</p>
+          <TechnicalLabel>RESOURCE COLLECTIONS</TechnicalLabel>
+          <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Semiconductor Engineering Resources</h2>
+          <p class="mt-5 text-lg leading-8 text-slate-600">Technical guides, engineering insights and reference material covering design, verification and implementation of complex silicon systems.</p>
         </div>
         <div class="mt-10 grid gap-5 lg:grid-cols-3">
           {collections.map((item) => (
@@ -113,9 +113,9 @@ const focusAreas = [
       <Container>
         <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
           <div>
-            <TechnicalLabel>ENGINEERING DOMAINS</TechnicalLabel>
-            <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Explore by engineering focus.</h2>
-            <p class="mt-5 text-base leading-7 text-slate-600">AionSi resources are organised around the challenges that shape modern semiconductor programs.</p>
+            <TechnicalLabel>ENGINEERING DISCIPLINES</TechnicalLabel>
+            <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Engineering disciplines and focus areas.</h2>
+            <p class="mt-5 text-base leading-7 text-slate-600">Reference areas across semiconductor design, verification and implementation.</p>
           </div>
           <div class="grid gap-3 sm:grid-cols-2">
             {focusAreas.map(([title, description], index) => (
@@ -130,14 +130,13 @@ const focusAreas = [
       </Container>
     </Section>
 
-    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
-      <Container class="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
-        <div>
-          <TechnicalLabel>FROM INSIGHT TO EXECUTION</TechnicalLabel>
-          <h2 class="mt-4 max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">Have a complex engineering workstream to solve?</h2>
-          <p class="mt-4 max-w-2xl text-base leading-7 text-white/70">Discuss a focused pilot, dedicated engineering team or ODC model with AionSi.</p>
+    <Section class="bg-[var(--aionsi-surface-alt)]">
+      <Container>
+        <div class="max-w-4xl">
+          <TechnicalLabel>RESOURCE SCOPE</TechnicalLabel>
+          <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">Using these resources.</h2>
+          <p class="mt-5 text-base leading-8 text-slate-600">These materials provide technical context and practical review points across semiconductor design, verification and implementation. Project-specific requirements, design constraints, technology choices and sign-off criteria should always guide engineering decisions.</p>
         </div>
-        <a href="/contact" class="inline-flex items-center justify-center rounded-full bg-[var(--aionsi-orange)] px-7 py-4 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:brightness-105">Talk to our engineering team →</a>
       </Container>
     </Section>
   </main>
