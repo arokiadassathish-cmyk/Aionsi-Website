@@ -29,6 +29,7 @@ const routes = [
   '/resources',
   '/resources/verification-readiness',
   '/insights',
+  '/insights/six-physical-design-bottlenecks-gpu-signoff',
   '/insights/when-a-display-becomes-a-computing-platform',
   '/news',
   '/blogs',
