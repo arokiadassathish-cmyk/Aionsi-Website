@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/global/Header.astro';
+import Footer from '../../components/global/Footer.astro';
+import Container from '../../components/global/Container.astro';
+import Section from '../../components/global/Section.astro';
+import TechnicalLabel from '../../components/global/TechnicalLabel.astro';
+import Button from '../../components/global/Button.astro';
+
+const bottlenecks = [
+  {
+    number: '01',
+    title: 'Compute Floorplanning & Routing Congestion',
+    challenge: 'GPU compute arrays, cache structures, NoC fabrics and high-bandwidth interfaces compete for placement resources and routing tracks. Local density, pin access, long interconnects and routing detours can create congestion hotspots that are not obvious from a floorplan-level view.',
+    impact: 'Congestion can increase wire length and parasitics, degrade timing, trigger repeated placement and routing iterations, and make late-stage ECOs harder to absorb.',
+    actions: ['Co-design floorplan, hierarchy, macro placement and power-delivery strategy early.', 'Review congestion maps, global-route overflow, pin access and critical-path topology—not only placement density.', 'Use targeted placement blockages, cell spreading, buffering and routing-layer strategy where analysis supports them.', 'Track congestion and timing together across implementation stages so local fixes do not create downstream regressions.'],
+  },
+  {
+    number: '02',
+    title: 'HBM & Advanced Package Integration',
+    challenge: 'GPU performance depends on close coordination between compute dies, HBM stacks, interposer or advanced-package routing, PHYs, memory controllers and package-level constraints. Die-to-die connectivity, bump and escape routing, channel reach and power delivery create cross-domain dependencies.',
+    impact: 'Late changes to package assumptions, interface placement or PHY constraints can force floorplan changes, affect timing and power budgets, and delay package-to-die convergence.',
+    actions: ['Bring package, SI/PI, PHY, memory-controller and physical-design teams into early architecture reviews.', 'Maintain consistent interface, bump-map, pin-assignment and package constraint assumptions across teams.', 'Validate bandwidth, latency, channel and power-delivery budgets at the system level before implementation constraints harden.', 'Run structured die/package co-analysis and change control for interface or package updates.'],
+  },
+  {
+    number: '03',
+    title: 'Timing Closure & Clock Distribution',
+    challenge: 'Large GPU designs combine high-frequency compute paths, wide datapaths, distributed clock domains and substantial physical distance. Clock-tree synthesis must balance skew, insertion delay, transition, power and congestion while preserving timing across operating conditions.',
+    impact: 'Setup and hold violations, clock skew, excessive buffering and clock power can interact. A timing fix in one region or mode may create new violations elsewhere.',
+    actions: ['Prioritise path-based analysis of critical endpoints and identify whether delay is cell-, net- or clock-dominated.', 'Plan clock architecture, useful skew, CTS constraints and regional distribution with floorplan and power intent.', 'Review setup, hold, transition, capacitance and clock-power effects together after each major implementation change.', 'Use disciplined ECO entry and regression checks to protect already-closed paths.'],
+  },
+  {
+    number: '04',
+    title: 'Multi-Voltage Domain Implementation',
+    challenge: 'GPU subsystems may use multiple supply domains for compute, memory, fabric, I/O and always-on logic. Crossing these domains requires correct isolation, level shifting, retention and power-state sequencing, with physical implementation constraints that match the intended power architecture.',
+    impact: 'Incorrect or incomplete power intent can lead to functional issues during power transitions, implementation rework, physical-verification failures and sign-off gaps.',
+    actions: ['Define and review power domains, supply sets, legal states and power-state transitions early.', 'Validate isolation, level-shifter, retention and always-on strategies at every relevant domain crossing.', 'Keep RTL intent, UPF/CPF, library support, floorplan and implementation constraints aligned.', 'Verify power-state behaviour and physical rule checks as part of the sign-off evidence.'],
+  },
+  {
+    number: '05',
+    title: 'Power Integrity & Electromigration',
+    challenge: 'High current demand and rapidly changing activity across GPU compute and memory subsystems stress the power-delivery network. Static IR analysis evaluates steady-state voltage drop, while dynamic IR analysis evaluates transient droop under time-varying switching activity; both reveal different risks.',
+    impact: 'Voltage drop can reduce timing margin or cause functional instability. Current density and electromigration risks can affect long-term reliability and require design changes to the power grid or current paths.',
+    actions: ['Build power-grid planning around realistic current demand, activity profiles, package assumptions and bump distribution.', 'Use both static and dynamic IR analysis where applicable; do not treat one as a substitute for the other.', 'Correlate hotspots with switching activity, local utilization, voltage domains and timing-critical regions.', 'Evaluate grid reinforcement, via strategy, decap placement and current redistribution, then re-run reliability and timing checks.'],
+  },
+  {
+    number: '06',
+    title: 'Thermal Challenges & Sign-off Convergence',
+    challenge: 'Dense compute, HBM proximity, package characteristics and workload-dependent activity create non-uniform thermal conditions. Thermal behaviour can influence leakage, timing, power density and reliability, while late changes in one sign-off domain can invalidate assumptions in another.',
+    impact: 'Thermal hotspots and inconsistent assumptions across timing, power, IR, EM and package analysis can prolong closure and create repeated sign-off loops.',
+    actions: ['Use workload-relevant power and thermal assumptions and coordinate die, package and system thermal analysis.', 'Identify hotspots and evaluate their interaction with timing, leakage, power integrity and reliability.', 'Establish a cross-functional sign-off matrix with owners, tool versions, corners, assumptions and closure evidence.', 'Re-run affected analyses after material ECOs and maintain traceability from issue to fix to final sign-off.'],
+  },
+];
+
+const signoffChecks = [
+  'Floorplan, macro placement and congestion risks reviewed together',
+  'HBM, die-to-die and package assumptions baselined across teams',
+  'Clock architecture and timing closure reviewed across relevant modes and corners',
+  'Power domains, crossings and power-state behaviour validated',
+  'Static and dynamic IR, current density and EM risks assessed as applicable',
+  'Thermal, timing, power and reliability sign-off assumptions reconciled',
+];
+---
+<BaseLayout title="Six Physical Design Bottlenecks That Can Delay GPU Sign-off | AionSi" description="A practical engineering review of six GPU physical-design bottlenecks: compute floorplanning and congestion, HBM and advanced packaging, timing and clock distribution, multi-voltage implementation, power integrity and thermal sign-off convergence." canonical="https://aionsi.com/insights/six-physical-design-bottlenecks-gpu-signoff">
+  <Header />
+  <main>
+    <Section class="bg-[var(--aionsi-surface-alt)] py-12 md:py-16 lg:py-20">
+      <Container>
+        <nav class="mb-7 text-xs font-medium text-slate-500" aria-label="Breadcrumb"><a href="/" class="hover:text-[var(--aionsi-blue)]">AionSi</a><span class="mx-2">/</span><a href="/resources" class="hover:text-[var(--aionsi-blue)]">Resources</a><span class="mx-2">/</span><a href="/insights" class="hover:text-[var(--aionsi-blue)]">Insights</a><span class="mx-2">/</span><span>GPU Physical Design</span></nav>
+        <div class="grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
+          <div>
+            <TechnicalLabel>FEATURED ENGINEERING RESOURCE · GPU · PHYSICAL DESIGN</TechnicalLabel>
+            <h1 class="mt-5 max-w-4xl text-4xl font-semibold leading-[1.06] tracking-tight text-[var(--aionsi-navy)] md:text-6xl">Six Physical Design Bottlenecks That Can Delay <span class="text-[var(--aionsi-blue)]">GPU Sign-off.</span></h1>
+            <p class="mt-6 max-w-3xl text-xl leading-9 text-slate-600">As GPU architectures scale across compute, HBM and advanced packaging, physical-design closure becomes a system-level coordination challenge. These six bottlenecks deserve attention well before final sign-off.</p>
+            <div class="mt-7 flex flex-wrap gap-2 text-xs font-semibold tracking-wide text-slate-500"><span class="border border-slate-200 bg-white px-3 py-2">Floorplanning</span><span class="border border-slate-200 bg-white px-3 py-2">HBM & packaging</span><span class="border border-slate-200 bg-white px-3 py-2">Timing & CTS</span><span class="border border-slate-200 bg-white px-3 py-2">Power integrity</span><span class="border border-slate-200 bg-white px-3 py-2">Thermal sign-off</span></div>
+            <p class="mt-6 text-sm leading-6 text-slate-500">An engineering perspective from AionSi. The discussion is a general technical framework, not a claim of work performed for any named GPU company or a guarantee of implementation outcomes.</p>
+          </div>
+          <div class="border border-slate-200 bg-[var(--aionsi-deep-navy)] p-6 text-white shadow-sm md:p-8">
+            <TechnicalLabel>THE SIX BOTTLENECKS</TechnicalLabel>
+            <div class="mt-5 grid gap-0">
+              {bottlenecks.map((item) => <a href={'#bottleneck-' + item.number} class="flex items-center gap-4 border-b border-white/15 py-4 last:border-0 hover:text-[var(--aionsi-orange)]"><span class="text-xs font-semibold text-[var(--aionsi-orange)]">{item.number}</span><span class="text-sm font-semibold leading-6">{item.title}</span><span class="ml-auto text-white/50">↘</span></a>)}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-white">
+      <Container>
+        <div class="mx-auto max-w-4xl">
+          <TechnicalLabel>WHY THESE ISSUES INTERACT</TechnicalLabel>
+          <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">GPU sign-off is a convergence problem—not six isolated checklists.</h2>
+          <p class="mt-6 text-lg leading-8 text-slate-600">A floorplan decision influences routing and timing. HBM placement affects package connectivity, power delivery and thermal conditions. Clock and power choices interact with implementation constraints. A robust closure plan therefore needs shared assumptions, cross-functional ownership and traceable sign-off evidence.</p>
+          <div class="mt-8 grid gap-3 sm:grid-cols-3">
+            {[
+              ['ARCHITECTURE','Establish physical, package, power and thermal assumptions early.'],
+              ['IMPLEMENTATION','Track timing, congestion, clock, power and reliability as coupled constraints.'],
+              ['SIGN-OFF','Reconcile analysis corners, evidence, ECO impact and ownership before closure.'],
+            ].map(([label,desc],i) => <div class="border border-slate-200 bg-[var(--aionsi-surface-alt)] p-5"><span class="text-xs font-semibold tracking-[.16em] text-[var(--aionsi-orange)]">0{i+1} · {label}</span><p class="mt-3 text-sm leading-7 text-slate-600">{desc}</p></div>)}
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    {bottlenecks.map((item) => (
+      <Section id={'bottleneck-' + item.number} class={Number(item.number) % 2 === 0 ? 'bg-[var(--aionsi-surface-alt)]' : 'bg-white'}>
+        <Container>
+          <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+            <div>
+              <span class="text-sm font-semibold tracking-[.2em] text-[var(--aionsi-orange)]">BOTTLENECK {item.number}</span>
+              <h2 class="mt-4 text-3xl font-semibold leading-tight tracking-tight text-[var(--aionsi-navy)] md:text-4xl">{item.title}</h2>
+            </div>
+            <div class="grid gap-6">
+              <div><h3 class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">Engineering challenge</h3><p class="mt-3 text-base leading-8 text-slate-600">{item.challenge}</p></div>
+              <div class="border-l-2 border-[var(--aionsi-orange)] pl-5"><h3 class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">Potential sign-off impact</h3><p class="mt-3 text-base leading-8 text-slate-600">{item.impact}</p></div>
+              <div><h3 class="text-xs font-semibold uppercase tracking-[.16em] text-[var(--aionsi-blue)]">Mitigation and review actions</h3><ul class="mt-4 grid gap-3">{item.actions.map((action) => <li class="flex gap-3 text-sm leading-7 text-slate-700"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--aionsi-orange)]"></span>{action}</li>)}</ul></div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+    ))}
+
+    <Section class="bg-white">
+      <Container>
+        <div class="mx-auto max-w-5xl">
+          <TechnicalLabel>PHYSICAL DESIGN SIGN-OFF REVIEW</TechnicalLabel>
+          <h2 class="mt-4 text-3xl font-semibold tracking-tight text-[var(--aionsi-navy)] md:text-5xl">A practical convergence checklist.</h2>
+          <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">Use these questions as a starting point for a cross-functional review. Tailor the checks to the design, process, package, foundry requirements and sign-off methodology.</p>
+          <div class="mt-8 grid gap-3 md:grid-cols-2">
+            {signoffChecks.map((check,index) => <div class="flex gap-4 border border-slate-200 p-5"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--aionsi-deep-navy)] text-xs font-semibold text-white">{index+1}</span><p class="text-sm leading-7 text-slate-700">{check}</p></div>)}
+          </div>
+          <p class="mt-6 text-xs leading-6 text-slate-500">This checklist is a discussion aid, not a replacement for project-specific sign-off criteria, foundry rules, package requirements or qualified engineering review.</p>
+        </div>
+      </Container>
+    </Section>
+
+    <Section class="bg-[var(--aionsi-deep-navy)] text-white">
+      <Container class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div><TechnicalLabel>FROM TECHNICAL INSIGHT TO ENGINEERING EXECUTION</TechnicalLabel><h2 class="mt-4 max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">Planning a complex GPU or advanced-SoC implementation?</h2><p class="mt-5 max-w-2xl text-base leading-7 text-white/70">Discuss physical-design capacity, timing closure, power integrity or a focused engineering work package with AionSi.</p></div>
+        <div class="flex flex-wrap gap-3"><Button href="/contact">Discuss an Engineering Requirement</Button><Button href="/resources" variant="technical">Explore All Resources</Button></div>
+      </Container>
+    </Section>
+  </main>
+  <Footer />
+</BaseLayout>
