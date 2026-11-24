@@ -1,4 +1,4 @@
-import { captureLead, jsonError } from '../src/lib/lead-capture.ts';
+import { captureLead, jsonError } from './_lib/lead-capture.js';
 
 const resources = {
   'presilicon-checklist': 'Pre-Silicon Verification Sign-off Checklist',
