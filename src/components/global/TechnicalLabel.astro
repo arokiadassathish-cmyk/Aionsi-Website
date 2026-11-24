@@ -1,5 +1,6 @@
 ---
-interface Props { children: string; }
-const { children } = Astro.props;
+interface Props { children: string; tone?: 'light' | 'dark'; }
+const { children, tone = 'light' } = Astro.props;
+const labelColor = tone === 'dark' ? 'text-white/80' : 'text-[var(--aionsi-blue)]';
 ---
-<div class="mb-5 flex items-center gap-3"><span class="h-[2px] w-8 bg-[var(--aionsi-orange)]" aria-hidden="true"></span><span class="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--aionsi-blue)]">{children}</span></div>
+<div class="mb-5 flex items-center gap-3"><span class="h-[2px] w-8 bg-[var(--aionsi-orange)]" aria-hidden="true"></span><span class={`text-xs font-semibold uppercase tracking-[0.18em] ${labelColor}`}>{children}</span></div>
