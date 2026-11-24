@@ -169,6 +169,12 @@ const resources = [
   };
 
   const params = new URLSearchParams(window.location.search);
+  const requestedResource = params.get('resource');
+  if (requestedResource && resourceFiles[requestedResource] && resourceSelect) {
+    resourceSelect.value = requestedResource;
+    if (resourceHidden) resourceHidden.value = requestedResource;
+  }
+
   for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
     const field = form?.querySelector<HTMLInputElement>(`[name="${key}"]`);
     if (field) field.value = params.get(key) || '';
@@ -240,7 +246,9 @@ const resources = [
       }
 
       const selected = resourceFiles[resourceSelect.value];
+      if (!selected) throw new Error('Please select one of the available resources and try again.');
       downloadLink.href = selected.href;
+      downloadLink.setAttribute('download', selected.href.split('/').pop() || 'AionSi-Engineering-Resource.pdf');
       downloadLink.textContent = `Download ${selected.name} →`;
       downloadResult.classList.remove('hidden');
       status.className = 'text-sm leading-6 text-emerald-800';
