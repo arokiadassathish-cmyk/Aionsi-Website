@@ -26,6 +26,8 @@ const routes = [
   '/contact',
   '/privacy-policy',
   '/careers',
+  '/resources',
+  '/resources/verification-readiness',
   '/insights',
   '/insights/when-a-display-becomes-a-computing-platform',
   '/news',
